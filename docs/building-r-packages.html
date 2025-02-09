@@ -360,17 +360,17 @@ install.packages(&quot;roxygen2&quot;)</code></pre>
 <p>For large projects it is recommended to group similar functions in the same R file.</p>
 <p><strong>Step 3</strong></p>
 <p>In our new R package, we will write both the two functions discussed above in the same file called, <code>temp_conversion.R</code> that has the code below;</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="building-r-packages.html#cb335-1" tabindex="-1"></a><span class="co"># Convert from Fahrenheit to Celsius</span></span>
-<span id="cb335-2"><a href="building-r-packages.html#cb335-2" tabindex="-1"></a>F_to_C <span class="ot">&lt;-</span> <span class="cf">function</span>(F_temp){</span>
-<span id="cb335-3"><a href="building-r-packages.html#cb335-3" tabindex="-1"></a>  C_temp <span class="ot">&lt;-</span> (F_temp <span class="sc">-</span><span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
-<span id="cb335-4"><a href="building-r-packages.html#cb335-4" tabindex="-1"></a>  <span class="fu">return</span> (C_temp)</span>
-<span id="cb335-5"><a href="building-r-packages.html#cb335-5" tabindex="-1"></a>}</span>
-<span id="cb335-6"><a href="building-r-packages.html#cb335-6" tabindex="-1"></a></span>
-<span id="cb335-7"><a href="building-r-packages.html#cb335-7" tabindex="-1"></a><span class="co"># Convert from Celsius to Fahrenheit</span></span>
-<span id="cb335-8"><a href="building-r-packages.html#cb335-8" tabindex="-1"></a>C_to_F <span class="ot">&lt;-</span> <span class="cf">function</span>(C_temp){</span>
-<span id="cb335-9"><a href="building-r-packages.html#cb335-9" tabindex="-1"></a>  F_temp <span class="ot">&lt;-</span> (C_temp <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
-<span id="cb335-10"><a href="building-r-packages.html#cb335-10" tabindex="-1"></a>  <span class="fu">return</span>(F_temp)</span>
-<span id="cb335-11"><a href="building-r-packages.html#cb335-11" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="building-r-packages.html#cb2-1" tabindex="-1"></a><span class="co"># Convert from Fahrenheit to Celsius</span></span>
+<span id="cb2-2"><a href="building-r-packages.html#cb2-2" tabindex="-1"></a>F_to_C <span class="ot">&lt;-</span> <span class="cf">function</span>(F_temp){</span>
+<span id="cb2-3"><a href="building-r-packages.html#cb2-3" tabindex="-1"></a>  C_temp <span class="ot">&lt;-</span> (F_temp <span class="sc">-</span><span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
+<span id="cb2-4"><a href="building-r-packages.html#cb2-4" tabindex="-1"></a>  <span class="fu">return</span> (C_temp)</span>
+<span id="cb2-5"><a href="building-r-packages.html#cb2-5" tabindex="-1"></a>}</span>
+<span id="cb2-6"><a href="building-r-packages.html#cb2-6" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="building-r-packages.html#cb2-7" tabindex="-1"></a><span class="co"># Convert from Celsius to Fahrenheit</span></span>
+<span id="cb2-8"><a href="building-r-packages.html#cb2-8" tabindex="-1"></a>C_to_F <span class="ot">&lt;-</span> <span class="cf">function</span>(C_temp){</span>
+<span id="cb2-9"><a href="building-r-packages.html#cb2-9" tabindex="-1"></a>  F_temp <span class="ot">&lt;-</span> (C_temp <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb2-10"><a href="building-r-packages.html#cb2-10" tabindex="-1"></a>  <span class="fu">return</span>(F_temp)</span>
+<span id="cb2-11"><a href="building-r-packages.html#cb2-11" tabindex="-1"></a>}</span></code></pre></div>
 <p>That is the whole file for now, it has less than 15 lines of code.</p>
 <p><img src="images/temp_conversion_image.png" /></p>
 <p><strong>Step 4</strong></p>
@@ -380,15 +380,15 @@ Type: Package
 Title: Temperature Conversion Package for Demonstration
 Version: 0.0.1.0</code></pre>
 <p>This is now a working R package and can be loaded by;</p>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="building-r-packages.html#cb337-1" tabindex="-1"></a><span class="fu">library</span>(devtools);</span>
-<span id="cb337-2"><a href="building-r-packages.html#cb337-2" tabindex="-1"></a></span>
-<span id="cb337-3"><a href="building-r-packages.html#cb337-3" tabindex="-1"></a><span class="fu">load_all</span>(<span class="st">&quot;F2C_R_package&quot;</span>) <span class="co"># Load the directory path to where the package is</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="building-r-packages.html#cb4-1" tabindex="-1"></a><span class="fu">library</span>(devtools);</span></code></pre></div>
+<pre><code>## Loading required package: usethis</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="building-r-packages.html#cb6-1" tabindex="-1"></a><span class="fu">load_all</span>(<span class="st">&quot;F2C_R_package&quot;</span>) <span class="co"># Load the directory path to where the package is</span></span></code></pre></div>
 <pre><code>## ℹ Loading F2CTempConverter</code></pre>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="building-r-packages.html#cb339-1" tabindex="-1"></a><span class="co"># Lets convert the temperature from Fahrenheit to Celsius</span></span>
-<span id="cb339-2"><a href="building-r-packages.html#cb339-2" tabindex="-1"></a><span class="fu">F_to_C</span>(<span class="dv">79</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="building-r-packages.html#cb8-1" tabindex="-1"></a><span class="co"># Lets convert the temperature from Fahrenheit to Celsius</span></span>
+<span id="cb8-2"><a href="building-r-packages.html#cb8-2" tabindex="-1"></a><span class="fu">F_to_C</span>(<span class="dv">79</span>)</span></code></pre></div>
 <pre><code>## [1] 26.11111</code></pre>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="building-r-packages.html#cb341-1" tabindex="-1"></a><span class="co"># Converting from Celsius to Fahrenheit</span></span>
-<span id="cb341-2"><a href="building-r-packages.html#cb341-2" tabindex="-1"></a><span class="fu">C_to_F</span>(<span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="building-r-packages.html#cb10-1" tabindex="-1"></a><span class="co"># Converting from Celsius to Fahrenheit</span></span>
+<span id="cb10-2"><a href="building-r-packages.html#cb10-2" tabindex="-1"></a><span class="fu">C_to_F</span>(<span class="dv">20</span>)</span></code></pre></div>
 <pre><code>## [1] 68</code></pre>
 <p>After this its good to add documentation to help users know what the function does.</p>
 </div>
@@ -526,124 +526,6 @@ git push -u origin main</code></pre>
 </ul>
 <hr />
 <p><span style="color: brown;"><strong>Solution</strong></span></p>
-<p>Instruction to;</p>
-<ul>
-<li>Test the functionalities (Function to convert Kilos to pounds and back)</li>
-<li>Check documentation</li>
-<li>Check version tagged in the <code>DESCRIPTION</code> file.</li>
-<li>Check if package pushed to github(optional)</li>
-</ul>
-<p>Complete Solution in <code>K2P_R_package</code> directory</p>
-<p>Here is how the package is created;</p>
-<ul>
-<li>Install the packages required to build the app.</li>
-</ul>
-<pre><code># Install devtools 
-install.packages(&quot;devtools&quot;)
-
-# Install roxygen
-install.packages(&quot;roxygen2&quot;)</code></pre>
-<ul>
-<li>Create a folder and name it <code>K2P_R_package</code>.</li>
-<li>In the <code>K2P_R_package</code> directory, create a directory called <code>R</code>.</li>
-<li>In the <code>R</code> directory, created an R script file called <code>mass_converter.R</code>.</li>
-<li>Add the lines below to the <code>mass_converter.R</code> to create a function <code>K_to_P</code> that converts mass from Kilo to Pounds.</li>
-</ul>
-<pre><code>K_to_P &lt;- function(K_mass){
-  P_mass &lt;- (K_mass * 2.20462)
-  return (P_mass)
-}</code></pre>
-<ul>
-<li>Add the lines below to the <code>mass_converter.R</code> to create a function <code>P_to_K</code> that converts mass from Pounds to Kilos.</li>
-</ul>
-<pre><code>P_to_K &lt;- function(P_mass){
-  K_mass &lt;- (P_mass/2.20462)
-  return (K_mass)
-}</code></pre>
-<ul>
-<li>Under the <code>K2P_R_package</code> directory, add a file named <code>DESCRIPTION</code> and add the following lines;</li>
-</ul>
-<pre><code>Package: K2PMassConverter
-Type: Package
-Title: Convert mass from kilo to pounds and vice versa
-Version: 0.0.1
-RoxygenNote: 7.3.2</code></pre>
-<ul>
-<li>This is now a working file and can be add loaded to the R workspace by;</li>
-</ul>
-<pre><code>library(devtools);
-load_all(&quot;K2P_R_package&quot;) # Load the directory path to where the package is</code></pre>
-<ul>
-<li>Test the functionalities of the package by trying to convert mass from Kilos to Pounds and back.</li>
-</ul>
-<pre><code>K_to_P(53) # Convert from Kilos to Pounds
-P_to_K(156) # COnvert from Pounds to Kilos</code></pre>
-<ul>
-<li>The package can be uploaded to github or CRAN for collaboration. In this case, upload to github but first open it as a project. You will click <code>File&gt;New Project&gt;Existing Directory</code> then select the <code>K2P_R_package</code> folder.</li>
-<li>Add a documentation to the package by adding these lines above the <code>K_to_P</code> function.</li>
-</ul>
-<pre><code>#&#39; Kilogram conversion
-#&#39;
-#&#39; Convert mass in Kilogram to Pounds
-#&#39; @param K_mass The mass in Kilograms
-#&#39; @return The mass in Pounds
-#&#39; @examples 
-#&#39; mass1 &lt;- K_to_P(69);
-#&#39; mass2 &lt;- K_to_P( c(55, 69, 71) );
-#&#39; @export</code></pre>
-<ul>
-<li>Add these lines above the <code>P_to_K</code> function</li>
-</ul>
-<pre><code>#&#39; Pounds conversion
-#&#39;
-#&#39; Convert mass in Pounds to Kilograms
-#&#39; @param P_mass The mass in Pounds
-#&#39; @return The mass in Kilograms
-#&#39; @examples 
-#&#39; mass1 &lt;- P_to_K(150);
-#&#39; mass2 &lt;- P_to_K( c(200, 155, 342) );
-#&#39; @export</code></pre>
-<ul>
-<li>The whole <code>mass_converter.R</code> script will look like this</li>
-</ul>
-<pre><code>#&#39; Kilogram conversion
-#&#39;
-#&#39; Convert mass in Kilogram to Pounds
-#&#39; @param K_mass The mass in Kilograms
-#&#39; @return The mass in Pounds
-#&#39; @examples 
-#&#39; mass1 &lt;- K_to_P(69);
-#&#39; mass2 &lt;- K_to_P( c(55, 69, 71) );
-#&#39; @export
-K_to_P &lt;- function(K_mass){
-  P_mass &lt;- (K_mass * 2.20462)
-  return (P_mass)
-}
-
-#&#39; Pounds conversion
-#&#39;
-#&#39; Convert mass in Pounds to Kilograms
-#&#39; @param P_mass The mass in Pounds
-#&#39; @return The mass in Kilograms
-#&#39; @examples 
-#&#39; mass1 &lt;- P_to_K(150);
-#&#39; mass2 &lt;- P_to_K( c(200, 155, 342) );
-#&#39; @export
-P_to_K &lt;- function(P_mass){
-  K_mass &lt;- (P_mass/2.20462)
-  return (K_mass)
-}</code></pre>
-<p>To the console while the project is still open run the lines below to package the help file and the whole package</p>
-<pre><code>library(roxygen2); # Read in the roxygen2 R package
-roxygenise();      # Builds the help files</code></pre>
-<ul>
-<li>Visit github and create a new repo, finally commit your work.</li>
-<li>To find the documentation to specific functions on the <code>K2P_R_package</code> run</li>
-</ul>
-<pre><code>?K_to_P</code></pre>
-<ul>
-<li>Try that to the <code>P_to_K</code> function.</li>
-</ul>
 <p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
 
 </div>

@@ -348,53 +348,58 @@ runExample(&quot;01_hello&quot;)</code></pre>
 <div id="user-interfaceui" class="section level3 hasAnchor" number="7.1.1">
 <h3><span class="header-section-number">7.1.1</span> User Interface(ui)<a href="r-shiny.html#user-interfaceui" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The user interface (ui) object defines the layout and visual aspects of your app. Below is the <code>ui</code> object used in the Hello Shiny example:</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="r-shiny.html#cb314-1" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb314-2"><a href="r-shiny.html#cb314-2" tabindex="-1"></a><span class="fu">library</span>(bslib)</span>
-<span id="cb314-3"><a href="r-shiny.html#cb314-3" tabindex="-1"></a></span>
-<span id="cb314-4"><a href="r-shiny.html#cb314-4" tabindex="-1"></a><span class="co"># Define UI for app that draws a histogram ----</span></span>
-<span id="cb314-5"><a href="r-shiny.html#cb314-5" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">page_sidebar</span>(</span>
-<span id="cb314-6"><a href="r-shiny.html#cb314-6" tabindex="-1"></a>  <span class="co"># App title ----</span></span>
-<span id="cb314-7"><a href="r-shiny.html#cb314-7" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Hello Shiny!&quot;</span>,</span>
-<span id="cb314-8"><a href="r-shiny.html#cb314-8" tabindex="-1"></a>  <span class="co"># Sidebar panel for inputs ----</span></span>
-<span id="cb314-9"><a href="r-shiny.html#cb314-9" tabindex="-1"></a>  <span class="at">sidebar =</span> <span class="fu">sidebar</span>(</span>
-<span id="cb314-10"><a href="r-shiny.html#cb314-10" tabindex="-1"></a>    <span class="co"># Input: Slider for the number of bins ----</span></span>
-<span id="cb314-11"><a href="r-shiny.html#cb314-11" tabindex="-1"></a>    <span class="fu">sliderInput</span>(</span>
-<span id="cb314-12"><a href="r-shiny.html#cb314-12" tabindex="-1"></a>      <span class="at">inputId =</span> <span class="st">&quot;bins&quot;</span>,</span>
-<span id="cb314-13"><a href="r-shiny.html#cb314-13" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">&quot;Number of bins:&quot;</span>,</span>
-<span id="cb314-14"><a href="r-shiny.html#cb314-14" tabindex="-1"></a>      <span class="at">min =</span> <span class="dv">1</span>,</span>
-<span id="cb314-15"><a href="r-shiny.html#cb314-15" tabindex="-1"></a>      <span class="at">max =</span> <span class="dv">50</span>,</span>
-<span id="cb314-16"><a href="r-shiny.html#cb314-16" tabindex="-1"></a>      <span class="at">value =</span> <span class="dv">30</span></span>
-<span id="cb314-17"><a href="r-shiny.html#cb314-17" tabindex="-1"></a>    )</span>
-<span id="cb314-18"><a href="r-shiny.html#cb314-18" tabindex="-1"></a>  ),</span>
-<span id="cb314-19"><a href="r-shiny.html#cb314-19" tabindex="-1"></a>  <span class="co"># Output: Histogram ----</span></span>
-<span id="cb314-20"><a href="r-shiny.html#cb314-20" tabindex="-1"></a>  <span class="fu">plotOutput</span>(<span class="at">outputId =</span> <span class="st">&quot;distPlot&quot;</span>)</span>
-<span id="cb314-21"><a href="r-shiny.html#cb314-21" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="r-shiny.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb3-2"><a href="r-shiny.html#cb3-2" tabindex="-1"></a><span class="fu">library</span>(bslib)</span></code></pre></div>
+<pre><code>## Warning: package &#39;bslib&#39; was built under R version 4.3.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;bslib&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:utils&#39;:
+## 
+##     page</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="r-shiny.html#cb7-1" tabindex="-1"></a><span class="co"># Define UI for app that draws a histogram ----</span></span>
+<span id="cb7-2"><a href="r-shiny.html#cb7-2" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">page_sidebar</span>(</span>
+<span id="cb7-3"><a href="r-shiny.html#cb7-3" tabindex="-1"></a>  <span class="co"># App title ----</span></span>
+<span id="cb7-4"><a href="r-shiny.html#cb7-4" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Hello Shiny!&quot;</span>,</span>
+<span id="cb7-5"><a href="r-shiny.html#cb7-5" tabindex="-1"></a>  <span class="co"># Sidebar panel for inputs ----</span></span>
+<span id="cb7-6"><a href="r-shiny.html#cb7-6" tabindex="-1"></a>  <span class="at">sidebar =</span> <span class="fu">sidebar</span>(</span>
+<span id="cb7-7"><a href="r-shiny.html#cb7-7" tabindex="-1"></a>    <span class="co"># Input: Slider for the number of bins ----</span></span>
+<span id="cb7-8"><a href="r-shiny.html#cb7-8" tabindex="-1"></a>    <span class="fu">sliderInput</span>(</span>
+<span id="cb7-9"><a href="r-shiny.html#cb7-9" tabindex="-1"></a>      <span class="at">inputId =</span> <span class="st">&quot;bins&quot;</span>,</span>
+<span id="cb7-10"><a href="r-shiny.html#cb7-10" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">&quot;Number of bins:&quot;</span>,</span>
+<span id="cb7-11"><a href="r-shiny.html#cb7-11" tabindex="-1"></a>      <span class="at">min =</span> <span class="dv">1</span>,</span>
+<span id="cb7-12"><a href="r-shiny.html#cb7-12" tabindex="-1"></a>      <span class="at">max =</span> <span class="dv">50</span>,</span>
+<span id="cb7-13"><a href="r-shiny.html#cb7-13" tabindex="-1"></a>      <span class="at">value =</span> <span class="dv">30</span></span>
+<span id="cb7-14"><a href="r-shiny.html#cb7-14" tabindex="-1"></a>    )</span>
+<span id="cb7-15"><a href="r-shiny.html#cb7-15" tabindex="-1"></a>  ),</span>
+<span id="cb7-16"><a href="r-shiny.html#cb7-16" tabindex="-1"></a>  <span class="co"># Output: Histogram ----</span></span>
+<span id="cb7-17"><a href="r-shiny.html#cb7-17" tabindex="-1"></a>  <span class="fu">plotOutput</span>(<span class="at">outputId =</span> <span class="st">&quot;distPlot&quot;</span>)</span>
+<span id="cb7-18"><a href="r-shiny.html#cb7-18" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <div id="server" class="section level3 hasAnchor" number="7.1.2">
 <h3><span class="header-section-number">7.1.2</span> Server<a href="r-shiny.html#server" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Here is the server function for the Hello Shiny Example:</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="r-shiny.html#cb315-1" tabindex="-1"></a><span class="co"># Define server logic required to draw a histogram ----</span></span>
-<span id="cb315-2"><a href="r-shiny.html#cb315-2" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb315-3"><a href="r-shiny.html#cb315-3" tabindex="-1"></a></span>
-<span id="cb315-4"><a href="r-shiny.html#cb315-4" tabindex="-1"></a>  <span class="co"># Histogram of the Old Faithful Geyser Data ----</span></span>
-<span id="cb315-5"><a href="r-shiny.html#cb315-5" tabindex="-1"></a>  <span class="co"># with requested number of bins</span></span>
-<span id="cb315-6"><a href="r-shiny.html#cb315-6" tabindex="-1"></a>  <span class="co"># This expression that generates a histogram is wrapped in a call</span></span>
-<span id="cb315-7"><a href="r-shiny.html#cb315-7" tabindex="-1"></a>  <span class="co"># to renderPlot to indicate that:</span></span>
-<span id="cb315-8"><a href="r-shiny.html#cb315-8" tabindex="-1"></a>  <span class="co">#</span></span>
-<span id="cb315-9"><a href="r-shiny.html#cb315-9" tabindex="-1"></a>  <span class="co"># 1. It is &quot;reactive&quot; and should automatically</span></span>
-<span id="cb315-10"><a href="r-shiny.html#cb315-10" tabindex="-1"></a>  <span class="co">#    re-execute when inputs (input$bins) change</span></span>
-<span id="cb315-11"><a href="r-shiny.html#cb315-11" tabindex="-1"></a>  <span class="co"># 2. Its output type is a plot</span></span>
-<span id="cb315-12"><a href="r-shiny.html#cb315-12" tabindex="-1"></a>  output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb315-13"><a href="r-shiny.html#cb315-13" tabindex="-1"></a>  </span>
-<span id="cb315-14"><a href="r-shiny.html#cb315-14" tabindex="-1"></a>    x    <span class="ot">&lt;-</span> faithful<span class="sc">$</span>waiting</span>
-<span id="cb315-15"><a href="r-shiny.html#cb315-15" tabindex="-1"></a>    bins <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(x), <span class="fu">max</span>(x), <span class="at">length.out =</span> input<span class="sc">$</span>bins <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb315-16"><a href="r-shiny.html#cb315-16" tabindex="-1"></a></span>
-<span id="cb315-17"><a href="r-shiny.html#cb315-17" tabindex="-1"></a>    <span class="fu">hist</span>(x, <span class="at">breaks =</span> bins, <span class="at">col =</span> <span class="st">&quot;#007bc2&quot;</span>, <span class="at">border =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb315-18"><a href="r-shiny.html#cb315-18" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">&quot;Waiting time to next eruption (in mins)&quot;</span>,</span>
-<span id="cb315-19"><a href="r-shiny.html#cb315-19" tabindex="-1"></a>         <span class="at">main =</span> <span class="st">&quot;Histogram of waiting times&quot;</span>)</span>
-<span id="cb315-20"><a href="r-shiny.html#cb315-20" tabindex="-1"></a>  })</span>
-<span id="cb315-21"><a href="r-shiny.html#cb315-21" tabindex="-1"></a></span>
-<span id="cb315-22"><a href="r-shiny.html#cb315-22" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="r-shiny.html#cb8-1" tabindex="-1"></a><span class="co"># Define server logic required to draw a histogram ----</span></span>
+<span id="cb8-2"><a href="r-shiny.html#cb8-2" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb8-3"><a href="r-shiny.html#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="r-shiny.html#cb8-4" tabindex="-1"></a>  <span class="co"># Histogram of the Old Faithful Geyser Data ----</span></span>
+<span id="cb8-5"><a href="r-shiny.html#cb8-5" tabindex="-1"></a>  <span class="co"># with requested number of bins</span></span>
+<span id="cb8-6"><a href="r-shiny.html#cb8-6" tabindex="-1"></a>  <span class="co"># This expression that generates a histogram is wrapped in a call</span></span>
+<span id="cb8-7"><a href="r-shiny.html#cb8-7" tabindex="-1"></a>  <span class="co"># to renderPlot to indicate that:</span></span>
+<span id="cb8-8"><a href="r-shiny.html#cb8-8" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb8-9"><a href="r-shiny.html#cb8-9" tabindex="-1"></a>  <span class="co"># 1. It is &quot;reactive&quot; and should automatically</span></span>
+<span id="cb8-10"><a href="r-shiny.html#cb8-10" tabindex="-1"></a>  <span class="co">#    re-execute when inputs (input$bins) change</span></span>
+<span id="cb8-11"><a href="r-shiny.html#cb8-11" tabindex="-1"></a>  <span class="co"># 2. Its output type is a plot</span></span>
+<span id="cb8-12"><a href="r-shiny.html#cb8-12" tabindex="-1"></a>  output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb8-13"><a href="r-shiny.html#cb8-13" tabindex="-1"></a>  </span>
+<span id="cb8-14"><a href="r-shiny.html#cb8-14" tabindex="-1"></a>    x    <span class="ot">&lt;-</span> faithful<span class="sc">$</span>waiting</span>
+<span id="cb8-15"><a href="r-shiny.html#cb8-15" tabindex="-1"></a>    bins <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(x), <span class="fu">max</span>(x), <span class="at">length.out =</span> input<span class="sc">$</span>bins <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-16"><a href="r-shiny.html#cb8-16" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="r-shiny.html#cb8-17" tabindex="-1"></a>    <span class="fu">hist</span>(x, <span class="at">breaks =</span> bins, <span class="at">col =</span> <span class="st">&quot;#007bc2&quot;</span>, <span class="at">border =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb8-18"><a href="r-shiny.html#cb8-18" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">&quot;Waiting time to next eruption (in mins)&quot;</span>,</span>
+<span id="cb8-19"><a href="r-shiny.html#cb8-19" tabindex="-1"></a>         <span class="at">main =</span> <span class="st">&quot;Histogram of waiting times&quot;</span>)</span>
+<span id="cb8-20"><a href="r-shiny.html#cb8-20" tabindex="-1"></a>  })</span>
+<span id="cb8-21"><a href="r-shiny.html#cb8-21" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="r-shiny.html#cb8-22" tabindex="-1"></a>}</span></code></pre></div>
 <p>At its core, the server function in the Hello Shiny example is quite straightforward. It performs some calculations and generates a histogram based on the specified number of bins.</p>
 <p>However, you’ll notice that most of the script is wrapped in a call to <code>renderPlot</code>. The comment above the function provides some explanation, but don’t worry if it seems unclear; we will explore this concept in greater detail later.</p>
 <p>Before you start experimenting with the Hello Shiny app and reviewing its source code, remember that your <code>app.R</code> file should begin with loading the Shiny package and conclude with a call to <code>shinyApp</code>:</p>
@@ -408,45 +413,46 @@ server &lt;- ...
 shinyApp(ui = ui, server = server)</code></pre>
 <p>While the Hello Shiny app is running, your R session will be occupied and won’t accept other commands. R is actively monitoring the app and processing its reactions. To regain access to your R session, press the escape key or click the stop icon located in the upper right corner of the RStudio console panel.</p>
 <p>How that you have known how to create an RShiny app, lets create a simple temperature converter that will convert temperature from Celcius to Farenheit.</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="r-shiny.html#cb317-1" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb317-2"><a href="r-shiny.html#cb317-2" tabindex="-1"></a></span>
-<span id="cb317-3"><a href="r-shiny.html#cb317-3" tabindex="-1"></a><span class="co"># Define UI for the Temperature Converter app</span></span>
-<span id="cb317-4"><a href="r-shiny.html#cb317-4" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb317-5"><a href="r-shiny.html#cb317-5" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;Temperature Converter&quot;</span>),</span>
-<span id="cb317-6"><a href="r-shiny.html#cb317-6" tabindex="-1"></a>  </span>
-<span id="cb317-7"><a href="r-shiny.html#cb317-7" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb317-8"><a href="r-shiny.html#cb317-8" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
-<span id="cb317-9"><a href="r-shiny.html#cb317-9" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">&quot;temp_input&quot;</span>, <span class="st">&quot;Temperature:&quot;</span>, <span class="at">value =</span> <span class="dv">0</span>),</span>
-<span id="cb317-10"><a href="r-shiny.html#cb317-10" tabindex="-1"></a>      <span class="fu">selectInput</span>(<span class="st">&quot;temp_scale&quot;</span>, <span class="st">&quot;Select scale:&quot;</span>, </span>
-<span id="cb317-11"><a href="r-shiny.html#cb317-11" tabindex="-1"></a>                  <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&quot;Celsius to Fahrenheit&quot;</span>, <span class="st">&quot;Fahrenheit to Celsius&quot;</span>)),</span>
-<span id="cb317-12"><a href="r-shiny.html#cb317-12" tabindex="-1"></a>      <span class="fu">actionButton</span>(<span class="st">&quot;convert&quot;</span>, <span class="st">&quot;Convert&quot;</span>)</span>
-<span id="cb317-13"><a href="r-shiny.html#cb317-13" tabindex="-1"></a>    ),</span>
-<span id="cb317-14"><a href="r-shiny.html#cb317-14" tabindex="-1"></a>    </span>
-<span id="cb317-15"><a href="r-shiny.html#cb317-15" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
-<span id="cb317-16"><a href="r-shiny.html#cb317-16" tabindex="-1"></a>      <span class="fu">textOutput</span>(<span class="st">&quot;result&quot;</span>)</span>
-<span id="cb317-17"><a href="r-shiny.html#cb317-17" tabindex="-1"></a>    )</span>
-<span id="cb317-18"><a href="r-shiny.html#cb317-18" tabindex="-1"></a>  )</span>
-<span id="cb317-19"><a href="r-shiny.html#cb317-19" tabindex="-1"></a>)</span>
-<span id="cb317-20"><a href="r-shiny.html#cb317-20" tabindex="-1"></a></span>
-<span id="cb317-21"><a href="r-shiny.html#cb317-21" tabindex="-1"></a><span class="co"># Define server logic for the Temperature Converter</span></span>
-<span id="cb317-22"><a href="r-shiny.html#cb317-22" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb317-23"><a href="r-shiny.html#cb317-23" tabindex="-1"></a>  <span class="fu">observeEvent</span>(input<span class="sc">$</span>convert, {</span>
-<span id="cb317-24"><a href="r-shiny.html#cb317-24" tabindex="-1"></a>    <span class="cf">if</span> (input<span class="sc">$</span>temp_scale <span class="sc">==</span> <span class="st">&quot;Celsius to Fahrenheit&quot;</span>) {</span>
-<span id="cb317-25"><a href="r-shiny.html#cb317-25" tabindex="-1"></a>      result <span class="ot">&lt;-</span> (input<span class="sc">$</span>temp_input <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
-<span id="cb317-26"><a href="r-shiny.html#cb317-26" tabindex="-1"></a>      output<span class="sc">$</span>result <span class="ot">&lt;-</span> <span class="fu">renderText</span>({ </span>
-<span id="cb317-27"><a href="r-shiny.html#cb317-27" tabindex="-1"></a>        <span class="fu">paste</span>(input<span class="sc">$</span>temp_input, <span class="st">&quot;°C =&quot;</span>, <span class="fu">round</span>(result, <span class="dv">2</span>), <span class="st">&quot;°F&quot;</span>)</span>
-<span id="cb317-28"><a href="r-shiny.html#cb317-28" tabindex="-1"></a>      })</span>
-<span id="cb317-29"><a href="r-shiny.html#cb317-29" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb317-30"><a href="r-shiny.html#cb317-30" tabindex="-1"></a>      result <span class="ot">&lt;-</span> (input<span class="sc">$</span>temp_input <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
-<span id="cb317-31"><a href="r-shiny.html#cb317-31" tabindex="-1"></a>      output<span class="sc">$</span>result <span class="ot">&lt;-</span> <span class="fu">renderText</span>({ </span>
-<span id="cb317-32"><a href="r-shiny.html#cb317-32" tabindex="-1"></a>        <span class="fu">paste</span>(input<span class="sc">$</span>temp_input, <span class="st">&quot;°F =&quot;</span>, <span class="fu">round</span>(result, <span class="dv">2</span>), <span class="st">&quot;°C&quot;</span>)</span>
-<span id="cb317-33"><a href="r-shiny.html#cb317-33" tabindex="-1"></a>      })</span>
-<span id="cb317-34"><a href="r-shiny.html#cb317-34" tabindex="-1"></a>    }</span>
-<span id="cb317-35"><a href="r-shiny.html#cb317-35" tabindex="-1"></a>  })</span>
-<span id="cb317-36"><a href="r-shiny.html#cb317-36" tabindex="-1"></a>}</span>
-<span id="cb317-37"><a href="r-shiny.html#cb317-37" tabindex="-1"></a></span>
-<span id="cb317-38"><a href="r-shiny.html#cb317-38" tabindex="-1"></a><span class="co"># Run the app</span></span>
-<span id="cb317-39"><a href="r-shiny.html#cb317-39" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="r-shiny.html#cb10-1" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb10-2"><a href="r-shiny.html#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="r-shiny.html#cb10-3" tabindex="-1"></a><span class="co"># Define UI for the Temperature Converter app</span></span>
+<span id="cb10-4"><a href="r-shiny.html#cb10-4" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb10-5"><a href="r-shiny.html#cb10-5" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;Temperature Converter&quot;</span>),</span>
+<span id="cb10-6"><a href="r-shiny.html#cb10-6" tabindex="-1"></a>  </span>
+<span id="cb10-7"><a href="r-shiny.html#cb10-7" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb10-8"><a href="r-shiny.html#cb10-8" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
+<span id="cb10-9"><a href="r-shiny.html#cb10-9" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">&quot;temp_input&quot;</span>, <span class="st">&quot;Temperature:&quot;</span>, <span class="at">value =</span> <span class="dv">0</span>),</span>
+<span id="cb10-10"><a href="r-shiny.html#cb10-10" tabindex="-1"></a>      <span class="fu">selectInput</span>(<span class="st">&quot;temp_scale&quot;</span>, <span class="st">&quot;Select scale:&quot;</span>, </span>
+<span id="cb10-11"><a href="r-shiny.html#cb10-11" tabindex="-1"></a>                  <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&quot;Celsius to Fahrenheit&quot;</span>, <span class="st">&quot;Fahrenheit to Celsius&quot;</span>)),</span>
+<span id="cb10-12"><a href="r-shiny.html#cb10-12" tabindex="-1"></a>      <span class="fu">actionButton</span>(<span class="st">&quot;convert&quot;</span>, <span class="st">&quot;Convert&quot;</span>)</span>
+<span id="cb10-13"><a href="r-shiny.html#cb10-13" tabindex="-1"></a>    ),</span>
+<span id="cb10-14"><a href="r-shiny.html#cb10-14" tabindex="-1"></a>    </span>
+<span id="cb10-15"><a href="r-shiny.html#cb10-15" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb10-16"><a href="r-shiny.html#cb10-16" tabindex="-1"></a>      <span class="fu">textOutput</span>(<span class="st">&quot;result&quot;</span>)</span>
+<span id="cb10-17"><a href="r-shiny.html#cb10-17" tabindex="-1"></a>    )</span>
+<span id="cb10-18"><a href="r-shiny.html#cb10-18" tabindex="-1"></a>  )</span>
+<span id="cb10-19"><a href="r-shiny.html#cb10-19" tabindex="-1"></a>)</span>
+<span id="cb10-20"><a href="r-shiny.html#cb10-20" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="r-shiny.html#cb10-21" tabindex="-1"></a><span class="co"># Define server logic for the Temperature Converter</span></span>
+<span id="cb10-22"><a href="r-shiny.html#cb10-22" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb10-23"><a href="r-shiny.html#cb10-23" tabindex="-1"></a>  <span class="fu">observeEvent</span>(input<span class="sc">$</span>convert, {</span>
+<span id="cb10-24"><a href="r-shiny.html#cb10-24" tabindex="-1"></a>    <span class="cf">if</span> (input<span class="sc">$</span>temp_scale <span class="sc">==</span> <span class="st">&quot;Celsius to Fahrenheit&quot;</span>) {</span>
+<span id="cb10-25"><a href="r-shiny.html#cb10-25" tabindex="-1"></a>      result <span class="ot">&lt;-</span> (input<span class="sc">$</span>temp_input <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb10-26"><a href="r-shiny.html#cb10-26" tabindex="-1"></a>      output<span class="sc">$</span>result <span class="ot">&lt;-</span> <span class="fu">renderText</span>({ </span>
+<span id="cb10-27"><a href="r-shiny.html#cb10-27" tabindex="-1"></a>        <span class="fu">paste</span>(input<span class="sc">$</span>temp_input, <span class="st">&quot;°C =&quot;</span>, <span class="fu">round</span>(result, <span class="dv">2</span>), <span class="st">&quot;°F&quot;</span>)</span>
+<span id="cb10-28"><a href="r-shiny.html#cb10-28" tabindex="-1"></a>      })</span>
+<span id="cb10-29"><a href="r-shiny.html#cb10-29" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb10-30"><a href="r-shiny.html#cb10-30" tabindex="-1"></a>      result <span class="ot">&lt;-</span> (input<span class="sc">$</span>temp_input <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
+<span id="cb10-31"><a href="r-shiny.html#cb10-31" tabindex="-1"></a>      output<span class="sc">$</span>result <span class="ot">&lt;-</span> <span class="fu">renderText</span>({ </span>
+<span id="cb10-32"><a href="r-shiny.html#cb10-32" tabindex="-1"></a>        <span class="fu">paste</span>(input<span class="sc">$</span>temp_input, <span class="st">&quot;°F =&quot;</span>, <span class="fu">round</span>(result, <span class="dv">2</span>), <span class="st">&quot;°C&quot;</span>)</span>
+<span id="cb10-33"><a href="r-shiny.html#cb10-33" tabindex="-1"></a>      })</span>
+<span id="cb10-34"><a href="r-shiny.html#cb10-34" tabindex="-1"></a>    }</span>
+<span id="cb10-35"><a href="r-shiny.html#cb10-35" tabindex="-1"></a>  })</span>
+<span id="cb10-36"><a href="r-shiny.html#cb10-36" tabindex="-1"></a>}</span>
+<span id="cb10-37"><a href="r-shiny.html#cb10-37" tabindex="-1"></a></span>
+<span id="cb10-38"><a href="r-shiny.html#cb10-38" tabindex="-1"></a><span class="co"># Run the app</span></span>
+<span id="cb10-39"><a href="r-shiny.html#cb10-39" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<pre><code>## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.</code></pre>
 <p>Create a folder called <code>"shiny_app_demo"</code> and create an R script file called <code>app.R</code> where you will write the above code.</p>
 <p>After importing <code>shiny</code> and <code>bslib</code> libraries in your current environment run the app by executing the code below</p>
 <pre><code>library(shiny)
@@ -590,91 +596,6 @@ runApp(&quot;shiny_apps/app_02&quot;)</code></pre>
 <p>Remember to do your work in a folder <code>assignment</code> that will be inside the <code>shiny_apps</code> directory. Create an <code>app.R</code> script.</p>
 <hr />
 <p><span style="color: brown;"><strong>Solution</strong></span></p>
-<p>Check the <code>app.R</code> file in <code>shiny_apps/assignment/</code> directory.</p>
-<p>This is how the app is created and run;</p>
-<ul>
-<li>Create a directory <code>assignment</code> in the <code>shiny_apps</code>.</li>
-<li>Within the <code>assignment</code> directory create an R script <code>app.R</code>.</li>
-<li>Add the code below to install and import the necessary libraries.</li>
-</ul>
-<pre><code># Install the library 
-install.packages(&quot;shiny&quot;)
-
-# Load necessary libraries
-library(shiny)
-library(ggplot2) # for plotting</code></pre>
-<ul>
-<li>Thereafter, add the lines to below to the <code>app.R</code> file to create a UI component.</li>
-</ul>
-<pre><code># Define UI for the app
-ui &lt;- fluidPage(
-  titlePanel(&quot;Boston Housing Data Explorer&quot;),
-  
-  sidebarLayout(
-    sidebarPanel(
-      selectInput(&quot;xvar&quot;, &quot;Choose a variable for Scatter Plot:&quot;,
-                  choices = names(boston_df)[-14], # Excluding &#39;medv&#39; as it&#39;s the dependent variable
-                  selected = &quot;RM&quot;),  # Default selection
-      selectInput(&quot;box_var&quot;, &quot;Choose a variable for Box Plot:&quot;,
-                  choices = names(boston_df), selected = &quot;MEDV&quot;),
-      checkboxInput(&quot;show_hist&quot;, &quot;Show Histogram of MEDV&quot;, FALSE)
-    ),
-    
-    mainPanel(
-      plotOutput(&quot;scatterPlot&quot;),
-      plotOutput(&quot;boxPlot&quot;),
-      plotOutput(&quot;histPlot&quot;)
-    )
-  )
-)</code></pre>
-<ul>
-<li>Now that the UI is ready, add the lines below to create the server logic for the app.</li>
-</ul>
-<pre><code># Define server logic for the app
-server &lt;- function(input, output) {
-  
-  # Scatter Plot: Selected variable vs Median House Value (medv)
-  output$scatterPlot &lt;- renderPlot({
-    ggplot(boston_df, aes_string(x = input$xvar, y = &quot;MEDV&quot;)) +
-      geom_point(color = &quot;blue&quot;, alpha = 0.6) +
-      geom_smooth(method = &quot;lm&quot;, col = &quot;red&quot;, se = FALSE) +
-      labs(title = paste(&quot;Scatter Plot of&quot;, input$xvar, &quot;vs Median House Value&quot;),
-           x = input$xvar, y = &quot;Median House Value (MEDV)&quot;) +
-      theme_minimal()
-  })
-  
-  # Box Plot of MEDV by Categorical Variable
-  output$boxPlot &lt;- renderPlot({
-    ggplot(boston_df, aes_string(y = input$box_var)) +
-      geom_boxplot(fill = &quot;lightgreen&quot;, color = &quot;darkgreen&quot;) +
-      labs(title = paste(&quot;Box Plot of Median House Value by&quot;, input$box_var),
-           x = input$box_var) +
-      theme_minimal()
-  })
-  
-  # Histogram of MEDV
-  output$histPlot &lt;- renderPlot({
-    if (input$show_hist) {
-      ggplot(boston_df, aes(x = MEDV)) +
-        geom_histogram(binwidth = 5, fill = &quot;skyblue&quot;, color = &quot;black&quot;, alpha = 0.7) +
-        labs(title = &quot;Histogram of Median House Value (MEDV)&quot;,
-             x = &quot;Median House Value&quot;, y = &quot;Frequency&quot;) +
-        theme_minimal()
-    }
-  })
-}</code></pre>
-<ul>
-<li>The UI and server is ready. Finally, we need to add the lines below to enable the app to run.</li>
-</ul>
-<pre><code># Run the app
-shinyApp(ui = ui, server = server)</code></pre>
-<ul>
-<li>Save the file and run the below line to the console to get the app running.</li>
-</ul>
-<pre><code>library(shiny)
-runApp(&quot;shiny_apps/assignment/app.R&quot;)</code></pre>
-<p>Here is how the app will look like
-<img src="images/app_assignment.png" /></p>
 <p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
 
 </div>
@@ -739,20 +660,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
