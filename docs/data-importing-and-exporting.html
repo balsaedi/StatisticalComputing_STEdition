@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Data Importing and Exporting | R Course</title>
+  <meta name="description" content="Chapter 3 Data Importing and Exporting | R Course" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Data Importing and Exporting | R Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Data Importing and Exporting | R Course" />
+  
+  
+  
+
+<meta name="author" content="YOUR NAME HERE" />
+
+
+<meta name="date" content="2024-10-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="basic-data-types-and-structures.html"/>
+<link rel="next" href="data-manipulation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SHORT TITLE HERE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to R and Basic Programming Concepts</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#overview-of-r-programming"><i class="fa fa-check"></i><b>1.1</b> Overview of R Programming</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#introduction-to-r"><i class="fa fa-check"></i><b>1.1.1</b> Introduction to R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#importance-of-r-in-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Importance of R in Data Analysis</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#application-of-r-in-various-industries"><i class="fa fa-check"></i><b>1.1.3</b> Application of R in Various Industries</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#introduction-to-the-r-ecosystem"><i class="fa fa-check"></i><b>1.2</b> Introduction to the R ecosystem</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#r-studio"><i class="fa fa-check"></i><b>1.2.1</b> R Studio</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#cran"><i class="fa fa-check"></i><b>1.2.2</b> CRAN</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#setting-up-r-environment"><i class="fa fa-check"></i><b>1.3</b> Setting Up R Environment</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#installation-of-r-and-rstudio"><i class="fa fa-check"></i><b>1.3.1</b> Installation of R and RStudio</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#introduction-to-rstudio-interface"><i class="fa fa-check"></i><b>1.3.2</b> Introduction to RStudio Interface</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#basic-r-syntax-and-commands"><i class="fa fa-check"></i><b>1.3.3</b> Basic R Syntax and Commands</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hands-on-exercise"><i class="fa fa-check"></i><b>1.4</b> Hands-on Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html"><i class="fa fa-check"></i><b>2</b> Basic Data Types and Structures</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-types"><i class="fa fa-check"></i><b>2.1</b> Data types</a></li>
+<li class="chapter" data-level="2.2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-structures"><i class="fa fa-check"></i><b>2.2</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#vector"><i class="fa fa-check"></i><b>2.2.1</b> Vector</a></li>
+<li class="chapter" data-level="2.2.2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#matrix"><i class="fa fa-check"></i><b>2.2.2</b> Matrix</a></li>
+<li class="chapter" data-level="2.2.3" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-frame"><i class="fa fa-check"></i><b>2.2.3</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#hands-on-exercises"><i class="fa fa-check"></i><b>2.3</b> <span style="color: green;">Hands-on Exercises</span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html"><i class="fa fa-check"></i><b>3</b> Data Importing and Exporting</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-importing"><i class="fa fa-check"></i><b>3.1</b> Introduction to Data Importing</a></li>
+<li class="chapter" data-level="3.2" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#demonstration-of-data-importing"><i class="fa fa-check"></i><b>3.2</b> Demonstration of Data Importing</a></li>
+<li class="chapter" data-level="3.3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-exporting"><i class="fa fa-check"></i><b>3.3</b> Introduction to Data Exporting</a></li>
+<li class="chapter" data-level="3.4" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#practical-exercise"><i class="fa fa-check"></i><b>3.4</b> Practical Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation.html"><a href="data-manipulation.html#basic-data-manipulation"><i class="fa fa-check"></i><b>4.1</b> Basic Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="data-manipulation.html"><a href="data-manipulation.html#introduction-to-data-manipulation"><i class="fa fa-check"></i><b>4.1.1</b> Introduction to Data Manipulation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-manipulation.html"><a href="data-manipulation.html#subsetting-and-filtering-data"><i class="fa fa-check"></i><b>4.1.2</b> Subsetting and Filtering Data:</a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-manipulation.html"><a href="data-manipulation.html#sorting-data"><i class="fa fa-check"></i><b>4.1.3</b> Sorting Data</a></li>
+<li class="chapter" data-level="4.1.4" data-path="data-manipulation.html"><a href="data-manipulation.html#basic-data-cleaning"><i class="fa fa-check"></i><b>4.1.4</b> Basic Data Cleaning</a></li>
+<li class="chapter" data-level="4.1.5" data-path="data-manipulation.html"><a href="data-manipulation.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>4.1.5</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>4.2</b> Data Manipulation with Dplyr</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-manipulation.html"><a href="data-manipulation.html#introduction-to-dplyr-package"><i class="fa fa-check"></i><b>4.2.1</b> Introduction to Dplyr package</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-manipulation.html"><a href="data-manipulation.html#key-functions-in-dplyr"><i class="fa fa-check"></i><b>4.2.2</b> Key Functions in dplyr</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-manipulation.html"><a href="data-manipulation.html#select"><i class="fa fa-check"></i><b>4.2.3</b> select</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-manipulation.html"><a href="data-manipulation.html#filter"><i class="fa fa-check"></i><b>4.2.4</b> filter</a></li>
+<li class="chapter" data-level="4.2.5" data-path="data-manipulation.html"><a href="data-manipulation.html#arrange"><i class="fa fa-check"></i><b>4.2.5</b> arrange</a></li>
+<li class="chapter" data-level="4.2.6" data-path="data-manipulation.html"><a href="data-manipulation.html#mutate"><i class="fa fa-check"></i><b>4.2.6</b> mutate</a></li>
+<li class="chapter" data-level="4.2.7" data-path="data-manipulation.html"><a href="data-manipulation.html#summarise"><i class="fa fa-check"></i><b>4.2.7</b> Summarise</a></li>
+<li class="chapter" data-level="4.2.8" data-path="data-manipulation.html"><a href="data-manipulation.html#group_by"><i class="fa fa-check"></i><b>4.2.8</b> group_by</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation.html"><a href="data-manipulation.html#chaining"><i class="fa fa-check"></i><b>4.3</b> Chaining</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data-manipulation.html"><a href="data-manipulation.html#hands-on-exercises-2"><i class="fa fa-check"></i><b>4.3.1</b> Hands-on Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>5</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-visualization.html"><a href="data-visualization.html#basic-data-visualization"><i class="fa fa-check"></i><b>5.1</b> Basic Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data-visualization.html"><a href="data-visualization.html#introduction-to-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> Introduction to ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="data-visualization.html"><a href="data-visualization.html#advanced-data-visualization"><i class="fa fa-check"></i><b>5.2</b> Advanced Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="data-visualization.html"><a href="data-visualization.html#creating-complex-visualizations"><i class="fa fa-check"></i><b>5.2.1</b> Creating Complex Visualizations</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-visualization.html"><a href="data-visualization.html#combining-multiple-plots"><i class="fa fa-check"></i><b>5.2.2</b> Combining Multiple Plots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html"><i class="fa fa-check"></i><b>6</b> Explanatory Data Analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#introduction-to-eda"><i class="fa fa-check"></i><b>6.1</b> Introduction to EDA</a></li>
+<li class="chapter" data-level="6.2" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#choosing-a-data-set"><i class="fa fa-check"></i><b>6.2</b> Choosing a data set</a></li>
+<li class="chapter" data-level="6.3" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#conducting-eda"><i class="fa fa-check"></i><b>6.3</b> Conducting EDA</a></li>
+<li class="chapter" data-level="6.4" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#present-findings"><i class="fa fa-check"></i><b>6.4</b> Present Findings</a></li>
+<li class="chapter" data-level="6.5" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#eda---example"><i class="fa fa-check"></i><b>6.5</b> <span style="color: brown;">EDA - Example</span></a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#introduction"><i class="fa fa-check"></i><b>6.5.1</b> <span style="color: brown;">Introduction</span></a></li>
+<li class="chapter" data-level="6.5.2" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#data-assessment-and-cleaning"><i class="fa fa-check"></i><b>6.5.2</b> <span style="color: brown;">Data Assessment and Cleaning</span></a></li>
+<li class="chapter" data-level="6.5.3" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#data-visualization-1"><i class="fa fa-check"></i><b>6.5.3</b> <span style="color: brown;">Data Visualization</span></a></li>
+<li class="chapter" data-level="6.5.4" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#key-findings"><i class="fa fa-check"></i><b>6.5.4</b> <span style="color: brown;">Key Findings</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistical-analysis.html"><a href="statistical-analysis.html"><i class="fa fa-check"></i><b>7</b> Statistical Analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#basic-statistical-concepts"><i class="fa fa-check"></i><b>7.1</b> Basic Statistical Concepts</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-descriptive-statistics"><i class="fa fa-check"></i><b>7.1.1</b> Introduction to Descriptive Statistics</a></li>
+<li class="chapter" data-level="7.1.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#visualization-of-descriptive-statistics"><i class="fa fa-check"></i><b>7.1.2</b> Visualization of Descriptive Statistics</a></li>
+<li class="chapter" data-level="7.1.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercise-1"><i class="fa fa-check"></i><b>7.1.3</b> Hands On Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#correlation-and-regression-analysis"><i class="fa fa-check"></i><b>7.2</b> Correlation and Regression Analysis</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-correlation"><i class="fa fa-check"></i><b>7.2.1</b> Introduction to Correlation</a></li>
+<li class="chapter" data-level="7.2.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-regression-analysis"><i class="fa fa-check"></i><b>7.2.2</b> Introduction to Regression Analysis</a></li>
+<li class="chapter" data-level="7.2.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>7.2.3</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#advanced-statistical-methods"><i class="fa fa-check"></i><b>7.3</b> Advanced Statistical Methods</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-hypothesis-testing"><i class="fa fa-check"></i><b>7.3.1</b> Introduction to Hypothesis Testing</a></li>
+<li class="chapter" data-level="7.3.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercises-4"><i class="fa fa-check"></i><b>7.3.2</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="statistical-analysis.html"><a href="statistical-analysis.html#project-applying-statistical-analysis"><i class="fa fa-check"></i><b>7.4</b> Project: Applying Statistical Analysis</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#project-overview"><i class="fa fa-check"></i><b>7.4.1</b> Project Overview</a></li>
+<li class="chapter" data-level="7.4.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#conducting-statistical-analysis"><i class="fa fa-check"></i><b>7.4.2</b> Conducting Statistical Analysis</a></li>
+<li class="chapter" data-level="7.4.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#presenting-statistical-findings"><i class="fa fa-check"></i><b>7.4.3</b> Presenting Statistical Findings</a></li>
+<li class="chapter" data-level="7.4.4" data-path="statistical-analysis.html"><a href="statistical-analysis.html#example-ecommerce-statistical-analysis"><i class="fa fa-check"></i><b>7.4.4</b> <span style="color: brown;">Example: Ecommerce Statistical Analysis</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html"><i class="fa fa-check"></i><b>8</b> Working with Real-World Data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#handling-large-datasets"><i class="fa fa-check"></i><b>8.1</b> Handling Large Datasets</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#challenges-of-large-data-sets"><i class="fa fa-check"></i><b>8.1.1</b> Challenges of Large Data sets</a></li>
+<li class="chapter" data-level="8.1.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#efficient-data-handling-techniques"><i class="fa fa-check"></i><b>8.1.2</b> Efficient Data Handling Techniques</a></li>
+<li class="chapter" data-level="8.1.3" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#reading-and-writing-large-files"><i class="fa fa-check"></i><b>8.1.3</b> Reading and Writing Large Files</a></li>
+<li class="chapter" data-level="8.1.4" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#hands-on-exercises-5"><i class="fa fa-check"></i><b>8.1.4</b> Hands-On Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#data-cleaning-and-transformation"><i class="fa fa-check"></i><b>8.2</b> Data Cleaning and Transformation</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#introduction-to-data-cleaning"><i class="fa fa-check"></i><b>8.2.1</b> Introduction to Data Cleaning</a></li>
+<li class="chapter" data-level="8.2.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#hands-on-exercises-6"><i class="fa fa-check"></i><b>8.2.2</b> Hands-On Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="time-series-analysis.html"><a href="time-series-analysis.html"><i class="fa fa-check"></i><b>9</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#introduction-to-time-series-data"><i class="fa fa-check"></i><b>9.1</b> Introduction to Time Series Data</a></li>
+<li class="chapter" data-level="9.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#basic-time-series-concepts"><i class="fa fa-check"></i><b>9.2</b> Basic Time Series Concepts</a></li>
+<li class="chapter" data-level="9.3" data-path="time-series-analysis.html"><a href="time-series-analysis.html#basic-time-series-forecasting"><i class="fa fa-check"></i><b>9.3</b> Basic Time Series Forecasting</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#moving-averages"><i class="fa fa-check"></i><b>9.3.1</b> Moving Averages</a></li>
+<li class="chapter" data-level="9.3.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#arima-model"><i class="fa fa-check"></i><b>9.3.2</b> ARIMA model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="time-series-analysis.html"><a href="time-series-analysis.html#hands-on-exercises-7"><i class="fa fa-check"></i><b>9.4</b> Hands-On Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="capstone-project.html"><a href="capstone-project.html"><i class="fa fa-check"></i><b>10</b> Capstone Project</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="capstone-project.html"><a href="capstone-project.html#introduction-2"><i class="fa fa-check"></i><b>10.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="capstone-project.html"><a href="capstone-project.html#project-overview-and-objectives"><i class="fa fa-check"></i><b>10.1.1</b> Project Overview and Objectives</a></li>
+<li class="chapter" data-level="10.1.2" data-path="capstone-project.html"><a href="capstone-project.html#group-formation"><i class="fa fa-check"></i><b>10.1.2</b> Group Formation</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="capstone-project.html"><a href="capstone-project.html#project-planning"><i class="fa fa-check"></i><b>10.2</b> Project Planning</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="capstone-project.html"><a href="capstone-project.html#defining-the-problem-statement"><i class="fa fa-check"></i><b>10.2.1</b> Defining the problem statement</a></li>
+<li class="chapter" data-level="10.2.2" data-path="capstone-project.html"><a href="capstone-project.html#planning-the-analysis-workflow"><i class="fa fa-check"></i><b>10.2.2</b> Planning the Analysis WorkFlow</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="capstone-project.html"><a href="capstone-project.html#project-execution"><i class="fa fa-check"></i><b>10.3</b> Project Execution</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="capstone-project.html"><a href="capstone-project.html#part-1"><i class="fa fa-check"></i><b>10.3.1</b> Part 1</a></li>
+<li class="chapter" data-level="10.3.2" data-path="capstone-project.html"><a href="capstone-project.html#part-2"><i class="fa fa-check"></i><b>10.3.2</b> Part 2</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="capstone-project.html"><a href="capstone-project.html#project-presentations-and-feedback"><i class="fa fa-check"></i><b>10.4</b> Project Presentations and Feedback</a></li>
+<li class="chapter" data-level="10.5" data-path="capstone-project.html"><a href="capstone-project.html#example-ecommerce-project"><i class="fa fa-check"></i><b>10.5</b> <span style="color: brown;">Example: Ecommerce Project</span></a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="capstone-project.html"><a href="capstone-project.html#part-1-1"><i class="fa fa-check"></i><b>10.5.1</b> <span style="color: brown;">Part 1</span></a></li>
+<li class="chapter" data-level="10.5.2" data-path="capstone-project.html"><a href="capstone-project.html#part-2-1"><i class="fa fa-check"></i><b>10.5.2</b> <span style="color: brown;">Part 2</span></a></li>
+<li class="chapter" data-level="10.5.3" data-path="capstone-project.html"><a href="capstone-project.html#presentation-and-feedback"><i class="fa fa-check"></i><b>10.5.3</b> <span style="color: brown;">Presentation and Feedback</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>11</b> Datasets</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-importing-and-exporting" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Data Importing and Exporting<a href="data-importing-and-exporting.html#data-importing-and-exporting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-to-data-importing" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Introduction to Data Importing<a href="data-importing-and-exporting.html#introduction-to-data-importing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Loading data in R can be very stressful since every file format has a function to import the data. However, it can be very simple when well explained. Here are some of the most commonly used data file formats R and their importation;-</p>
+<ul>
+<li>Comma Separated Value(CSV - .csv) files imported by <code>read.csv("filepath")</code> function</li>
+<li>Excel(.xlsx) files loaded by <code>read_excel("filepath")</code> function`</li>
+<li>XML(.xml) imported by <code>read.xml("filepath")</code> function`</li>
+<li>Javascript Object Notation (JSON) by <code>read.json("filepath")</code></li>
+</ul>
+<p>There are more data files with different formats that can be used in R, their importation will be explained later in the course.</p>
+</div>
+<div id="demonstration-of-data-importing" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Demonstration of Data Importing<a href="data-importing-and-exporting.html#demonstration-of-data-importing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>Importing a CSV file in R</strong></li>
+</ul>
+<p>There are different formats to import a csv file in R. We will use the <code>read.csv()</code> and <code>read.delim()</code> which are functions from the baseR.</p>
+<p>Reading a csv file using <code>read.csv()</code> function.</p>
+<pre><code># read the csv file to the data frame 
+df &lt;- read.csv(&#39;data/hotel_bookings_clean.csv&#39;)
+head(df) # show first few rows </code></pre>
+<p><img src="images/dataset_images/data_importing_demo.png" /></p>
+<p>Now, lets read the same csv file with <code>read.delim()</code> function. Remember to add “,” as the separator. <code>sep=","</code>.</p>
+<pre><code># Read the csv file 
+df &lt;- read.delim(&quot;data/hotel_bookings_clean.csv&quot;, sep = &quot;,&quot;)
+head(df) # show the first few rows</code></pre>
+<p><img src="images/dataset_images/data_importing_demo.png" /></p>
+<p>Lets also read the csv file using the <code>read.table()</code> function(note the <code>sep=","</code> argument);</p>
+<pre><code>df &lt;- read.table(&quot;data/hotel_bookings_clean.csv&quot;, sep = &quot;,&quot;)
+head(df)</code></pre>
+<p><img src="images/dataset_images/data_importing_demo_readtable.png" /></p>
+<p>The <code>read_csv()</code> function is one more way to read a csv file. This function comes from the <code>readr</code> package that is installed by;</p>
+<pre><code>install.packages(&quot;readr&quot;)</code></pre>
+<p>and the library can be imported by;</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="data-importing-and-exporting.html#cb250-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div>
+<p>Lets read a csv file using the <code>read_csv()</code>(note the ’_’ instead of a ‘.’) from the <code>readr</code> library.</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="data-importing-and-exporting.html#cb251-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/hotel_bookings_clean.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb251-2"><a href="data-importing-and-exporting.html#cb251-2" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 53
+##   is_canceled lead_time arrival_date_week_number arrival_date_day_of_month
+##         &lt;dbl&gt;     &lt;dbl&gt;                    &lt;dbl&gt;                     &lt;dbl&gt;
+## 1           0       342                       27                         1
+## 2           0       737                       27                         1
+## 3           0         7                       27                         1
+## 4           0        13                       27                         1
+## 5           0        14                       27                         1
+## 6           0        14                       27                         1
+## # ℹ 49 more variables: arrival_date_month &lt;dbl&gt;, stays_in_weekend_nights &lt;dbl&gt;,
+## #   stays_in_week_nights &lt;dbl&gt;, adults &lt;dbl&gt;, children &lt;dbl&gt;, babies &lt;dbl&gt;,
+## #   is_repeated_guest &lt;dbl&gt;, previous_cancellations &lt;dbl&gt;,
+## #   previous_bookings_not_canceled &lt;dbl&gt;, required_car_parking_spaces &lt;dbl&gt;,
+## #   total_of_special_requests &lt;dbl&gt;, avg_daily_rate &lt;dbl&gt;,
+## #   booked_by_company &lt;dbl&gt;, booked_by_agent &lt;dbl&gt;, hotel_City &lt;dbl&gt;,
+## #   hotel_Resort &lt;dbl&gt;, meal_BB &lt;dbl&gt;, meal_FB &lt;dbl&gt;, meal_HB &lt;dbl&gt;, …</code></pre>
+<p><code>read.csv()</code>, <code>read.delim()</code>, <code>read.table()</code> and <code>read_csv()</code> are the functions used to read CSV files in R.</p>
+<ul>
+<li><strong>Importing Excel file in R</strong></li>
+</ul>
+<p>In this section we will read the HR employee data for descriptive and inferential analytics. We will use the <code>read_excel</code> from the <code>readxl</code> package. It can be imported by;</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="data-importing-and-exporting.html#cb253-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code></pre></div>
+<p>Let’s load the excel data into R data frame.</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="data-importing-and-exporting.html#cb254-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/HR_Employee_Data.xlsx&quot;</span>)</span>
+<span id="cb254-2"><a href="data-importing-and-exporting.html#cb254-2" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 11
+##   Emp_Id  satisfaction_level last_evaluation number_project average_montly_hours
+##   &lt;chr&gt;                &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;                &lt;dbl&gt;
+## 1 IND024…               0.38            0.53              2                  157
+## 2 IND281…               0.8             0.86              5                  262
+## 3 IND071…               0.11            0.88              7                  272
+## 4 IND304…               0.72            0.87              5                  223
+## 5 IND240…               0.37            0.52              2                  159
+## 6 IND086…               0.41            0.5               2                  153
+## # ℹ 6 more variables: time_spend_company &lt;dbl&gt;, Work_accident &lt;dbl&gt;,
+## #   left &lt;dbl&gt;, promotion_last_5years &lt;dbl&gt;, Department &lt;chr&gt;, salary &lt;chr&gt;</code></pre>
+<p>If they are multiple worksheets in the excel, the read_excel has an argument <code>sheet</code> for sheet number(By default, sheet 1 is loaded. Lets load the first sheet.</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="data-importing-and-exporting.html#cb256-1" tabindex="-1"></a>df_sheet1 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/HR_Employee_Data.xlsx&quot;</span>, <span class="at">sheet=</span><span class="dv">1</span>)</span>
+<span id="cb256-2"><a href="data-importing-and-exporting.html#cb256-2" tabindex="-1"></a><span class="fu">head</span>(df_sheet1)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 11
+##   Emp_Id  satisfaction_level last_evaluation number_project average_montly_hours
+##   &lt;chr&gt;                &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;                &lt;dbl&gt;
+## 1 IND024…               0.38            0.53              2                  157
+## 2 IND281…               0.8             0.86              5                  262
+## 3 IND071…               0.11            0.88              7                  272
+## 4 IND304…               0.72            0.87              5                  223
+## 5 IND240…               0.37            0.52              2                  159
+## 6 IND086…               0.41            0.5               2                  153
+## # ℹ 6 more variables: time_spend_company &lt;dbl&gt;, Work_accident &lt;dbl&gt;,
+## #   left &lt;dbl&gt;, promotion_last_5years &lt;dbl&gt;, Department &lt;chr&gt;, salary &lt;chr&gt;</code></pre>
+<p>A detail documentation of the <code>read_excel()</code> function can be found <a href="https://www.rdocumentation.org/packages/readxl/versions/1.4.1/topics/read_excel">here</a></p>
+</div>
+<div id="introduction-to-data-exporting" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Introduction to Data Exporting<a href="data-importing-and-exporting.html#introduction-to-data-exporting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>After data wrangling, manipulation and processing, the end product(processed data) can be saved for further use. The data can also be share to others. R has several functions to write the processed data locally into either CSV, Excel, text or other file formats.</p>
+<p>Lets go through a brief overview of how data can be exported in R;</p>
+<ol style="list-style-type: lower-roman">
+<li>CSV files are exported by <code>write.csv()</code> function.</li>
+<li>The excel files are written locally by <code>write.xlsx()</code> function. Remember to install the <code>xlsx</code> package before exporting data to excel. The package is installed by</li>
+</ol>
+<pre><code>install.packages(&quot;xlsx&quot;)</code></pre>
+<ol start="3" style="list-style-type: lower-roman">
+<li><code>writeLines()</code> is used to write vectors to a text file.</li>
+<li>The <code>write.table()</code> function is more of a general function that different types of files for example TSV, CSV and text files.</li>
+</ol>
+<p>Lets create a small data frame and demonstrate how these functions work.</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="data-importing-and-exporting.html#cb259-1" tabindex="-1"></a><span class="co"># Sample data frame</span></span>
+<span id="cb259-2"><a href="data-importing-and-exporting.html#cb259-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb259-3"><a href="data-importing-and-exporting.html#cb259-3" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>),</span>
+<span id="cb259-4"><a href="data-importing-and-exporting.html#cb259-4" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>),</span>
+<span id="cb259-5"><a href="data-importing-and-exporting.html#cb259-5" tabindex="-1"></a>  <span class="at">Salary =</span> <span class="fu">c</span>(<span class="dv">50000</span>, <span class="dv">60000</span>, <span class="dv">70000</span>)</span>
+<span id="cb259-6"><a href="data-importing-and-exporting.html#cb259-6" tabindex="-1"></a>)</span>
+<span id="cb259-7"><a href="data-importing-and-exporting.html#cb259-7" tabindex="-1"></a></span>
+<span id="cb259-8"><a href="data-importing-and-exporting.html#cb259-8" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##      Name Age Salary
+## 1   Alice  25  50000
+## 2     Bob  30  60000
+## 3 Charlie  35  70000</code></pre>
+<p>The data frame will be exported to csv by <code>write.csv(data_frame, file=filepath)</code>. Lets do it;</p>
+<pre><code>write.csv(df, file=&quot;data/sample_data.csv&quot;)</code></pre>
+<p>Then export the same data frame <code>df</code> to an excel file using the the command <code>write.xlsx(data_frame, file=filepath)</code></p>
+<pre><code>library(xlsx)
+write.xlsx(df, file=&quot;data/sample_data.xlsx&quot;)</code></pre>
+<p>Also, the <code>openxlsx</code> package can be used to export data to excel. The package is installed by;</p>
+<pre><code>install.packages(&quot;openxlsx&quot;)</code></pre>
+<p>and the file is written by the same <code>write.xlsx()</code> function.</p>
+<p>Lets repeat the process of exporting using the <code>write.xlsx()</code> function from the <code>openxlsx</code> library.</p>
+<pre><code>library(openxlsx)
+write.xlsx(df, file=&quot;data/sample_data_2.xlsx&quot;)</code></pre>
+<p>Finally, lets export the data frame using the <code>write.table()</code> function.</p>
+<pre><code># Export to a text file with space as a delimiter
+write.table(df, file = &quot;data/sample_data.txt&quot;, sep = &quot; &quot;, row.names = FALSE, quote = FALSE)</code></pre>
+<p>The same data frame can be converted to a data vector and loaded to a text file using the <code>writeLines(data_vector, filepath)</code>.</p>
+<p>Lets convert the data frame to a data vector and show the output.</p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="data-importing-and-exporting.html#cb266-1" tabindex="-1"></a><span class="co"># Convert data frame to a character vector</span></span>
+<span id="cb266-2"><a href="data-importing-and-exporting.html#cb266-2" tabindex="-1"></a>df_vector <span class="ot">&lt;-</span> <span class="fu">apply</span>(df, <span class="dv">1</span>, <span class="cf">function</span>(row) <span class="fu">paste</span>(row, <span class="at">collapse =</span> <span class="st">&quot; &quot;</span>))</span>
+<span id="cb266-3"><a href="data-importing-and-exporting.html#cb266-3" tabindex="-1"></a></span>
+<span id="cb266-4"><a href="data-importing-and-exporting.html#cb266-4" tabindex="-1"></a>df_vector</span></code></pre></div>
+<pre><code>## [1] &quot;Alice 25 50000&quot;   &quot;Bob 30 60000&quot;     &quot;Charlie 35 70000&quot;</code></pre>
+<p>Export the file</p>
+<pre><code># Write the character vector to a text file
+writeLines(data_vector, &quot;data/sample_data_with_writeLines.txt&quot;)</code></pre>
+</div>
+<div id="practical-exercise" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Practical Exercise<a href="data-importing-and-exporting.html#practical-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Down the house prices regression data set from <a href="https://www.kaggle.com/datasets/prokshitha/home-value-insights">here</a> and do the following;</p>
+<ol style="list-style-type: lower-roman">
+<li>Read the CSV file into a <code>data.frame</code> and give it a variable name <code>housePricesDF</code></li>
+<li>Write the <code>data.frame</code> into an Excel file locally.</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="basic-data-types-and-structures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-manipulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/balsaedi/RCourse/edit/main/03-data_importing_and_exporting.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/balsaedi/RCourse/blob/main/03-data_importing_and_exporting.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

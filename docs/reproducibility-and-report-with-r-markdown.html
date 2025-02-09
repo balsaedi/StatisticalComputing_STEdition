@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Reproducibility and Report with R Markdown | Statistical Computing</title>
+  <meta name="description" content="Chapter 6 Reproducibility and Report with R Markdown | Statistical Computing" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Reproducibility and Report with R Markdown | Statistical Computing" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Reproducibility and Report with R Markdown | Statistical Computing" />
+  
+  
+  
+
+<meta name="author" content="Dr. Basim Alsaedi" />
+
+
+<meta name="date" content="2025-02-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="simple-linear-regression.html"/>
+<link rel="next" href="r-shiny.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SHORT TITLE HERE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Reviews</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#data-types-and-structures"><i class="fa fa-check"></i><b>1.1</b> Data Types and Structures</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#data-types"><i class="fa fa-check"></i><b>1.1.1</b> Data Types</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#data-structures"><i class="fa fa-check"></i><b>1.1.2</b> Data Structures</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#data-importing-and-exporting"><i class="fa fa-check"></i><b>1.2</b> Data Importing and Exporting</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#data-cleaning"><i class="fa fa-check"></i><b>1.3</b> Data Cleaning</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#data-visualization"><i class="fa fa-check"></i><b>1.4</b> Data Visualization</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#hands-on-exercises"><i class="fa fa-check"></i><b>1.5</b> <span style="color: green;"><strong>Hands-on Exercises</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>2</b> Functions</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="functions.html"><a href="functions.html#writing-functions"><i class="fa fa-check"></i><b>2.1</b> Writing Functions</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="functions.html"><a href="functions.html#user-defined-functions"><i class="fa fa-check"></i><b>2.1.1</b> User-Defined Functions</a></li>
+<li class="chapter" data-level="2.1.2" data-path="functions.html"><a href="functions.html#built-in-fuctions"><i class="fa fa-check"></i><b>2.1.2</b> Built-in Fuctions</a></li>
+<li class="chapter" data-level="2.1.3" data-path="functions.html"><a href="functions.html#package-functions"><i class="fa fa-check"></i><b>2.1.3</b> Package Functions</a></li>
+<li class="chapter" data-level="2.1.4" data-path="functions.html"><a href="functions.html#type-of-arguments-in-r-functions"><i class="fa fa-check"></i><b>2.1.4</b> Type of arguments in R functions</a></li>
+<li class="chapter" data-level="2.1.5" data-path="functions.html"><a href="functions.html#understanding-return-values-in-r-functions"><i class="fa fa-check"></i><b>2.1.5</b> Understanding Return Values in R Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="functions.html"><a href="functions.html#calling-the-functions"><i class="fa fa-check"></i><b>2.2</b> Calling the Functions</a></li>
+<li class="chapter" data-level="2.3" data-path="functions.html"><a href="functions.html#function-documentation"><i class="fa fa-check"></i><b>2.3</b> Function Documentation</a></li>
+<li class="chapter" data-level="2.4" data-path="functions.html"><a href="functions.html#hands-on-exercise"><i class="fa fa-check"></i><b>2.4</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="group-manipulation.html"><a href="group-manipulation.html"><i class="fa fa-check"></i><b>3</b> Group Manipulation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="group-manipulation.html"><a href="group-manipulation.html#apply-family"><i class="fa fa-check"></i><b>3.1</b> Apply Family</a></li>
+<li class="chapter" data-level="3.2" data-path="group-manipulation.html"><a href="group-manipulation.html#aggregate-plyr"><i class="fa fa-check"></i><b>3.2</b> Aggregate Plyr</a></li>
+<li class="chapter" data-level="3.3" data-path="group-manipulation.html"><a href="group-manipulation.html#data-reshaping"><i class="fa fa-check"></i><b>3.3</b> Data Reshaping</a></li>
+<li class="chapter" data-level="3.4" data-path="group-manipulation.html"><a href="group-manipulation.html#hands-on-exercise-1"><i class="fa fa-check"></i><b>3.4</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="general-statistics.html"><a href="general-statistics.html"><i class="fa fa-check"></i><b>4</b> General Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="general-statistics.html"><a href="general-statistics.html#tabulating-factors-and-creating-contingency-tables"><i class="fa fa-check"></i><b>4.1</b> Tabulating Factors and Creating Contingency Tables</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-factors-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Understanding Factors in R</a></li>
+<li class="chapter" data-level="4.1.2" data-path="general-statistics.html"><a href="general-statistics.html#creating-frequency-tables"><i class="fa fa-check"></i><b>4.1.2</b> Creating Frequency Tables</a></li>
+<li class="chapter" data-level="4.1.3" data-path="general-statistics.html"><a href="general-statistics.html#creating-contingency-tables"><i class="fa fa-check"></i><b>4.1.3</b> Creating Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.4" data-path="general-statistics.html"><a href="general-statistics.html#adding-margins-to-contingency-tables"><i class="fa fa-check"></i><b>4.1.4</b> Adding Margins to Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.5" data-path="general-statistics.html"><a href="general-statistics.html#computing-row-and-column-proportions"><i class="fa fa-check"></i><b>4.1.5</b> Computing Row and Column Proportions</a></li>
+<li class="chapter" data-level="4.1.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-contingency-tables"><i class="fa fa-check"></i><b>4.1.6</b> Visualizing Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises"><i class="fa fa-check"></i><b>4.1.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="general-statistics.html"><a href="general-statistics.html#calculating-quantiles"><i class="fa fa-check"></i><b>4.2</b> Calculating Quantiles</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-quantiles"><i class="fa fa-check"></i><b>4.2.1</b> Understanding Quantiles</a></li>
+<li class="chapter" data-level="4.2.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-quantiles-in-r"><i class="fa fa-check"></i><b>4.2.2</b> Computing Quantiles in R</a></li>
+<li class="chapter" data-level="4.2.3" data-path="general-statistics.html"><a href="general-statistics.html#computing-specific-quantiles"><i class="fa fa-check"></i><b>4.2.3</b> Computing Specific Quantiles</a></li>
+<li class="chapter" data-level="4.2.4" data-path="general-statistics.html"><a href="general-statistics.html#using-summary-for-quick-insights"><i class="fa fa-check"></i><b>4.2.4</b> Using <code>summary()</code> for Quick Insights</a></li>
+<li class="chapter" data-level="4.2.5" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-quantiles"><i class="fa fa-check"></i><b>4.2.5</b> Visualizing Quantiles</a></li>
+<li class="chapter" data-level="4.2.6" data-path="general-statistics.html"><a href="general-statistics.html#finding-interquartile-range-iqr"><i class="fa fa-check"></i><b>4.2.6</b> Finding Interquartile Range (IQR)</a></li>
+<li class="chapter" data-level="4.2.7" data-path="general-statistics.html"><a href="general-statistics.html#finding-outliers-using-iqr"><i class="fa fa-check"></i><b>4.2.7</b> Finding Outliers Using IQR</a></li>
+<li class="chapter" data-level="4.2.8" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>4.2.8</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="general-statistics.html"><a href="general-statistics.html#z-scores"><i class="fa fa-check"></i><b>4.3</b> z-Scores</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-z-scores"><i class="fa fa-check"></i><b>4.3.1</b> Understanding z-Scores</a></li>
+<li class="chapter" data-level="4.3.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-z-scores-in-r"><i class="fa fa-check"></i><b>4.3.2</b> Computing z-Scores in R</a></li>
+<li class="chapter" data-level="4.3.3" data-path="general-statistics.html"><a href="general-statistics.html#computing-z-scores-using-scale"><i class="fa fa-check"></i><b>4.3.3</b> Computing z-Scores Using <code>scale()</code></a></li>
+<li class="chapter" data-level="4.3.4" data-path="general-statistics.html"><a href="general-statistics.html#interpreting-z-scores"><i class="fa fa-check"></i><b>4.3.4</b> Interpreting z-Scores</a></li>
+<li class="chapter" data-level="4.3.5" data-path="general-statistics.html"><a href="general-statistics.html#using-z-scores-to-detect-outliers"><i class="fa fa-check"></i><b>4.3.5</b> Using z-Scores to Detect Outliers</a></li>
+<li class="chapter" data-level="4.3.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-z-scores"><i class="fa fa-check"></i><b>4.3.6</b> Visualizing z-Scores</a></li>
+<li class="chapter" data-level="4.3.7" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercises-2"><i class="fa fa-check"></i><b>4.3.7</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="general-statistics.html"><a href="general-statistics.html#inferential-statistics"><i class="fa fa-check"></i><b>4.4</b> Inferential Statistics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="general-statistics.html"><a href="general-statistics.html#basic-concepts"><i class="fa fa-check"></i><b>4.4.1</b> Basic Concepts</a></li>
+<li class="chapter" data-level="4.4.2" data-path="general-statistics.html"><a href="general-statistics.html#confidence-intervals"><i class="fa fa-check"></i><b>4.4.2</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="4.4.3" data-path="general-statistics.html"><a href="general-statistics.html#hypothesis-testing"><i class="fa fa-check"></i><b>4.4.3</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="4.4.4" data-path="general-statistics.html"><a href="general-statistics.html#steps-in-hypothesis-testing"><i class="fa fa-check"></i><b>4.4.4</b> Steps in Hypothesis Testing</a></li>
+<li class="chapter" data-level="4.4.5" data-path="general-statistics.html"><a href="general-statistics.html#one-sample-t-test"><i class="fa fa-check"></i><b>4.4.5</b> One-Sample t-Test</a></li>
+<li class="chapter" data-level="4.4.6" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-means"><i class="fa fa-check"></i><b>4.4.6</b> Comparing Two Sample Means</a></li>
+<li class="chapter" data-level="4.4.7" data-path="general-statistics.html"><a href="general-statistics.html#testing-proportions"><i class="fa fa-check"></i><b>4.4.7</b> Testing Proportions</a></li>
+<li class="chapter" data-level="4.4.8" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-1"><i class="fa fa-check"></i><b>4.4.8</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="general-statistics.html"><a href="general-statistics.html#testing-the-mean-of-a-sample-t-test-and-its-confidence-interval"><i class="fa fa-check"></i><b>4.5</b> Testing the Mean of a Sample (t-Test) and its Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-the-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Understanding the t-Test</a></li>
+<li class="chapter" data-level="4.5.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-confidence-intervals-for-the-mean"><i class="fa fa-check"></i><b>4.5.2</b> Computing Confidence Intervals for the Mean</a></li>
+<li class="chapter" data-level="4.5.3" data-path="general-statistics.html"><a href="general-statistics.html#performing-a-one-sample-t-test"><i class="fa fa-check"></i><b>4.5.3</b> Performing a One-Sample t-Test</a></li>
+<li class="chapter" data-level="4.5.4" data-path="general-statistics.html"><a href="general-statistics.html#one-sided-vs.-two-sided-tests"><i class="fa fa-check"></i><b>4.5.4</b> One-Sided vs. Two-Sided Tests</a></li>
+<li class="chapter" data-level="4.5.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-means-independent-t-test"><i class="fa fa-check"></i><b>4.5.5</b> Comparing Two Sample Means (Independent t-Test)</a></li>
+<li class="chapter" data-level="4.5.6" data-path="general-statistics.html"><a href="general-statistics.html#paired-t-test-dependent-samples"><i class="fa fa-check"></i><b>4.5.6</b> Paired t-Test (Dependent Samples)</a></li>
+<li class="chapter" data-level="4.5.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-2"><i class="fa fa-check"></i><b>4.5.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="general-statistics.html"><a href="general-statistics.html#testing-a-sample-proportion-and-its-confidence-interval"><i class="fa fa-check"></i><b>4.6</b> Testing a Sample Proportion and its Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-proportion-testing"><i class="fa fa-check"></i><b>4.6.1</b> Understanding Proportion Testing</a></li>
+<li class="chapter" data-level="4.6.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-confidence-intervals-for-proportions"><i class="fa fa-check"></i><b>4.6.2</b> Computing Confidence Intervals for Proportions</a></li>
+<li class="chapter" data-level="4.6.3" data-path="general-statistics.html"><a href="general-statistics.html#performing-a-one-sample-proportion-test"><i class="fa fa-check"></i><b>4.6.3</b> Performing a One-Sample Proportion Test</a></li>
+<li class="chapter" data-level="4.6.4" data-path="general-statistics.html"><a href="general-statistics.html#one-sided-proportion-tests"><i class="fa fa-check"></i><b>4.6.4</b> One-Sided Proportion Tests</a></li>
+<li class="chapter" data-level="4.6.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-proportions"><i class="fa fa-check"></i><b>4.6.5</b> Comparing Two Sample Proportions</a></li>
+<li class="chapter" data-level="4.6.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-proportions"><i class="fa fa-check"></i><b>4.6.6</b> Visualizing Proportions</a></li>
+<li class="chapter" data-level="4.6.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-3"><i class="fa fa-check"></i><b>4.6.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="general-statistics.html"><a href="general-statistics.html#comparing-the-means-of-two-samples"><i class="fa fa-check"></i><b>4.7</b> Comparing the Means of Two Samples</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-two-sample-t-test"><i class="fa fa-check"></i><b>4.7.1</b> Understanding Two-Sample t-Test</a></li>
+<li class="chapter" data-level="4.7.2" data-path="general-statistics.html"><a href="general-statistics.html#independent-unpaired-t-test"><i class="fa fa-check"></i><b>4.7.2</b> Independent (Unpaired) t-Test</a></li>
+<li class="chapter" data-level="4.7.3" data-path="general-statistics.html"><a href="general-statistics.html#checking-assumptions"><i class="fa fa-check"></i><b>4.7.3</b> Checking Assumptions</a></li>
+<li class="chapter" data-level="4.7.4" data-path="general-statistics.html"><a href="general-statistics.html#performing-t-test-with-unequal-variances"><i class="fa fa-check"></i><b>4.7.4</b> Performing t-Test with Unequal Variances</a></li>
+<li class="chapter" data-level="4.7.5" data-path="general-statistics.html"><a href="general-statistics.html#paired-t-test-dependent-samples-1"><i class="fa fa-check"></i><b>4.7.5</b> Paired t-Test (Dependent Samples)</a></li>
+<li class="chapter" data-level="4.7.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-group-differences"><i class="fa fa-check"></i><b>4.7.6</b> Visualizing Group Differences</a></li>
+<li class="chapter" data-level="4.7.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-4"><i class="fa fa-check"></i><b>4.7.7</b> Practical Exercises</a></li>
+<li class="chapter" data-level="4.7.8" data-path="general-statistics.html"><a href="general-statistics.html#exercise-4-visualizing-group-differences"><i class="fa fa-check"></i><b>4.7.8</b> Exercise 4: Visualizing Group Differences</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="general-statistics.html"><a href="general-statistics.html#performing-pairwise-comparisons-between-group-means"><i class="fa fa-check"></i><b>4.8</b> Performing Pairwise Comparisons Between Group Means</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-pairwise-comparisons"><i class="fa fa-check"></i><b>4.8.1</b> Understanding Pairwise Comparisons</a></li>
+<li class="chapter" data-level="4.8.2" data-path="general-statistics.html"><a href="general-statistics.html#performing-pairwise-t-tests"><i class="fa fa-check"></i><b>4.8.2</b> Performing Pairwise t-Tests</a></li>
+<li class="chapter" data-level="4.8.3" data-path="general-statistics.html"><a href="general-statistics.html#tukeys-hsd-test"><i class="fa fa-check"></i><b>4.8.3</b> Tukey’s HSD Test</a></li>
+<li class="chapter" data-level="4.8.4" data-path="general-statistics.html"><a href="general-statistics.html#bonferroni-and-holm-corrections"><i class="fa fa-check"></i><b>4.8.4</b> Bonferroni and Holm Corrections</a></li>
+<li class="chapter" data-level="4.8.5" data-path="general-statistics.html"><a href="general-statistics.html#dunnetts-test-comparing-to-a-control-group"><i class="fa fa-check"></i><b>4.8.5</b> Dunnett’s Test (Comparing to a Control Group)</a></li>
+<li class="chapter" data-level="4.8.6" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-5"><i class="fa fa-check"></i><b>4.8.6</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercise-2"><i class="fa fa-check"></i><b>4.9</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="general-statistics.html"><a href="general-statistics.html#exercise-1-descriptive-statistics"><i class="fa fa-check"></i><b>4.9.1</b> Exercise 1: Descriptive Statistics</a></li>
+<li class="chapter" data-level="4.9.2" data-path="general-statistics.html"><a href="general-statistics.html#exercise-2-confidence-interval-for-mean"><i class="fa fa-check"></i><b>4.9.2</b> Exercise 2: Confidence Interval for Mean</a></li>
+<li class="chapter" data-level="4.9.3" data-path="general-statistics.html"><a href="general-statistics.html#exercise-3-one-sample-t-test"><i class="fa fa-check"></i><b>4.9.3</b> Exercise 3: One-Sample t-Test**</a></li>
+<li class="chapter" data-level="4.9.4" data-path="general-statistics.html"><a href="general-statistics.html#exercise-4-proportion-test"><i class="fa fa-check"></i><b>4.9.4</b> Exercise 4: Proportion Test</a></li>
+<li class="chapter" data-level="4.9.5" data-path="general-statistics.html"><a href="general-statistics.html#exercise-5-comparing-two-sample-means"><i class="fa fa-check"></i><b>4.9.5</b> Exercise 5: Comparing Two Sample Means</a></li>
+<li class="chapter" data-level="4.9.6" data-path="general-statistics.html"><a href="general-statistics.html#exercise-6-data-visualization"><i class="fa fa-check"></i><b>4.9.6</b> Exercise 6: Data Visualization</a></li>
+<li class="chapter" data-level="4.9.7" data-path="general-statistics.html"><a href="general-statistics.html#exercise-7-scatterplot-with-regression-line"><i class="fa fa-check"></i><b>4.9.7</b> Exercise 7: Scatterplot with Regression Line</a></li>
+<li class="chapter" data-level="4.9.8" data-path="general-statistics.html"><a href="general-statistics.html#exercise-8-pairwise-comparisons"><i class="fa fa-check"></i><b>4.9.8</b> Exercise 8: Pairwise Comparisons</a></li>
+<li class="chapter" data-level="4.9.9" data-path="general-statistics.html"><a href="general-statistics.html#exercise-9-tukeys-hsd-test"><i class="fa fa-check"></i><b>4.9.9</b> Exercise 9: Tukey’s HSD Test</a></li>
+<li class="chapter" data-level="4.9.10" data-path="general-statistics.html"><a href="general-statistics.html#exercise-10-comparing-a-treatment-to-a-control"><i class="fa fa-check"></i><b>4.9.10</b> Exercise 10: Comparing a Treatment to a Control</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#basics-of-wilkinson-rogers-notation-y-x-linear-regression"><i class="fa fa-check"></i><b>5.1</b> Basics of Wilkinson-Rogers Notation (y ~ x), Linear Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#scatterplots-with-regression-lines-reading-lm-output"><i class="fa fa-check"></i><b>5.2</b> Scatterplots with Regression Lines, Reading lm() Output</a></li>
+<li class="chapter" data-level="5.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#confidence-intervals-for-regression-coefficients-testing-coefficients"><i class="fa fa-check"></i><b>5.3</b> Confidence Intervals for Regression Coefficients, Testing Coefficients</a></li>
+<li class="chapter" data-level="5.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#identifying-points-in-a-plot"><i class="fa fa-check"></i><b>5.4</b> Identifying Points in a Plot</a></li>
+<li class="chapter" data-level="5.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#hands-on-exercise-3"><i class="fa fa-check"></i><b>5.5</b> <span style="color: green;"><strong>Hands-On Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html"><i class="fa fa-check"></i><b>6</b> Reproducibility and Report with R Markdown</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#key-tools-in-r-for-reproducibility-and-reporting"><i class="fa fa-check"></i><b>6.1</b> Key Tools in R for Reproducibility and Reporting</a></li>
+<li class="chapter" data-level="6.2" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#creating-reproducible-reports"><i class="fa fa-check"></i><b>6.2</b> Creating Reproducible Reports</a></li>
+<li class="chapter" data-level="6.3" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#going-beyond-shiny-for-interactive-reporting"><i class="fa fa-check"></i><b>6.3</b> Going Beyond: Shiny for Interactive Reporting</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-shiny.html"><a href="r-shiny.html"><i class="fa fa-check"></i><b>7</b> R Shiny</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="r-shiny.html"><a href="r-shiny.html#structure-of-a-shiny-app"><i class="fa fa-check"></i><b>7.1</b> Structure of a Shiny App</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="r-shiny.html"><a href="r-shiny.html#user-interfaceui"><i class="fa fa-check"></i><b>7.1.1</b> User Interface(ui)</a></li>
+<li class="chapter" data-level="7.1.2" data-path="r-shiny.html"><a href="r-shiny.html#server"><i class="fa fa-check"></i><b>7.1.2</b> Server</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="r-shiny.html"><a href="r-shiny.html#hands-on-exercise-4"><i class="fa fa-check"></i><b>7.2</b> <span style="color: green;"><strong>Hands-On Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="building-r-packages.html"><a href="building-r-packages.html"><i class="fa fa-check"></i><b>8</b> Building R Packages</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="building-r-packages.html"><a href="building-r-packages.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="building-r-packages.html"><a href="building-r-packages.html#prerequisites"><i class="fa fa-check"></i><b>8.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="8.3" data-path="building-r-packages.html"><a href="building-r-packages.html#building-a-simple-r-package"><i class="fa fa-check"></i><b>8.3</b> Building a simple R package</a></li>
+<li class="chapter" data-level="8.4" data-path="building-r-packages.html"><a href="building-r-packages.html#making-a-new-r-project"><i class="fa fa-check"></i><b>8.4</b> Making A New R Project</a></li>
+<li class="chapter" data-level="8.5" data-path="building-r-packages.html"><a href="building-r-packages.html#adding-documentation"><i class="fa fa-check"></i><b>8.5</b> Adding Documentation</a></li>
+<li class="chapter" data-level="8.6" data-path="building-r-packages.html"><a href="building-r-packages.html#uploading-and-installing-from-github"><i class="fa fa-check"></i><b>8.6</b> Uploading and Installing from Github</a></li>
+<li class="chapter" data-level="8.7" data-path="building-r-packages.html"><a href="building-r-packages.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>8.7</b> <span style="color: green;"><strong>Hands-on Exercises</strong></span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Computing</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="reproducibility-and-report-with-r-markdown" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Reproducibility and Report with R Markdown<a href="reproducibility-and-report-with-r-markdown.html#reproducibility-and-report-with-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Reproducibility</strong> is one of the core values in data science and R makes it both achievable and easy! Imagine trying to recreate someone’s analysis only to find that you get different results or that they left out crucial steps. Frustrating, right? Reproducibility is the answer—it means you can get the same results every time by following the same steps.</p>
+<p><strong>Why Reproducibility Matters</strong></p>
+<ul>
+<li><strong>Trustworthiness:</strong> When your results can be replicated, others can trust your analysis.</li>
+<li><strong>Error Detection:</strong> Re-running the same code helps catch mistakes early.</li>
+<li><strong>Efficiency:</strong> With reproducible scripts, you save time if you need to redo parts of your analysis.</li>
+</ul>
+<div id="key-tools-in-r-for-reproducibility-and-reporting" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Key Tools in R for Reproducibility and Reporting<a href="reproducibility-and-report-with-r-markdown.html#key-tools-in-r-for-reproducibility-and-reporting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s dive into the tools that make reproducibility and reporting a breeze in R:</p>
+<ol style="list-style-type: decimal">
+<li><strong>R Markdown:</strong> This is the gold standard for reproducible reports in R. You can write code, comments, and format it all beautifully in one document. Think of it as combining your code with a notebook-style narrative.</li>
+</ol>
+<ul>
+<li><strong>Interactive Demo:</strong> Create an R Markdown file in RStudio by clicking File &gt; New File &gt; R Markdown…. You can add headers, code chunks, and text.</li>
+<li><strong>Run Your Code:</strong> Run each chunk individually, or click Knit to create a fully formatted report with all your code and outputs embedded.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Setting a Seed for Consistency:</strong> R’s random number generator can be controlled with <code>set.seed()</code>. For instance;</li>
+</ol>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="reproducibility-and-report-with-r-markdown.html#cb306-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb306-2"><a href="reproducibility-and-report-with-r-markdown.html#cb306-2" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 49 65 25 74 18</code></pre>
+<p>This will always produce the same random sample, making your analysis consistent.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Code Commenting and Documentation:</strong> Clear comments make your analysis easy to understand for others and for yourself. Use comments (<code>#</code>) in your code to describe steps, and include documentation for more complex functions.</li>
+</ol>
+<p>Below is an example of a comment.</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="reproducibility-and-report-with-r-markdown.html#cb308-1" tabindex="-1"></a><span class="co"># This is a comment</span></span></code></pre></div>
+</div>
+<div id="creating-reproducible-reports" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Creating Reproducible Reports<a href="reproducibility-and-report-with-r-markdown.html#creating-reproducible-reports" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s walk through a simple activity where we create a reproducible report:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Set Up Your R Markdown File</strong></li>
+</ol>
+<ul>
+<li>Open RStudio and create a new R Markdown file.</li>
+<li>Add a title, your name, and the date.</li>
+<li>Start with an introduction: Below is an example of a report to introduce R makrdown.</li>
+</ul>
+<p><img src="images/rmarkdown_creation_dialog.png" /></p>
+<ul>
+<li>Insert the relevant details and press <strong>Ok</strong> to create a markdown file. An introductory report explaining how markdown works will be automatically generated. For more information about R makrdown visit <a href="https://rmarkdown.rstudio.com/articles_intro.html">here</a></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Add Your Code and Analysis</strong></li>
+</ol>
+<p>Insert code chunks for each analysis step. For example, try loading and summarizing the <code>mtcars</code> data set:</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="reproducibility-and-report-with-r-markdown.html#cb309-1" tabindex="-1"></a><span class="co"># Load the data </span></span>
+<span id="cb309-2"><a href="reproducibility-and-report-with-r-markdown.html#cb309-2" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb309-3"><a href="reproducibility-and-report-with-r-markdown.html#cb309-3" tabindex="-1"></a></span>
+<span id="cb309-4"><a href="reproducibility-and-report-with-r-markdown.html#cb309-4" tabindex="-1"></a><span class="co"># Summary of the data set</span></span>
+<span id="cb309-5"><a href="reproducibility-and-report-with-r-markdown.html#cb309-5" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span></code></pre></div>
+<pre><code>##       mpg             cyl             disp             hp             drat      
+##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0   Min.   :2.760  
+##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5   1st Qu.:3.080  
+##  Median :19.20   Median :6.000   Median :196.3   Median :123.0   Median :3.695  
+##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7   Mean   :3.597  
+##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0   3rd Qu.:3.920  
+##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0   Max.   :4.930  
+##        wt             qsec             vs               am              gear      
+##  Min.   :1.513   Min.   :14.50   Min.   :0.0000   Min.   :0.0000   Min.   :3.000  
+##  1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:3.000  
+##  Median :3.325   Median :17.71   Median :0.0000   Median :0.0000   Median :4.000  
+##  Mean   :3.217   Mean   :17.85   Mean   :0.4375   Mean   :0.4062   Mean   :3.688  
+##  3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:4.000  
+##  Max.   :5.424   Max.   :22.90   Max.   :1.0000   Max.   :1.0000   Max.   :5.000  
+##       carb      
+##  Min.   :1.000  
+##  1st Qu.:2.000  
+##  Median :2.000  
+##  Mean   :2.812  
+##  3rd Qu.:4.000  
+##  Max.   :8.000</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Customize and Style Your Report</strong></li>
+</ol>
+<ul>
+<li>Add section headers, bold text, and bullet points to organize your report.</li>
+<li>You can use <code>ggplot2</code> to add visualizations for a polished look.</li>
+</ul>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="reproducibility-and-report-with-r-markdown.html#cb311-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb311-2"><a href="reproducibility-and-report-with-r-markdown.html#cb311-2" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> hp, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb311-3"><a href="reproducibility-and-report-with-r-markdown.html#cb311-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb311-4"><a href="reproducibility-and-report-with-r-markdown.html#cb311-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Horsepower vs. Miles per Gallon&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Knit the Report</strong></li>
+</ol>
+<ul>
+<li>Click the <strong>Knit</strong> button to render your report into an HTML, PDF, or Word document.</li>
+<li>Notice how your code, output, and comments are all integrated.</li>
+</ul>
+<p>Here is how the report should look like when knitted.</p>
+<p><img src="images/example-knitted_report.png" /></p>
+</div>
+<div id="going-beyond-shiny-for-interactive-reporting" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Going Beyond: Shiny for Interactive Reporting<a href="reproducibility-and-report-with-r-markdown.html#going-beyond-shiny-for-interactive-reporting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For advanced projects, consider using Shiny to create interactive reports! Shiny apps can run right in your browser and allow users to interact with your data in real time.</p>
+<p><span style="color: brown;"><em>More details on RShiny will be discussed later on the next topic</em></span></p>
+<p>Reproducibility is a powerful skill—keep practicing, and you’ll quickly see how it enhances your data work!</p>
+<p><span style="color: green;"><strong>Hands-on Exercises</strong></span></p>
+<p>Create an R Markdown file with:</p>
+<ol style="list-style-type: lower-roman">
+<li>A title and introduction explaining your analysis.</li>
+<li>An example dataset analysis (try using <code>iris</code> or <code>mtcars</code>).</li>
+<li>A basic visualization.</li>
+<li>A conclusion summarizing your findings.</li>
+<li>Knit the report to html</li>
+</ol>
+<hr />
+<p><span style="color: brown;"><strong>Solution</strong></span></p>
+<p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="simple-linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-shiny.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/balsaedi/RCourse/edit/main/06-reproducibility_and_report.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/balsaedi/RCourse/blob/main/06-reproducibility_and_report.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

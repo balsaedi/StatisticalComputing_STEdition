@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Working with Real-World Data | R Course</title>
+  <meta name="description" content="Chapter 8 Working with Real-World Data | R Course" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Working with Real-World Data | R Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Working with Real-World Data | R Course" />
+  
+  
+  
+
+<meta name="author" content="YOUR NAME HERE" />
+
+
+<meta name="date" content="2024-10-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="statistical-analysis.html"/>
+<link rel="next" href="time-series-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SHORT TITLE HERE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to R and Basic Programming Concepts</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#overview-of-r-programming"><i class="fa fa-check"></i><b>1.1</b> Overview of R Programming</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#introduction-to-r"><i class="fa fa-check"></i><b>1.1.1</b> Introduction to R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#importance-of-r-in-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Importance of R in Data Analysis</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#application-of-r-in-various-industries"><i class="fa fa-check"></i><b>1.1.3</b> Application of R in Various Industries</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#introduction-to-the-r-ecosystem"><i class="fa fa-check"></i><b>1.2</b> Introduction to the R ecosystem</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#r-studio"><i class="fa fa-check"></i><b>1.2.1</b> R Studio</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#cran"><i class="fa fa-check"></i><b>1.2.2</b> CRAN</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#setting-up-r-environment"><i class="fa fa-check"></i><b>1.3</b> Setting Up R Environment</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#installation-of-r-and-rstudio"><i class="fa fa-check"></i><b>1.3.1</b> Installation of R and RStudio</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#introduction-to-rstudio-interface"><i class="fa fa-check"></i><b>1.3.2</b> Introduction to RStudio Interface</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#basic-r-syntax-and-commands"><i class="fa fa-check"></i><b>1.3.3</b> Basic R Syntax and Commands</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hands-on-exercise"><i class="fa fa-check"></i><b>1.4</b> Hands-on Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html"><i class="fa fa-check"></i><b>2</b> Basic Data Types and Structures</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-types"><i class="fa fa-check"></i><b>2.1</b> Data types</a></li>
+<li class="chapter" data-level="2.2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-structures"><i class="fa fa-check"></i><b>2.2</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#vector"><i class="fa fa-check"></i><b>2.2.1</b> Vector</a></li>
+<li class="chapter" data-level="2.2.2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#matrix"><i class="fa fa-check"></i><b>2.2.2</b> Matrix</a></li>
+<li class="chapter" data-level="2.2.3" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-frame"><i class="fa fa-check"></i><b>2.2.3</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#hands-on-exercises"><i class="fa fa-check"></i><b>2.3</b> <span style="color: green;">Hands-on Exercises</span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html"><i class="fa fa-check"></i><b>3</b> Data Importing and Exporting</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-importing"><i class="fa fa-check"></i><b>3.1</b> Introduction to Data Importing</a></li>
+<li class="chapter" data-level="3.2" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#demonstration-of-data-importing"><i class="fa fa-check"></i><b>3.2</b> Demonstration of Data Importing</a></li>
+<li class="chapter" data-level="3.3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-exporting"><i class="fa fa-check"></i><b>3.3</b> Introduction to Data Exporting</a></li>
+<li class="chapter" data-level="3.4" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#practical-exercise"><i class="fa fa-check"></i><b>3.4</b> Practical Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation.html"><a href="data-manipulation.html#basic-data-manipulation"><i class="fa fa-check"></i><b>4.1</b> Basic Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="data-manipulation.html"><a href="data-manipulation.html#introduction-to-data-manipulation"><i class="fa fa-check"></i><b>4.1.1</b> Introduction to Data Manipulation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-manipulation.html"><a href="data-manipulation.html#subsetting-and-filtering-data"><i class="fa fa-check"></i><b>4.1.2</b> Subsetting and Filtering Data:</a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-manipulation.html"><a href="data-manipulation.html#sorting-data"><i class="fa fa-check"></i><b>4.1.3</b> Sorting Data</a></li>
+<li class="chapter" data-level="4.1.4" data-path="data-manipulation.html"><a href="data-manipulation.html#basic-data-cleaning"><i class="fa fa-check"></i><b>4.1.4</b> Basic Data Cleaning</a></li>
+<li class="chapter" data-level="4.1.5" data-path="data-manipulation.html"><a href="data-manipulation.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>4.1.5</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>4.2</b> Data Manipulation with Dplyr</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-manipulation.html"><a href="data-manipulation.html#introduction-to-dplyr-package"><i class="fa fa-check"></i><b>4.2.1</b> Introduction to Dplyr package</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-manipulation.html"><a href="data-manipulation.html#key-functions-in-dplyr"><i class="fa fa-check"></i><b>4.2.2</b> Key Functions in dplyr</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-manipulation.html"><a href="data-manipulation.html#select"><i class="fa fa-check"></i><b>4.2.3</b> select</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-manipulation.html"><a href="data-manipulation.html#filter"><i class="fa fa-check"></i><b>4.2.4</b> filter</a></li>
+<li class="chapter" data-level="4.2.5" data-path="data-manipulation.html"><a href="data-manipulation.html#arrange"><i class="fa fa-check"></i><b>4.2.5</b> arrange</a></li>
+<li class="chapter" data-level="4.2.6" data-path="data-manipulation.html"><a href="data-manipulation.html#mutate"><i class="fa fa-check"></i><b>4.2.6</b> mutate</a></li>
+<li class="chapter" data-level="4.2.7" data-path="data-manipulation.html"><a href="data-manipulation.html#summarise"><i class="fa fa-check"></i><b>4.2.7</b> Summarise</a></li>
+<li class="chapter" data-level="4.2.8" data-path="data-manipulation.html"><a href="data-manipulation.html#group_by"><i class="fa fa-check"></i><b>4.2.8</b> group_by</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation.html"><a href="data-manipulation.html#chaining"><i class="fa fa-check"></i><b>4.3</b> Chaining</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data-manipulation.html"><a href="data-manipulation.html#hands-on-exercises-2"><i class="fa fa-check"></i><b>4.3.1</b> Hands-on Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>5</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-visualization.html"><a href="data-visualization.html#basic-data-visualization"><i class="fa fa-check"></i><b>5.1</b> Basic Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data-visualization.html"><a href="data-visualization.html#introduction-to-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> Introduction to ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="data-visualization.html"><a href="data-visualization.html#advanced-data-visualization"><i class="fa fa-check"></i><b>5.2</b> Advanced Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="data-visualization.html"><a href="data-visualization.html#creating-complex-visualizations"><i class="fa fa-check"></i><b>5.2.1</b> Creating Complex Visualizations</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-visualization.html"><a href="data-visualization.html#combining-multiple-plots"><i class="fa fa-check"></i><b>5.2.2</b> Combining Multiple Plots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html"><i class="fa fa-check"></i><b>6</b> Explanatory Data Analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#introduction-to-eda"><i class="fa fa-check"></i><b>6.1</b> Introduction to EDA</a></li>
+<li class="chapter" data-level="6.2" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#choosing-a-data-set"><i class="fa fa-check"></i><b>6.2</b> Choosing a data set</a></li>
+<li class="chapter" data-level="6.3" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#conducting-eda"><i class="fa fa-check"></i><b>6.3</b> Conducting EDA</a></li>
+<li class="chapter" data-level="6.4" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#present-findings"><i class="fa fa-check"></i><b>6.4</b> Present Findings</a></li>
+<li class="chapter" data-level="6.5" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#eda---example"><i class="fa fa-check"></i><b>6.5</b> <span style="color: brown;">EDA - Example</span></a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#introduction"><i class="fa fa-check"></i><b>6.5.1</b> <span style="color: brown;">Introduction</span></a></li>
+<li class="chapter" data-level="6.5.2" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#data-assessment-and-cleaning"><i class="fa fa-check"></i><b>6.5.2</b> <span style="color: brown;">Data Assessment and Cleaning</span></a></li>
+<li class="chapter" data-level="6.5.3" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#data-visualization-1"><i class="fa fa-check"></i><b>6.5.3</b> <span style="color: brown;">Data Visualization</span></a></li>
+<li class="chapter" data-level="6.5.4" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#key-findings"><i class="fa fa-check"></i><b>6.5.4</b> <span style="color: brown;">Key Findings</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistical-analysis.html"><a href="statistical-analysis.html"><i class="fa fa-check"></i><b>7</b> Statistical Analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#basic-statistical-concepts"><i class="fa fa-check"></i><b>7.1</b> Basic Statistical Concepts</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-descriptive-statistics"><i class="fa fa-check"></i><b>7.1.1</b> Introduction to Descriptive Statistics</a></li>
+<li class="chapter" data-level="7.1.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#visualization-of-descriptive-statistics"><i class="fa fa-check"></i><b>7.1.2</b> Visualization of Descriptive Statistics</a></li>
+<li class="chapter" data-level="7.1.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercise-1"><i class="fa fa-check"></i><b>7.1.3</b> Hands On Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#correlation-and-regression-analysis"><i class="fa fa-check"></i><b>7.2</b> Correlation and Regression Analysis</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-correlation"><i class="fa fa-check"></i><b>7.2.1</b> Introduction to Correlation</a></li>
+<li class="chapter" data-level="7.2.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-regression-analysis"><i class="fa fa-check"></i><b>7.2.2</b> Introduction to Regression Analysis</a></li>
+<li class="chapter" data-level="7.2.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>7.2.3</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#advanced-statistical-methods"><i class="fa fa-check"></i><b>7.3</b> Advanced Statistical Methods</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-hypothesis-testing"><i class="fa fa-check"></i><b>7.3.1</b> Introduction to Hypothesis Testing</a></li>
+<li class="chapter" data-level="7.3.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercises-4"><i class="fa fa-check"></i><b>7.3.2</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="statistical-analysis.html"><a href="statistical-analysis.html#project-applying-statistical-analysis"><i class="fa fa-check"></i><b>7.4</b> Project: Applying Statistical Analysis</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#project-overview"><i class="fa fa-check"></i><b>7.4.1</b> Project Overview</a></li>
+<li class="chapter" data-level="7.4.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#conducting-statistical-analysis"><i class="fa fa-check"></i><b>7.4.2</b> Conducting Statistical Analysis</a></li>
+<li class="chapter" data-level="7.4.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#presenting-statistical-findings"><i class="fa fa-check"></i><b>7.4.3</b> Presenting Statistical Findings</a></li>
+<li class="chapter" data-level="7.4.4" data-path="statistical-analysis.html"><a href="statistical-analysis.html#example-ecommerce-statistical-analysis"><i class="fa fa-check"></i><b>7.4.4</b> <span style="color: brown;">Example: Ecommerce Statistical Analysis</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html"><i class="fa fa-check"></i><b>8</b> Working with Real-World Data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#handling-large-datasets"><i class="fa fa-check"></i><b>8.1</b> Handling Large Datasets</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#challenges-of-large-data-sets"><i class="fa fa-check"></i><b>8.1.1</b> Challenges of Large Data sets</a></li>
+<li class="chapter" data-level="8.1.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#efficient-data-handling-techniques"><i class="fa fa-check"></i><b>8.1.2</b> Efficient Data Handling Techniques</a></li>
+<li class="chapter" data-level="8.1.3" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#reading-and-writing-large-files"><i class="fa fa-check"></i><b>8.1.3</b> Reading and Writing Large Files</a></li>
+<li class="chapter" data-level="8.1.4" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#hands-on-exercises-5"><i class="fa fa-check"></i><b>8.1.4</b> Hands-On Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#data-cleaning-and-transformation"><i class="fa fa-check"></i><b>8.2</b> Data Cleaning and Transformation</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#introduction-to-data-cleaning"><i class="fa fa-check"></i><b>8.2.1</b> Introduction to Data Cleaning</a></li>
+<li class="chapter" data-level="8.2.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#hands-on-exercises-6"><i class="fa fa-check"></i><b>8.2.2</b> Hands-On Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="time-series-analysis.html"><a href="time-series-analysis.html"><i class="fa fa-check"></i><b>9</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#introduction-to-time-series-data"><i class="fa fa-check"></i><b>9.1</b> Introduction to Time Series Data</a></li>
+<li class="chapter" data-level="9.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#basic-time-series-concepts"><i class="fa fa-check"></i><b>9.2</b> Basic Time Series Concepts</a></li>
+<li class="chapter" data-level="9.3" data-path="time-series-analysis.html"><a href="time-series-analysis.html#basic-time-series-forecasting"><i class="fa fa-check"></i><b>9.3</b> Basic Time Series Forecasting</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#moving-averages"><i class="fa fa-check"></i><b>9.3.1</b> Moving Averages</a></li>
+<li class="chapter" data-level="9.3.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#arima-model"><i class="fa fa-check"></i><b>9.3.2</b> ARIMA model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="time-series-analysis.html"><a href="time-series-analysis.html#hands-on-exercises-7"><i class="fa fa-check"></i><b>9.4</b> Hands-On Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="capstone-project.html"><a href="capstone-project.html"><i class="fa fa-check"></i><b>10</b> Capstone Project</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="capstone-project.html"><a href="capstone-project.html#introduction-2"><i class="fa fa-check"></i><b>10.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="capstone-project.html"><a href="capstone-project.html#project-overview-and-objectives"><i class="fa fa-check"></i><b>10.1.1</b> Project Overview and Objectives</a></li>
+<li class="chapter" data-level="10.1.2" data-path="capstone-project.html"><a href="capstone-project.html#group-formation"><i class="fa fa-check"></i><b>10.1.2</b> Group Formation</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="capstone-project.html"><a href="capstone-project.html#project-planning"><i class="fa fa-check"></i><b>10.2</b> Project Planning</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="capstone-project.html"><a href="capstone-project.html#defining-the-problem-statement"><i class="fa fa-check"></i><b>10.2.1</b> Defining the problem statement</a></li>
+<li class="chapter" data-level="10.2.2" data-path="capstone-project.html"><a href="capstone-project.html#planning-the-analysis-workflow"><i class="fa fa-check"></i><b>10.2.2</b> Planning the Analysis WorkFlow</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="capstone-project.html"><a href="capstone-project.html#project-execution"><i class="fa fa-check"></i><b>10.3</b> Project Execution</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="capstone-project.html"><a href="capstone-project.html#part-1"><i class="fa fa-check"></i><b>10.3.1</b> Part 1</a></li>
+<li class="chapter" data-level="10.3.2" data-path="capstone-project.html"><a href="capstone-project.html#part-2"><i class="fa fa-check"></i><b>10.3.2</b> Part 2</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="capstone-project.html"><a href="capstone-project.html#project-presentations-and-feedback"><i class="fa fa-check"></i><b>10.4</b> Project Presentations and Feedback</a></li>
+<li class="chapter" data-level="10.5" data-path="capstone-project.html"><a href="capstone-project.html#example-ecommerce-project"><i class="fa fa-check"></i><b>10.5</b> <span style="color: brown;">Example: Ecommerce Project</span></a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="capstone-project.html"><a href="capstone-project.html#part-1-1"><i class="fa fa-check"></i><b>10.5.1</b> <span style="color: brown;">Part 1</span></a></li>
+<li class="chapter" data-level="10.5.2" data-path="capstone-project.html"><a href="capstone-project.html#part-2-1"><i class="fa fa-check"></i><b>10.5.2</b> <span style="color: brown;">Part 2</span></a></li>
+<li class="chapter" data-level="10.5.3" data-path="capstone-project.html"><a href="capstone-project.html#presentation-and-feedback"><i class="fa fa-check"></i><b>10.5.3</b> <span style="color: brown;">Presentation and Feedback</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>11</b> Datasets</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="working-with-real-world-data" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Working with Real-World Data<a href="working-with-real-world-data.html#working-with-real-world-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="handling-large-datasets" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Handling Large Datasets<a href="working-with-real-world-data.html#handling-large-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="challenges-of-large-data-sets" class="section level3 hasAnchor" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> Challenges of Large Data sets<a href="working-with-real-world-data.html#challenges-of-large-data-sets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When working with data in R, one can encounter large data sets that are challenging to work on. These are some of the challenges;</p>
+<ul>
+<li>Data I/O takes a long time such that large files takes a long time to transfer data to or from a computers system which will slow down crucial processes like network operations, communication between the devices such as keyboard and microphone, and sharing data</li>
+<li>R has a file size limit of approximately 2 to 4gb, therefore it is a challenge to work on data sets above the limit like 5gb.</li>
+<li>There is more difficulty in indexing data sets which extremely large number of rows and columns.</li>
+<li>The processing speed of several algorithms and pre-trained model will reduce.</li>
+<li>Large data sets pose a threat on the memory management. R stores data entirely on the memory, therefore it can slow down or even crush the program under extreme cases.</li>
+</ul>
+<p>As a data analyst/statistician, large data sets are inevitable therefore researchers have worked on the issue of large data sets and come up with the following solutions;</p>
+<ul>
+<li>Optimize the memory usage through data type conversion and row-wise processing</li>
+<li>Processing large data sets in batches or in chunks.</li>
+<li>Using memory efficient objects and programming tricks like nested functions, lazy loading(load data into memory when its needed) and use of garbage collection where objects that are no longer useful are disposed.</li>
+<li>Partitioning and streaming by loading only small pieces of data into memory at any point in time.</li>
+<li>Use specialized packages for large scale analysis like <code>data.table</code>.</li>
+<li>Apply data sampling. Instead of processing the whole data at once. Take a random manageable sample from the data set and process it.</li>
+</ul>
+</div>
+<div id="efficient-data-handling-techniques" class="section level3 hasAnchor" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Efficient Data Handling Techniques<a href="working-with-real-world-data.html#efficient-data-handling-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Lets dive deep on how to work on large data sets in R by applying the popular methods in data science.</p>
+<div id="using-data.table-package" class="section level4 hasAnchor" number="8.1.2.1">
+<h4><span class="header-section-number">8.1.2.1</span> Using data.table Package<a href="working-with-real-world-data.html#using-data.table-package" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The <code>data.table</code> package delivers an improved version of a <code>data.frame</code> structure. The data structure from this package(has the same name, <code>data.table</code>) is high performance, memory efficient thus being more fit for large data sets than the <code>data.frame</code> kind of a data structure.</p>
+<p>Lets create a simple <code>data.table</code> from a random data set.</p>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="working-with-real-world-data.html#cb545-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb545-2"><a href="working-with-real-world-data.html#cb545-2" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb545-3"><a href="working-with-real-world-data.html#cb545-3" tabindex="-1"></a></span>
+<span id="cb545-4"><a href="working-with-real-world-data.html#cb545-4" tabindex="-1"></a><span class="co"># Create the data.table </span></span>
+<span id="cb545-5"><a href="working-with-real-world-data.html#cb545-5" tabindex="-1"></a>student_dtb <span class="ot">&lt;-</span> <span class="fu">data.table</span>(<span class="at">stuid =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">0</span>),<span class="co"># student id</span></span>
+<span id="cb545-6"><a href="working-with-real-world-data.html#cb545-6" tabindex="-1"></a>                          <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">45</span>, <span class="dv">67</span>, <span class="dv">23</span>, <span class="dv">41</span>, <span class="dv">43</span>, <span class="dv">54</span>, <span class="dv">67</span>, <span class="dv">89</span>)</span>
+<span id="cb545-7"><a href="working-with-real-world-data.html#cb545-7" tabindex="-1"></a>                          )</span>
+<span id="cb545-8"><a href="working-with-real-world-data.html#cb545-8" tabindex="-1"></a></span>
+<span id="cb545-9"><a href="working-with-real-world-data.html#cb545-9" tabindex="-1"></a>student_dtb</span></code></pre></div>
+<pre><code>##    stuid   age
+##    &lt;num&gt; &lt;num&gt;
+## 1:     2    23
+## 2:     5    45
+## 3:     3    67
+## 4:     4    23
+## 5:     6    41
+## 6:     7    43
+## 7:     4    54
+## 8:     2    67
+## 9:     0    89</code></pre>
+<p>A <code>data.frame</code> is created the same as a <code>data.table</code></p>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="working-with-real-world-data.html#cb547-1" tabindex="-1"></a><span class="co"># Create the data.frame</span></span>
+<span id="cb547-2"><a href="working-with-real-world-data.html#cb547-2" tabindex="-1"></a>student_df <span class="ot">&lt;-</span> <span class="fu">data.table</span>(<span class="at">stuid =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">0</span>),<span class="co"># student id</span></span>
+<span id="cb547-3"><a href="working-with-real-world-data.html#cb547-3" tabindex="-1"></a>                          <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">45</span>, <span class="dv">67</span>, <span class="dv">23</span>, <span class="dv">41</span>, <span class="dv">43</span>, <span class="dv">54</span>, <span class="dv">67</span>, <span class="dv">89</span>)</span>
+<span id="cb547-4"><a href="working-with-real-world-data.html#cb547-4" tabindex="-1"></a>                          )</span>
+<span id="cb547-5"><a href="working-with-real-world-data.html#cb547-5" tabindex="-1"></a></span>
+<span id="cb547-6"><a href="working-with-real-world-data.html#cb547-6" tabindex="-1"></a>student_df</span></code></pre></div>
+<pre><code>##    stuid   age
+##    &lt;num&gt; &lt;num&gt;
+## 1:     2    23
+## 2:     5    45
+## 3:     3    67
+## 4:     4    23
+## 5:     6    41
+## 6:     7    43
+## 7:     4    54
+## 8:     2    67
+## 9:     0    89</code></pre>
+<p>They almost look similar but they are more different in operations. Here are some of the differences;</p>
+<table>
+<colgroup>
+<col width="49%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><code>data.table</code></th>
+<th><code>data.frame</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>faster than data.frame</td>
+<td>20X slower than data.table</td>
+</tr>
+<tr class="even">
+<td>Used for more complex data structures and big data</td>
+<td>Used for smaller tables and matrices</td>
+</tr>
+<tr class="odd">
+<td>Has built-in features like rolling joins and overlapping range</td>
+<td>Lacks more features but friendly to a beginner</td>
+</tr>
+<tr class="even">
+<td>code efficient</td>
+<td>Utilizes more code to get something done</td>
+</tr>
+<tr class="odd">
+<td><code>setDF(dt)</code> function is used to convert it to a data.frame where argument <code>dt</code> is the data.table</td>
+<td><code>setDT(df)</code> function is used to convert it to data.table where argument <code>df</code> is the data.frame</td>
+</tr>
+<tr class="even">
+<td>Syntax: <code>data.table()</code></td>
+<td>Syntax: <code>data.frame()</code></td>
+</tr>
+</tbody>
+</table>
+<p>There are varieties of data.table operations that can be applied on large data sets. Let’s explore a few of them</p>
+<ul>
+<li><strong>Filtering rows</strong></li>
+</ul>
+<p>Rows in a data.table can be filtered using conditions in data.table. For instance, lets filter the data above to find the ones above the age of 40</p>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="working-with-real-world-data.html#cb549-1" tabindex="-1"></a><span class="co"># Get the ones above 40 years</span></span>
+<span id="cb549-2"><a href="working-with-real-world-data.html#cb549-2" tabindex="-1"></a>dtb1 <span class="ot">&lt;-</span> student_df[age <span class="sc">&gt;</span> <span class="dv">40</span>]</span>
+<span id="cb549-3"><a href="working-with-real-world-data.html#cb549-3" tabindex="-1"></a><span class="fu">print</span>(dtb1)</span></code></pre></div>
+<pre><code>##    stuid   age
+##    &lt;num&gt; &lt;num&gt;
+## 1:     5    45
+## 2:     3    67
+## 3:     6    41
+## 4:     7    43
+## 5:     4    54
+## 6:     2    67
+## 7:     0    89</code></pre>
+<ul>
+<li><strong>Selecting Specific Columns</strong></li>
+</ul>
+<p>You can select specific columns in a data.table. Lets select the age column</p>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="working-with-real-world-data.html#cb551-1" tabindex="-1"></a><span class="co"># Select the age column </span></span>
+<span id="cb551-2"><a href="working-with-real-world-data.html#cb551-2" tabindex="-1"></a>age_dt <span class="ot">&lt;-</span> student_df[, .(age)]</span>
+<span id="cb551-3"><a href="working-with-real-world-data.html#cb551-3" tabindex="-1"></a><span class="fu">print</span>(age_dt)</span></code></pre></div>
+<pre><code>##      age
+##    &lt;num&gt;
+## 1:    23
+## 2:    45
+## 3:    67
+## 4:    23
+## 5:    41
+## 6:    43
+## 7:    54
+## 8:    67
+## 9:    89</code></pre>
+<ul>
+<li><strong>Aggregating data</strong></li>
+</ul>
+<p>Aggregation can be done with the help of functions like <code>mean()</code>, <code>sum()</code> …</p>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="working-with-real-world-data.html#cb553-1" tabindex="-1"></a><span class="co"># Create a sample data.table</span></span>
+<span id="cb553-2"><a href="working-with-real-world-data.html#cb553-2" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
+<span id="cb553-3"><a href="working-with-real-world-data.html#cb553-3" tabindex="-1"></a>  <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb553-4"><a href="working-with-real-world-data.html#cb553-4" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>, <span class="st">&quot;David&quot;</span>, <span class="st">&quot;Eve&quot;</span>, <span class="st">&quot;Frank&quot;</span>, <span class="st">&quot;Grace&quot;</span>, <span class="st">&quot;Hannah&quot;</span>, <span class="st">&quot;Isaac&quot;</span>, <span class="st">&quot;Jack&quot;</span>),</span>
+<span id="cb553-5"><a href="working-with-real-world-data.html#cb553-5" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">28</span>, <span class="dv">32</span>, <span class="dv">30</span>, <span class="dv">29</span>, <span class="dv">33</span>, <span class="dv">36</span>),</span>
+<span id="cb553-6"><a href="working-with-real-world-data.html#cb553-6" tabindex="-1"></a>  <span class="at">Score =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">88</span>, <span class="dv">92</span>, <span class="dv">76</span>, <span class="dv">95</span>, <span class="dv">89</span>, <span class="dv">78</span>, <span class="dv">82</span>, <span class="dv">91</span>)</span>
+<span id="cb553-7"><a href="working-with-real-world-data.html#cb553-7" tabindex="-1"></a>)</span>
+<span id="cb553-8"><a href="working-with-real-world-data.html#cb553-8" tabindex="-1"></a></span>
+<span id="cb553-9"><a href="working-with-real-world-data.html#cb553-9" tabindex="-1"></a><span class="co"># Print the data.table</span></span>
+<span id="cb553-10"><a href="working-with-real-world-data.html#cb553-10" tabindex="-1"></a>dt</span></code></pre></div>
+<pre><code>##        ID    Name   Age Score
+##     &lt;int&gt;  &lt;char&gt; &lt;num&gt; &lt;num&gt;
+##  1:     1   Alice    25    85
+##  2:     2     Bob    30    90
+##  3:     3 Charlie    35    88
+##  4:     4   David    40    92
+##  5:     5     Eve    28    76
+##  6:     6   Frank    32    95
+##  7:     7   Grace    30    89
+##  8:     8  Hannah    29    78
+##  9:     9   Isaac    33    82
+## 10:    10    Jack    36    91</code></pre>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="working-with-real-world-data.html#cb555-1" tabindex="-1"></a><span class="co"># Calculate the average score by Age</span></span>
+<span id="cb555-2"><a href="working-with-real-world-data.html#cb555-2" tabindex="-1"></a>aggregated_dt <span class="ot">&lt;-</span> dt[, .(<span class="at">Average_Score =</span> <span class="fu">mean</span>(Score)), by <span class="ot">=</span> Age]</span>
+<span id="cb555-3"><a href="working-with-real-world-data.html#cb555-3" tabindex="-1"></a><span class="fu">print</span>(aggregated_dt)</span></code></pre></div>
+<pre><code>##      Age Average_Score
+##    &lt;num&gt;         &lt;num&gt;
+## 1:    25          85.0
+## 2:    30          89.5
+## 3:    35          88.0
+## 4:    40          92.0
+## 5:    28          76.0
+## 6:    32          95.0
+## 7:    29          78.0
+## 8:    33          82.0
+## 9:    36          91.0</code></pre>
+<ul>
+<li><strong>Chaining</strong></li>
+</ul>
+<p>Multiple opeerations can be chained together for efficiency. In this case, we are;</p>
+<ul>
+<li>filtering to get the student with score of above 85</li>
+<li>aggregate the average score by mean</li>
+</ul>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="working-with-real-world-data.html#cb557-1" tabindex="-1"></a><span class="co"># Chain operations: Filter and aggregate</span></span>
+<span id="cb557-2"><a href="working-with-real-world-data.html#cb557-2" tabindex="-1"></a>result_dt <span class="ot">&lt;-</span> dt[Score <span class="sc">&gt;</span> <span class="dv">85</span>, .(<span class="at">Average_Score =</span> <span class="fu">mean</span>(Score)), by <span class="ot">=</span> Age]</span>
+<span id="cb557-3"><a href="working-with-real-world-data.html#cb557-3" tabindex="-1"></a><span class="fu">print</span>(result_dt)</span></code></pre></div>
+<pre><code>##      Age Average_Score
+##    &lt;num&gt;         &lt;num&gt;
+## 1:    30          89.5
+## 2:    35          88.0
+## 3:    40          92.0
+## 4:    32          95.0
+## 5:    36          91.0</code></pre>
+<p>Alternatively, we can filter to get the records with a score of above 85 and select the <code>Name</code> and <code>Score</code> column.</p>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="working-with-real-world-data.html#cb559-1" tabindex="-1"></a><span class="co"># Filter and select columns</span></span>
+<span id="cb559-2"><a href="working-with-real-world-data.html#cb559-2" tabindex="-1"></a>filtered_selected_dt <span class="ot">&lt;-</span> dt[Score <span class="sc">&gt;</span> <span class="dv">85</span>, .(Name, Score)]</span>
+<span id="cb559-3"><a href="working-with-real-world-data.html#cb559-3" tabindex="-1"></a><span class="fu">print</span>(filtered_selected_dt)</span></code></pre></div>
+<pre><code>##       Name Score
+##     &lt;char&gt; &lt;num&gt;
+## 1:     Bob    90
+## 2: Charlie    88
+## 3:   David    92
+## 4:   Frank    95
+## 5:   Grace    89
+## 6:    Jack    91</code></pre>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>In this course, you will be required to use the US Accidents (2016 - 2023) data set which will be downloaded from <a href="https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents">here</a>. Download the data and extract it to a specified destination path. Use the <code>data.table</code> package to;</p>
+<ul>
+<li>read the data set into R using a <code>fread("filepath")</code> function.</li>
+<li>filter to get the rows with <code>Severity</code> of more than 2</li>
+<li>select the <code>Source</code>, <code>Severity</code> and the <code>Distance(mi)</code> columns</li>
+<li>Aggregate to find the distance of each source</li>
+</ul>
+</div>
+<div id="memory-management-in-r" class="section level4 hasAnchor" number="8.1.2.2">
+<h4><span class="header-section-number">8.1.2.2</span> Memory Management in R<a href="working-with-real-world-data.html#memory-management-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A clear grasp of memory management in R will help the analyst/statistician predict how much computer memory you will need for a given task and make you have the most out of the memory. Also, a proper memory management is crucial for effective use of the sytem resources hence the program running smoothly. The R objects are stored in the Random Access Memory (RAM).</p>
+<p>Lets explore some of the key techniques of Memory Management;</p>
+<ol style="list-style-type: decimal">
+<li><strong>Removing unused objects</strong></li>
+</ol>
+<p>Objects like variables and packages that are no longer required need to be removed to free up the memory. The <code>rm()</code> function is used to delete them</p>
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="working-with-real-world-data.html#cb561-1" tabindex="-1"></a><span class="co"># Create a variable x</span></span>
+<span id="cb561-2"><a href="working-with-real-world-data.html#cb561-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">11000</span>)</span>
+<span id="cb561-3"><a href="working-with-real-world-data.html#cb561-3" tabindex="-1"></a></span>
+<span id="cb561-4"><a href="working-with-real-world-data.html#cb561-4" tabindex="-1"></a><span class="co"># Remove the variable x</span></span>
+<span id="cb561-5"><a href="working-with-real-world-data.html#cb561-5" tabindex="-1"></a><span class="fu">rm</span>(x) <span class="co"># variable x is deleted</span></span></code></pre></div>
+<p>You can use the function <code>ls()</code> (with no argument) to confirm if <code>x</code> exists got deleted in the variable list</p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Monitoring memory usage</strong></li>
+</ol>
+<p>R has several functions that help in monitoring the memory usage. This helps the programmer identify if the session is consuming too much memory.</p>
+<p><code>object.size()</code> is one of function used to compute the memory usage.</p>
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="working-with-real-world-data.html#cb562-1" tabindex="-1"></a><span class="co"># Create a variable x</span></span>
+<span id="cb562-2"><a href="working-with-real-world-data.html#cb562-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100000</span>)</span>
+<span id="cb562-3"><a href="working-with-real-world-data.html#cb562-3" tabindex="-1"></a></span>
+<span id="cb562-4"><a href="working-with-real-world-data.html#cb562-4" tabindex="-1"></a><span class="co"># Compute the memory usage</span></span>
+<span id="cb562-5"><a href="working-with-real-world-data.html#cb562-5" tabindex="-1"></a><span class="fu">object.size</span>(x)</span></code></pre></div>
+<pre><code>## 800048 bytes</code></pre>
+<p>The variable <code>x</code> consumes approximately 800048 bytes of memory</p>
+<p>Besides, one can apply <strong>memory profiling</strong>, that is, tracking the memory usage while the scripts executes. <code>Rprof()</code> is an inbuilt R profile that gets the job done in real time. Lets demonstrate</p>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="working-with-real-world-data.html#cb564-1" tabindex="-1"></a><span class="co"># Start memory profiling</span></span>
+<span id="cb564-2"><a href="working-with-real-world-data.html#cb564-2" tabindex="-1"></a><span class="fu">Rprof</span>(<span class="at">memory.profiling =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb564-3"><a href="working-with-real-world-data.html#cb564-3" tabindex="-1"></a></span>
+<span id="cb564-4"><a href="working-with-real-world-data.html#cb564-4" tabindex="-1"></a><span class="co"># Run some computations</span></span>
+<span id="cb564-5"><a href="working-with-real-world-data.html#cb564-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e6</span>)</span>
+<span id="cb564-6"><a href="working-with-real-world-data.html#cb564-6" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e6</span>)</span>
+<span id="cb564-7"><a href="working-with-real-world-data.html#cb564-7" tabindex="-1"></a></span>
+<span id="cb564-8"><a href="working-with-real-world-data.html#cb564-8" tabindex="-1"></a><span class="co"># Stop profiling</span></span>
+<span id="cb564-9"><a href="working-with-real-world-data.html#cb564-9" tabindex="-1"></a><span class="fu">Rprof</span>(<span class="cn">NULL</span>)</span>
+<span id="cb564-10"><a href="working-with-real-world-data.html#cb564-10" tabindex="-1"></a></span>
+<span id="cb564-11"><a href="working-with-real-world-data.html#cb564-11" tabindex="-1"></a><span class="co"># Summary of memory usage</span></span>
+<span id="cb564-12"><a href="working-with-real-world-data.html#cb564-12" tabindex="-1"></a><span class="fu">summaryRprof</span>()</span></code></pre></div>
+<pre><code>## $by.self
+##         self.time self.pct total.time total.pct
+## &quot;rnorm&quot;      0.34      100       0.34       100
+## 
+## $by.total
+##                           total.time total.pct self.time self.pct
+## &quot;rnorm&quot;                         0.34       100      0.34      100
+## &quot;block_exec&quot;                    0.34       100      0.00        0
+## &quot;call_block&quot;                    0.34       100      0.00        0
+## &quot;eng_r&quot;                         0.34       100      0.00        0
+## &quot;eval_with_user_handlers&quot;       0.34       100      0.00        0
+## &quot;eval&quot;                          0.34       100      0.00        0
+## &quot;evaluate_call&quot;                 0.34       100      0.00        0
+## &quot;evaluate::evaluate&quot;            0.34       100      0.00        0
+## &quot;evaluate&quot;                      0.34       100      0.00        0
+## &quot;generator$render&quot;              0.34       100      0.00        0
+## &quot;handle&quot;                        0.34       100      0.00        0
+## &quot;in_dir&quot;                        0.34       100      0.00        0
+## &quot;in_input_dir&quot;                  0.34       100      0.00        0
+## &quot;knitr::knit&quot;                   0.34       100      0.00        0
+## &quot;process_file&quot;                  0.34       100      0.00        0
+## &quot;process_group&quot;                 0.34       100      0.00        0
+## &quot;render_book_script&quot;            0.34       100      0.00        0
+## &quot;render_book&quot;                   0.34       100      0.00        0
+## &quot;render_cur_session&quot;            0.34       100      0.00        0
+## &quot;rmarkdown::render_site&quot;        0.34       100      0.00        0
+## &quot;rmarkdown::render&quot;             0.34       100      0.00        0
+## &quot;timing_fn&quot;                     0.34       100      0.00        0
+## &quot;withCallingHandlers&quot;           0.34       100      0.00        0
+## &quot;withVisible&quot;                   0.34       100      0.00        0
+## &quot;xfun:::handle_error&quot;           0.34       100      0.00        0
+## 
+## $sample.interval
+## [1] 0.02
+## 
+## $sampling.time
+## [1] 0.34</code></pre>
+<p>Additionally, the <code>pryr</code> package goes further to come up with additional functions to monitor memory usage. It can be installed by;</p>
+<pre><code>install.packages(&quot;pryr&quot;)</code></pre>
+<p>Below is a demonstration of how <code>pryr</code> library works</p>
+<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="working-with-real-world-data.html#cb567-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb567-2"><a href="working-with-real-world-data.html#cb567-2" tabindex="-1"></a><span class="fu">library</span>(pryr)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;pryr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:data.table&#39;:
+## 
+##     address</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     where</code></pre>
+<pre><code>## The following objects are masked from &#39;package:purrr&#39;:
+## 
+##     compose, partial</code></pre>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="working-with-real-world-data.html#cb572-1" tabindex="-1"></a><span class="co"># Check memory usage of the entire R session</span></span>
+<span id="cb572-2"><a href="working-with-real-world-data.html#cb572-2" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+<pre><code>## 245 MB</code></pre>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="working-with-real-world-data.html#cb574-1" tabindex="-1"></a><span class="co"># Create a variable </span></span>
+<span id="cb574-2"><a href="working-with-real-world-data.html#cb574-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e6</span>)</span>
+<span id="cb574-3"><a href="working-with-real-world-data.html#cb574-3" tabindex="-1"></a></span>
+<span id="cb574-4"><a href="working-with-real-world-data.html#cb574-4" tabindex="-1"></a><span class="co"># Check memory usage of a specific object</span></span>
+<span id="cb574-5"><a href="working-with-real-world-data.html#cb574-5" tabindex="-1"></a><span class="fu">object_size</span>(y)</span></code></pre></div>
+<pre><code>## 8.00 MB</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Freeing up the Memory</strong></li>
+</ol>
+<p>R has an automatic memory management system, however the programmer might request garbage collection. The <code>gc()</code> function helps you clean unused memory. This is helpful after removing large objects</p>
+<pre><code># Collect the garbage to free up unused memory
+gc()</code></pre>
+<p>The <code>gc()</code> function will accelerate the process of garbage collection rather than waiting for R to automatically free up the memory.</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>After working on the previous practical exercise, you will manage the memory by;</p>
+<ul>
+<li>Finding the objects that fill up the memory and list them.</li>
+<li>Deleting the variables not required</li>
+<li>Using <code>gc</code> to accelerate the process of garbage collection</li>
+</ul>
+</div>
+</div>
+<div id="reading-and-writing-large-files" class="section level3 hasAnchor" number="8.1.3">
+<h3><span class="header-section-number">8.1.3</span> Reading and Writing Large Files<a href="working-with-real-world-data.html#reading-and-writing-large-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="optimized-file-io" class="section level4 hasAnchor" number="8.1.3.1">
+<h4><span class="header-section-number">8.1.3.1</span> Optimized File I/O<a href="working-with-real-world-data.html#optimized-file-io" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The <code>data.table</code> package offers highly optimized functions like <code>fread()</code> and <code>fwrite()</code> that are much faster for reading and writing large files. They provide significant speedups due to efficient file handling and parallel processing. The I/O processes can be optimized by;</p>
+<ol style="list-style-type: decimal">
+<li>Efficient reading</li>
+<li>Efficient writing</li>
+<li>Parallel Processing for faster import/export</li>
+</ol>
+<ol style="list-style-type: lower-roman">
+<li><strong>Efficient Reading</strong></li>
+</ol>
+<p>The <code>fread()</code> function is designed to read large CSV files much faster than the <code>read.csv()</code> by using multiple threads and optimized parsing. Here is how you can read the file</p>
+<pre><code># Load the library
+library(data.table)
+
+# Read large csv file 
+data &lt;- fread(&quot;GlobalLandTemperaturesByCity.csv&quot;)</code></pre>
+<p>Download the csv file from <a href="https://www.kaggle.com/datasets/berkeleyearth/climate-change-earth-surface-temperature-data">here</a>. Extract the downloaded file and read the first csv file.</p>
+<p>These are the perks of reading data using <code>fread()</code> function;</p>
+<ul>
+<li>Parallel Reading: Uses multiple threads to read files faster.</li>
+<li>Automatic Type Detection: Automatically detects column types without needing to pre-specify them.</li>
+<li>Handling Big Data: Efficient for reading gigabytes of data.</li>
+</ul>
+<ol start="2" style="list-style-type: lower-roman">
+<li><strong>Efficient Writing</strong></li>
+</ol>
+<p>A large data.table can saved locally using the <code>fwrite()</code> function. It can handle large data volumes efficiently and supports various formats.</p>
+<pre><code># Writing a data frame to a CSV file using fwrite()
+fwrite(data, &quot;output_file.csv&quot;)</code></pre>
+<p>The <code>"output_file"</code> is the destination path where the data.table is written.</p>
+<p>These are the features of <code>fwrite()</code>;</p>
+<ul>
+<li>Fast Export: Writes data using optimized I/O to speed up the process.</li>
+<li>Compression: Supports compression for efficient storage.</li>
+<li>Parallel Writing: Uses multiple threads to write files faster.</li>
+</ul>
+<ol start="3" style="list-style-type: lower-roman">
+<li><strong>Parallel Processing for faster Import/Export</strong></li>
+</ol>
+<p>The <code>fread()</code> and <code>fwrite()</code> use parallel processing by default however you can configure the number of threads used for reading and writing. The <code>setDTthreads()</code> is used to achieve this. Lets now read and write the data using 4 threads</p>
+<pre><code># Set the number of threads to use for parallel processing
+setDTthreads(4)
+
+# Now fread() and fwrite() will use 4 threads
+data &lt;- fread(&quot;large_dataset.csv&quot;)
+fwrite(data, &quot;output_file.csv&quot;)</code></pre>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>In this exercise, you are required to use the US Accidents (2016 - 2023) data set and solve the problems below;</p>
+<ol style="list-style-type: lower-roman">
+<li>Read the data set using <code>fread()</code></li>
+<li>Time the <code>fread()</code> when reading the file. <strong>Hint</strong>: replace the <code>"large_dataset.csv"</code> by the file path of the downloaded file</li>
+</ol>
+<pre><code># Timing fread() for a large file
+system.time(data &lt;- fread(&quot;large_dataset.csv&quot;))</code></pre>
+<ol start="3" style="list-style-type: lower-roman">
+<li>Add a new column into the data set. Just the convert the temperature from <span class="math inline">\(^oF\)</span>(degrees Farenheit) to <span class="math inline">\(^oC\)</span>(degrees Celcius).</li>
+<li>Write the file locally and check the time taken to write the file. <strong>Hint</strong>: Here is how you can achieve step iii and iv</li>
+</ol>
+<pre><code># Do the Calculations
+
+# Timing fwrite() for a large file
+data[, new_column := rnorm(nrow(data))]  # Add a new column
+system.time(fwrite(data, &quot;large_output.csv&quot;))</code></pre>
+</div>
+</div>
+<div id="hands-on-exercises-5" class="section level3 hasAnchor" number="8.1.4">
+<h3><span class="header-section-number">8.1.4</span> Hands-On Exercises<a href="working-with-real-world-data.html#hands-on-exercises-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Download the Amazon Fine Food Reviews data set from <a href="https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews">here</a> and work on the following problems;</p>
+<ol style="list-style-type: lower-roman">
+<li>Remove any unwanted objects in the file system. Use <code>gc</code> to view any garbage collection statistics</li>
+<li>Read the data set using <code>read.csv</code> and <code>fread</code> and time each method. Compare the time taken for each function to read the file.</li>
+<li>Remove the data set from the memory using <code>rm()</code> and call <code>gc()</code> again</li>
+<li>Reread the data set using <code>fread()</code> however control the threads. Set different thread value (e.g 1, 2, 3, 4 and 5) the compare the time taken for processing.</li>
+<li>Write the file locally(use a different file name) and use <code>gc()</code> for garbage collection</li>
+</ol>
+<p>Finally, discuss on the importance of scalability when dealing with real-world data.</p>
+</div>
+</div>
+<div id="data-cleaning-and-transformation" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Data Cleaning and Transformation<a href="working-with-real-world-data.html#data-cleaning-and-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-to-data-cleaning" class="section level3 hasAnchor" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Introduction to Data Cleaning<a href="working-with-real-world-data.html#introduction-to-data-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="common-data-issues" class="section level4 hasAnchor" number="8.2.1.1">
+<h4><span class="header-section-number">8.2.1.1</span> Common Data Issues<a href="working-with-real-world-data.html#common-data-issues" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Raw data from the field can be inaccurate and inconsistent and pose threats to data operations leading to false analysis and decision making. This type of data is know as dirty, unclean or rogue data. Here are some of the common data issues that render data unclean;</p>
+<ul>
+<li><strong>Incomplete data</strong>: Some of the data points may be missing or left blank.</li>
+<li><strong>Duplicate data</strong>: Some records in the data sets may occur multiple times in different sources.</li>
+<li><strong>Outdated data</strong>: Some data values that may have relevant information times ago may now be obsolete and irrelevant.</li>
+<li><strong>Inconsistent data formats</strong>: Data may be in different ways across multiple data sources like records be presented in JSON formats, SQL tables, No SQL table or even in image formats(.png, .jpeg).</li>
+<li><strong>Outlier Values</strong>: Outliers are extremely high or low values in the data set like a data set containing age of students having one student that is 304 years old or body temperature data set containing values of <span class="math inline">\(-51^0C\)</span>. These values are always impossible and can indicate errors, anomalies and exceptions in the data sets.</li>
+</ul>
+<p>Data integrity is crucial in data analysis and can hinder the organizations’ operations. The foundation of strategic planning, efficient operations and sound decision-making is based upon accurate, complete and consistent data. Here are some of the threats that unclean data pose to data analytics and businesses in general;</p>
+<ul>
+<li><strong>Inconsistent Results</strong>: For instance if a business finds conflicting or duplicate reports on customer behavior will lead to lose of trust or results’ interpretation.</li>
+<li><strong>Increased Costs</strong>: Companies spend a lot of time and money on data cleaning, processing and verification</li>
+<li><strong>Inaccurate Insights and Decision making</strong>: Poor data quality like incorrect values may lead to poor insights thereby leading to poor decision-making. For instance inaccurate sales data may lead to flawed forecasting, poor inventory management and poor marketing strategies.</li>
+<li><strong>Missed Opportunities</strong>: Poor data quality may prevent the company from identifying key trends and opportunity gaps in the market like customer segments or emerging markets</li>
+</ul>
+</div>
+<div id="data-cleaning-techniques" class="section level4 hasAnchor" number="8.2.1.2">
+<h4><span class="header-section-number">8.2.1.2</span> Data Cleaning techniques<a href="working-with-real-world-data.html#data-cleaning-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="handling-missing-data" class="section level5 hasAnchor" number="8.2.1.2.1">
+<h5><span class="header-section-number">8.2.1.2.1</span> Handling Missing Data<a href="working-with-real-world-data.html#handling-missing-data" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>The presence of missing data values is inevitable especially when integrating data from different sources. While there is no specific set method(one-time solution) to handle the missing data points in R, researchers have come up with different methodologies to tackle this issue. Here are some of them;</p>
+<ul>
+<li><em>Deletion</em>; this is a simple method that involves deleting all the records/rows that have null values. Otherwise, all rows that have null values in important columns can be deleted. <code>na.omit()</code> is one of the method.</li>
+<li><em>Imputation</em>: There are packages in R that can fill the null values by imputation. They use the remaining values in the data to create a model that will find a value for the missing one. These packages include <code>imputeR</code>, <code>Amelia</code> and <code>MissForest</code> that use the automated variable selection, bootstrap multiple imputation and single imputation to handle null values.</li>
+<li>Use of algorithms that support null values for instance K-Nearest Neighbors(kNN) and Naive Bayes.</li>
+<li><em>Mean Imputation</em>: This is simply filling the null values with the average of the remaining values.</li>
+</ul>
+<p>Lets create different random data sets and handle the missing values. However, before the issue of null value is fixed, the null values need to be identified in the data set.</p>
+<p>Create a random athlete data set</p>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="working-with-real-world-data.html#cb582-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># Set seed for reproducibility</span></span>
+<span id="cb582-2"><a href="working-with-real-world-data.html#cb582-2" tabindex="-1"></a></span>
+<span id="cb582-3"><a href="working-with-real-world-data.html#cb582-3" tabindex="-1"></a><span class="co"># Generate a data frame with random data for athletes</span></span>
+<span id="cb582-4"><a href="working-with-real-world-data.html#cb582-4" tabindex="-1"></a>athlete_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb582-5"><a href="working-with-real-world-data.html#cb582-5" tabindex="-1"></a>  <span class="at">athlete_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,  <span class="co"># 100 athletes</span></span>
+<span id="cb582-6"><a href="working-with-real-world-data.html#cb582-6" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">paste0</span>(<span class="st">&quot;Athlete&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>),</span>
+<span id="cb582-7"><a href="working-with-real-world-data.html#cb582-7" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">sample</span>(<span class="dv">18</span><span class="sc">:</span><span class="dv">40</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb582-8"><a href="working-with-real-world-data.html#cb582-8" tabindex="-1"></a>  <span class="at">sport =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Basketball&quot;</span>, <span class="st">&quot;Soccer&quot;</span>, <span class="st">&quot;Tennis&quot;</span>, <span class="st">&quot;Swimming&quot;</span>, <span class="st">&quot;Running&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb582-9"><a href="working-with-real-world-data.html#cb582-9" tabindex="-1"></a>  <span class="at">country =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;USA&quot;</span>, <span class="st">&quot;Kenya&quot;</span>, <span class="st">&quot;China&quot;</span>, <span class="st">&quot;Brazil&quot;</span>, <span class="st">&quot;Germany&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb582-10"><a href="working-with-real-world-data.html#cb582-10" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">100</span>, <span class="dv">60</span>, <span class="dv">100</span>), <span class="dv">1</span>)  <span class="co"># Scores between 60 and 100</span></span>
+<span id="cb582-11"><a href="working-with-real-world-data.html#cb582-11" tabindex="-1"></a>)</span>
+<span id="cb582-12"><a href="working-with-real-world-data.html#cb582-12" tabindex="-1"></a></span>
+<span id="cb582-13"><a href="working-with-real-world-data.html#cb582-13" tabindex="-1"></a><span class="co"># Introduce 15% missing values randomly across the entire data frame</span></span>
+<span id="cb582-14"><a href="working-with-real-world-data.html#cb582-14" tabindex="-1"></a>total_cells <span class="ot">&lt;-</span> <span class="fu">prod</span>(<span class="fu">dim</span>(athlete_data))  <span class="co"># Total number of cells</span></span>
+<span id="cb582-15"><a href="working-with-real-world-data.html#cb582-15" tabindex="-1"></a>missing_cells <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fl">0.15</span> <span class="sc">*</span> total_cells)  <span class="co"># 15% of cells will have missing values</span></span>
+<span id="cb582-16"><a href="working-with-real-world-data.html#cb582-16" tabindex="-1"></a></span>
+<span id="cb582-17"><a href="working-with-real-world-data.html#cb582-17" tabindex="-1"></a><span class="co"># Randomly select indices to be set to NA</span></span>
+<span id="cb582-18"><a href="working-with-real-world-data.html#cb582-18" tabindex="-1"></a>missing_indices <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq_len</span>(total_cells), missing_cells)</span>
+<span id="cb582-19"><a href="working-with-real-world-data.html#cb582-19" tabindex="-1"></a></span>
+<span id="cb582-20"><a href="working-with-real-world-data.html#cb582-20" tabindex="-1"></a><span class="co"># Convert the data frame to a matrix for easier manipulation of specific indices</span></span>
+<span id="cb582-21"><a href="working-with-real-world-data.html#cb582-21" tabindex="-1"></a>athlete_data_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(athlete_data)</span>
+<span id="cb582-22"><a href="working-with-real-world-data.html#cb582-22" tabindex="-1"></a>athlete_data_matrix[missing_indices] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb582-23"><a href="working-with-real-world-data.html#cb582-23" tabindex="-1"></a></span>
+<span id="cb582-24"><a href="working-with-real-world-data.html#cb582-24" tabindex="-1"></a><span class="co"># Convert back to a data frame</span></span>
+<span id="cb582-25"><a href="working-with-real-world-data.html#cb582-25" tabindex="-1"></a>athlete_data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(athlete_data_matrix)</span>
+<span id="cb582-26"><a href="working-with-real-world-data.html#cb582-26" tabindex="-1"></a></span>
+<span id="cb582-27"><a href="working-with-real-world-data.html#cb582-27" tabindex="-1"></a><span class="co"># View the dataset</span></span>
+<span id="cb582-28"><a href="working-with-real-world-data.html#cb582-28" tabindex="-1"></a><span class="fu">head</span>(athlete_data)</span></code></pre></div>
+<pre><code>##   athlete_id     name  age      sport country score
+## 1          1 Athlete1   32 Basketball Germany  95.6
+## 2          2 Athlete2   36     Tennis    &lt;NA&gt;  92.5
+## 3          3 Athlete3 &lt;NA&gt;       &lt;NA&gt;     USA  89.9
+## 4          4 Athlete4   20       &lt;NA&gt;  Brazil  66.2
+## 5          5     &lt;NA&gt;   27     Tennis   Kenya  65.0
+## 6       &lt;NA&gt; Athlete6   35    Running Germany  99.0</code></pre>
+<p>Lets count the all null values. The <code>is.na()</code> from base R is used to identify the null values while the <code>sum()</code> sums up all the identified null values</p>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="working-with-real-world-data.html#cb584-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(athlete_data))</span></code></pre></div>
+<pre><code>## [1] 90</code></pre>
+<p>Alternatively, the total null values from the columns can be counted. The <code>sapply()</code> function along with the <code>is.na()</code> and <code>sum()</code> are used.</p>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="working-with-real-world-data.html#cb586-1" tabindex="-1"></a><span class="co"># Count the number of null values in each column</span></span>
+<span id="cb586-2"><a href="working-with-real-world-data.html#cb586-2" tabindex="-1"></a>null_counts <span class="ot">&lt;-</span> <span class="fu">sapply</span>(athlete_data, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x)))</span>
+<span id="cb586-3"><a href="working-with-real-world-data.html#cb586-3" tabindex="-1"></a></span>
+<span id="cb586-4"><a href="working-with-real-world-data.html#cb586-4" tabindex="-1"></a><span class="co"># Display the counts of null values</span></span>
+<span id="cb586-5"><a href="working-with-real-world-data.html#cb586-5" tabindex="-1"></a>null_counts</span></code></pre></div>
+<pre><code>## athlete_id       name        age      sport    country      score 
+##         17         18         10         14         18         13</code></pre>
+<p>Lets now delete the rows containing the null values by the <code>na.omit()</code> and rename the data frame <code>athlete_data_clean</code></p>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="working-with-real-world-data.html#cb588-1" tabindex="-1"></a>athlete_data_clean <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(athlete_data)</span></code></pre></div>
+<p>Confirm the operation by counting the null values in each column and overall</p>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="working-with-real-world-data.html#cb589-1" tabindex="-1"></a><span class="co"># Count the null values by column </span></span>
+<span id="cb589-2"><a href="working-with-real-world-data.html#cb589-2" tabindex="-1"></a>null_count_by_column <span class="ot">&lt;-</span>  <span class="fu">sapply</span>(athlete_data_clean,</span>
+<span id="cb589-3"><a href="working-with-real-world-data.html#cb589-3" tabindex="-1"></a>                                <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x)))</span>
+<span id="cb589-4"><a href="working-with-real-world-data.html#cb589-4" tabindex="-1"></a>null_count_by_column</span></code></pre></div>
+<pre><code>## athlete_id       name        age      sport    country      score 
+##          0          0          0          0          0          0</code></pre>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="working-with-real-world-data.html#cb591-1" tabindex="-1"></a><span class="co"># Overall null count </span></span>
+<span id="cb591-2"><a href="working-with-real-world-data.html#cb591-2" tabindex="-1"></a>overall_null_count <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(athlete_data_clean))</span>
+<span id="cb591-3"><a href="working-with-real-world-data.html#cb591-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Overall Null Count: &quot;</span>, overall_null_count))</span></code></pre></div>
+<pre><code>## [1] &quot;Overall Null Count:  0&quot;</code></pre>
+<p>Now that we have seen how null values can be handled by deleting the rows with the null values, therefore lets perform imputation on the original data set. The null values will not be deleted however, they will be replaced by filling the null values with the previous or next value</p>
+<p>We will be using the original <code>athlete_data</code> that has null values. The <code>tidyr</code> package will be used which can be installed by;</p>
+<pre><code># If not already installed run the command below on the console
+install.packages(&quot;tidyr&quot;)</code></pre>
+<p>Count the null values once again and view sample of the data set</p>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="working-with-real-world-data.html#cb594-1" tabindex="-1"></a><span class="co"># Count the null values by column </span></span>
+<span id="cb594-2"><a href="working-with-real-world-data.html#cb594-2" tabindex="-1"></a>null_count_by_column <span class="ot">&lt;-</span>  <span class="fu">sapply</span>(athlete_data,</span>
+<span id="cb594-3"><a href="working-with-real-world-data.html#cb594-3" tabindex="-1"></a>                                <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x)))</span>
+<span id="cb594-4"><a href="working-with-real-world-data.html#cb594-4" tabindex="-1"></a>null_count_by_column</span></code></pre></div>
+<pre><code>## athlete_id       name        age      sport    country      score 
+##         17         18         10         14         18         13</code></pre>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="working-with-real-world-data.html#cb596-1" tabindex="-1"></a><span class="co"># View the sample of the data - first 6 records </span></span>
+<span id="cb596-2"><a href="working-with-real-world-data.html#cb596-2" tabindex="-1"></a><span class="fu">head</span>(athlete_data)</span></code></pre></div>
+<pre><code>##   athlete_id     name  age      sport country score
+## 1          1 Athlete1   32 Basketball Germany  95.6
+## 2          2 Athlete2   36     Tennis    &lt;NA&gt;  92.5
+## 3          3 Athlete3 &lt;NA&gt;       &lt;NA&gt;     USA  89.9
+## 4          4 Athlete4   20       &lt;NA&gt;  Brazil  66.2
+## 5          5     &lt;NA&gt;   27     Tennis   Kenya  65.0
+## 6       &lt;NA&gt; Athlete6   35    Running Germany  99.0</code></pre>
+<p>Now fill the null values with the previous values. Specificall the <code>sport</code>. <code>athlete_id</code> and the <code>age</code> columns</p>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="working-with-real-world-data.html#cb598-1" tabindex="-1"></a><span class="co"># Import the package </span></span>
+<span id="cb598-2"><a href="working-with-real-world-data.html#cb598-2" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb598-3"><a href="working-with-real-world-data.html#cb598-3" tabindex="-1"></a></span>
+<span id="cb598-4"><a href="working-with-real-world-data.html#cb598-4" tabindex="-1"></a><span class="co"># Fill the null value with the previous value </span></span>
+<span id="cb598-5"><a href="working-with-real-world-data.html#cb598-5" tabindex="-1"></a>athlete_data_filled <span class="ot">&lt;-</span> athlete_data <span class="sc">%&gt;%</span></span>
+<span id="cb598-6"><a href="working-with-real-world-data.html#cb598-6" tabindex="-1"></a>  <span class="fu">fill</span>(athlete_id, age, sport, <span class="at">.direction =</span> <span class="st">&quot;down&quot;</span>)</span>
+<span id="cb598-7"><a href="working-with-real-world-data.html#cb598-7" tabindex="-1"></a></span>
+<span id="cb598-8"><a href="working-with-real-world-data.html#cb598-8" tabindex="-1"></a><span class="co"># Count the null values by column </span></span>
+<span id="cb598-9"><a href="working-with-real-world-data.html#cb598-9" tabindex="-1"></a>null_count_by_column <span class="ot">&lt;-</span>  <span class="fu">sapply</span>(athlete_data_filled,</span>
+<span id="cb598-10"><a href="working-with-real-world-data.html#cb598-10" tabindex="-1"></a>                                <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x)))</span>
+<span id="cb598-11"><a href="working-with-real-world-data.html#cb598-11" tabindex="-1"></a>null_count_by_column</span></code></pre></div>
+<pre><code>## athlete_id       name        age      sport    country      score 
+##          0         18          0          0         18         13</code></pre>
+<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="working-with-real-world-data.html#cb600-1" tabindex="-1"></a><span class="co"># View the first few rows </span></span>
+<span id="cb600-2"><a href="working-with-real-world-data.html#cb600-2" tabindex="-1"></a><span class="fu">head</span>(athlete_data_filled)</span></code></pre></div>
+<pre><code>##   athlete_id     name age      sport country score
+## 1          1 Athlete1  32 Basketball Germany  95.6
+## 2          2 Athlete2  36     Tennis    &lt;NA&gt;  92.5
+## 3          3 Athlete3  36     Tennis     USA  89.9
+## 4          4 Athlete4  20     Tennis  Brazil  66.2
+## 5          5     &lt;NA&gt;  27     Tennis   Kenya  65.0
+## 6          5 Athlete6  35    Running Germany  99.0</code></pre>
+<p>You can see the target columns(<code>age</code>, <code>athlete_id</code> and <code>sport</code>) are filled and have zero null values. In the <code>fill()</code> function, there is an argument, <code>.direction</code> that specify the direction in which to fill the missing value. In this case the value of the argument is <code>"down"</code> because we are filling based on the previous value. It can be either <code>"up"</code>, <code>"downup"</code>(based on previous the later) or <code>"updown"</code>(based on later then previous).</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Download the Detailed NFL Play-by-Play Data 2009-2018 data from <a href="https://www.kaggle.com/datasets/maxhorowitz/nflplaybyplay2009to2016">here</a>. Read the data set using <code>fread()</code> and subset to have <code>game_date , drive, home_timeouts_remaining, defteam</code> columns. Name the data resultant data table <code>subset_dT1</code>. Perform the following operations on <code>subset_df1</code>.</p>
+<ol style="list-style-type: lower-roman">
+<li>Count the total null values</li>
+<li>Create a copy of the data set and rename it <code>subset_dT1_copy</code>. Drop rows that contain any null value.</li>
+<li>Create another copy, <code>subset_dT1_copy2</code> and impute the missing values based on the previous value. <code>.direction=down</code>.</li>
+<li>Count the null values on the copy data set</li>
+</ol>
+</div>
+<div id="dealing-with-outliers" class="section level5 hasAnchor" number="8.2.1.2.2">
+<h5><span class="header-section-number">8.2.1.2.2</span> Dealing with Outliers<a href="working-with-real-world-data.html#dealing-with-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Outliers are values that that are completely different from the other data points in the data set. They may be extremely smaller or extremely larger than the values in the data set. Also outliers can present some non-realistic values for instance a body temperature of <span class="math inline">\(143^0C\)</span> or an athlete height of 0.23 meters. They are brought about by;</p>
+<ul>
+<li>Measurement error like the human error when collecting the data.</li>
+<li>When the sample picked does not accurately represent the population being studied for instance soil samples picked near a cow shed will have high levels of acidity.</li>
+<li>There might be a mixture of distribution brought about collecting data from two distinct populations.</li>
+<li>Nevertheless, outliers can indicate new behaviors in the data set, especially when the outliers values are the most recently collected data.</li>
+</ul>
+<p>When cleaning data, it is advisable to remove outliers as they can have a significant impact on the aftermath analysis for instance; skewed and biased results, misleading interpretations, increased range and standard deviation(gives false variability of the data), and erroneous assumptions.</p>
+<p>Let’s generate a random data set of health of villagers(like blood pressure, heart rate, body temperature etc) and use it to detect outliers within</p>
+<ul>
+<li>Generate a random data set</li>
+</ul>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="working-with-real-world-data.html#cb602-1" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb602-2"><a href="working-with-real-world-data.html#cb602-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb602-3"><a href="working-with-real-world-data.html#cb602-3" tabindex="-1"></a></span>
+<span id="cb602-4"><a href="working-with-real-world-data.html#cb602-4" tabindex="-1"></a><span class="co"># Create a data frame with health-related metrics for villagers</span></span>
+<span id="cb602-5"><a href="working-with-real-world-data.html#cb602-5" tabindex="-1"></a>health_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb602-6"><a href="working-with-real-world-data.html#cb602-6" tabindex="-1"></a>  <span class="at">villager_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,</span>
+<span id="cb602-7"><a href="working-with-real-world-data.html#cb602-7" tabindex="-1"></a>  <span class="at">body_temperature =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="fl">98.6</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="dv">102</span>, <span class="at">sd =</span> <span class="dv">1</span>)),  <span class="co"># Include 5 outliers</span></span>
+<span id="cb602-8"><a href="working-with-real-world-data.html#cb602-8" tabindex="-1"></a>  <span class="at">blood_pressure =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="dv">120</span>, <span class="at">sd =</span> <span class="dv">10</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="dv">180</span>, <span class="at">sd =</span> <span class="dv">5</span>)),   <span class="co"># Include 5 outliers</span></span>
+<span id="cb602-9"><a href="working-with-real-world-data.html#cb602-9" tabindex="-1"></a>  <span class="at">heart_rate =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="dv">70</span>, <span class="at">sd =</span> <span class="dv">8</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="dv">110</span>, <span class="at">sd =</span> <span class="dv">5</span>)),         <span class="co"># Include 5 outliers</span></span>
+<span id="cb602-10"><a href="working-with-real-world-data.html#cb602-10" tabindex="-1"></a>  <span class="at">cholesterol =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="dv">200</span>, <span class="at">sd =</span> <span class="dv">30</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="dv">300</span>, <span class="at">sd =</span> <span class="dv">10</span>))      <span class="co"># Include 5 outliers</span></span>
+<span id="cb602-11"><a href="working-with-real-world-data.html#cb602-11" tabindex="-1"></a>)</span>
+<span id="cb602-12"><a href="working-with-real-world-data.html#cb602-12" tabindex="-1"></a></span>
+<span id="cb602-13"><a href="working-with-real-world-data.html#cb602-13" tabindex="-1"></a><span class="co"># View the first few rows of the dataset</span></span>
+<span id="cb602-14"><a href="working-with-real-world-data.html#cb602-14" tabindex="-1"></a><span class="fu">head</span>(health_data)</span></code></pre></div>
+<pre><code>##   villager_id body_temperature blood_pressure heart_rate cholesterol
+## 1           1         98.03952       112.8959   87.59048    178.5427
+## 2           2         98.36982       122.5688   80.49930    177.4193
+## 3           3        100.15871       117.5331   67.87884    171.8438
+## 4           4         98.67051       116.5246   74.34555    168.4246
+## 5           5         98.72929       110.4838   66.68528    186.8852
+## 6           6        100.31506       119.5497   66.19002    209.9354</code></pre>
+<ul>
+<li>Find outliers using <strong>IQR(Interquartile Range)</strong>
+Any values larger than <span class="math inline">\(1.5xIQR\)</span> added to the upper quartile or smaller than the <span class="math inline">\(1.5xIQR\)</span> subtracted to the lower quartile is considered an outlier.</li>
+</ul>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="working-with-real-world-data.html#cb604-1" tabindex="-1"></a><span class="co"># Function to identify outliers using IQR</span></span>
+<span id="cb604-2"><a href="working-with-real-world-data.html#cb604-2" tabindex="-1"></a>identify_outliers_iqr <span class="ot">&lt;-</span> <span class="cf">function</span>(data_column) {</span>
+<span id="cb604-3"><a href="working-with-real-world-data.html#cb604-3" tabindex="-1"></a>  Q1 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(data_column, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb604-4"><a href="working-with-real-world-data.html#cb604-4" tabindex="-1"></a>  Q3 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(data_column, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb604-5"><a href="working-with-real-world-data.html#cb604-5" tabindex="-1"></a>  IQR_value <span class="ot">&lt;-</span> <span class="fu">IQR</span>(data_column, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb604-6"><a href="working-with-real-world-data.html#cb604-6" tabindex="-1"></a>  </span>
+<span id="cb604-7"><a href="working-with-real-world-data.html#cb604-7" tabindex="-1"></a>  lower_bound <span class="ot">&lt;-</span> Q1 <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> IQR_value</span>
+<span id="cb604-8"><a href="working-with-real-world-data.html#cb604-8" tabindex="-1"></a>  upper_bound <span class="ot">&lt;-</span> Q3 <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> IQR_value</span>
+<span id="cb604-9"><a href="working-with-real-world-data.html#cb604-9" tabindex="-1"></a>  </span>
+<span id="cb604-10"><a href="working-with-real-world-data.html#cb604-10" tabindex="-1"></a>  <span class="fu">return</span>(data_column <span class="sc">&lt;</span> lower_bound <span class="sc">|</span> data_column <span class="sc">&gt;</span> upper_bound)</span>
+<span id="cb604-11"><a href="working-with-real-world-data.html#cb604-11" tabindex="-1"></a>}</span>
+<span id="cb604-12"><a href="working-with-real-world-data.html#cb604-12" tabindex="-1"></a></span>
+<span id="cb604-13"><a href="working-with-real-world-data.html#cb604-13" tabindex="-1"></a><span class="co"># Apply IQR method to identify outliers in each health metric</span></span>
+<span id="cb604-14"><a href="working-with-real-world-data.html#cb604-14" tabindex="-1"></a>health_data<span class="sc">$</span>outlier_body_temp_iqr <span class="ot">&lt;-</span> <span class="fu">identify_outliers_iqr</span>(health_data<span class="sc">$</span>body_temperature)</span>
+<span id="cb604-15"><a href="working-with-real-world-data.html#cb604-15" tabindex="-1"></a>health_data<span class="sc">$</span>outlier_blood_pressure_iqr <span class="ot">&lt;-</span> <span class="fu">identify_outliers_iqr</span>(health_data<span class="sc">$</span>blood_pressure)</span>
+<span id="cb604-16"><a href="working-with-real-world-data.html#cb604-16" tabindex="-1"></a>health_data<span class="sc">$</span>outlier_heart_rate_iqr <span class="ot">&lt;-</span> <span class="fu">identify_outliers_iqr</span>(health_data<span class="sc">$</span>heart_rate)</span>
+<span id="cb604-17"><a href="working-with-real-world-data.html#cb604-17" tabindex="-1"></a>health_data<span class="sc">$</span>outlier_cholesterol_iqr <span class="ot">&lt;-</span> <span class="fu">identify_outliers_iqr</span>(health_data<span class="sc">$</span>cholesterol)</span>
+<span id="cb604-18"><a href="working-with-real-world-data.html#cb604-18" tabindex="-1"></a></span>
+<span id="cb604-19"><a href="working-with-real-world-data.html#cb604-19" tabindex="-1"></a><span class="co"># View the data with outlier flags for body temperature</span></span>
+<span id="cb604-20"><a href="working-with-real-world-data.html#cb604-20" tabindex="-1"></a>health_data[health_data<span class="sc">$</span>outlier_body_temp_iqr, <span class="fu">c</span>(<span class="st">&quot;villager_id&quot;</span>, <span class="st">&quot;body_temperature&quot;</span>)]</span></code></pre></div>
+<pre><code>##    villager_id body_temperature
+## 96          96         101.3997
+## 97          97         104.1873
+## 98          98         103.5326
+## 99          99         101.7643</code></pre>
+<ul>
+<li>Find the outliers using the <strong>z-score</strong> method. The Z-score method standardizes the data to have a mean of 0 and a standard deviation of 1. Outliers are values that have a z-score of greater than 3 or less than -3.</li>
+</ul>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="working-with-real-world-data.html#cb606-1" tabindex="-1"></a><span class="co"># Function to identify outliers using the Z-score</span></span>
+<span id="cb606-2"><a href="working-with-real-world-data.html#cb606-2" tabindex="-1"></a>identify_outliers_zscore <span class="ot">&lt;-</span> <span class="cf">function</span>(data_column) {</span>
+<span id="cb606-3"><a href="working-with-real-world-data.html#cb606-3" tabindex="-1"></a>  z_scores <span class="ot">&lt;-</span> <span class="fu">scale</span>(data_column)</span>
+<span id="cb606-4"><a href="working-with-real-world-data.html#cb606-4" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">abs</span>(z_scores) <span class="sc">&gt;</span> <span class="dv">3</span>)</span>
+<span id="cb606-5"><a href="working-with-real-world-data.html#cb606-5" tabindex="-1"></a>}</span>
+<span id="cb606-6"><a href="working-with-real-world-data.html#cb606-6" tabindex="-1"></a></span>
+<span id="cb606-7"><a href="working-with-real-world-data.html#cb606-7" tabindex="-1"></a><span class="co"># Apply Z-score method to identify outliers in each health metric</span></span>
+<span id="cb606-8"><a href="working-with-real-world-data.html#cb606-8" tabindex="-1"></a>health_data<span class="sc">$</span>outlier_body_temp_zscore <span class="ot">&lt;-</span> <span class="fu">identify_outliers_zscore</span>(health_data<span class="sc">$</span>body_temperature)</span>
+<span id="cb606-9"><a href="working-with-real-world-data.html#cb606-9" tabindex="-1"></a>health_data<span class="sc">$</span>outlier_blood_pressure_zscore <span class="ot">&lt;-</span> <span class="fu">identify_outliers_zscore</span>(health_data<span class="sc">$</span>blood_pressure)</span>
+<span id="cb606-10"><a href="working-with-real-world-data.html#cb606-10" tabindex="-1"></a>health_data<span class="sc">$</span>outlier_heart_rate_zscore <span class="ot">&lt;-</span> <span class="fu">identify_outliers_zscore</span>(health_data<span class="sc">$</span>heart_rate)</span>
+<span id="cb606-11"><a href="working-with-real-world-data.html#cb606-11" tabindex="-1"></a>health_data<span class="sc">$</span>outlier_cholesterol_zscore <span class="ot">&lt;-</span> <span class="fu">identify_outliers_zscore</span>(health_data<span class="sc">$</span>cholesterol)</span>
+<span id="cb606-12"><a href="working-with-real-world-data.html#cb606-12" tabindex="-1"></a></span>
+<span id="cb606-13"><a href="working-with-real-world-data.html#cb606-13" tabindex="-1"></a><span class="co"># View the data with Z-score outlier flags for blood pressure</span></span>
+<span id="cb606-14"><a href="working-with-real-world-data.html#cb606-14" tabindex="-1"></a>health_data[health_data<span class="sc">$</span>outlier_blood_pressure_zscore, <span class="fu">c</span>(<span class="st">&quot;villager_id&quot;</span>, <span class="st">&quot;blood_pressure&quot;</span>)]</span></code></pre></div>
+<pre><code>##     villager_id blood_pressure
+## 96           96       189.9861
+## 97           97       183.0035
+## 98           98       173.7436
+## 99           99       176.9442
+## 100         100       174.0726</code></pre>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Download the Brazil’s House of Deputies Reimbursements from <a href="https://www.kaggle.com/datasets/epattaro/brazils-house-of-deputies-reimbursements">here</a>. Read the data set, identify numerical columns that contain the outliers and remove them</p>
+</div>
+<div id="data-transformation-techniques" class="section level5 hasAnchor" number="8.2.1.2.3">
+<h5><span class="header-section-number">8.2.1.2.3</span> Data Transformation Techniques<a href="working-with-real-world-data.html#data-transformation-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<ul>
+<li><strong>Normalization and Standardization</strong></li>
+</ul>
+<p>Normalization and standardization are both data preprocessing techniques that adjust the range of input values to make them easier to analyze and process. They are often interchangeably however, they have different applications and techniques. To be specific;</p>
+<p><em>Normalization</em> involves rescaling data within a specific range for instance between 0 and 1 where the maximum value will be 1 and the minimum be 0, all other values will range between zero and 1. Also, -1 and 1, 0 and 100 are among the most common ranges where statistician normalizes their data. This technique is useful where the distribution of the data is unknown or not normal but its likely to be affected by outliers due to its restricted range.</p>
+<p>On the contrary, <em>Standardization</em> involves rescaling the data values to have a mean of zero and a standard deviation of one. This technique is useful when the distribution of the data is known and normally distributed. It is less likely to be affected by outliers because it does not have a restricted range. <strong>Z-score</strong> is of the most popular method of standardization. Here is the formula to calculate z-score;
+<span class="math display">\[Z = {value-mean\over{standard deviation}}\]</span></p>
+<p>Lets normalize/standardize a vector <code>v1</code>, <code>v1&lt;- c(1200,34567,3456,12,3456,0985,1211)</code> in three easy steps</p>
+<ol style="list-style-type: decimal">
+<li><em>Min-Max Scaling</em>(normalization)</li>
+</ol>
+<p>The vector will be scaled in a range of 0 to 1 using a <code>preProcess</code> function from the <code>caret</code> package.</p>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="working-with-real-world-data.html#cb608-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb608-2"><a href="working-with-real-world-data.html#cb608-2" tabindex="-1"></a><span class="fu">library</span>(caret)</span></code></pre></div>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## 
+## Attaching package: &#39;caret&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     lift</code></pre>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="working-with-real-world-data.html#cb612-1" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1200</span>,<span class="dv">34567</span>,<span class="dv">3456</span>,<span class="dv">12</span>,<span class="dv">3456</span>,<span class="dv">0985</span>,<span class="dv">1211</span>)</span>
+<span id="cb612-2"><a href="working-with-real-world-data.html#cb612-2" tabindex="-1"></a></span>
+<span id="cb612-3"><a href="working-with-real-world-data.html#cb612-3" tabindex="-1"></a><span class="co"># train the preprocesser(scaler)</span></span>
+<span id="cb612-4"><a href="working-with-real-world-data.html#cb612-4" tabindex="-1"></a>minMaxScaler <span class="ot">&lt;-</span> <span class="fu">preProcess</span>(<span class="fu">as.data.frame</span>(v1), <span class="at">method=</span><span class="fu">c</span>(<span class="st">&quot;range&quot;</span>))</span>
+<span id="cb612-5"><a href="working-with-real-world-data.html#cb612-5" tabindex="-1"></a></span>
+<span id="cb612-6"><a href="working-with-real-world-data.html#cb612-6" tabindex="-1"></a><span class="co"># Apply the scaler</span></span>
+<span id="cb612-7"><a href="working-with-real-world-data.html#cb612-7" tabindex="-1"></a>v1_scaled <span class="ot">&lt;-</span> <span class="fu">predict</span>(minMaxScaler, <span class="fu">as.data.frame</span>(v1))</span>
+<span id="cb612-8"><a href="working-with-real-world-data.html#cb612-8" tabindex="-1"></a>v1_scaled</span></code></pre></div>
+<pre><code>##           v1
+## 1 0.03437997
+## 2 1.00000000
+## 3 0.09966720
+## 4 0.00000000
+## 5 0.09966720
+## 6 0.02815801
+## 7 0.03469831</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><em>Using the <code>scale()</code> function</em>(standardization)</li>
+</ol>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="working-with-real-world-data.html#cb614-1" tabindex="-1"></a><span class="co"># Create the vector</span></span>
+<span id="cb614-2"><a href="working-with-real-world-data.html#cb614-2" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1200</span>,<span class="dv">34567</span>,<span class="dv">3456</span>,<span class="dv">12</span>,<span class="dv">3456</span>,<span class="dv">0985</span>,<span class="dv">1211</span>)</span>
+<span id="cb614-3"><a href="working-with-real-world-data.html#cb614-3" tabindex="-1"></a></span>
+<span id="cb614-4"><a href="working-with-real-world-data.html#cb614-4" tabindex="-1"></a>v1_scaled <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">scale</span>(v1))</span>
+<span id="cb614-5"><a href="working-with-real-world-data.html#cb614-5" tabindex="-1"></a>v1_scaled</span></code></pre></div>
+<pre><code>##           V1
+## 1 -0.4175944
+## 2  2.2556070
+## 3 -0.2368546
+## 4 -0.5127711
+## 5 -0.2368546
+## 6 -0.4348191
+## 7 -0.4167131</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><em>Log transform</em></li>
+</ol>
+<p>This is used especially when the data is unevenly distributed for instance being skewed by “stretching out” the tail of a right-skewed distribution making it more symmetric.</p>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="working-with-real-world-data.html#cb616-1" tabindex="-1"></a><span class="co"># Create the vector</span></span>
+<span id="cb616-2"><a href="working-with-real-world-data.html#cb616-2" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1200</span>,<span class="dv">34567</span>,<span class="dv">3456</span>,<span class="dv">12</span>,<span class="dv">3456</span>,<span class="dv">0985</span>,<span class="dv">1211</span>)</span>
+<span id="cb616-3"><a href="working-with-real-world-data.html#cb616-3" tabindex="-1"></a></span>
+<span id="cb616-4"><a href="working-with-real-world-data.html#cb616-4" tabindex="-1"></a>log_scaled_v1 <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="fu">as.data.frame</span>(v1))</span>
+<span id="cb616-5"><a href="working-with-real-world-data.html#cb616-5" tabindex="-1"></a>log_scaled_v1</span></code></pre></div>
+<pre><code>##          v1
+## 1  7.090077
+## 2 10.450655
+## 3  8.147867
+## 4  2.484907
+## 5  8.147867
+## 6  6.892642
+## 7  7.099202</code></pre>
+<ul>
+<li><strong>Encoding Categorical Variables</strong></li>
+</ul>
+<p>Encoding is the process of converting categorical variables to numerical variables in data preprocessing. Machine learning models only understand numerical values, therefore encoding is a crucial step in data preprocessing. The most common methods are <strong>one-hot encoding</strong> and <strong>label encoding</strong>. We will discuss how to perform them in R</p>
+<ol style="list-style-type: decimal">
+<li><em>One-hot encoding</em>
+One hot encoding represents each category as a separate column and converts the categorical values into a 1 or 0 depending where the category is represented. This avoids the assumption of ordinality by the machine learning models. Lets perform one hot encoding on a color vector</li>
+</ol>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="working-with-real-world-data.html#cb618-1" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb618-2"><a href="working-with-real-world-data.html#cb618-2" tabindex="-1"></a></span>
+<span id="cb618-3"><a href="working-with-real-world-data.html#cb618-3" tabindex="-1"></a><span class="co"># Sample categorical variable</span></span>
+<span id="cb618-4"><a href="working-with-real-world-data.html#cb618-4" tabindex="-1"></a>color_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb618-5"><a href="working-with-real-world-data.html#cb618-5" tabindex="-1"></a>  <span class="at">Color =</span> <span class="fu">c</span>(<span class="st">&quot;Red&quot;</span>, <span class="st">&quot;Blue&quot;</span>, <span class="st">&quot;Green&quot;</span>, <span class="st">&quot;Red&quot;</span>, <span class="st">&quot;Blue&quot;</span>)</span>
+<span id="cb618-6"><a href="working-with-real-world-data.html#cb618-6" tabindex="-1"></a>)</span>
+<span id="cb618-7"><a href="working-with-real-world-data.html#cb618-7" tabindex="-1"></a></span>
+<span id="cb618-8"><a href="working-with-real-world-data.html#cb618-8" tabindex="-1"></a><span class="co"># dummify the data </span></span>
+<span id="cb618-9"><a href="working-with-real-world-data.html#cb618-9" tabindex="-1"></a>color_dmy <span class="ot">&lt;-</span> <span class="fu">dummyVars</span>(<span class="st">&quot; ~ .&quot;</span>, <span class="at">data =</span> color_df)</span>
+<span id="cb618-10"><a href="working-with-real-world-data.html#cb618-10" tabindex="-1"></a>new_color_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">predict</span>(color_dmy, <span class="at">newdata =</span> color_df))</span>
+<span id="cb618-11"><a href="working-with-real-world-data.html#cb618-11" tabindex="-1"></a>new_color_df</span></code></pre></div>
+<pre><code>##   ColorBlue ColorGreen ColorRed
+## 1         0          0        1
+## 2         1          0        0
+## 3         0          1        0
+## 4         0          0        1
+## 5         1          0        0</code></pre>
+<p>Alternatively you can use the <code>model_matrix</code>, a built-in R function</p>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="working-with-real-world-data.html#cb620-1" tabindex="-1"></a><span class="co"># Using model.matrix() to one-hot encode</span></span>
+<span id="cb620-2"><a href="working-with-real-world-data.html#cb620-2" tabindex="-1"></a>color_df<span class="sc">$</span>Color <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(color_df<span class="sc">$</span>Color)  <span class="co"># Convert Color to a factor</span></span>
+<span id="cb620-3"><a href="working-with-real-world-data.html#cb620-3" tabindex="-1"></a>one_hot_encoded <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> Color <span class="sc">-</span> <span class="dv">1</span>, color_df)</span>
+<span id="cb620-4"><a href="working-with-real-world-data.html#cb620-4" tabindex="-1"></a></span>
+<span id="cb620-5"><a href="working-with-real-world-data.html#cb620-5" tabindex="-1"></a><span class="co"># View the encoded matrix</span></span>
+<span id="cb620-6"><a href="working-with-real-world-data.html#cb620-6" tabindex="-1"></a>one_hot_encoded</span></code></pre></div>
+<pre><code>##   ColorBlue ColorGreen ColorRed
+## 1         0          0        1
+## 2         1          0        0
+## 3         0          1        0
+## 4         0          0        1
+## 5         1          0        0
+## attr(,&quot;assign&quot;)
+## [1] 1 1 1
+## attr(,&quot;contrasts&quot;)
+## attr(,&quot;contrasts&quot;)$Color
+## [1] &quot;contr.treatment&quot;</code></pre>
+<p>One-hot encoding is preferred in cases where the categories are nominal for example colors, countries since it does not assume any order between the categories</p>
+<ol start="2" style="list-style-type: decimal">
+<li><em>Label encoding</em></li>
+</ol>
+<p>This method assigns a unique integer to each category. This method is simpler but it may impose unintended ordinality.</p>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="working-with-real-world-data.html#cb622-1" tabindex="-1"></a><span class="co"># Sample categorical variable</span></span>
+<span id="cb622-2"><a href="working-with-real-world-data.html#cb622-2" tabindex="-1"></a>color_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb622-3"><a href="working-with-real-world-data.html#cb622-3" tabindex="-1"></a>  <span class="at">Color =</span> <span class="fu">c</span>(<span class="st">&quot;Red&quot;</span>, <span class="st">&quot;Blue&quot;</span>, <span class="st">&quot;Green&quot;</span>, <span class="st">&quot;Red&quot;</span>, <span class="st">&quot;Blue&quot;</span>)</span>
+<span id="cb622-4"><a href="working-with-real-world-data.html#cb622-4" tabindex="-1"></a>)</span>
+<span id="cb622-5"><a href="working-with-real-world-data.html#cb622-5" tabindex="-1"></a></span>
+<span id="cb622-6"><a href="working-with-real-world-data.html#cb622-6" tabindex="-1"></a><span class="co"># Label encoding</span></span>
+<span id="cb622-7"><a href="working-with-real-world-data.html#cb622-7" tabindex="-1"></a>color_df<span class="sc">$</span>Color_encoded <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">as.factor</span>(color_df<span class="sc">$</span>Color))</span>
+<span id="cb622-8"><a href="working-with-real-world-data.html#cb622-8" tabindex="-1"></a></span>
+<span id="cb622-9"><a href="working-with-real-world-data.html#cb622-9" tabindex="-1"></a><span class="co"># View the label encoded data</span></span>
+<span id="cb622-10"><a href="working-with-real-world-data.html#cb622-10" tabindex="-1"></a>color_df</span></code></pre></div>
+<pre><code>##   Color Color_encoded
+## 1   Red             3
+## 2  Blue             1
+## 3 Green             2
+## 4   Red             3
+## 5  Blue             1</code></pre>
+<p>Label encoding is preferred where the categories are ordinal for instance education levels, living standards, age groups etc. Categories that have a natural order</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the same Brazil’s House of Deputies data set, encode the <code>deputy_state</code> and the <code>political_party</code> to have numerical values.</p>
+</div>
+</div>
+</div>
+<div id="hands-on-exercises-6" class="section level3 hasAnchor" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Hands-On Exercises<a href="working-with-real-world-data.html#hands-on-exercises-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this course you will be required to use the NHANES data set from the <code>NHANES</code> package. Install the NHANES package by;</p>
+<pre><code>install.packages(&quot;NHANES&quot;)</code></pre>
+<p>then import the library and the data set</p>
+<pre><code># Load the library 
+library(NHANES)
+
+# Load the data set
+data(&quot;NHANES&quot;)</code></pre>
+<p>thereafter you are required to answer the following questions;</p>
+<ol style="list-style-type: lower-roman">
+<li>Count the total number of missing values in each column in the data set and find which column has the most null values</li>
+</ol>
+<pre><code>sapply(NHANES, function(x) sum(is.na(x)))</code></pre>
+<ol start="2" style="list-style-type: lower-roman">
+<li>Remove the rows that have any missing values and store the results in a new data set</li>
+<li>For columns with numeric data, impute missing values by replacing them with the mean or median of the column</li>
+<li>For categorical columns (such as <code>Gender</code> or <code>SmokeNow</code>), impute missing values using the mode.</li>
+<li>For the <code>BMI</code> and <code>Pulse</code> columns, calculate the Interquartile Range (IQR) and identify any data points that fall outside the 1.5 * IQR range (both lower and upper bounds) as outliers</li>
+<li>Remove rows where outliers are found in the <code>BMI</code> and <code>Pulse</code> columns</li>
+<li>Apply Min-Max normalization to the <code>BMI</code> and <code>Pulse</code> columns, rescaling the data between 0 and 1</li>
+<li>Use one-hot encoding to convert the Gender column into a numerical format (i.e., create separate columns for male and female)</li>
+</ol>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="statistical-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="time-series-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/balsaedi/RCourse/edit/main/08-working_with_real_world_data.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/balsaedi/RCourse/blob/main/08-working_with_real_world_data.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

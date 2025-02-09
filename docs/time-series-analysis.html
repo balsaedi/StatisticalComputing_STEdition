@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Time Series Analysis | R Course</title>
+  <meta name="description" content="Chapter 9 Time Series Analysis | R Course" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Time Series Analysis | R Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Time Series Analysis | R Course" />
+  
+  
+  
+
+<meta name="author" content="YOUR NAME HERE" />
+
+
+<meta name="date" content="2024-10-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="working-with-real-world-data.html"/>
+<link rel="next" href="capstone-project.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SHORT TITLE HERE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to R and Basic Programming Concepts</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#overview-of-r-programming"><i class="fa fa-check"></i><b>1.1</b> Overview of R Programming</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#introduction-to-r"><i class="fa fa-check"></i><b>1.1.1</b> Introduction to R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#importance-of-r-in-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Importance of R in Data Analysis</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#application-of-r-in-various-industries"><i class="fa fa-check"></i><b>1.1.3</b> Application of R in Various Industries</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#introduction-to-the-r-ecosystem"><i class="fa fa-check"></i><b>1.2</b> Introduction to the R ecosystem</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#r-studio"><i class="fa fa-check"></i><b>1.2.1</b> R Studio</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#cran"><i class="fa fa-check"></i><b>1.2.2</b> CRAN</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#setting-up-r-environment"><i class="fa fa-check"></i><b>1.3</b> Setting Up R Environment</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#installation-of-r-and-rstudio"><i class="fa fa-check"></i><b>1.3.1</b> Installation of R and RStudio</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#introduction-to-rstudio-interface"><i class="fa fa-check"></i><b>1.3.2</b> Introduction to RStudio Interface</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#basic-r-syntax-and-commands"><i class="fa fa-check"></i><b>1.3.3</b> Basic R Syntax and Commands</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hands-on-exercise"><i class="fa fa-check"></i><b>1.4</b> Hands-on Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html"><i class="fa fa-check"></i><b>2</b> Basic Data Types and Structures</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-types"><i class="fa fa-check"></i><b>2.1</b> Data types</a></li>
+<li class="chapter" data-level="2.2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-structures"><i class="fa fa-check"></i><b>2.2</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#vector"><i class="fa fa-check"></i><b>2.2.1</b> Vector</a></li>
+<li class="chapter" data-level="2.2.2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#matrix"><i class="fa fa-check"></i><b>2.2.2</b> Matrix</a></li>
+<li class="chapter" data-level="2.2.3" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-frame"><i class="fa fa-check"></i><b>2.2.3</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#hands-on-exercises"><i class="fa fa-check"></i><b>2.3</b> <span style="color: green;">Hands-on Exercises</span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html"><i class="fa fa-check"></i><b>3</b> Data Importing and Exporting</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-importing"><i class="fa fa-check"></i><b>3.1</b> Introduction to Data Importing</a></li>
+<li class="chapter" data-level="3.2" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#demonstration-of-data-importing"><i class="fa fa-check"></i><b>3.2</b> Demonstration of Data Importing</a></li>
+<li class="chapter" data-level="3.3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-exporting"><i class="fa fa-check"></i><b>3.3</b> Introduction to Data Exporting</a></li>
+<li class="chapter" data-level="3.4" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#practical-exercise"><i class="fa fa-check"></i><b>3.4</b> Practical Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation.html"><a href="data-manipulation.html#basic-data-manipulation"><i class="fa fa-check"></i><b>4.1</b> Basic Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="data-manipulation.html"><a href="data-manipulation.html#introduction-to-data-manipulation"><i class="fa fa-check"></i><b>4.1.1</b> Introduction to Data Manipulation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-manipulation.html"><a href="data-manipulation.html#subsetting-and-filtering-data"><i class="fa fa-check"></i><b>4.1.2</b> Subsetting and Filtering Data:</a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-manipulation.html"><a href="data-manipulation.html#sorting-data"><i class="fa fa-check"></i><b>4.1.3</b> Sorting Data</a></li>
+<li class="chapter" data-level="4.1.4" data-path="data-manipulation.html"><a href="data-manipulation.html#basic-data-cleaning"><i class="fa fa-check"></i><b>4.1.4</b> Basic Data Cleaning</a></li>
+<li class="chapter" data-level="4.1.5" data-path="data-manipulation.html"><a href="data-manipulation.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>4.1.5</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>4.2</b> Data Manipulation with Dplyr</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-manipulation.html"><a href="data-manipulation.html#introduction-to-dplyr-package"><i class="fa fa-check"></i><b>4.2.1</b> Introduction to Dplyr package</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-manipulation.html"><a href="data-manipulation.html#key-functions-in-dplyr"><i class="fa fa-check"></i><b>4.2.2</b> Key Functions in dplyr</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-manipulation.html"><a href="data-manipulation.html#select"><i class="fa fa-check"></i><b>4.2.3</b> select</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-manipulation.html"><a href="data-manipulation.html#filter"><i class="fa fa-check"></i><b>4.2.4</b> filter</a></li>
+<li class="chapter" data-level="4.2.5" data-path="data-manipulation.html"><a href="data-manipulation.html#arrange"><i class="fa fa-check"></i><b>4.2.5</b> arrange</a></li>
+<li class="chapter" data-level="4.2.6" data-path="data-manipulation.html"><a href="data-manipulation.html#mutate"><i class="fa fa-check"></i><b>4.2.6</b> mutate</a></li>
+<li class="chapter" data-level="4.2.7" data-path="data-manipulation.html"><a href="data-manipulation.html#summarise"><i class="fa fa-check"></i><b>4.2.7</b> Summarise</a></li>
+<li class="chapter" data-level="4.2.8" data-path="data-manipulation.html"><a href="data-manipulation.html#group_by"><i class="fa fa-check"></i><b>4.2.8</b> group_by</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation.html"><a href="data-manipulation.html#chaining"><i class="fa fa-check"></i><b>4.3</b> Chaining</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data-manipulation.html"><a href="data-manipulation.html#hands-on-exercises-2"><i class="fa fa-check"></i><b>4.3.1</b> Hands-on Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>5</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-visualization.html"><a href="data-visualization.html#basic-data-visualization"><i class="fa fa-check"></i><b>5.1</b> Basic Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data-visualization.html"><a href="data-visualization.html#introduction-to-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> Introduction to ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="data-visualization.html"><a href="data-visualization.html#advanced-data-visualization"><i class="fa fa-check"></i><b>5.2</b> Advanced Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="data-visualization.html"><a href="data-visualization.html#creating-complex-visualizations"><i class="fa fa-check"></i><b>5.2.1</b> Creating Complex Visualizations</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-visualization.html"><a href="data-visualization.html#combining-multiple-plots"><i class="fa fa-check"></i><b>5.2.2</b> Combining Multiple Plots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html"><i class="fa fa-check"></i><b>6</b> Explanatory Data Analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#introduction-to-eda"><i class="fa fa-check"></i><b>6.1</b> Introduction to EDA</a></li>
+<li class="chapter" data-level="6.2" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#choosing-a-data-set"><i class="fa fa-check"></i><b>6.2</b> Choosing a data set</a></li>
+<li class="chapter" data-level="6.3" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#conducting-eda"><i class="fa fa-check"></i><b>6.3</b> Conducting EDA</a></li>
+<li class="chapter" data-level="6.4" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#present-findings"><i class="fa fa-check"></i><b>6.4</b> Present Findings</a></li>
+<li class="chapter" data-level="6.5" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#eda---example"><i class="fa fa-check"></i><b>6.5</b> <span style="color: brown;">EDA - Example</span></a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#introduction"><i class="fa fa-check"></i><b>6.5.1</b> <span style="color: brown;">Introduction</span></a></li>
+<li class="chapter" data-level="6.5.2" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#data-assessment-and-cleaning"><i class="fa fa-check"></i><b>6.5.2</b> <span style="color: brown;">Data Assessment and Cleaning</span></a></li>
+<li class="chapter" data-level="6.5.3" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#data-visualization-1"><i class="fa fa-check"></i><b>6.5.3</b> <span style="color: brown;">Data Visualization</span></a></li>
+<li class="chapter" data-level="6.5.4" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#key-findings"><i class="fa fa-check"></i><b>6.5.4</b> <span style="color: brown;">Key Findings</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistical-analysis.html"><a href="statistical-analysis.html"><i class="fa fa-check"></i><b>7</b> Statistical Analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#basic-statistical-concepts"><i class="fa fa-check"></i><b>7.1</b> Basic Statistical Concepts</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-descriptive-statistics"><i class="fa fa-check"></i><b>7.1.1</b> Introduction to Descriptive Statistics</a></li>
+<li class="chapter" data-level="7.1.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#visualization-of-descriptive-statistics"><i class="fa fa-check"></i><b>7.1.2</b> Visualization of Descriptive Statistics</a></li>
+<li class="chapter" data-level="7.1.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercise-1"><i class="fa fa-check"></i><b>7.1.3</b> Hands On Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#correlation-and-regression-analysis"><i class="fa fa-check"></i><b>7.2</b> Correlation and Regression Analysis</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-correlation"><i class="fa fa-check"></i><b>7.2.1</b> Introduction to Correlation</a></li>
+<li class="chapter" data-level="7.2.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-regression-analysis"><i class="fa fa-check"></i><b>7.2.2</b> Introduction to Regression Analysis</a></li>
+<li class="chapter" data-level="7.2.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>7.2.3</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#advanced-statistical-methods"><i class="fa fa-check"></i><b>7.3</b> Advanced Statistical Methods</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-hypothesis-testing"><i class="fa fa-check"></i><b>7.3.1</b> Introduction to Hypothesis Testing</a></li>
+<li class="chapter" data-level="7.3.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercises-4"><i class="fa fa-check"></i><b>7.3.2</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="statistical-analysis.html"><a href="statistical-analysis.html#project-applying-statistical-analysis"><i class="fa fa-check"></i><b>7.4</b> Project: Applying Statistical Analysis</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#project-overview"><i class="fa fa-check"></i><b>7.4.1</b> Project Overview</a></li>
+<li class="chapter" data-level="7.4.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#conducting-statistical-analysis"><i class="fa fa-check"></i><b>7.4.2</b> Conducting Statistical Analysis</a></li>
+<li class="chapter" data-level="7.4.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#presenting-statistical-findings"><i class="fa fa-check"></i><b>7.4.3</b> Presenting Statistical Findings</a></li>
+<li class="chapter" data-level="7.4.4" data-path="statistical-analysis.html"><a href="statistical-analysis.html#example-ecommerce-statistical-analysis"><i class="fa fa-check"></i><b>7.4.4</b> <span style="color: brown;">Example: Ecommerce Statistical Analysis</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html"><i class="fa fa-check"></i><b>8</b> Working with Real-World Data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#handling-large-datasets"><i class="fa fa-check"></i><b>8.1</b> Handling Large Datasets</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#challenges-of-large-data-sets"><i class="fa fa-check"></i><b>8.1.1</b> Challenges of Large Data sets</a></li>
+<li class="chapter" data-level="8.1.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#efficient-data-handling-techniques"><i class="fa fa-check"></i><b>8.1.2</b> Efficient Data Handling Techniques</a></li>
+<li class="chapter" data-level="8.1.3" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#reading-and-writing-large-files"><i class="fa fa-check"></i><b>8.1.3</b> Reading and Writing Large Files</a></li>
+<li class="chapter" data-level="8.1.4" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#hands-on-exercises-5"><i class="fa fa-check"></i><b>8.1.4</b> Hands-On Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#data-cleaning-and-transformation"><i class="fa fa-check"></i><b>8.2</b> Data Cleaning and Transformation</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#introduction-to-data-cleaning"><i class="fa fa-check"></i><b>8.2.1</b> Introduction to Data Cleaning</a></li>
+<li class="chapter" data-level="8.2.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#hands-on-exercises-6"><i class="fa fa-check"></i><b>8.2.2</b> Hands-On Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="time-series-analysis.html"><a href="time-series-analysis.html"><i class="fa fa-check"></i><b>9</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#introduction-to-time-series-data"><i class="fa fa-check"></i><b>9.1</b> Introduction to Time Series Data</a></li>
+<li class="chapter" data-level="9.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#basic-time-series-concepts"><i class="fa fa-check"></i><b>9.2</b> Basic Time Series Concepts</a></li>
+<li class="chapter" data-level="9.3" data-path="time-series-analysis.html"><a href="time-series-analysis.html#basic-time-series-forecasting"><i class="fa fa-check"></i><b>9.3</b> Basic Time Series Forecasting</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#moving-averages"><i class="fa fa-check"></i><b>9.3.1</b> Moving Averages</a></li>
+<li class="chapter" data-level="9.3.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#arima-model"><i class="fa fa-check"></i><b>9.3.2</b> ARIMA model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="time-series-analysis.html"><a href="time-series-analysis.html#hands-on-exercises-7"><i class="fa fa-check"></i><b>9.4</b> Hands-On Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="capstone-project.html"><a href="capstone-project.html"><i class="fa fa-check"></i><b>10</b> Capstone Project</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="capstone-project.html"><a href="capstone-project.html#introduction-2"><i class="fa fa-check"></i><b>10.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="capstone-project.html"><a href="capstone-project.html#project-overview-and-objectives"><i class="fa fa-check"></i><b>10.1.1</b> Project Overview and Objectives</a></li>
+<li class="chapter" data-level="10.1.2" data-path="capstone-project.html"><a href="capstone-project.html#group-formation"><i class="fa fa-check"></i><b>10.1.2</b> Group Formation</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="capstone-project.html"><a href="capstone-project.html#project-planning"><i class="fa fa-check"></i><b>10.2</b> Project Planning</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="capstone-project.html"><a href="capstone-project.html#defining-the-problem-statement"><i class="fa fa-check"></i><b>10.2.1</b> Defining the problem statement</a></li>
+<li class="chapter" data-level="10.2.2" data-path="capstone-project.html"><a href="capstone-project.html#planning-the-analysis-workflow"><i class="fa fa-check"></i><b>10.2.2</b> Planning the Analysis WorkFlow</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="capstone-project.html"><a href="capstone-project.html#project-execution"><i class="fa fa-check"></i><b>10.3</b> Project Execution</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="capstone-project.html"><a href="capstone-project.html#part-1"><i class="fa fa-check"></i><b>10.3.1</b> Part 1</a></li>
+<li class="chapter" data-level="10.3.2" data-path="capstone-project.html"><a href="capstone-project.html#part-2"><i class="fa fa-check"></i><b>10.3.2</b> Part 2</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="capstone-project.html"><a href="capstone-project.html#project-presentations-and-feedback"><i class="fa fa-check"></i><b>10.4</b> Project Presentations and Feedback</a></li>
+<li class="chapter" data-level="10.5" data-path="capstone-project.html"><a href="capstone-project.html#example-ecommerce-project"><i class="fa fa-check"></i><b>10.5</b> <span style="color: brown;">Example: Ecommerce Project</span></a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="capstone-project.html"><a href="capstone-project.html#part-1-1"><i class="fa fa-check"></i><b>10.5.1</b> <span style="color: brown;">Part 1</span></a></li>
+<li class="chapter" data-level="10.5.2" data-path="capstone-project.html"><a href="capstone-project.html#part-2-1"><i class="fa fa-check"></i><b>10.5.2</b> <span style="color: brown;">Part 2</span></a></li>
+<li class="chapter" data-level="10.5.3" data-path="capstone-project.html"><a href="capstone-project.html#presentation-and-feedback"><i class="fa fa-check"></i><b>10.5.3</b> <span style="color: brown;">Presentation and Feedback</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>11</b> Datasets</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="time-series-analysis" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Time Series Analysis<a href="time-series-analysis.html#time-series-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-to-time-series-data" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Introduction to Time Series Data<a href="time-series-analysis.html#introduction-to-time-series-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The time series data refers to a sequence of data points collected or recorded at regular time intervals. Each data has a specific time stamps and the data is always dependent on the previous time and after. The order of the rows doesn’t matter but the timestamp does, this is what is referred to as <strong>temporal ordering</strong>. Here are some of the distinct characteristics of time series data;</p>
+<ol style="list-style-type: lower-roman">
+<li><em>Trend</em>: the time series data tend to show long-term increase or decrease over a period of time.</li>
+<li><em>Temporal Dependence</em>: In time series, the current data values are often influenced by the previous data values and may impact the future ones.</li>
+<li><em>Seasonality</em>: some of the time series data often exhibit repeating patterns at regular intervals for instance daily, monthly and annually.</li>
+<li><em>Autocorrelation</em>: current values can be correlated with future or previous time points.</li>
+<li><em>Stationarity</em>: Time series is often stationary if its statistical properties for instance mean and variance remain constant over time.</li>
+</ol>
+<p>Time series has several applications in the industry, here are some of its applications;</p>
+<ul>
+<li><strong>Forecasting</strong>; predicting future values based on the previous and current values.</li>
+<li><strong>Anomaly detection</strong>; identify outliers or any unusual patterns over a certain period of time.</li>
+<li><strong>Seasonality</strong>; Find and analyze recurring patterns.</li>
+<li><strong>Trend Analysis</strong>; Identify trends or patterns over a certain period of time.</li>
+<li>Used in economic and financial analysis to predict economic indicators such as GDP, exchange rates and inflation rates.</li>
+<li>Measuring natural phenomena like measuring rainfall in weather forecasting.</li>
+</ul>
+</div>
+<div id="basic-time-series-concepts" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Basic Time Series Concepts<a href="time-series-analysis.html#basic-time-series-concepts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>Components of Time Series</strong></li>
+</ul>
+<p><img src="images/time-series-chart.jpeg" /></p>
+<p>The above graph represents an example of a time series data. To understand the underlying structure in time series, it is broken down into three components; trend, seasonality and noise. These components characterize the pattern and behavior of data over time.</p>
+<ol style="list-style-type: decimal">
+<li><em>Trend</em>; This will show the general direction of data whether it is upward(increasing) or downward(decreasing). They indicate long-term movement depicting overall growth or decline. The above chart shows that there was an overall growth(upward trend) over the year</li>
+<li><em>Seasonality</em>; It is the predictable pattern that appear regularly. In the chart above there is a quarterly rise and drop of values.</li>
+<li><em>Cycles</em>; represents the fluctuations that don’t have a fixed period.</li>
+<li><em>Noise</em>; its is the residual variability of data that has no explanations by the factors affecting the trend. The variability is always small compared to the trend and cycle.</li>
+</ol>
+<p>Lets use the R inbuilt data set, <code>AirPassengers</code> to decompose the time series data into trend, seasonality …</p>
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="time-series-analysis.html#cb627-1" tabindex="-1"></a><span class="co"># Load the data </span></span>
+<span id="cb627-2"><a href="time-series-analysis.html#cb627-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;AirPassengers&quot;</span>)</span>
+<span id="cb627-3"><a href="time-series-analysis.html#cb627-3" tabindex="-1"></a></span>
+<span id="cb627-4"><a href="time-series-analysis.html#cb627-4" tabindex="-1"></a><span class="fu">head</span>(AirPassengers)</span></code></pre></div>
+<pre><code>## [1] 112 118 132 129 121 135</code></pre>
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="time-series-analysis.html#cb629-1" tabindex="-1"></a><span class="co"># Decompose the air passengers time series </span></span>
+<span id="cb629-2"><a href="time-series-analysis.html#cb629-2" tabindex="-1"></a>decomposed_ts <span class="ot">&lt;-</span> <span class="fu">decompose</span>(AirPassengers)</span>
+<span id="cb629-3"><a href="time-series-analysis.html#cb629-3" tabindex="-1"></a><span class="co"># Plotting will be done later</span></span>
+<span id="cb629-4"><a href="time-series-analysis.html#cb629-4" tabindex="-1"></a><span class="co"># decomposed_ts # uncomment to show the data</span></span></code></pre></div>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>In this course, you will be required to download the amazon stock prices prediction data set from <a href="https://www.kaggle.com/datasets/aenes95/amazon-stock-price-prediction">here</a></p>
+<p>Decompose the time series data set into trend, seasonal and residual components.</p>
+<ul>
+<li><strong>Visualization of Time Series Data</strong></li>
+</ul>
+<p>Visualization is a crucial step in the time series analysis process as it enables;</p>
+<ul>
+<li>the researcher to analyze the important concepts in the data such as trend, seasonality and noise</li>
+<li>the analyst to track perfomance over time</li>
+<li>to diagnose alien behaviors like sudden spikes and presence of outliers</li>
+<li>the analyst to communicate insights to the non-technical stake holders.</li>
+</ul>
+<p>Lets visualize the time series data of the <code>AirPassengers</code>.</p>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="time-series-analysis.html#cb630-1" tabindex="-1"></a><span class="fu">plot.ts</span>(AirPassengers, </span>
+<span id="cb630-2"><a href="time-series-analysis.html#cb630-2" tabindex="-1"></a>         <span class="at">main =</span> <span class="st">&quot;AirPasengers Time Series &quot;</span>,</span>
+<span id="cb630-3"><a href="time-series-analysis.html#cb630-3" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Passengers&quot;</span>,</span>
+<span id="cb630-4"><a href="time-series-analysis.html#cb630-4" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Time&quot;</span>,</span>
+<span id="cb630-5"><a href="time-series-analysis.html#cb630-5" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb630-6"><a href="time-series-analysis.html#cb630-6" tabindex="-1"></a>        <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
+<p>Lets now visualize the decomposed time series.</p>
+<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="time-series-analysis.html#cb631-1" tabindex="-1"></a><span class="fu">plot</span>(decomposed_ts)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-259-1.png" width="672" /></p>
+<p>The number of Air Passengers has increased from 1950 to 1960. There is an upward trend. Now lets repeat the process using the <code>ggplot2</code> library.</p>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="time-series-analysis.html#cb632-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb632-2"><a href="time-series-analysis.html#cb632-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb632-3"><a href="time-series-analysis.html#cb632-3" tabindex="-1"></a></span>
+<span id="cb632-4"><a href="time-series-analysis.html#cb632-4" tabindex="-1"></a><span class="co"># Convert the air passengers to a dataframe</span></span>
+<span id="cb632-5"><a href="time-series-analysis.html#cb632-5" tabindex="-1"></a>df_airpassengers <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb632-6"><a href="time-series-analysis.html#cb632-6" tabindex="-1"></a>  <span class="co"># Month = as.Date(time(AirPassengers)),  # Extracting the time component</span></span>
+<span id="cb632-7"><a href="time-series-analysis.html#cb632-7" tabindex="-1"></a>  <span class="at">Month =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">as.Date</span>(<span class="st">&quot;1949-01-31&quot;</span>), <span class="at">to =</span> <span class="fu">as.Date</span>(<span class="st">&quot;1960-12-31&quot;</span>), <span class="at">by =</span> <span class="st">&quot;month&quot;</span>),</span>
+<span id="cb632-8"><a href="time-series-analysis.html#cb632-8" tabindex="-1"></a>  <span class="at">Passengers =</span> <span class="fu">as.numeric</span>(AirPassengers) <span class="co"># Extracting the passenger counts</span></span>
+<span id="cb632-9"><a href="time-series-analysis.html#cb632-9" tabindex="-1"></a>)</span>
+<span id="cb632-10"><a href="time-series-analysis.html#cb632-10" tabindex="-1"></a></span>
+<span id="cb632-11"><a href="time-series-analysis.html#cb632-11" tabindex="-1"></a><span class="fu">head</span>(df_airpassengers)</span></code></pre></div>
+<pre><code>##        Month Passengers
+## 1 1949-01-31        112
+## 2 1949-03-03        118
+## 3 1949-03-31        132
+## 4 1949-05-01        129
+## 5 1949-05-31        121
+## 6 1949-07-01        135</code></pre>
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="time-series-analysis.html#cb634-1" tabindex="-1"></a><span class="co"># Plot the data</span></span>
+<span id="cb634-2"><a href="time-series-analysis.html#cb634-2" tabindex="-1"></a><span class="fu">ggplot</span>(df_airpassengers, <span class="fu">aes</span>(<span class="at">x =</span> Month, <span class="at">y =</span> Passengers)) <span class="sc">+</span></span>
+<span id="cb634-3"><a href="time-series-analysis.html#cb634-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span>         <span class="co"># Line for the time series data</span></span>
+<span id="cb634-4"><a href="time-series-analysis.html#cb634-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Air Passengers Time Series Data&quot;</span>,       <span class="co"># Title</span></span>
+<span id="cb634-5"><a href="time-series-analysis.html#cb634-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Month&quot;</span>,                              <span class="co"># X-axis label</span></span>
+<span id="cb634-6"><a href="time-series-analysis.html#cb634-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Passengers&quot;</span>) <span class="sc">+</span>                           <span class="co"># Y-axis label</span></span>
+<span id="cb634-7"><a href="time-series-analysis.html#cb634-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()                               <span class="co"># Apply a minimal theme</span></span></code></pre></div>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in
+## ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see
+## where this warning was generated.</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-260-1.png" width="672" /></p>
+<p>Now lets visualize the decomposed time series (<code>AirPassengers</code>) data using the <code>ggplot2</code> library;</p>
+<ul>
+<li>create a data frame from the decomposed data</li>
+</ul>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="time-series-analysis.html#cb636-1" tabindex="-1"></a><span class="co"># Create a data frame with all the components</span></span>
+<span id="cb636-2"><a href="time-series-analysis.html#cb636-2" tabindex="-1"></a>df_decomposed <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb636-3"><a href="time-series-analysis.html#cb636-3" tabindex="-1"></a>  <span class="at">Date =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">as.Date</span>(<span class="st">&quot;1949-01-31&quot;</span>), <span class="at">to =</span> <span class="fu">as.Date</span>(<span class="st">&quot;1960-12-31&quot;</span>), <span class="at">by =</span> <span class="st">&quot;month&quot;</span>), </span>
+<span id="cb636-4"><a href="time-series-analysis.html#cb636-4" tabindex="-1"></a>  <span class="at">Observed =</span> <span class="fu">as.numeric</span>(AirPassengers),</span>
+<span id="cb636-5"><a href="time-series-analysis.html#cb636-5" tabindex="-1"></a>  <span class="at">Trend =</span> <span class="fu">as.numeric</span>(decomposed_ts<span class="sc">$</span>trend),</span>
+<span id="cb636-6"><a href="time-series-analysis.html#cb636-6" tabindex="-1"></a>  <span class="at">Seasonal =</span> <span class="fu">as.numeric</span>(decomposed_ts<span class="sc">$</span>seasonal),</span>
+<span id="cb636-7"><a href="time-series-analysis.html#cb636-7" tabindex="-1"></a>  <span class="at">Residual =</span> <span class="fu">as.numeric</span>(decomposed_ts<span class="sc">$</span>random)</span>
+<span id="cb636-8"><a href="time-series-analysis.html#cb636-8" tabindex="-1"></a>)</span>
+<span id="cb636-9"><a href="time-series-analysis.html#cb636-9" tabindex="-1"></a></span>
+<span id="cb636-10"><a href="time-series-analysis.html#cb636-10" tabindex="-1"></a><span class="co"># Remove the null values </span></span>
+<span id="cb636-11"><a href="time-series-analysis.html#cb636-11" tabindex="-1"></a>df_decomposed <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df_decomposed)</span>
+<span id="cb636-12"><a href="time-series-analysis.html#cb636-12" tabindex="-1"></a></span>
+<span id="cb636-13"><a href="time-series-analysis.html#cb636-13" tabindex="-1"></a><span class="fu">head</span>(df_decomposed)</span></code></pre></div>
+<pre><code>##          Date Observed    Trend  Seasonal   Residual
+## 7  1949-07-31      148 126.7917  63.83081 -42.622475
+## 8  1949-08-31      148 127.2500  62.82323 -42.073232
+## 9  1949-10-01      136 127.9583  16.52020  -8.478535
+## 10 1949-10-31      119 128.5833 -20.64268  11.059343
+## 11 1949-12-01      104 129.0000 -53.59343  28.593434
+## 12 1949-12-31      118 129.7500 -28.61995  16.869949</code></pre>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the amazon stock prices prediction data set, plot the data to identify time series patterns and trends</p>
+</div>
+<div id="basic-time-series-forecasting" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Basic Time Series Forecasting<a href="time-series-analysis.html#basic-time-series-forecasting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="moving-averages" class="section level3 hasAnchor" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Moving Averages<a href="time-series-analysis.html#moving-averages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Moving average is a statistical calculations used to analyze values over a specific period of time. Its main focus is to smooth out the short term fluctuations that makes it easier to identify the underlying trends in the data. It smoothens the time series data by averaging the the values over a sliding window.</p>
+<p>There are two types of Moving Averages, namely;</p>
+<ol style="list-style-type: lower-roman">
+<li>Simple Moving Averages(SMA)</li>
+<li>Weighted Moving Averages (WMA)</li>
+</ol>
+<p>Moving Average can also be referred to as the <strong>rolling mean</strong>. In this course we will demonstrate how to calculate and plot the Simple Moving Average using the <code>rollmean()</code> and <code>filter()</code> functions from the <code>zoo</code> and the Base R respectively.</p>
+<ul>
+<li>Load the required libraries</li>
+</ul>
+<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="time-series-analysis.html#cb638-1" tabindex="-1"></a><span class="co"># Load the libraries </span></span>
+<span id="cb638-2"><a href="time-series-analysis.html#cb638-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># for plotting </span></span>
+<span id="cb638-3"><a href="time-series-analysis.html#cb638-3" tabindex="-1"></a><span class="fu">library</span>(zoo) <span class="co"># to access `rollmean` function</span></span></code></pre></div>
+<ul>
+<li>Load the data and calulate the moving average using the <code>rollmean()</code> function. Since the data was collected in monthly basis, a yearly moving average will be calculated.</li>
+</ul>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="time-series-analysis.html#cb639-1" tabindex="-1"></a><span class="co"># Load the AirPassengers dataset</span></span>
+<span id="cb639-2"><a href="time-series-analysis.html#cb639-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;AirPassengers&quot;</span>)</span>
+<span id="cb639-3"><a href="time-series-analysis.html#cb639-3" tabindex="-1"></a></span>
+<span id="cb639-4"><a href="time-series-analysis.html#cb639-4" tabindex="-1"></a><span class="co"># Calculate 12-month moving average using rollmean() from zoo package</span></span>
+<span id="cb639-5"><a href="time-series-analysis.html#cb639-5" tabindex="-1"></a>moving_avg <span class="ot">&lt;-</span> <span class="fu">rollmean</span>(AirPassengers, </span>
+<span id="cb639-6"><a href="time-series-analysis.html#cb639-6" tabindex="-1"></a>                       <span class="at">k =</span> <span class="dv">12</span>, <span class="co"># 12- Month Moving Average</span></span>
+<span id="cb639-7"><a href="time-series-analysis.html#cb639-7" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="cn">NA</span>) </span>
+<span id="cb639-8"><a href="time-series-analysis.html#cb639-8" tabindex="-1"></a></span>
+<span id="cb639-9"><a href="time-series-analysis.html#cb639-9" tabindex="-1"></a><span class="co"># Create a data frame combining the original data and moving average</span></span>
+<span id="cb639-10"><a href="time-series-analysis.html#cb639-10" tabindex="-1"></a>df_airpassengers <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb639-11"><a href="time-series-analysis.html#cb639-11" tabindex="-1"></a>  <span class="at">Month =</span> <span class="fu">as.Date</span>(<span class="fu">time</span>(AirPassengers)),</span>
+<span id="cb639-12"><a href="time-series-analysis.html#cb639-12" tabindex="-1"></a>  <span class="at">Passengers =</span> <span class="fu">as.numeric</span>(AirPassengers),</span>
+<span id="cb639-13"><a href="time-series-analysis.html#cb639-13" tabindex="-1"></a>  <span class="at">MovingAvg =</span> <span class="fu">as.numeric</span>(moving_avg)</span>
+<span id="cb639-14"><a href="time-series-analysis.html#cb639-14" tabindex="-1"></a>)</span>
+<span id="cb639-15"><a href="time-series-analysis.html#cb639-15" tabindex="-1"></a></span>
+<span id="cb639-16"><a href="time-series-analysis.html#cb639-16" tabindex="-1"></a><span class="co"># View the first few rows of the data frame</span></span>
+<span id="cb639-17"><a href="time-series-analysis.html#cb639-17" tabindex="-1"></a><span class="fu">head</span>(df_airpassengers, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##         Month Passengers MovingAvg
+## 1  1949-01-01        112        NA
+## 2  1949-02-01        118        NA
+## 3  1949-03-01        132        NA
+## 4  1949-04-01        129        NA
+## 5  1949-05-01        121        NA
+## 6  1949-06-01        135  126.6667
+## 7  1949-07-01        148  126.9167
+## 8  1949-08-01        148  127.5833
+## 9  1949-09-01        136  128.3333
+## 10 1949-10-01        119  128.8333</code></pre>
+<ul>
+<li>Now plot the time series data along with the moving average</li>
+</ul>
+<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="time-series-analysis.html#cb641-1" tabindex="-1"></a><span class="co"># Plot original data and moving average</span></span>
+<span id="cb641-2"><a href="time-series-analysis.html#cb641-2" tabindex="-1"></a><span class="fu">ggplot</span>(df_airpassengers, <span class="fu">aes</span>(<span class="at">x =</span> Month)) <span class="sc">+</span> </span>
+<span id="cb641-3"><a href="time-series-analysis.html#cb641-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Passengers), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span>  <span class="co"># Original data</span></span>
+<span id="cb641-4"><a href="time-series-analysis.html#cb641-4" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> MovingAvg), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span>  <span class="co"># Moving average</span></span>
+<span id="cb641-5"><a href="time-series-analysis.html#cb641-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;AirPassengers - Moving Average (12 months)&quot;</span>,</span>
+<span id="cb641-6"><a href="time-series-analysis.html#cb641-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of Passengers&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
+<span id="cb641-7"><a href="time-series-analysis.html#cb641-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 11 rows containing missing values or values
+## outside the scale range (`geom_line()`).</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-264-1.png" width="672" /></p>
+<ul>
+<li><p><em>The blue line represents the original time series data</em></p></li>
+<li><p><em>The red line represents the Moving Average data</em>, you can see that the line is smoother.</p></li>
+<li><p>Let’s repeat the process but this time we use the <code>filter()</code> function from the Base R. Remember <code>dplyr</code> also has <code>filter()</code> function. To speficify use <code>stats::filter()</code>.</p></li>
+</ul>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="time-series-analysis.html#cb643-1" tabindex="-1"></a><span class="co"># Calculate the Moving Average</span></span>
+<span id="cb643-2"><a href="time-series-analysis.html#cb643-2" tabindex="-1"></a>moving_avg_filter <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">filter</span>(AirPassengers, <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">12</span>, <span class="dv">12</span>), <span class="at">sides =</span> <span class="dv">2</span>)</span>
+<span id="cb643-3"><a href="time-series-analysis.html#cb643-3" tabindex="-1"></a></span>
+<span id="cb643-4"><a href="time-series-analysis.html#cb643-4" tabindex="-1"></a><span class="co"># Add the moving average to the existing data frame</span></span>
+<span id="cb643-5"><a href="time-series-analysis.html#cb643-5" tabindex="-1"></a>df_airpassengers<span class="sc">$</span>MovingAvg_Filter <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(moving_avg_filter)</span>
+<span id="cb643-6"><a href="time-series-analysis.html#cb643-6" tabindex="-1"></a></span>
+<span id="cb643-7"><a href="time-series-analysis.html#cb643-7" tabindex="-1"></a><span class="co"># Plot original data and moving average calculated by filter()</span></span>
+<span id="cb643-8"><a href="time-series-analysis.html#cb643-8" tabindex="-1"></a><span class="fu">ggplot</span>(df_airpassengers, <span class="fu">aes</span>(<span class="at">x =</span> Month)) <span class="sc">+</span> </span>
+<span id="cb643-9"><a href="time-series-analysis.html#cb643-9" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Passengers), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span>  <span class="co"># Original data</span></span>
+<span id="cb643-10"><a href="time-series-analysis.html#cb643-10" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> MovingAvg_Filter), <span class="at">color =</span> <span class="st">&quot;green&quot;</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span>  <span class="co"># Moving average from filter</span></span>
+<span id="cb643-11"><a href="time-series-analysis.html#cb643-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;AirPassengers - Moving Average (12 months, filter())&quot;</span>,</span>
+<span id="cb643-12"><a href="time-series-analysis.html#cb643-12" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of Passengers&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
+<span id="cb643-13"><a href="time-series-analysis.html#cb643-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-265-1.png" width="672" /></p>
+<ul>
+<li><em>The green line represents the simple moving average over a 12-month sliding window</em></li>
+</ul>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Apply 30-day moving averages on the amazon stock.</p>
+</div>
+<div id="arima-model" class="section level3 hasAnchor" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> ARIMA model<a href="time-series-analysis.html#arima-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>ARIMA</strong> stands for <em>AutoRegressive Integrated Moving Average</em> that is defined in three parameters namely; p, d and q where;</p>
+<ol style="list-style-type: lower-roman">
+<li><strong>AR(p) Autoregression</strong>: This utilizes the relationship between the current values and the previous one where the current ones are dependent on the previous.</li>
+<li><strong>I(d) Integration</strong>: It entails subtracting the current observations of a series with its previous values <code>d</code> number of times. This is done to make the time series stationary.</li>
+<li><strong>MA(q) Moving Average</strong>: A model that uses the dependency between an observation and a residual error from a moving average model applied to lagged observations. A moving average component depicts the error of the model as a combination of previous error terms. The order q represents the number of terms to be included in the model</li>
+</ol>
+<p>In summary, <code>p</code>, <code>d</code> and <code>q</code> represents the number of autoregressive (AR) terms, the number of differences required to make the series stationary and the number of moving averages(MA) respectively. These values are determined using the following diagonstic tools;</p>
+<ol style="list-style-type: lower-roman">
+<li><strong>Autocorrelation Function(ACF)</strong>: identifies the MA terms</li>
+<li><strong>Partial Autocorrelation Function (PACF)</strong>: identifies the number of AR terms.</li>
+<li><strong>Differencing</strong>: determines the value of <code>d</code> need to make the series stationary.</li>
+</ol>
+<p>R has <code>auto.arima()</code> function from the <code>forecast</code> library designed to create the ARIMA model.
+The <code>forecast</code> library can be installed by;</p>
+<pre><code>install.packages(&quot;forecast&quot;)</code></pre>
+<p>Lets use the <code>AirPassengers</code> data to design our ARIMA model.</p>
+<p><strong>Step 1</strong>: Check stationarity</p>
+<p>To create an ARIMA model the time series data, in this case the <code>AirPassengers</code>, must be stationary i.e have a constant mean and variance. Otherwise, differencing is applied to make it stationary. The <code>diff()</code> is used to this.</p>
+<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="time-series-analysis.html#cb645-1" tabindex="-1"></a><span class="co"># Load necessary library</span></span>
+<span id="cb645-2"><a href="time-series-analysis.html#cb645-2" tabindex="-1"></a><span class="fu">library</span>(forecast)</span></code></pre></div>
+<pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
+##   method            from
+##   as.zoo.data.frame zoo</code></pre>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="time-series-analysis.html#cb647-1" tabindex="-1"></a><span class="co"># Load the AirPassengers data set if not loaded already</span></span>
+<span id="cb647-2"><a href="time-series-analysis.html#cb647-2" tabindex="-1"></a></span>
+<span id="cb647-3"><a href="time-series-analysis.html#cb647-3" tabindex="-1"></a><span class="co"># Make the data stationary by differencing</span></span>
+<span id="cb647-4"><a href="time-series-analysis.html#cb647-4" tabindex="-1"></a>diff_passengers <span class="ot">&lt;-</span> <span class="fu">diff</span>(<span class="fu">log</span>(AirPassengers))</span></code></pre></div>
+<p><strong>Step 2</strong>: Use the ACF and PACF Plots to Identify ARIMA Parameters</p>
+<ul>
+<li><p>The <strong>ACF</strong> is used to find the correlation between the time series and the lagged versions((previous) of itself. Thats the <code>q</code> (MA) parameter.</p></li>
+<li><p>The <strong>PACF</strong> finds the correlation between the time series and the lagged versions of itself but after removing the effect of the intermediate lags. Thats the <code>p</code> (AR) parameter</p></li>
+</ul>
+<p><strong>Step 3</strong>: Plot the ACF and PACF</p>
+<p>The <code>acf()</code> and <code>pacf</code> functions are used to generate the plots.</p>
+<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="time-series-analysis.html#cb648-1" tabindex="-1"></a><span class="co"># Plot the ACF and PACF of the differenced data</span></span>
+<span id="cb648-2"><a href="time-series-analysis.html#cb648-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))  <span class="co"># Set up for side-by-side plots</span></span>
+<span id="cb648-3"><a href="time-series-analysis.html#cb648-3" tabindex="-1"></a></span>
+<span id="cb648-4"><a href="time-series-analysis.html#cb648-4" tabindex="-1"></a><span class="co"># ACF plot</span></span>
+<span id="cb648-5"><a href="time-series-analysis.html#cb648-5" tabindex="-1"></a><span class="fu">acf</span>(diff_passengers, <span class="at">main =</span> <span class="st">&quot;ACF of Differenced AirPassengers&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-267-1.png" width="672" /></p>
+<p>The ACF (Autocorrelation Function) plot for the <code>AirPassengers</code> data set typically shows significant positive autocorrelations for several lags, which indicates that the series has a strong trend and seasonal patterns.</p>
+<p>Key points to interpret from the ACF plot:</p>
+<ul>
+<li><strong>High autocorrelation at early lags</strong>: The first few lags (e.g., 1 to 12) likely show high autocorrelation, which suggests a strong seasonal pattern in the data (monthly seasonality in this case).</li>
+<li><strong>Gradual decline</strong>: The ACF values decrease slowly, indicating the presence of a long-term trend in the data.</li>
+<li><strong>Seasonality</strong>: Peaks in the autocorrelations at lags of multiples of 12 (e.g., 12, 24) indicate the annual cycle in the data, which is typical for monthly time series with yearly seasonality.</li>
+</ul>
+<p>Overall, this suggests that the <code>AirPassengers</code> data exhibits both trend and seasonality, which is important for selecting an appropriate time series model</p>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="time-series-analysis.html#cb649-1" tabindex="-1"></a><span class="co"># PACF plot</span></span>
+<span id="cb649-2"><a href="time-series-analysis.html#cb649-2" tabindex="-1"></a><span class="fu">pacf</span>(diff_passengers, <span class="at">main =</span> <span class="st">&quot;PACF of Differenced AirPassengers&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-268-1.png" width="672" /></p>
+<p>The PACF (Partial Autocorrelation Function) plot for the differenced <code>AirPassengers</code> data set indicates the following:</p>
+<ul>
+<li><strong>Significant PACF at Lag 1</strong>: There is a strong spike at lag 1, which suggests that after differencing, the time series still has a significant short-term autocorrelation at this lag. This can imply that an AR(1) model might be suitable.</li>
+<li><strong>Seasonal Pattern</strong>: The spike at lag 12 suggests the presence of a seasonal component in the data with a yearly cycle. This is consistent with the monthly nature of the <code>AirPassengers</code> data set and the yearly repeating patterns in air travel.</li>
+<li><strong>Dampening beyond Lag 1</strong>: After the significant spike at lag 1, the PACF values quickly decline, with some negative values at higher lags, indicating that the differenced series has removed much of the autocorrelation present in the original data.</li>
+</ul>
+<p>In summary, this plot suggests a time series with strong short-term (lag 1) autocorrelation and seasonal effects that are likely at yearly intervals (lag 12). Based on this, you could consider using an ARIMA model with seasonal components to better model the behavior of the data.</p>
+<p>The <code>AirPassengers</code> data set is not stationary, therefore the data will be transformed by log-transform before applying differencing</p>
+<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="time-series-analysis.html#cb650-1" tabindex="-1"></a><span class="co"># Log transformation to stabilize variance</span></span>
+<span id="cb650-2"><a href="time-series-analysis.html#cb650-2" tabindex="-1"></a>log_passengers <span class="ot">&lt;-</span> <span class="fu">log</span>(AirPassengers)</span>
+<span id="cb650-3"><a href="time-series-analysis.html#cb650-3" tabindex="-1"></a></span>
+<span id="cb650-4"><a href="time-series-analysis.html#cb650-4" tabindex="-1"></a><span class="co"># Difference the log-transformed data to make it stationary</span></span>
+<span id="cb650-5"><a href="time-series-analysis.html#cb650-5" tabindex="-1"></a>diff_passengers <span class="ot">&lt;-</span> <span class="fu">diff</span>(log_passengers)</span>
+<span id="cb650-6"><a href="time-series-analysis.html#cb650-6" tabindex="-1"></a></span>
+<span id="cb650-7"><a href="time-series-analysis.html#cb650-7" tabindex="-1"></a><span class="co"># Plot the differenced series to check stationarity</span></span>
+<span id="cb650-8"><a href="time-series-analysis.html#cb650-8" tabindex="-1"></a><span class="fu">plot</span>(diff_passengers, <span class="at">main =</span> <span class="st">&quot;Differenced Log of AirPassengers&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Differenced Log(Passengers)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Time&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-269-1.png" width="672" /></p>
+<p><strong>Step 4</strong>: Fit the ARIMA model</p>
+<p>The <code>auto.arima()</code> function can be used to automate the process of selecting the <code>p</code>, <code>d</code>, <code>q</code> parameters.</p>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="time-series-analysis.html#cb651-1" tabindex="-1"></a><span class="co"># Auto-identify ARIMA parameters and fit the model</span></span>
+<span id="cb651-2"><a href="time-series-analysis.html#cb651-2" tabindex="-1"></a>fit_arima <span class="ot">&lt;-</span> <span class="fu">auto.arima</span>(log_passengers)</span>
+<span id="cb651-3"><a href="time-series-analysis.html#cb651-3" tabindex="-1"></a></span>
+<span id="cb651-4"><a href="time-series-analysis.html#cb651-4" tabindex="-1"></a><span class="co"># Display the summary of the fitted ARIMA model</span></span>
+<span id="cb651-5"><a href="time-series-analysis.html#cb651-5" tabindex="-1"></a><span class="fu">summary</span>(fit_arima)</span></code></pre></div>
+<pre><code>## Series: log_passengers 
+## ARIMA(0,1,1)(0,1,1)[12] 
+## 
+## Coefficients:
+##           ma1     sma1
+##       -0.4018  -0.5569
+## s.e.   0.0896   0.0731
+## 
+## sigma^2 = 0.001371:  log likelihood = 244.7
+## AIC=-483.4   AICc=-483.21   BIC=-474.77
+## 
+## Training set error measures:
+##                        ME       RMSE        MAE        MPE      MAPE      MASE
+## Training set 0.0005730622 0.03504883 0.02626034 0.01098898 0.4752815 0.2169522
+##                    ACF1
+## Training set 0.01443892</code></pre>
+<p>Lets fit the ARIMA model with of order <code>1 1 1</code> to represent <code>p d q</code> respectively.</p>
+<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="time-series-analysis.html#cb653-1" tabindex="-1"></a><span class="co"># Fit ARIMA(1,1,1) model</span></span>
+<span id="cb653-2"><a href="time-series-analysis.html#cb653-2" tabindex="-1"></a>fit_manual_arima <span class="ot">&lt;-</span> <span class="fu">arima</span>(log_passengers, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb653-3"><a href="time-series-analysis.html#cb653-3" tabindex="-1"></a></span>
+<span id="cb653-4"><a href="time-series-analysis.html#cb653-4" tabindex="-1"></a><span class="co"># Display the summary of the fitted ARIMA model</span></span>
+<span id="cb653-5"><a href="time-series-analysis.html#cb653-5" tabindex="-1"></a><span class="fu">summary</span>(fit_manual_arima)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## arima(x = log_passengers, order = c(1, 1, 1))
+## 
+## Coefficients:
+##           ar1     ma1
+##       -0.5780  0.8482
+## s.e.   0.1296  0.0865
+## 
+## sigma^2 estimated as 0.01027:  log likelihood = 124.31,  aic = -242.63
+## 
+## Training set error measures:
+##                       ME      RMSE        MAE       MPE     MAPE      MASE
+## Training set 0.008294478 0.1009741 0.08585615 0.1401158 1.557282 0.9477905
+##                  ACF1
+## Training set 0.010984</code></pre>
+<p><strong>Step 5</strong>: Forecast with the ARIMA model</p>
+<p>The fitted ARIMA model can now be used for forecasting the future values using the <code>arima()</code> function.</p>
+<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="time-series-analysis.html#cb655-1" tabindex="-1"></a><span class="co"># Forecast for the next 24 months (2 years)</span></span>
+<span id="cb655-2"><a href="time-series-analysis.html#cb655-2" tabindex="-1"></a>forecast_arima <span class="ot">&lt;-</span> <span class="fu">forecast</span>(fit_arima, <span class="at">h =</span> <span class="dv">24</span>)</span>
+<span id="cb655-3"><a href="time-series-analysis.html#cb655-3" tabindex="-1"></a></span>
+<span id="cb655-4"><a href="time-series-analysis.html#cb655-4" tabindex="-1"></a><span class="co"># Plot the forecast</span></span>
+<span id="cb655-5"><a href="time-series-analysis.html#cb655-5" tabindex="-1"></a><span class="fu">plot</span>(forecast_arima, <span class="at">main =</span> <span class="st">&quot;ARIMA Forecast for AirPassengers&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Time&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Log(Passengers)&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
+<p>The blue part of the plot represents the forecasted values.</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Fit the ARIMA model to the Amazon Stock Prices Prediction data and interpret the results.</p>
+</div>
+</div>
+<div id="hands-on-exercises-7" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Hands-On Exercises<a href="time-series-analysis.html#hands-on-exercises-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You will be required to download the Electricity Price &amp; Demand 2018-2023 data set from <a href="https://www.kaggle.com/datasets/joebeachcapital/nsw-australia-electricity-demand-2018-2023/data">here</a></p>
+<p>Perform time series on the total demand on one of the csv files provided from visualization to forecasting</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="working-with-real-world-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="capstone-project.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/balsaedi/RCourse/edit/main/09-time-series-analysis.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/balsaedi/RCourse/blob/main/09-time-series-analysis.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 R Shiny | Statistical Computing</title>
+  <meta name="description" content="Chapter 7 R Shiny | Statistical Computing" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 R Shiny | Statistical Computing" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 R Shiny | Statistical Computing" />
+  
+  
+  
+
+<meta name="author" content="Dr. Basim Alsaedi" />
+
+
+<meta name="date" content="2025-02-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="reproducibility-and-report-with-r-markdown.html"/>
+<link rel="next" href="building-r-packages.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SHORT TITLE HERE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Reviews</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#data-types-and-structures"><i class="fa fa-check"></i><b>1.1</b> Data Types and Structures</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#data-types"><i class="fa fa-check"></i><b>1.1.1</b> Data Types</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#data-structures"><i class="fa fa-check"></i><b>1.1.2</b> Data Structures</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#data-importing-and-exporting"><i class="fa fa-check"></i><b>1.2</b> Data Importing and Exporting</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#data-cleaning"><i class="fa fa-check"></i><b>1.3</b> Data Cleaning</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#data-visualization"><i class="fa fa-check"></i><b>1.4</b> Data Visualization</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#hands-on-exercises"><i class="fa fa-check"></i><b>1.5</b> <span style="color: green;"><strong>Hands-on Exercises</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>2</b> Functions</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="functions.html"><a href="functions.html#writing-functions"><i class="fa fa-check"></i><b>2.1</b> Writing Functions</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="functions.html"><a href="functions.html#user-defined-functions"><i class="fa fa-check"></i><b>2.1.1</b> User-Defined Functions</a></li>
+<li class="chapter" data-level="2.1.2" data-path="functions.html"><a href="functions.html#built-in-fuctions"><i class="fa fa-check"></i><b>2.1.2</b> Built-in Fuctions</a></li>
+<li class="chapter" data-level="2.1.3" data-path="functions.html"><a href="functions.html#package-functions"><i class="fa fa-check"></i><b>2.1.3</b> Package Functions</a></li>
+<li class="chapter" data-level="2.1.4" data-path="functions.html"><a href="functions.html#type-of-arguments-in-r-functions"><i class="fa fa-check"></i><b>2.1.4</b> Type of arguments in R functions</a></li>
+<li class="chapter" data-level="2.1.5" data-path="functions.html"><a href="functions.html#understanding-return-values-in-r-functions"><i class="fa fa-check"></i><b>2.1.5</b> Understanding Return Values in R Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="functions.html"><a href="functions.html#calling-the-functions"><i class="fa fa-check"></i><b>2.2</b> Calling the Functions</a></li>
+<li class="chapter" data-level="2.3" data-path="functions.html"><a href="functions.html#function-documentation"><i class="fa fa-check"></i><b>2.3</b> Function Documentation</a></li>
+<li class="chapter" data-level="2.4" data-path="functions.html"><a href="functions.html#hands-on-exercise"><i class="fa fa-check"></i><b>2.4</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="group-manipulation.html"><a href="group-manipulation.html"><i class="fa fa-check"></i><b>3</b> Group Manipulation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="group-manipulation.html"><a href="group-manipulation.html#apply-family"><i class="fa fa-check"></i><b>3.1</b> Apply Family</a></li>
+<li class="chapter" data-level="3.2" data-path="group-manipulation.html"><a href="group-manipulation.html#aggregate-plyr"><i class="fa fa-check"></i><b>3.2</b> Aggregate Plyr</a></li>
+<li class="chapter" data-level="3.3" data-path="group-manipulation.html"><a href="group-manipulation.html#data-reshaping"><i class="fa fa-check"></i><b>3.3</b> Data Reshaping</a></li>
+<li class="chapter" data-level="3.4" data-path="group-manipulation.html"><a href="group-manipulation.html#hands-on-exercise-1"><i class="fa fa-check"></i><b>3.4</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="general-statistics.html"><a href="general-statistics.html"><i class="fa fa-check"></i><b>4</b> General Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="general-statistics.html"><a href="general-statistics.html#tabulating-factors-and-creating-contingency-tables"><i class="fa fa-check"></i><b>4.1</b> Tabulating Factors and Creating Contingency Tables</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-factors-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Understanding Factors in R</a></li>
+<li class="chapter" data-level="4.1.2" data-path="general-statistics.html"><a href="general-statistics.html#creating-frequency-tables"><i class="fa fa-check"></i><b>4.1.2</b> Creating Frequency Tables</a></li>
+<li class="chapter" data-level="4.1.3" data-path="general-statistics.html"><a href="general-statistics.html#creating-contingency-tables"><i class="fa fa-check"></i><b>4.1.3</b> Creating Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.4" data-path="general-statistics.html"><a href="general-statistics.html#adding-margins-to-contingency-tables"><i class="fa fa-check"></i><b>4.1.4</b> Adding Margins to Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.5" data-path="general-statistics.html"><a href="general-statistics.html#computing-row-and-column-proportions"><i class="fa fa-check"></i><b>4.1.5</b> Computing Row and Column Proportions</a></li>
+<li class="chapter" data-level="4.1.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-contingency-tables"><i class="fa fa-check"></i><b>4.1.6</b> Visualizing Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises"><i class="fa fa-check"></i><b>4.1.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="general-statistics.html"><a href="general-statistics.html#calculating-quantiles"><i class="fa fa-check"></i><b>4.2</b> Calculating Quantiles</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-quantiles"><i class="fa fa-check"></i><b>4.2.1</b> Understanding Quantiles</a></li>
+<li class="chapter" data-level="4.2.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-quantiles-in-r"><i class="fa fa-check"></i><b>4.2.2</b> Computing Quantiles in R</a></li>
+<li class="chapter" data-level="4.2.3" data-path="general-statistics.html"><a href="general-statistics.html#computing-specific-quantiles"><i class="fa fa-check"></i><b>4.2.3</b> Computing Specific Quantiles</a></li>
+<li class="chapter" data-level="4.2.4" data-path="general-statistics.html"><a href="general-statistics.html#using-summary-for-quick-insights"><i class="fa fa-check"></i><b>4.2.4</b> Using <code>summary()</code> for Quick Insights</a></li>
+<li class="chapter" data-level="4.2.5" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-quantiles"><i class="fa fa-check"></i><b>4.2.5</b> Visualizing Quantiles</a></li>
+<li class="chapter" data-level="4.2.6" data-path="general-statistics.html"><a href="general-statistics.html#finding-interquartile-range-iqr"><i class="fa fa-check"></i><b>4.2.6</b> Finding Interquartile Range (IQR)</a></li>
+<li class="chapter" data-level="4.2.7" data-path="general-statistics.html"><a href="general-statistics.html#finding-outliers-using-iqr"><i class="fa fa-check"></i><b>4.2.7</b> Finding Outliers Using IQR</a></li>
+<li class="chapter" data-level="4.2.8" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>4.2.8</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="general-statistics.html"><a href="general-statistics.html#z-scores"><i class="fa fa-check"></i><b>4.3</b> z-Scores</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-z-scores"><i class="fa fa-check"></i><b>4.3.1</b> Understanding z-Scores</a></li>
+<li class="chapter" data-level="4.3.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-z-scores-in-r"><i class="fa fa-check"></i><b>4.3.2</b> Computing z-Scores in R</a></li>
+<li class="chapter" data-level="4.3.3" data-path="general-statistics.html"><a href="general-statistics.html#computing-z-scores-using-scale"><i class="fa fa-check"></i><b>4.3.3</b> Computing z-Scores Using <code>scale()</code></a></li>
+<li class="chapter" data-level="4.3.4" data-path="general-statistics.html"><a href="general-statistics.html#interpreting-z-scores"><i class="fa fa-check"></i><b>4.3.4</b> Interpreting z-Scores</a></li>
+<li class="chapter" data-level="4.3.5" data-path="general-statistics.html"><a href="general-statistics.html#using-z-scores-to-detect-outliers"><i class="fa fa-check"></i><b>4.3.5</b> Using z-Scores to Detect Outliers</a></li>
+<li class="chapter" data-level="4.3.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-z-scores"><i class="fa fa-check"></i><b>4.3.6</b> Visualizing z-Scores</a></li>
+<li class="chapter" data-level="4.3.7" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercises-2"><i class="fa fa-check"></i><b>4.3.7</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="general-statistics.html"><a href="general-statistics.html#inferential-statistics"><i class="fa fa-check"></i><b>4.4</b> Inferential Statistics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="general-statistics.html"><a href="general-statistics.html#basic-concepts"><i class="fa fa-check"></i><b>4.4.1</b> Basic Concepts</a></li>
+<li class="chapter" data-level="4.4.2" data-path="general-statistics.html"><a href="general-statistics.html#confidence-intervals"><i class="fa fa-check"></i><b>4.4.2</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="4.4.3" data-path="general-statistics.html"><a href="general-statistics.html#hypothesis-testing"><i class="fa fa-check"></i><b>4.4.3</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="4.4.4" data-path="general-statistics.html"><a href="general-statistics.html#steps-in-hypothesis-testing"><i class="fa fa-check"></i><b>4.4.4</b> Steps in Hypothesis Testing</a></li>
+<li class="chapter" data-level="4.4.5" data-path="general-statistics.html"><a href="general-statistics.html#one-sample-t-test"><i class="fa fa-check"></i><b>4.4.5</b> One-Sample t-Test</a></li>
+<li class="chapter" data-level="4.4.6" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-means"><i class="fa fa-check"></i><b>4.4.6</b> Comparing Two Sample Means</a></li>
+<li class="chapter" data-level="4.4.7" data-path="general-statistics.html"><a href="general-statistics.html#testing-proportions"><i class="fa fa-check"></i><b>4.4.7</b> Testing Proportions</a></li>
+<li class="chapter" data-level="4.4.8" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-1"><i class="fa fa-check"></i><b>4.4.8</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="general-statistics.html"><a href="general-statistics.html#testing-the-mean-of-a-sample-t-test-and-its-confidence-interval"><i class="fa fa-check"></i><b>4.5</b> Testing the Mean of a Sample (t-Test) and its Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-the-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Understanding the t-Test</a></li>
+<li class="chapter" data-level="4.5.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-confidence-intervals-for-the-mean"><i class="fa fa-check"></i><b>4.5.2</b> Computing Confidence Intervals for the Mean</a></li>
+<li class="chapter" data-level="4.5.3" data-path="general-statistics.html"><a href="general-statistics.html#performing-a-one-sample-t-test"><i class="fa fa-check"></i><b>4.5.3</b> Performing a One-Sample t-Test</a></li>
+<li class="chapter" data-level="4.5.4" data-path="general-statistics.html"><a href="general-statistics.html#one-sided-vs.-two-sided-tests"><i class="fa fa-check"></i><b>4.5.4</b> One-Sided vs. Two-Sided Tests</a></li>
+<li class="chapter" data-level="4.5.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-means-independent-t-test"><i class="fa fa-check"></i><b>4.5.5</b> Comparing Two Sample Means (Independent t-Test)</a></li>
+<li class="chapter" data-level="4.5.6" data-path="general-statistics.html"><a href="general-statistics.html#paired-t-test-dependent-samples"><i class="fa fa-check"></i><b>4.5.6</b> Paired t-Test (Dependent Samples)</a></li>
+<li class="chapter" data-level="4.5.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-2"><i class="fa fa-check"></i><b>4.5.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="general-statistics.html"><a href="general-statistics.html#testing-a-sample-proportion-and-its-confidence-interval"><i class="fa fa-check"></i><b>4.6</b> Testing a Sample Proportion and its Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-proportion-testing"><i class="fa fa-check"></i><b>4.6.1</b> Understanding Proportion Testing</a></li>
+<li class="chapter" data-level="4.6.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-confidence-intervals-for-proportions"><i class="fa fa-check"></i><b>4.6.2</b> Computing Confidence Intervals for Proportions</a></li>
+<li class="chapter" data-level="4.6.3" data-path="general-statistics.html"><a href="general-statistics.html#performing-a-one-sample-proportion-test"><i class="fa fa-check"></i><b>4.6.3</b> Performing a One-Sample Proportion Test</a></li>
+<li class="chapter" data-level="4.6.4" data-path="general-statistics.html"><a href="general-statistics.html#one-sided-proportion-tests"><i class="fa fa-check"></i><b>4.6.4</b> One-Sided Proportion Tests</a></li>
+<li class="chapter" data-level="4.6.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-proportions"><i class="fa fa-check"></i><b>4.6.5</b> Comparing Two Sample Proportions</a></li>
+<li class="chapter" data-level="4.6.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-proportions"><i class="fa fa-check"></i><b>4.6.6</b> Visualizing Proportions</a></li>
+<li class="chapter" data-level="4.6.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-3"><i class="fa fa-check"></i><b>4.6.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="general-statistics.html"><a href="general-statistics.html#comparing-the-means-of-two-samples"><i class="fa fa-check"></i><b>4.7</b> Comparing the Means of Two Samples</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-two-sample-t-test"><i class="fa fa-check"></i><b>4.7.1</b> Understanding Two-Sample t-Test</a></li>
+<li class="chapter" data-level="4.7.2" data-path="general-statistics.html"><a href="general-statistics.html#independent-unpaired-t-test"><i class="fa fa-check"></i><b>4.7.2</b> Independent (Unpaired) t-Test</a></li>
+<li class="chapter" data-level="4.7.3" data-path="general-statistics.html"><a href="general-statistics.html#checking-assumptions"><i class="fa fa-check"></i><b>4.7.3</b> Checking Assumptions</a></li>
+<li class="chapter" data-level="4.7.4" data-path="general-statistics.html"><a href="general-statistics.html#performing-t-test-with-unequal-variances"><i class="fa fa-check"></i><b>4.7.4</b> Performing t-Test with Unequal Variances</a></li>
+<li class="chapter" data-level="4.7.5" data-path="general-statistics.html"><a href="general-statistics.html#paired-t-test-dependent-samples-1"><i class="fa fa-check"></i><b>4.7.5</b> Paired t-Test (Dependent Samples)</a></li>
+<li class="chapter" data-level="4.7.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-group-differences"><i class="fa fa-check"></i><b>4.7.6</b> Visualizing Group Differences</a></li>
+<li class="chapter" data-level="4.7.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-4"><i class="fa fa-check"></i><b>4.7.7</b> Practical Exercises</a></li>
+<li class="chapter" data-level="4.7.8" data-path="general-statistics.html"><a href="general-statistics.html#exercise-4-visualizing-group-differences"><i class="fa fa-check"></i><b>4.7.8</b> Exercise 4: Visualizing Group Differences</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="general-statistics.html"><a href="general-statistics.html#performing-pairwise-comparisons-between-group-means"><i class="fa fa-check"></i><b>4.8</b> Performing Pairwise Comparisons Between Group Means</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-pairwise-comparisons"><i class="fa fa-check"></i><b>4.8.1</b> Understanding Pairwise Comparisons</a></li>
+<li class="chapter" data-level="4.8.2" data-path="general-statistics.html"><a href="general-statistics.html#performing-pairwise-t-tests"><i class="fa fa-check"></i><b>4.8.2</b> Performing Pairwise t-Tests</a></li>
+<li class="chapter" data-level="4.8.3" data-path="general-statistics.html"><a href="general-statistics.html#tukeys-hsd-test"><i class="fa fa-check"></i><b>4.8.3</b> Tukey’s HSD Test</a></li>
+<li class="chapter" data-level="4.8.4" data-path="general-statistics.html"><a href="general-statistics.html#bonferroni-and-holm-corrections"><i class="fa fa-check"></i><b>4.8.4</b> Bonferroni and Holm Corrections</a></li>
+<li class="chapter" data-level="4.8.5" data-path="general-statistics.html"><a href="general-statistics.html#dunnetts-test-comparing-to-a-control-group"><i class="fa fa-check"></i><b>4.8.5</b> Dunnett’s Test (Comparing to a Control Group)</a></li>
+<li class="chapter" data-level="4.8.6" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-5"><i class="fa fa-check"></i><b>4.8.6</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercise-2"><i class="fa fa-check"></i><b>4.9</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="general-statistics.html"><a href="general-statistics.html#exercise-1-descriptive-statistics"><i class="fa fa-check"></i><b>4.9.1</b> Exercise 1: Descriptive Statistics</a></li>
+<li class="chapter" data-level="4.9.2" data-path="general-statistics.html"><a href="general-statistics.html#exercise-2-confidence-interval-for-mean"><i class="fa fa-check"></i><b>4.9.2</b> Exercise 2: Confidence Interval for Mean</a></li>
+<li class="chapter" data-level="4.9.3" data-path="general-statistics.html"><a href="general-statistics.html#exercise-3-one-sample-t-test"><i class="fa fa-check"></i><b>4.9.3</b> Exercise 3: One-Sample t-Test**</a></li>
+<li class="chapter" data-level="4.9.4" data-path="general-statistics.html"><a href="general-statistics.html#exercise-4-proportion-test"><i class="fa fa-check"></i><b>4.9.4</b> Exercise 4: Proportion Test</a></li>
+<li class="chapter" data-level="4.9.5" data-path="general-statistics.html"><a href="general-statistics.html#exercise-5-comparing-two-sample-means"><i class="fa fa-check"></i><b>4.9.5</b> Exercise 5: Comparing Two Sample Means</a></li>
+<li class="chapter" data-level="4.9.6" data-path="general-statistics.html"><a href="general-statistics.html#exercise-6-data-visualization"><i class="fa fa-check"></i><b>4.9.6</b> Exercise 6: Data Visualization</a></li>
+<li class="chapter" data-level="4.9.7" data-path="general-statistics.html"><a href="general-statistics.html#exercise-7-scatterplot-with-regression-line"><i class="fa fa-check"></i><b>4.9.7</b> Exercise 7: Scatterplot with Regression Line</a></li>
+<li class="chapter" data-level="4.9.8" data-path="general-statistics.html"><a href="general-statistics.html#exercise-8-pairwise-comparisons"><i class="fa fa-check"></i><b>4.9.8</b> Exercise 8: Pairwise Comparisons</a></li>
+<li class="chapter" data-level="4.9.9" data-path="general-statistics.html"><a href="general-statistics.html#exercise-9-tukeys-hsd-test"><i class="fa fa-check"></i><b>4.9.9</b> Exercise 9: Tukey’s HSD Test</a></li>
+<li class="chapter" data-level="4.9.10" data-path="general-statistics.html"><a href="general-statistics.html#exercise-10-comparing-a-treatment-to-a-control"><i class="fa fa-check"></i><b>4.9.10</b> Exercise 10: Comparing a Treatment to a Control</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#basics-of-wilkinson-rogers-notation-y-x-linear-regression"><i class="fa fa-check"></i><b>5.1</b> Basics of Wilkinson-Rogers Notation (y ~ x), Linear Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#scatterplots-with-regression-lines-reading-lm-output"><i class="fa fa-check"></i><b>5.2</b> Scatterplots with Regression Lines, Reading lm() Output</a></li>
+<li class="chapter" data-level="5.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#confidence-intervals-for-regression-coefficients-testing-coefficients"><i class="fa fa-check"></i><b>5.3</b> Confidence Intervals for Regression Coefficients, Testing Coefficients</a></li>
+<li class="chapter" data-level="5.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#identifying-points-in-a-plot"><i class="fa fa-check"></i><b>5.4</b> Identifying Points in a Plot</a></li>
+<li class="chapter" data-level="5.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#hands-on-exercise-3"><i class="fa fa-check"></i><b>5.5</b> <span style="color: green;"><strong>Hands-On Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html"><i class="fa fa-check"></i><b>6</b> Reproducibility and Report with R Markdown</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#key-tools-in-r-for-reproducibility-and-reporting"><i class="fa fa-check"></i><b>6.1</b> Key Tools in R for Reproducibility and Reporting</a></li>
+<li class="chapter" data-level="6.2" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#creating-reproducible-reports"><i class="fa fa-check"></i><b>6.2</b> Creating Reproducible Reports</a></li>
+<li class="chapter" data-level="6.3" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#going-beyond-shiny-for-interactive-reporting"><i class="fa fa-check"></i><b>6.3</b> Going Beyond: Shiny for Interactive Reporting</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-shiny.html"><a href="r-shiny.html"><i class="fa fa-check"></i><b>7</b> R Shiny</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="r-shiny.html"><a href="r-shiny.html#structure-of-a-shiny-app"><i class="fa fa-check"></i><b>7.1</b> Structure of a Shiny App</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="r-shiny.html"><a href="r-shiny.html#user-interfaceui"><i class="fa fa-check"></i><b>7.1.1</b> User Interface(ui)</a></li>
+<li class="chapter" data-level="7.1.2" data-path="r-shiny.html"><a href="r-shiny.html#server"><i class="fa fa-check"></i><b>7.1.2</b> Server</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="r-shiny.html"><a href="r-shiny.html#hands-on-exercise-4"><i class="fa fa-check"></i><b>7.2</b> <span style="color: green;"><strong>Hands-On Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="building-r-packages.html"><a href="building-r-packages.html"><i class="fa fa-check"></i><b>8</b> Building R Packages</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="building-r-packages.html"><a href="building-r-packages.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="building-r-packages.html"><a href="building-r-packages.html#prerequisites"><i class="fa fa-check"></i><b>8.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="8.3" data-path="building-r-packages.html"><a href="building-r-packages.html#building-a-simple-r-package"><i class="fa fa-check"></i><b>8.3</b> Building a simple R package</a></li>
+<li class="chapter" data-level="8.4" data-path="building-r-packages.html"><a href="building-r-packages.html#making-a-new-r-project"><i class="fa fa-check"></i><b>8.4</b> Making A New R Project</a></li>
+<li class="chapter" data-level="8.5" data-path="building-r-packages.html"><a href="building-r-packages.html#adding-documentation"><i class="fa fa-check"></i><b>8.5</b> Adding Documentation</a></li>
+<li class="chapter" data-level="8.6" data-path="building-r-packages.html"><a href="building-r-packages.html#uploading-and-installing-from-github"><i class="fa fa-check"></i><b>8.6</b> Uploading and Installing from Github</a></li>
+<li class="chapter" data-level="8.7" data-path="building-r-packages.html"><a href="building-r-packages.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>8.7</b> <span style="color: green;"><strong>Hands-on Exercises</strong></span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Computing</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-shiny" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> R Shiny<a href="r-shiny.html#r-shiny" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Shiny is a fantastic R package that allows you to easily create interactive web applications (or “apps”) directly from R. In this lesson, we’ll dive right into how to start building Shiny apps.</p>
+<p>First things first, if you haven’t installed the Shiny package yet, simply open R, make sure you’re connected to the internet, and run the following command:</p>
+<pre><code>install.packages(&quot;shiny&quot;)</code></pre>
+<p>Shiny also integrates with another package called <code>bslib</code>, which helps in creating visually appealing user interfaces (UIs). To explore more about it, you can check out its documentation <a href="https://rstudio.github.io/bslib/index.html?_gl=1*zs9lrr*_ga*MTE1OTUxODYwNi4xNzI0OTMzNDk1*_ga_8QJS108GF1*MTcyOTE0NzUzMi4yLjEuMTcyOTE0ODQ0MC4wLjAuMA..*_ga_2C0WZ1JHG0*MTcyOTE0NzUzMi43LjEuMTcyOTE0ODQ0MC4wLjAuMA..">here</a>.</p>
+<p>Here is an example of an R shiny app
+<img src="images/example-rshiny.png" /></p>
+<p>The Shiny package comes with several pre-built examples that showcase how Shiny works in action. Each example is a fully functional Shiny app.</p>
+<p>The Hello Shiny example, for instance, generates a histogram using R’s <em>faithful</em> data set. The histogram’s bin count can be adjusted by the user through a slider, and the app instantly updates based on their selection. This example is perfect for learning the basics of Shiny app structure and building your very first app.</p>
+<p>To try it out, just run the following commands in R:</p>
+<pre><code>library(shiny)
+runExample(&quot;01_hello&quot;)</code></pre>
+<div id="structure-of-a-shiny-app" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Structure of a Shiny App<a href="r-shiny.html#structure-of-a-shiny-app" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Shiny apps are typically organized in a single script called <code>app.R</code>, which resides in a designated folder (for example, <code>newdir/</code>). You can run the app by executing <code>runApp("newdir")</code>.</p>
+<p>The <code>app.R</code> file consists of three main components:</p>
+<ol style="list-style-type: decimal">
+<li>A User Interface Object</li>
+<li>A Server Function</li>
+<li>A Call to the shinyApp Function</li>
+</ol>
+<div id="user-interfaceui" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> User Interface(ui)<a href="r-shiny.html#user-interfaceui" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The user interface (ui) object defines the layout and visual aspects of your app. Below is the <code>ui</code> object used in the Hello Shiny example:</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="r-shiny.html#cb314-1" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb314-2"><a href="r-shiny.html#cb314-2" tabindex="-1"></a><span class="fu">library</span>(bslib)</span>
+<span id="cb314-3"><a href="r-shiny.html#cb314-3" tabindex="-1"></a></span>
+<span id="cb314-4"><a href="r-shiny.html#cb314-4" tabindex="-1"></a><span class="co"># Define UI for app that draws a histogram ----</span></span>
+<span id="cb314-5"><a href="r-shiny.html#cb314-5" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">page_sidebar</span>(</span>
+<span id="cb314-6"><a href="r-shiny.html#cb314-6" tabindex="-1"></a>  <span class="co"># App title ----</span></span>
+<span id="cb314-7"><a href="r-shiny.html#cb314-7" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Hello Shiny!&quot;</span>,</span>
+<span id="cb314-8"><a href="r-shiny.html#cb314-8" tabindex="-1"></a>  <span class="co"># Sidebar panel for inputs ----</span></span>
+<span id="cb314-9"><a href="r-shiny.html#cb314-9" tabindex="-1"></a>  <span class="at">sidebar =</span> <span class="fu">sidebar</span>(</span>
+<span id="cb314-10"><a href="r-shiny.html#cb314-10" tabindex="-1"></a>    <span class="co"># Input: Slider for the number of bins ----</span></span>
+<span id="cb314-11"><a href="r-shiny.html#cb314-11" tabindex="-1"></a>    <span class="fu">sliderInput</span>(</span>
+<span id="cb314-12"><a href="r-shiny.html#cb314-12" tabindex="-1"></a>      <span class="at">inputId =</span> <span class="st">&quot;bins&quot;</span>,</span>
+<span id="cb314-13"><a href="r-shiny.html#cb314-13" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">&quot;Number of bins:&quot;</span>,</span>
+<span id="cb314-14"><a href="r-shiny.html#cb314-14" tabindex="-1"></a>      <span class="at">min =</span> <span class="dv">1</span>,</span>
+<span id="cb314-15"><a href="r-shiny.html#cb314-15" tabindex="-1"></a>      <span class="at">max =</span> <span class="dv">50</span>,</span>
+<span id="cb314-16"><a href="r-shiny.html#cb314-16" tabindex="-1"></a>      <span class="at">value =</span> <span class="dv">30</span></span>
+<span id="cb314-17"><a href="r-shiny.html#cb314-17" tabindex="-1"></a>    )</span>
+<span id="cb314-18"><a href="r-shiny.html#cb314-18" tabindex="-1"></a>  ),</span>
+<span id="cb314-19"><a href="r-shiny.html#cb314-19" tabindex="-1"></a>  <span class="co"># Output: Histogram ----</span></span>
+<span id="cb314-20"><a href="r-shiny.html#cb314-20" tabindex="-1"></a>  <span class="fu">plotOutput</span>(<span class="at">outputId =</span> <span class="st">&quot;distPlot&quot;</span>)</span>
+<span id="cb314-21"><a href="r-shiny.html#cb314-21" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="server" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Server<a href="r-shiny.html#server" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Here is the server function for the Hello Shiny Example:</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="r-shiny.html#cb315-1" tabindex="-1"></a><span class="co"># Define server logic required to draw a histogram ----</span></span>
+<span id="cb315-2"><a href="r-shiny.html#cb315-2" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb315-3"><a href="r-shiny.html#cb315-3" tabindex="-1"></a></span>
+<span id="cb315-4"><a href="r-shiny.html#cb315-4" tabindex="-1"></a>  <span class="co"># Histogram of the Old Faithful Geyser Data ----</span></span>
+<span id="cb315-5"><a href="r-shiny.html#cb315-5" tabindex="-1"></a>  <span class="co"># with requested number of bins</span></span>
+<span id="cb315-6"><a href="r-shiny.html#cb315-6" tabindex="-1"></a>  <span class="co"># This expression that generates a histogram is wrapped in a call</span></span>
+<span id="cb315-7"><a href="r-shiny.html#cb315-7" tabindex="-1"></a>  <span class="co"># to renderPlot to indicate that:</span></span>
+<span id="cb315-8"><a href="r-shiny.html#cb315-8" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb315-9"><a href="r-shiny.html#cb315-9" tabindex="-1"></a>  <span class="co"># 1. It is &quot;reactive&quot; and should automatically</span></span>
+<span id="cb315-10"><a href="r-shiny.html#cb315-10" tabindex="-1"></a>  <span class="co">#    re-execute when inputs (input$bins) change</span></span>
+<span id="cb315-11"><a href="r-shiny.html#cb315-11" tabindex="-1"></a>  <span class="co"># 2. Its output type is a plot</span></span>
+<span id="cb315-12"><a href="r-shiny.html#cb315-12" tabindex="-1"></a>  output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb315-13"><a href="r-shiny.html#cb315-13" tabindex="-1"></a>  </span>
+<span id="cb315-14"><a href="r-shiny.html#cb315-14" tabindex="-1"></a>    x    <span class="ot">&lt;-</span> faithful<span class="sc">$</span>waiting</span>
+<span id="cb315-15"><a href="r-shiny.html#cb315-15" tabindex="-1"></a>    bins <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(x), <span class="fu">max</span>(x), <span class="at">length.out =</span> input<span class="sc">$</span>bins <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb315-16"><a href="r-shiny.html#cb315-16" tabindex="-1"></a></span>
+<span id="cb315-17"><a href="r-shiny.html#cb315-17" tabindex="-1"></a>    <span class="fu">hist</span>(x, <span class="at">breaks =</span> bins, <span class="at">col =</span> <span class="st">&quot;#007bc2&quot;</span>, <span class="at">border =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb315-18"><a href="r-shiny.html#cb315-18" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">&quot;Waiting time to next eruption (in mins)&quot;</span>,</span>
+<span id="cb315-19"><a href="r-shiny.html#cb315-19" tabindex="-1"></a>         <span class="at">main =</span> <span class="st">&quot;Histogram of waiting times&quot;</span>)</span>
+<span id="cb315-20"><a href="r-shiny.html#cb315-20" tabindex="-1"></a>  })</span>
+<span id="cb315-21"><a href="r-shiny.html#cb315-21" tabindex="-1"></a></span>
+<span id="cb315-22"><a href="r-shiny.html#cb315-22" tabindex="-1"></a>}</span></code></pre></div>
+<p>At its core, the server function in the Hello Shiny example is quite straightforward. It performs some calculations and generates a histogram based on the specified number of bins.</p>
+<p>However, you’ll notice that most of the script is wrapped in a call to <code>renderPlot</code>. The comment above the function provides some explanation, but don’t worry if it seems unclear; we will explore this concept in greater detail later.</p>
+<p>Before you start experimenting with the Hello Shiny app and reviewing its source code, remember that your <code>app.R</code> file should begin with loading the Shiny package and conclude with a call to <code>shinyApp</code>:</p>
+<pre><code>library(shiny)
+
+# See above for the definitions of ui and server
+ui &lt;- ...
+
+server &lt;- ...
+
+shinyApp(ui = ui, server = server)</code></pre>
+<p>While the Hello Shiny app is running, your R session will be occupied and won’t accept other commands. R is actively monitoring the app and processing its reactions. To regain access to your R session, press the escape key or click the stop icon located in the upper right corner of the RStudio console panel.</p>
+<p>How that you have known how to create an RShiny app, lets create a simple temperature converter that will convert temperature from Celcius to Farenheit.</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="r-shiny.html#cb317-1" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb317-2"><a href="r-shiny.html#cb317-2" tabindex="-1"></a></span>
+<span id="cb317-3"><a href="r-shiny.html#cb317-3" tabindex="-1"></a><span class="co"># Define UI for the Temperature Converter app</span></span>
+<span id="cb317-4"><a href="r-shiny.html#cb317-4" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb317-5"><a href="r-shiny.html#cb317-5" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;Temperature Converter&quot;</span>),</span>
+<span id="cb317-6"><a href="r-shiny.html#cb317-6" tabindex="-1"></a>  </span>
+<span id="cb317-7"><a href="r-shiny.html#cb317-7" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb317-8"><a href="r-shiny.html#cb317-8" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
+<span id="cb317-9"><a href="r-shiny.html#cb317-9" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">&quot;temp_input&quot;</span>, <span class="st">&quot;Temperature:&quot;</span>, <span class="at">value =</span> <span class="dv">0</span>),</span>
+<span id="cb317-10"><a href="r-shiny.html#cb317-10" tabindex="-1"></a>      <span class="fu">selectInput</span>(<span class="st">&quot;temp_scale&quot;</span>, <span class="st">&quot;Select scale:&quot;</span>, </span>
+<span id="cb317-11"><a href="r-shiny.html#cb317-11" tabindex="-1"></a>                  <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&quot;Celsius to Fahrenheit&quot;</span>, <span class="st">&quot;Fahrenheit to Celsius&quot;</span>)),</span>
+<span id="cb317-12"><a href="r-shiny.html#cb317-12" tabindex="-1"></a>      <span class="fu">actionButton</span>(<span class="st">&quot;convert&quot;</span>, <span class="st">&quot;Convert&quot;</span>)</span>
+<span id="cb317-13"><a href="r-shiny.html#cb317-13" tabindex="-1"></a>    ),</span>
+<span id="cb317-14"><a href="r-shiny.html#cb317-14" tabindex="-1"></a>    </span>
+<span id="cb317-15"><a href="r-shiny.html#cb317-15" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb317-16"><a href="r-shiny.html#cb317-16" tabindex="-1"></a>      <span class="fu">textOutput</span>(<span class="st">&quot;result&quot;</span>)</span>
+<span id="cb317-17"><a href="r-shiny.html#cb317-17" tabindex="-1"></a>    )</span>
+<span id="cb317-18"><a href="r-shiny.html#cb317-18" tabindex="-1"></a>  )</span>
+<span id="cb317-19"><a href="r-shiny.html#cb317-19" tabindex="-1"></a>)</span>
+<span id="cb317-20"><a href="r-shiny.html#cb317-20" tabindex="-1"></a></span>
+<span id="cb317-21"><a href="r-shiny.html#cb317-21" tabindex="-1"></a><span class="co"># Define server logic for the Temperature Converter</span></span>
+<span id="cb317-22"><a href="r-shiny.html#cb317-22" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb317-23"><a href="r-shiny.html#cb317-23" tabindex="-1"></a>  <span class="fu">observeEvent</span>(input<span class="sc">$</span>convert, {</span>
+<span id="cb317-24"><a href="r-shiny.html#cb317-24" tabindex="-1"></a>    <span class="cf">if</span> (input<span class="sc">$</span>temp_scale <span class="sc">==</span> <span class="st">&quot;Celsius to Fahrenheit&quot;</span>) {</span>
+<span id="cb317-25"><a href="r-shiny.html#cb317-25" tabindex="-1"></a>      result <span class="ot">&lt;-</span> (input<span class="sc">$</span>temp_input <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb317-26"><a href="r-shiny.html#cb317-26" tabindex="-1"></a>      output<span class="sc">$</span>result <span class="ot">&lt;-</span> <span class="fu">renderText</span>({ </span>
+<span id="cb317-27"><a href="r-shiny.html#cb317-27" tabindex="-1"></a>        <span class="fu">paste</span>(input<span class="sc">$</span>temp_input, <span class="st">&quot;°C =&quot;</span>, <span class="fu">round</span>(result, <span class="dv">2</span>), <span class="st">&quot;°F&quot;</span>)</span>
+<span id="cb317-28"><a href="r-shiny.html#cb317-28" tabindex="-1"></a>      })</span>
+<span id="cb317-29"><a href="r-shiny.html#cb317-29" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb317-30"><a href="r-shiny.html#cb317-30" tabindex="-1"></a>      result <span class="ot">&lt;-</span> (input<span class="sc">$</span>temp_input <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
+<span id="cb317-31"><a href="r-shiny.html#cb317-31" tabindex="-1"></a>      output<span class="sc">$</span>result <span class="ot">&lt;-</span> <span class="fu">renderText</span>({ </span>
+<span id="cb317-32"><a href="r-shiny.html#cb317-32" tabindex="-1"></a>        <span class="fu">paste</span>(input<span class="sc">$</span>temp_input, <span class="st">&quot;°F =&quot;</span>, <span class="fu">round</span>(result, <span class="dv">2</span>), <span class="st">&quot;°C&quot;</span>)</span>
+<span id="cb317-33"><a href="r-shiny.html#cb317-33" tabindex="-1"></a>      })</span>
+<span id="cb317-34"><a href="r-shiny.html#cb317-34" tabindex="-1"></a>    }</span>
+<span id="cb317-35"><a href="r-shiny.html#cb317-35" tabindex="-1"></a>  })</span>
+<span id="cb317-36"><a href="r-shiny.html#cb317-36" tabindex="-1"></a>}</span>
+<span id="cb317-37"><a href="r-shiny.html#cb317-37" tabindex="-1"></a></span>
+<span id="cb317-38"><a href="r-shiny.html#cb317-38" tabindex="-1"></a><span class="co"># Run the app</span></span>
+<span id="cb317-39"><a href="r-shiny.html#cb317-39" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<p>Create a folder called <code>"shiny_app_demo"</code> and create an R script file called <code>app.R</code> where you will write the above code.</p>
+<p>After importing <code>shiny</code> and <code>bslib</code> libraries in your current environment run the app by executing the code below</p>
+<pre><code>library(shiny)
+runApp(&quot;shiny_app_demo&quot;)</code></pre>
+<p>This is how the app is expected to show up.
+<img src="images/shiny_app_image_1.png" /></p>
+<p><strong>Note: </strong> Everything will stop until you close the app</p>
+<p><span style="color: orange;"><strong>Try it!</strong></span></p>
+<p>We will create a shiny app based on the <code>mtcars</code> built-in data set. This app lets you visualize the mpg agains any other variable in the data set. Follow the steps below;</p>
+<ol style="list-style-type: lower-roman">
+<li>Create a directory called <code>"shiny_apps"</code>. Inside the <code>shiny_app</code> directory, create another directory called <code>app_01</code>.</li>
+<li>In the <code>app_01</code> directory, create an R script file called <code>app.R</code>. Add the lines below to import the necessary libraries</li>
+</ol>
+<pre><code>library(shiny)</code></pre>
+<ol start="3" style="list-style-type: lower-roman">
+<li>Create a UI component by adding the lines below</li>
+</ol>
+<pre><code># UI Component
+ui &lt;- fluidPage(
+  titlePanel(&quot;Scatter Plot Visualizer&quot;),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(&quot;variable&quot;, &quot;Choose Variable for x-axis:&quot;, 
+                  choices = names(mtcars), selected = &quot;hp&quot;)
+    ),
+    mainPanel(
+      plotOutput(&quot;scatterPlot&quot;)
+    )
+  )
+)
+</code></pre>
+<ol start="4" style="list-style-type: lower-roman">
+<li>Now add the lines below to create a server component</li>
+</ol>
+<pre><code># Server Component
+server &lt;- function(input, output) {
+  output$scatterPlot &lt;- renderPlot({
+    plot(mtcars[[input$variable]], mtcars$mpg,
+         xlab = input$variable, ylab = &quot;mpg&quot;,
+         main = paste(&quot;mpg vs&quot;, input$variable))
+  })
+}</code></pre>
+<ol start="22" style="list-style-type: lower-alpha">
+<li>Finally, run the app by adding the line below towards the end of the script</li>
+</ol>
+<pre><code># Run the App
+shinyApp(ui = ui, server = server)</code></pre>
+<ol start="6" style="list-style-type: lower-roman">
+<li>Run the below script in a different environment and watch the app in action!</li>
+</ol>
+<pre><code>library(shiny)
+runApp(&quot;shiny_apps/app_01&quot;)</code></pre>
+<p><span style="color: orange;"><strong>Try it again!</strong></span></p>
+<p>How about we make a bar chart using the built-in iris data set? Yes, we will have the bar chart that allows us to filter different iris species and visualize each characteristics separately. Lets get into action! Follow the steps below.</p>
+<ol style="list-style-type: lower-roman">
+<li>Create a director <code>app_02</code> and add a new R script file called <code>app.R</code>.</li>
+<li>Add the code below to <code>app.R</code> to import the necessary library</li>
+</ol>
+<pre><code>library(shiny)
+library(ggplot2)</code></pre>
+<ol start="3" style="list-style-type: lower-roman">
+<li>Add the ui components with the <code>sidePanel</code>(where the control takes place) and the <code>mainPanel</code> (Where the chart shows up). Add the lines of code below.</li>
+</ol>
+<pre><code># UI Component
+ui &lt;- fluidPage(
+  titlePanel(&quot;Bar Chart Explorer&quot;),
+  sidebarLayout(
+    sidebarPanel(
+      checkboxGroupInput(&quot;species&quot;, &quot;Select Species:&quot;, 
+                         choices = unique(iris$Species), 
+                         selected = unique(iris$Species))
+    ),
+    mainPanel(
+      plotOutput(&quot;barChart&quot;)
+    )
+  )
+)</code></pre>
+<ol start="4" style="list-style-type: lower-roman">
+<li>Add the server component where the calculations will take place. Use the <code>renderPlot</code> to show the app that you need to plot.</li>
+</ol>
+<pre><code># Server Component
+server &lt;- function(input, output) {
+  output$barChart &lt;- renderPlot({
+    filtered_data &lt;- iris[iris$Species %in% input$species, ]
+    ggplot(filtered_data, aes(Species)) +
+      geom_bar(fill = &quot;steelblue&quot;) +
+      labs(title = &quot;Species Count&quot;, x = &quot;Species&quot;, y = &quot;Count&quot;)
+  })
+}</code></pre>
+<ol start="22" style="list-style-type: lower-alpha">
+<li>Add the lines below to complete the script</li>
+</ol>
+<pre><code># Run the App
+shinyApp(ui = ui, server = server)</code></pre>
+<ol start="6" style="list-style-type: lower-roman">
+<li>Finally, run the code below in a different environment to get the app running.</li>
+</ol>
+<pre><code>library(shiny)
+runApp(&quot;shiny_apps/app_02&quot;)</code></pre>
+</div>
+</div>
+<div id="hands-on-exercise-4" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> <span style="color: green;"><strong>Hands-On Exercise</strong></span><a href="r-shiny.html#hands-on-exercise-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this exercise, you will be required to download the Boston housing data set from <a href="https://www.kaggle.com/datasets/fedesoriano/the-boston-houseprice-data">here</a>. Follow the instructions below to create a shiny app.</p>
+<ol style="list-style-type: lower-roman">
+<li>Load the data set</li>
+<li>Your shiny app should have a simple structure with;</li>
+</ol>
+<ul>
+<li>A sidebar panel for inputs</li>
+<li>A main panel to display visualizations</li>
+</ul>
+<ol start="3" style="list-style-type: lower-roman">
+<li>Implement the following functionalities in your app;</li>
+</ol>
+<ul>
+<li>A scatter plot that will allow the user to select an independent variable from the data set(e.g crime rate, number of rooms) to plot against the median house value (<code>MEDV</code>).</li>
+<li>Provide an option for the user to view a histogram of the median house value to understand the distribution of the housing prices.</li>
+<li>Allow the user to select the categorical variable like <code>CHAS</code> to compare distributions of <code>MEDV</code> using a boxplot.</li>
+</ul>
+<ol start="4" style="list-style-type: lower-roman">
+<li>Make sure you use labels and titles for each title to make visualizations easy to understand. Also, comment your code to explain what each part does.</li>
+</ol>
+<p>Here are the app layout requirements;</p>
+<ol style="list-style-type: decimal">
+<li>Side bar panel</li>
+</ol>
+<ul>
+<li>A dropdown menu for selecting an independent variable (e.g., <code>CRIM</code>, <code>RM</code>, <code>TAX</code>) for the scatter plot.</li>
+<li>A checkbox to view the histogram of <code>MEDV</code>.</li>
+<li>A dropdown menu for selecting the categorical variable (<code>CHAS</code>) for the box plot.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Main Panel</li>
+</ol>
+<ul>
+<li>A scatter plot that shows the relationship between the selected variable and <code>MEDV</code>.</li>
+<li>A histogram of <code>MEDV</code> when selected.</li>
+<li>A box plot of <code>MEDV</code> grouped by <code>CHAS</code>.</li>
+</ul>
+<p>Remember to do your work in a folder <code>assignment</code> that will be inside the <code>shiny_apps</code> directory. Create an <code>app.R</code> script.</p>
+<hr />
+<p><span style="color: brown;"><strong>Solution</strong></span></p>
+<p>Check the <code>app.R</code> file in <code>shiny_apps/assignment/</code> directory.</p>
+<p>This is how the app is created and run;</p>
+<ul>
+<li>Create a directory <code>assignment</code> in the <code>shiny_apps</code>.</li>
+<li>Within the <code>assignment</code> directory create an R script <code>app.R</code>.</li>
+<li>Add the code below to install and import the necessary libraries.</li>
+</ul>
+<pre><code># Install the library 
+install.packages(&quot;shiny&quot;)
+
+# Load necessary libraries
+library(shiny)
+library(ggplot2) # for plotting</code></pre>
+<ul>
+<li>Thereafter, add the lines to below to the <code>app.R</code> file to create a UI component.</li>
+</ul>
+<pre><code># Define UI for the app
+ui &lt;- fluidPage(
+  titlePanel(&quot;Boston Housing Data Explorer&quot;),
+  
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(&quot;xvar&quot;, &quot;Choose a variable for Scatter Plot:&quot;,
+                  choices = names(boston_df)[-14], # Excluding &#39;medv&#39; as it&#39;s the dependent variable
+                  selected = &quot;RM&quot;),  # Default selection
+      selectInput(&quot;box_var&quot;, &quot;Choose a variable for Box Plot:&quot;,
+                  choices = names(boston_df), selected = &quot;MEDV&quot;),
+      checkboxInput(&quot;show_hist&quot;, &quot;Show Histogram of MEDV&quot;, FALSE)
+    ),
+    
+    mainPanel(
+      plotOutput(&quot;scatterPlot&quot;),
+      plotOutput(&quot;boxPlot&quot;),
+      plotOutput(&quot;histPlot&quot;)
+    )
+  )
+)</code></pre>
+<ul>
+<li>Now that the UI is ready, add the lines below to create the server logic for the app.</li>
+</ul>
+<pre><code># Define server logic for the app
+server &lt;- function(input, output) {
+  
+  # Scatter Plot: Selected variable vs Median House Value (medv)
+  output$scatterPlot &lt;- renderPlot({
+    ggplot(boston_df, aes_string(x = input$xvar, y = &quot;MEDV&quot;)) +
+      geom_point(color = &quot;blue&quot;, alpha = 0.6) +
+      geom_smooth(method = &quot;lm&quot;, col = &quot;red&quot;, se = FALSE) +
+      labs(title = paste(&quot;Scatter Plot of&quot;, input$xvar, &quot;vs Median House Value&quot;),
+           x = input$xvar, y = &quot;Median House Value (MEDV)&quot;) +
+      theme_minimal()
+  })
+  
+  # Box Plot of MEDV by Categorical Variable
+  output$boxPlot &lt;- renderPlot({
+    ggplot(boston_df, aes_string(y = input$box_var)) +
+      geom_boxplot(fill = &quot;lightgreen&quot;, color = &quot;darkgreen&quot;) +
+      labs(title = paste(&quot;Box Plot of Median House Value by&quot;, input$box_var),
+           x = input$box_var) +
+      theme_minimal()
+  })
+  
+  # Histogram of MEDV
+  output$histPlot &lt;- renderPlot({
+    if (input$show_hist) {
+      ggplot(boston_df, aes(x = MEDV)) +
+        geom_histogram(binwidth = 5, fill = &quot;skyblue&quot;, color = &quot;black&quot;, alpha = 0.7) +
+        labs(title = &quot;Histogram of Median House Value (MEDV)&quot;,
+             x = &quot;Median House Value&quot;, y = &quot;Frequency&quot;) +
+        theme_minimal()
+    }
+  })
+}</code></pre>
+<ul>
+<li>The UI and server is ready. Finally, we need to add the lines below to enable the app to run.</li>
+</ul>
+<pre><code># Run the app
+shinyApp(ui = ui, server = server)</code></pre>
+<ul>
+<li>Save the file and run the below line to the console to get the app running.</li>
+</ul>
+<pre><code>library(shiny)
+runApp(&quot;shiny_apps/assignment/app.R&quot;)</code></pre>
+<p>Here is how the app will look like
+<img src="images/app_assignment.png" /></p>
+<p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="reproducibility-and-report-with-r-markdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="building-r-packages.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/balsaedi/RCourse/edit/main/07-RShiny.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/balsaedi/RCourse/blob/main/07-RShiny.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

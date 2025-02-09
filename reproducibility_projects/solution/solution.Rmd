@@ -1,0 +1,51 @@
+---
+title: "solution"
+output: html_document
+date: "2024-11-11"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Iris Data Analysis 
+## Introduction
+
+The *iris* data set is a classic data set in the field of machine learning and statistics. It contains information on the measurements of sepal length, sepal width, petal length and petal width for three species of flower: *Setosa*, *Versicolor* and *Virginica*. This data set is commonly used for demonstrating basic data analysis and visualization techniques. 
+
+In this report, we will import the data set, conduct a basic data visualization, and conclude with brief insights. 
+
+## Importing the data set
+The *iris* data set is built into R, so we can load it directly without needing to import any files. 
+ 
+```{r import-data}
+# Load the data set 
+data(iris)
+
+# Display first few rows of the data set 
+head(iris)
+```
+
+## Basic Visualization 
+Let's explore the relationship between sepal length and petal length across the three species using a scatter plot. 
+
+```{r scatter-plot}
+library(ggplot2)
+
+# Create a scatter plot 
+ggplot(iris, 
+       aes(x = Sepal.Length, y = Petal.Length, color = Species)) + 
+  geom_point(size=3, alpha=0.7) + 
+  labs(
+    title = "Sepal Length vs Petal Length by Species",
+    x = "Sepal length (cm)",
+    y = "Petal length (cm)"
+  ) + 
+  theme_minimal()
+
+```
+
+## Conclusion
+The scatter plot above shows a clear distinction in sepal and petal length measurements among the species, with *Setosa* having the smallest values among the sepal and the petal lengths while *Virginica* having the largest values of sepal and petal length. *Versicolor* lies in the middle. This visualization suggests that the measurements could be useful for classifying the species,as they display distinct clusters in the plot. 
+
+The brief analysis provides a basic exploration of the iris data set, highlighting the relationships between measurements and species. Further analysis could include additional visualizations and statistical tests to deepen our understanding. 

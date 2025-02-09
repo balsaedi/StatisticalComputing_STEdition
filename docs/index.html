@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Statistical Computing</title>
+  <meta name="description" content="Statistical Computing" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Statistical Computing" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Statistical Computing" />
+  
+  
+  
+
+<meta name="author" content="Dr. Basim Alsaedi" />
+
+
+<meta name="date" content="2025-02-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="functions.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SHORT TITLE HERE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Reviews</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#data-types-and-structures"><i class="fa fa-check"></i><b>1.1</b> Data Types and Structures</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#data-types"><i class="fa fa-check"></i><b>1.1.1</b> Data Types</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#data-structures"><i class="fa fa-check"></i><b>1.1.2</b> Data Structures</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#data-importing-and-exporting"><i class="fa fa-check"></i><b>1.2</b> Data Importing and Exporting</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#data-cleaning"><i class="fa fa-check"></i><b>1.3</b> Data Cleaning</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#data-visualization"><i class="fa fa-check"></i><b>1.4</b> Data Visualization</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#hands-on-exercises"><i class="fa fa-check"></i><b>1.5</b> <span style="color: green;"><strong>Hands-on Exercises</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>2</b> Functions</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="functions.html"><a href="functions.html#writing-functions"><i class="fa fa-check"></i><b>2.1</b> Writing Functions</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="functions.html"><a href="functions.html#user-defined-functions"><i class="fa fa-check"></i><b>2.1.1</b> User-Defined Functions</a></li>
+<li class="chapter" data-level="2.1.2" data-path="functions.html"><a href="functions.html#built-in-fuctions"><i class="fa fa-check"></i><b>2.1.2</b> Built-in Fuctions</a></li>
+<li class="chapter" data-level="2.1.3" data-path="functions.html"><a href="functions.html#package-functions"><i class="fa fa-check"></i><b>2.1.3</b> Package Functions</a></li>
+<li class="chapter" data-level="2.1.4" data-path="functions.html"><a href="functions.html#type-of-arguments-in-r-functions"><i class="fa fa-check"></i><b>2.1.4</b> Type of arguments in R functions</a></li>
+<li class="chapter" data-level="2.1.5" data-path="functions.html"><a href="functions.html#understanding-return-values-in-r-functions"><i class="fa fa-check"></i><b>2.1.5</b> Understanding Return Values in R Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="functions.html"><a href="functions.html#calling-the-functions"><i class="fa fa-check"></i><b>2.2</b> Calling the Functions</a></li>
+<li class="chapter" data-level="2.3" data-path="functions.html"><a href="functions.html#function-documentation"><i class="fa fa-check"></i><b>2.3</b> Function Documentation</a></li>
+<li class="chapter" data-level="2.4" data-path="functions.html"><a href="functions.html#hands-on-exercise"><i class="fa fa-check"></i><b>2.4</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="group-manipulation.html"><a href="group-manipulation.html"><i class="fa fa-check"></i><b>3</b> Group Manipulation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="group-manipulation.html"><a href="group-manipulation.html#apply-family"><i class="fa fa-check"></i><b>3.1</b> Apply Family</a></li>
+<li class="chapter" data-level="3.2" data-path="group-manipulation.html"><a href="group-manipulation.html#aggregate-plyr"><i class="fa fa-check"></i><b>3.2</b> Aggregate Plyr</a></li>
+<li class="chapter" data-level="3.3" data-path="group-manipulation.html"><a href="group-manipulation.html#data-reshaping"><i class="fa fa-check"></i><b>3.3</b> Data Reshaping</a></li>
+<li class="chapter" data-level="3.4" data-path="group-manipulation.html"><a href="group-manipulation.html#hands-on-exercise-1"><i class="fa fa-check"></i><b>3.4</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="general-statistics.html"><a href="general-statistics.html"><i class="fa fa-check"></i><b>4</b> General Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="general-statistics.html"><a href="general-statistics.html#tabulating-factors-and-creating-contingency-tables"><i class="fa fa-check"></i><b>4.1</b> Tabulating Factors and Creating Contingency Tables</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-factors-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Understanding Factors in R</a></li>
+<li class="chapter" data-level="4.1.2" data-path="general-statistics.html"><a href="general-statistics.html#creating-frequency-tables"><i class="fa fa-check"></i><b>4.1.2</b> Creating Frequency Tables</a></li>
+<li class="chapter" data-level="4.1.3" data-path="general-statistics.html"><a href="general-statistics.html#creating-contingency-tables"><i class="fa fa-check"></i><b>4.1.3</b> Creating Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.4" data-path="general-statistics.html"><a href="general-statistics.html#adding-margins-to-contingency-tables"><i class="fa fa-check"></i><b>4.1.4</b> Adding Margins to Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.5" data-path="general-statistics.html"><a href="general-statistics.html#computing-row-and-column-proportions"><i class="fa fa-check"></i><b>4.1.5</b> Computing Row and Column Proportions</a></li>
+<li class="chapter" data-level="4.1.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-contingency-tables"><i class="fa fa-check"></i><b>4.1.6</b> Visualizing Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises"><i class="fa fa-check"></i><b>4.1.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="general-statistics.html"><a href="general-statistics.html#calculating-quantiles"><i class="fa fa-check"></i><b>4.2</b> Calculating Quantiles</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-quantiles"><i class="fa fa-check"></i><b>4.2.1</b> Understanding Quantiles</a></li>
+<li class="chapter" data-level="4.2.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-quantiles-in-r"><i class="fa fa-check"></i><b>4.2.2</b> Computing Quantiles in R</a></li>
+<li class="chapter" data-level="4.2.3" data-path="general-statistics.html"><a href="general-statistics.html#computing-specific-quantiles"><i class="fa fa-check"></i><b>4.2.3</b> Computing Specific Quantiles</a></li>
+<li class="chapter" data-level="4.2.4" data-path="general-statistics.html"><a href="general-statistics.html#using-summary-for-quick-insights"><i class="fa fa-check"></i><b>4.2.4</b> Using <code>summary()</code> for Quick Insights</a></li>
+<li class="chapter" data-level="4.2.5" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-quantiles"><i class="fa fa-check"></i><b>4.2.5</b> Visualizing Quantiles</a></li>
+<li class="chapter" data-level="4.2.6" data-path="general-statistics.html"><a href="general-statistics.html#finding-interquartile-range-iqr"><i class="fa fa-check"></i><b>4.2.6</b> Finding Interquartile Range (IQR)</a></li>
+<li class="chapter" data-level="4.2.7" data-path="general-statistics.html"><a href="general-statistics.html#finding-outliers-using-iqr"><i class="fa fa-check"></i><b>4.2.7</b> Finding Outliers Using IQR</a></li>
+<li class="chapter" data-level="4.2.8" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>4.2.8</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="general-statistics.html"><a href="general-statistics.html#z-scores"><i class="fa fa-check"></i><b>4.3</b> z-Scores</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-z-scores"><i class="fa fa-check"></i><b>4.3.1</b> Understanding z-Scores</a></li>
+<li class="chapter" data-level="4.3.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-z-scores-in-r"><i class="fa fa-check"></i><b>4.3.2</b> Computing z-Scores in R</a></li>
+<li class="chapter" data-level="4.3.3" data-path="general-statistics.html"><a href="general-statistics.html#computing-z-scores-using-scale"><i class="fa fa-check"></i><b>4.3.3</b> Computing z-Scores Using <code>scale()</code></a></li>
+<li class="chapter" data-level="4.3.4" data-path="general-statistics.html"><a href="general-statistics.html#interpreting-z-scores"><i class="fa fa-check"></i><b>4.3.4</b> Interpreting z-Scores</a></li>
+<li class="chapter" data-level="4.3.5" data-path="general-statistics.html"><a href="general-statistics.html#using-z-scores-to-detect-outliers"><i class="fa fa-check"></i><b>4.3.5</b> Using z-Scores to Detect Outliers</a></li>
+<li class="chapter" data-level="4.3.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-z-scores"><i class="fa fa-check"></i><b>4.3.6</b> Visualizing z-Scores</a></li>
+<li class="chapter" data-level="4.3.7" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercises-2"><i class="fa fa-check"></i><b>4.3.7</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="general-statistics.html"><a href="general-statistics.html#inferential-statistics"><i class="fa fa-check"></i><b>4.4</b> Inferential Statistics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="general-statistics.html"><a href="general-statistics.html#basic-concepts"><i class="fa fa-check"></i><b>4.4.1</b> Basic Concepts</a></li>
+<li class="chapter" data-level="4.4.2" data-path="general-statistics.html"><a href="general-statistics.html#confidence-intervals"><i class="fa fa-check"></i><b>4.4.2</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="4.4.3" data-path="general-statistics.html"><a href="general-statistics.html#hypothesis-testing"><i class="fa fa-check"></i><b>4.4.3</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="4.4.4" data-path="general-statistics.html"><a href="general-statistics.html#steps-in-hypothesis-testing"><i class="fa fa-check"></i><b>4.4.4</b> Steps in Hypothesis Testing</a></li>
+<li class="chapter" data-level="4.4.5" data-path="general-statistics.html"><a href="general-statistics.html#one-sample-t-test"><i class="fa fa-check"></i><b>4.4.5</b> One-Sample t-Test</a></li>
+<li class="chapter" data-level="4.4.6" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-means"><i class="fa fa-check"></i><b>4.4.6</b> Comparing Two Sample Means</a></li>
+<li class="chapter" data-level="4.4.7" data-path="general-statistics.html"><a href="general-statistics.html#testing-proportions"><i class="fa fa-check"></i><b>4.4.7</b> Testing Proportions</a></li>
+<li class="chapter" data-level="4.4.8" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-1"><i class="fa fa-check"></i><b>4.4.8</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="general-statistics.html"><a href="general-statistics.html#testing-the-mean-of-a-sample-t-test-and-its-confidence-interval"><i class="fa fa-check"></i><b>4.5</b> Testing the Mean of a Sample (t-Test) and its Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-the-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Understanding the t-Test</a></li>
+<li class="chapter" data-level="4.5.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-confidence-intervals-for-the-mean"><i class="fa fa-check"></i><b>4.5.2</b> Computing Confidence Intervals for the Mean</a></li>
+<li class="chapter" data-level="4.5.3" data-path="general-statistics.html"><a href="general-statistics.html#performing-a-one-sample-t-test"><i class="fa fa-check"></i><b>4.5.3</b> Performing a One-Sample t-Test</a></li>
+<li class="chapter" data-level="4.5.4" data-path="general-statistics.html"><a href="general-statistics.html#one-sided-vs.-two-sided-tests"><i class="fa fa-check"></i><b>4.5.4</b> One-Sided vs. Two-Sided Tests</a></li>
+<li class="chapter" data-level="4.5.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-means-independent-t-test"><i class="fa fa-check"></i><b>4.5.5</b> Comparing Two Sample Means (Independent t-Test)</a></li>
+<li class="chapter" data-level="4.5.6" data-path="general-statistics.html"><a href="general-statistics.html#paired-t-test-dependent-samples"><i class="fa fa-check"></i><b>4.5.6</b> Paired t-Test (Dependent Samples)</a></li>
+<li class="chapter" data-level="4.5.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-2"><i class="fa fa-check"></i><b>4.5.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="general-statistics.html"><a href="general-statistics.html#testing-a-sample-proportion-and-its-confidence-interval"><i class="fa fa-check"></i><b>4.6</b> Testing a Sample Proportion and its Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-proportion-testing"><i class="fa fa-check"></i><b>4.6.1</b> Understanding Proportion Testing</a></li>
+<li class="chapter" data-level="4.6.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-confidence-intervals-for-proportions"><i class="fa fa-check"></i><b>4.6.2</b> Computing Confidence Intervals for Proportions</a></li>
+<li class="chapter" data-level="4.6.3" data-path="general-statistics.html"><a href="general-statistics.html#performing-a-one-sample-proportion-test"><i class="fa fa-check"></i><b>4.6.3</b> Performing a One-Sample Proportion Test</a></li>
+<li class="chapter" data-level="4.6.4" data-path="general-statistics.html"><a href="general-statistics.html#one-sided-proportion-tests"><i class="fa fa-check"></i><b>4.6.4</b> One-Sided Proportion Tests</a></li>
+<li class="chapter" data-level="4.6.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-proportions"><i class="fa fa-check"></i><b>4.6.5</b> Comparing Two Sample Proportions</a></li>
+<li class="chapter" data-level="4.6.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-proportions"><i class="fa fa-check"></i><b>4.6.6</b> Visualizing Proportions</a></li>
+<li class="chapter" data-level="4.6.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-3"><i class="fa fa-check"></i><b>4.6.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="general-statistics.html"><a href="general-statistics.html#comparing-the-means-of-two-samples"><i class="fa fa-check"></i><b>4.7</b> Comparing the Means of Two Samples</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-two-sample-t-test"><i class="fa fa-check"></i><b>4.7.1</b> Understanding Two-Sample t-Test</a></li>
+<li class="chapter" data-level="4.7.2" data-path="general-statistics.html"><a href="general-statistics.html#independent-unpaired-t-test"><i class="fa fa-check"></i><b>4.7.2</b> Independent (Unpaired) t-Test</a></li>
+<li class="chapter" data-level="4.7.3" data-path="general-statistics.html"><a href="general-statistics.html#checking-assumptions"><i class="fa fa-check"></i><b>4.7.3</b> Checking Assumptions</a></li>
+<li class="chapter" data-level="4.7.4" data-path="general-statistics.html"><a href="general-statistics.html#performing-t-test-with-unequal-variances"><i class="fa fa-check"></i><b>4.7.4</b> Performing t-Test with Unequal Variances</a></li>
+<li class="chapter" data-level="4.7.5" data-path="general-statistics.html"><a href="general-statistics.html#paired-t-test-dependent-samples-1"><i class="fa fa-check"></i><b>4.7.5</b> Paired t-Test (Dependent Samples)</a></li>
+<li class="chapter" data-level="4.7.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-group-differences"><i class="fa fa-check"></i><b>4.7.6</b> Visualizing Group Differences</a></li>
+<li class="chapter" data-level="4.7.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-4"><i class="fa fa-check"></i><b>4.7.7</b> Practical Exercises</a></li>
+<li class="chapter" data-level="4.7.8" data-path="general-statistics.html"><a href="general-statistics.html#exercise-4-visualizing-group-differences"><i class="fa fa-check"></i><b>4.7.8</b> Exercise 4: Visualizing Group Differences</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="general-statistics.html"><a href="general-statistics.html#performing-pairwise-comparisons-between-group-means"><i class="fa fa-check"></i><b>4.8</b> Performing Pairwise Comparisons Between Group Means</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-pairwise-comparisons"><i class="fa fa-check"></i><b>4.8.1</b> Understanding Pairwise Comparisons</a></li>
+<li class="chapter" data-level="4.8.2" data-path="general-statistics.html"><a href="general-statistics.html#performing-pairwise-t-tests"><i class="fa fa-check"></i><b>4.8.2</b> Performing Pairwise t-Tests</a></li>
+<li class="chapter" data-level="4.8.3" data-path="general-statistics.html"><a href="general-statistics.html#tukeys-hsd-test"><i class="fa fa-check"></i><b>4.8.3</b> Tukey’s HSD Test</a></li>
+<li class="chapter" data-level="4.8.4" data-path="general-statistics.html"><a href="general-statistics.html#bonferroni-and-holm-corrections"><i class="fa fa-check"></i><b>4.8.4</b> Bonferroni and Holm Corrections</a></li>
+<li class="chapter" data-level="4.8.5" data-path="general-statistics.html"><a href="general-statistics.html#dunnetts-test-comparing-to-a-control-group"><i class="fa fa-check"></i><b>4.8.5</b> Dunnett’s Test (Comparing to a Control Group)</a></li>
+<li class="chapter" data-level="4.8.6" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-5"><i class="fa fa-check"></i><b>4.8.6</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercise-2"><i class="fa fa-check"></i><b>4.9</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="general-statistics.html"><a href="general-statistics.html#exercise-1-descriptive-statistics"><i class="fa fa-check"></i><b>4.9.1</b> Exercise 1: Descriptive Statistics</a></li>
+<li class="chapter" data-level="4.9.2" data-path="general-statistics.html"><a href="general-statistics.html#exercise-2-confidence-interval-for-mean"><i class="fa fa-check"></i><b>4.9.2</b> Exercise 2: Confidence Interval for Mean</a></li>
+<li class="chapter" data-level="4.9.3" data-path="general-statistics.html"><a href="general-statistics.html#exercise-3-one-sample-t-test"><i class="fa fa-check"></i><b>4.9.3</b> Exercise 3: One-Sample t-Test**</a></li>
+<li class="chapter" data-level="4.9.4" data-path="general-statistics.html"><a href="general-statistics.html#exercise-4-proportion-test"><i class="fa fa-check"></i><b>4.9.4</b> Exercise 4: Proportion Test</a></li>
+<li class="chapter" data-level="4.9.5" data-path="general-statistics.html"><a href="general-statistics.html#exercise-5-comparing-two-sample-means"><i class="fa fa-check"></i><b>4.9.5</b> Exercise 5: Comparing Two Sample Means</a></li>
+<li class="chapter" data-level="4.9.6" data-path="general-statistics.html"><a href="general-statistics.html#exercise-6-data-visualization"><i class="fa fa-check"></i><b>4.9.6</b> Exercise 6: Data Visualization</a></li>
+<li class="chapter" data-level="4.9.7" data-path="general-statistics.html"><a href="general-statistics.html#exercise-7-scatterplot-with-regression-line"><i class="fa fa-check"></i><b>4.9.7</b> Exercise 7: Scatterplot with Regression Line</a></li>
+<li class="chapter" data-level="4.9.8" data-path="general-statistics.html"><a href="general-statistics.html#exercise-8-pairwise-comparisons"><i class="fa fa-check"></i><b>4.9.8</b> Exercise 8: Pairwise Comparisons</a></li>
+<li class="chapter" data-level="4.9.9" data-path="general-statistics.html"><a href="general-statistics.html#exercise-9-tukeys-hsd-test"><i class="fa fa-check"></i><b>4.9.9</b> Exercise 9: Tukey’s HSD Test</a></li>
+<li class="chapter" data-level="4.9.10" data-path="general-statistics.html"><a href="general-statistics.html#exercise-10-comparing-a-treatment-to-a-control"><i class="fa fa-check"></i><b>4.9.10</b> Exercise 10: Comparing a Treatment to a Control</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#basics-of-wilkinson-rogers-notation-y-x-linear-regression"><i class="fa fa-check"></i><b>5.1</b> Basics of Wilkinson-Rogers Notation (y ~ x), Linear Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#scatterplots-with-regression-lines-reading-lm-output"><i class="fa fa-check"></i><b>5.2</b> Scatterplots with Regression Lines, Reading lm() Output</a></li>
+<li class="chapter" data-level="5.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#confidence-intervals-for-regression-coefficients-testing-coefficients"><i class="fa fa-check"></i><b>5.3</b> Confidence Intervals for Regression Coefficients, Testing Coefficients</a></li>
+<li class="chapter" data-level="5.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#identifying-points-in-a-plot"><i class="fa fa-check"></i><b>5.4</b> Identifying Points in a Plot</a></li>
+<li class="chapter" data-level="5.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#hands-on-exercise-3"><i class="fa fa-check"></i><b>5.5</b> <span style="color: green;"><strong>Hands-On Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html"><i class="fa fa-check"></i><b>6</b> Reproducibility and Report with R Markdown</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#key-tools-in-r-for-reproducibility-and-reporting"><i class="fa fa-check"></i><b>6.1</b> Key Tools in R for Reproducibility and Reporting</a></li>
+<li class="chapter" data-level="6.2" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#creating-reproducible-reports"><i class="fa fa-check"></i><b>6.2</b> Creating Reproducible Reports</a></li>
+<li class="chapter" data-level="6.3" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#going-beyond-shiny-for-interactive-reporting"><i class="fa fa-check"></i><b>6.3</b> Going Beyond: Shiny for Interactive Reporting</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-shiny.html"><a href="r-shiny.html"><i class="fa fa-check"></i><b>7</b> R Shiny</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="r-shiny.html"><a href="r-shiny.html#structure-of-a-shiny-app"><i class="fa fa-check"></i><b>7.1</b> Structure of a Shiny App</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="r-shiny.html"><a href="r-shiny.html#user-interfaceui"><i class="fa fa-check"></i><b>7.1.1</b> User Interface(ui)</a></li>
+<li class="chapter" data-level="7.1.2" data-path="r-shiny.html"><a href="r-shiny.html#server"><i class="fa fa-check"></i><b>7.1.2</b> Server</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="r-shiny.html"><a href="r-shiny.html#hands-on-exercise-4"><i class="fa fa-check"></i><b>7.2</b> <span style="color: green;"><strong>Hands-On Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="building-r-packages.html"><a href="building-r-packages.html"><i class="fa fa-check"></i><b>8</b> Building R Packages</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="building-r-packages.html"><a href="building-r-packages.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="building-r-packages.html"><a href="building-r-packages.html#prerequisites"><i class="fa fa-check"></i><b>8.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="8.3" data-path="building-r-packages.html"><a href="building-r-packages.html#building-a-simple-r-package"><i class="fa fa-check"></i><b>8.3</b> Building a simple R package</a></li>
+<li class="chapter" data-level="8.4" data-path="building-r-packages.html"><a href="building-r-packages.html#making-a-new-r-project"><i class="fa fa-check"></i><b>8.4</b> Making A New R Project</a></li>
+<li class="chapter" data-level="8.5" data-path="building-r-packages.html"><a href="building-r-packages.html#adding-documentation"><i class="fa fa-check"></i><b>8.5</b> Adding Documentation</a></li>
+<li class="chapter" data-level="8.6" data-path="building-r-packages.html"><a href="building-r-packages.html#uploading-and-installing-from-github"><i class="fa fa-check"></i><b>8.6</b> Uploading and Installing from Github</a></li>
+<li class="chapter" data-level="8.7" data-path="building-r-packages.html"><a href="building-r-packages.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>8.7</b> <span style="color: green;"><strong>Hands-on Exercises</strong></span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Computing</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Statistical Computing</h1>
+<p class="author"><em>Dr. Basim Alsaedi</em></p>
+<p class="date"><em>2025-02-09</em></p>
+</div>
+<div id="reviews" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Reviews<a href="index.html#reviews" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="data-types-and-structures" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Data Types and Structures<a href="index.html#data-types-and-structures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="data-types" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Data Types<a href="index.html#data-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are different kinds of values in R that can be manipulated in variables. They most commonly used are; strings, numerics(integers and floats) and boolean values. The function <code>class</code> can be used to find the data type.</p>
+<p><span style="color: orange;"><strong>Try it!</strong></span></p>
+<p>Before diving deep into data types, lets create a value with a random value for instance <code>age</code> and finds its data type.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">27</span></span>
+<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a><span class="fu">class</span>(age)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p>The <code>age</code> is a <code>"numeric"</code> data type variable, interesting?</p>
+<p>Lets explore different data types and their examples;</p>
+<ol style="list-style-type: decimal">
+<li><strong>Integers: </strong> These are whole numbers without dev=cimal point(e.g., 10, -5). In R, it is specified with the <code>L</code> suffix like <code>10L</code>.</li>
+<li><strong>Floats: </strong> These are numbers with decimal points(e.g. 3.14, -2.718). R refers them as numerics.</li>
+<li><strong>Boolean(Logical): </strong> True or False values, represented as <code>TRUE</code> or <code>FALSE</code> in R. They are crucial in conditional statements.</li>
+<li><strong>Strings(Character): </strong> These are text values enclosed in quotes(e.g. <code>"Hello world"</code> , names like <code>"John", "Mustafa", "Patel"</code>, variable names like <code>"age", "gender", "salary"</code>)</li>
+</ol>
+<p>You will often deal with mixed data types when analyzing real-world data sets therefore understanding these will help you handles any data set!</p>
+<p><span style="color: orange;"><strong>Examples</strong></span></p>
+<p>Lets have some fun! We will create different variables and find their data types;</p>
+<ol style="list-style-type: lower-roman">
+<li><code>age &lt;- 34L</code></li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" tabindex="-1"></a>age <span class="ot">&lt;-</span> 34L</span>
+<span id="cb3-2"><a href="index.html#cb3-2" tabindex="-1"></a><span class="fu">class</span>(age)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<ol start="2" style="list-style-type: lower-roman">
+<li><code>weight &lt;- 68.2</code></li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="index.html#cb5-1" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fl">68.2</span></span>
+<span id="cb5-2"><a href="index.html#cb5-2" tabindex="-1"></a><span class="fu">class</span>(weight)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<ol start="3" style="list-style-type: lower-roman">
+<li><code>name &lt;- "Mustafa"</code></li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="index.html#cb7-1" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">&quot;Mustafa&quot;</span></span>
+<span id="cb7-2"><a href="index.html#cb7-2" tabindex="-1"></a><span class="fu">class</span>(name)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<ol start="4" style="list-style-type: lower-roman">
+<li><code>is_winter &lt;- FALSE</code></li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="index.html#cb9-1" tabindex="-1"></a>is_winter <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb9-2"><a href="index.html#cb9-2" tabindex="-1"></a><span class="fu">class</span>(is_winter)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<p>You see how simple it is to find the data type of different variables in R! Remember the <code>class</code> function returns any number whether with decimal or whole as <code>"numeric"</code>. It only returns <code>"integer"</code> when there is a suffix <code>L</code>.</p>
+<p><span style="color: green;"><strong>Practical Exercise</strong></span></p>
+<p>Try out the practical exercise below to test your understanding in data types</p>
+<ol style="list-style-type: lower-roman">
+<li>Find the data type of <code>98.03</code> using <code>class()</code> function.</li>
+<li>Assign the value <code>98.03</code> to variable <code>height</code> and find data type of height.</li>
+<li>There are 27 goats in a field, assign the quantity of goats to a variable <code>goats</code> and find the data type of the variable <code>goats</code>. Remember to add suffix <code>L</code> to the value <code>27</code>.</li>
+<li>Find the data type of the value <code>"school"</code> using the <code>class()</code> function.</li>
+<li>Assign your first name to a variable <code>firstname</code> and find its data type. <strong>Remember to enclose it in quotation marks</strong></li>
+<li>Create a variable <code>is_student</code> and assign it the value <code>TRUE</code>. Use the <code>class()</code> function to find its data type.</li>
+</ol>
+<hr />
+<p><span style="color: brown;"><strong>Solution</strong></span></p>
+<p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
+</div>
+<div id="data-structures" class="section level3 hasAnchor" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Data Structures<a href="index.html#data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is the organization of data into or multiple data values in specific structures, they include vectors, matrix and data frames. Lets explore the mentioned data structures and their examples;</p>
+<ol style="list-style-type: decimal">
+<li><strong>Vector: </strong> This is a sequence of elements of the same data types(e.g., `<code>c(1, 2, 3)</code> is a numeric vector)</li>
+<li><strong>Matrix: </strong> This is a two-dimensional data structure with rows and columns, where all elements are of the same type(e.g. numbers).</li>
+<li><strong>Data Frames: </strong> This is the most common R data structure for handling tabular data(like an excel sheet). A data frame can contain different data types in each column unlike matrices and vectors.</li>
+</ol>
+<p>Data frames are central to real-world data analysis. You will work with them to analyze, transform, and visualize data sets, whether you are calculating averages or identifying trends. The <code>is.vector</code>, <code>is.matrix</code> and <code>is.data.frame</code> functions are used to confirm if the variable in question is a vector, matrix or data frame respectively.</p>
+<p><span style="color: orange;"><strong>Examples</strong></span></p>
+<p>Lets have some fun! We will create different data structures and find their data types:</p>
+<ul>
+<li>Create a vector, <code>marks</code> to store the values, <code>23, 67, 98, 34, 98, 21</code>. Print the vector to the console and use <code>is.vector</code> function to confirm if its a actually a vector.</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="index.html#cb11-1" tabindex="-1"></a>marks <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">67</span>, <span class="dv">98</span>, <span class="dv">34</span>, <span class="dv">98</span>, <span class="dv">21</span>)</span>
+<span id="cb11-2"><a href="index.html#cb11-2" tabindex="-1"></a><span class="fu">print</span>(marks) <span class="co"># print to the console</span></span></code></pre></div>
+<pre><code>## [1] 23 67 98 34 98 21</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="index.html#cb13-1" tabindex="-1"></a><span class="fu">is.vector</span>(marks) <span class="co"># find its data structure</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<ul>
+<li>Create a matrix with values from 1 to 9 and use the <code>is.matrix</code> function to find to confirm if its really a matrix.</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="index.html#cb15-1" tabindex="-1"></a>vector1 <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">9</span>) </span>
+<span id="cb15-2"><a href="index.html#cb15-2" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="index.html#cb15-3" tabindex="-1"></a><span class="co"># Convert to matrix</span></span>
+<span id="cb15-4"><a href="index.html#cb15-4" tabindex="-1"></a><span class="do">## create by column </span></span>
+<span id="cb15-5"><a href="index.html#cb15-5" tabindex="-1"></a>m1<span class="ot">=</span><span class="fu">matrix</span>(vector1, <span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb15-6"><a href="index.html#cb15-6" tabindex="-1"></a><span class="fu">print</span>(m1) <span class="co"># print the matrix to the console </span></span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="index.html#cb17-1" tabindex="-1"></a><span class="fu">is.matrix</span>(m1) <span class="co"># confirms if its really a matrix </span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<ul>
+<li>Create a <code>data.frame</code> from the above matrix. Add the column names as <code>"A", "B", "C"</code>. Confirm if its really a matrix.</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="index.html#cb19-1" tabindex="-1"></a>var_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>) <span class="co"># vector to store variable names </span></span>
+<span id="cb19-2"><a href="index.html#cb19-2" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="index.html#cb19-3" tabindex="-1"></a>m1_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(var_names, m1) <span class="co"># create the data frame</span></span>
+<span id="cb19-4"><a href="index.html#cb19-4" tabindex="-1"></a><span class="fu">print</span>(m1_df) <span class="co">#print to the console </span></span></code></pre></div>
+<pre><code>##   var_names X1 X2 X3
+## 1         A  1  4  7
+## 2         B  2  5  8
+## 3         C  3  6  9</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="index.html#cb21-1" tabindex="-1"></a><span class="fu">is.data.frame</span>(m1_df) <span class="co">#confirms if its really a data.frame. </span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p><span style="color: green;"><strong>Practical Exercise</strong></span></p>
+<p>Try out the exercise below to test your understanding in R data structures;</p>
+<ol style="list-style-type: lower-roman">
+<li>Create a vector named <code>height</code> with the values <code>120.1, 118, 123.4, 130.8, 115.2</code>. Use the <code>is.vector</code> to confirm that the created variable is a vector.</li>
+<li>Use <code>length()</code> function to count the number of elements in the vector.</li>
+<li>Create a matrix <code>m1</code> from the vector <code>v1</code> where <code>v1 &lt;- seq(1, 12)</code> with three columns. Use the <code>is.matrix</code> function to confirm if the said variable is a matrix.</li>
+<li>Access the third column by running the command <code>m1[, 3]</code>.</li>
+<li>Access the second row by running the command <code>m1[2,]</code>.</li>
+<li>Create a data frame <code>students_df</code> with the columns <code>"Name"</code>, <code>"Age"</code>, and <code>"Marks"</code> for three students. Where <code>Name &lt;- c("Pragya", "Thomas", "Ali")</code>, <code>Age &lt;- c(21, 19, 23)</code> and <code>Marks &lt;- c(68, 72, 67)</code>.</li>
+</ol>
+<hr />
+<p><span style="color: brown;"><strong>Solution</strong></span></p>
+<p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
+</div>
+</div>
+<div id="data-importing-and-exporting" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Data Importing and Exporting<a href="index.html#data-importing-and-exporting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Importing and exporting data is the foundation of data analysis workflows. The main two types of data files used are CSV and excel files.</p>
+<ul>
+<li><strong>CSV Files: </strong> R can easily import CSV files using <code>read.csv("filename.csv")</code>. The CSV is one of the most common formats you will encounter.</li>
+<li><strong>Excel Files: </strong> For excel files, you can use the <code>readxl</code> package with the function <code>read_excel</code>.</li>
+</ul>
+<p><span style="color: orange;"><strong>Try it: </strong></span></p>
+<p>Let’s have some fun by importing;</p>
+<ol style="list-style-type: lower-roman">
+<li>From CSV file</li>
+</ol>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="index.html#cb23-1" tabindex="-1"></a>m1_imported <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/m1.csv&quot;</span>) <span class="co"># import the csv data set</span></span>
+<span id="cb23-2"><a href="index.html#cb23-2" tabindex="-1"></a>m1_imported <span class="co"># Display the data</span></span></code></pre></div>
+<pre><code>##   X V1 V2 V3
+## 1 1  1  5  9
+## 2 2  2  6 10
+## 3 3  3  7 11
+## 4 4  4  8 12</code></pre>
+<ol start="2" style="list-style-type: lower-roman">
+<li>From Excel file</li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="index.html#cb25-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb25-2"><a href="index.html#cb25-2" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="index.html#cb25-3" tabindex="-1"></a>students_imported <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/students.xlsx&quot;</span>) <span class="co"># Import the data</span></span>
+<span id="cb25-4"><a href="index.html#cb25-4" tabindex="-1"></a>students_imported <span class="co"># Display the data</span></span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   Name     Age Marks
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 Pragya    21    68
+## 2 Thomas    19    72
+## 3 Ali       23    67</code></pre>
+<p>After data wrangling, manipulation and processing, the end product(processed data) can be saved for further use. The data can also be shared to others. Lets explore how export the CSV and Excel files</p>
+<ul>
+<li><strong>To CSV: </strong> You can save your data to CSV format using <code>write.csv(data, "filepath.csv")</code>.</li>
+<li><strong>To Excel</strong> To write to Excel, you can use <code>write.xlsx(data, "filepath.xlsx")</code> from the <code>openxlsx</code> package.</li>
+</ul>
+<p><span style="color: orange;"><strong>Try it: </strong></span></p>
+<p>Lets export the previously imported data set locally</p>
+<ol style="list-style-type: lower-roman">
+<li>To CSV</li>
+</ol>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="index.html#cb27-1" tabindex="-1"></a><span class="fu">write.csv</span>(m1_imported, <span class="st">&quot;data/m1_exported.csv&quot;</span>) <span class="co"># Write the data set locally</span></span></code></pre></div>
+<ol start="2" style="list-style-type: lower-roman">
+<li>Excel File</li>
+</ol>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="index.html#cb28-1" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb28-2"><a href="index.html#cb28-2" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="index.html#cb28-3" tabindex="-1"></a><span class="fu">write.xlsx</span>(students_imported, <span class="st">&quot;data/students_exported.xlsx&quot;</span>)</span></code></pre></div>
+</div>
+<div id="data-cleaning" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Data Cleaning<a href="index.html#data-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before you analyze data, it is crucial to ensure that it is clean. Here are some common issues in data cleaning;</p>
+<ul>
+<li><strong>Null Values: </strong> Missing data can distort your analysis. Functions like <code>is.na()</code> and <code>na.omit()</code> are used to detect and remove null values respectively. Null values can also be imputed by filling the missing values with the most relevant value for instance mean, mode or median of the variable, zero, or any dedicated value.</li>
+<li><strong>Duplicated Records: </strong> Duplicates can cause bias in results and they can detected using the <code>duplicated()</code> function. This duplicated records can be removed by <code>unique()</code> function from R or <code>distinct()</code> from <code>dplyr</code> package.</li>
+<li><strong>Outliers: </strong> These are extreme values that don’t follow the general trend. The use of summary statistics(specifically IQR) and boxplots can be used to cap these values based on the context.</li>
+</ul>
+<p>Data cleaning is like polishing a diamond-it ensures the data is ready for analysis, free from distortions like missing values or outliers that can skew your insights.</p>
+<p><span style="color: orange;"><strong>Try it: </strong></span></p>
+<p>Lets have some fan! We will create a random data set, identify all data issues and address them by cleaning.</p>
+<ul>
+<li>Create a sample data set</li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="index.html#cb29-1" tabindex="-1"></a><span class="co"># Create a dataset</span></span>
+<span id="cb29-2"><a href="index.html#cb29-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb29-3"><a href="index.html#cb29-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb29-4"><a href="index.html#cb29-4" tabindex="-1"></a>  <span class="at">Product =</span> <span class="fu">c</span>(<span class="st">&#39;Shoes&#39;</span>, <span class="st">&#39;Laptop&#39;</span>, <span class="st">&#39;Watch&#39;</span>, <span class="st">&#39;Phone&#39;</span>, <span class="st">&#39;Shoes&#39;</span>, <span class="st">&#39;Watch&#39;</span>, <span class="st">&#39;Laptop&#39;</span>, <span class="st">&#39;Shoes&#39;</span>, <span class="st">&#39;Laptop&#39;</span>, <span class="st">&#39;Phone&#39;</span>),</span>
+<span id="cb29-5"><a href="index.html#cb29-5" tabindex="-1"></a>  <span class="at">Sales =</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">500</span>, <span class="cn">NA</span>, <span class="dv">300</span>, <span class="dv">150</span>, <span class="dv">1000</span>, <span class="dv">500</span>, <span class="dv">150</span>, <span class="dv">500</span>, <span class="dv">300</span>), <span class="co"># Outlier in Sales (1000)</span></span>
+<span id="cb29-6"><a href="index.html#cb29-6" tabindex="-1"></a>  <span class="at">Category =</span> <span class="fu">c</span>(<span class="st">&#39;Fashion&#39;</span>, <span class="st">&#39;Tech&#39;</span>, <span class="st">&#39;Fashion&#39;</span>, <span class="st">&#39;Tech&#39;</span>, <span class="st">&#39;Fashion&#39;</span>, <span class="st">&#39;Fashion&#39;</span>, <span class="st">&#39;Tech&#39;</span>, <span class="st">&#39;Fashion&#39;</span>, <span class="st">&#39;Tech&#39;</span>, <span class="st">&#39;Tech&#39;</span>),</span>
+<span id="cb29-7"><a href="index.html#cb29-7" tabindex="-1"></a>  <span class="at">Discount =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">5</span>),</span>
+<span id="cb29-8"><a href="index.html#cb29-8" tabindex="-1"></a>  <span class="at">Returns =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb29-9"><a href="index.html#cb29-9" tabindex="-1"></a>  <span class="at">Profit =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">100</span>, <span class="cn">NA</span>, <span class="dv">70</span>, <span class="dv">30</span>, <span class="dv">500</span>, <span class="dv">100</span>, <span class="dv">30</span>, <span class="dv">100</span>, <span class="dv">70</span>)  <span class="co"># Outlier in Profit (500)</span></span>
+<span id="cb29-10"><a href="index.html#cb29-10" tabindex="-1"></a>)</span>
+<span id="cb29-11"><a href="index.html#cb29-11" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="index.html#cb29-12" tabindex="-1"></a><span class="co"># Add duplicated rows</span></span>
+<span id="cb29-13"><a href="index.html#cb29-13" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df, df[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, ])</span>
+<span id="cb29-14"><a href="index.html#cb29-14" tabindex="-1"></a></span>
+<span id="cb29-15"><a href="index.html#cb29-15" tabindex="-1"></a><span class="co"># View the dataset</span></span>
+<span id="cb29-16"><a href="index.html#cb29-16" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>##   Product Sales Category Discount Returns Profit
+## 1   Shoes   150  Fashion       10       2     30
+## 2  Laptop   500     Tech        0       0    100
+## 3   Watch    NA  Fashion       20       1     NA
+## 4   Phone   300     Tech        5       0     70
+## 5   Shoes   150  Fashion       10       2     30
+## 6   Watch  1000  Fashion       20       1    500</code></pre>
+<ul>
+<li>Count the null values</li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="index.html#cb31-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(df))</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<ul>
+<li>There are 4 null values in the data set. Let’s handle the null values by filling them with mean of the respective variables.</li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="index.html#cb33-1" tabindex="-1"></a><span class="co"># Fill missing Sales and Profit with the mean of the respective columns</span></span>
+<span id="cb33-2"><a href="index.html#cb33-2" tabindex="-1"></a>df<span class="sc">$</span>Sales[<span class="fu">is.na</span>(df<span class="sc">$</span>Sales)] <span class="ot">&lt;-</span> <span class="fu">mean</span>(df<span class="sc">$</span>Sales, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb33-3"><a href="index.html#cb33-3" tabindex="-1"></a>df<span class="sc">$</span>Profit[<span class="fu">is.na</span>(df<span class="sc">$</span>Profit)] <span class="ot">&lt;-</span> <span class="fu">mean</span>(df<span class="sc">$</span>Profit, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb33-4"><a href="index.html#cb33-4" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="index.html#cb33-5" tabindex="-1"></a><span class="co"># View the data set after handling null values</span></span>
+<span id="cb33-6"><a href="index.html#cb33-6" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>##   Product Sales Category Discount Returns Profit
+## 1   Shoes   150  Fashion       10       2     30
+## 2  Laptop   500     Tech        0       0    100
+## 3   Watch   405  Fashion       20       1    113
+## 4   Phone   300     Tech        5       0     70
+## 5   Shoes   150  Fashion       10       2     30
+## 6   Watch  1000  Fashion       20       1    500</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="index.html#cb35-1" tabindex="-1"></a><span class="co"># Count the null values in the data set to confirm the operation</span></span>
+<span id="cb35-2"><a href="index.html#cb35-2" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(df))</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<ul>
+<li>The null values are now filled and the data set is complete. Let’s find if there exists some duplicated records and how many are they?</li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="index.html#cb37-1" tabindex="-1"></a><span class="co"># Count the duplicated rows</span></span>
+<span id="cb37-2"><a href="index.html#cb37-2" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">duplicated</span>(df))</span></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="index.html#cb39-1" tabindex="-1"></a><span class="co"># Shape of the data set </span></span>
+<span id="cb39-2"><a href="index.html#cb39-2" tabindex="-1"></a><span class="fu">dim</span>(df)</span></code></pre></div>
+<pre><code>## [1] 12  6</code></pre>
+<ul>
+<li>There are 7 duplicated rows. We will remove the duplicated records and retain only one row of the same kind. This can be achieved using <code>unique()</code> from base R or <code>distinct()</code> from <code>dplyr</code> package. In this case we will be using the <code>distinct</code> command.</li>
+</ul>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="index.html#cb41-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb41-2"><a href="index.html#cb41-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb41-3"><a href="index.html#cb41-3" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="index.html#cb41-4" tabindex="-1"></a><span class="co"># Remove duplicated rows</span></span>
+<span id="cb41-5"><a href="index.html#cb41-5" tabindex="-1"></a>df_cleaned <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">distinct</span>()</span>
+<span id="cb41-6"><a href="index.html#cb41-6" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="index.html#cb41-7" tabindex="-1"></a><span class="co"># Count the duplicated records</span></span>
+<span id="cb41-8"><a href="index.html#cb41-8" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">duplicated</span>(df_cleaned))</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="index.html#cb43-1" tabindex="-1"></a><span class="co"># Shape of the data set </span></span>
+<span id="cb43-2"><a href="index.html#cb43-2" tabindex="-1"></a><span class="fu">dim</span>(df_cleaned)</span></code></pre></div>
+<pre><code>## [1] 5 6</code></pre>
+<ul>
+<li>The data has no duplicated records and it is evident that 7 records(duplicated) were deleted. They are only 5 rows remaining. The last step of data cleaning in this case is to identify outliers in the <code>Sales</code> and <code>Profit</code>, and remove them using the IQR method.</li>
+</ul>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="index.html#cb45-1" tabindex="-1"></a><span class="co"># Use the IQR method to detect outliers in Sales and Profit</span></span>
+<span id="cb45-2"><a href="index.html#cb45-2" tabindex="-1"></a>Q1_sales <span class="ot">&lt;-</span> <span class="fu">quantile</span>(df_cleaned<span class="sc">$</span>Sales, <span class="fl">0.25</span>)</span>
+<span id="cb45-3"><a href="index.html#cb45-3" tabindex="-1"></a>Q3_sales <span class="ot">&lt;-</span> <span class="fu">quantile</span>(df_cleaned<span class="sc">$</span>Sales, <span class="fl">0.75</span>)</span>
+<span id="cb45-4"><a href="index.html#cb45-4" tabindex="-1"></a>IQR_sales <span class="ot">&lt;-</span> Q3_sales <span class="sc">-</span> Q1_sales</span>
+<span id="cb45-5"><a href="index.html#cb45-5" tabindex="-1"></a></span>
+<span id="cb45-6"><a href="index.html#cb45-6" tabindex="-1"></a>Q1_profit <span class="ot">&lt;-</span> <span class="fu">quantile</span>(df_cleaned<span class="sc">$</span>Profit, <span class="fl">0.25</span>)</span>
+<span id="cb45-7"><a href="index.html#cb45-7" tabindex="-1"></a>Q3_profit <span class="ot">&lt;-</span> <span class="fu">quantile</span>(df_cleaned<span class="sc">$</span>Profit, <span class="fl">0.75</span>)</span>
+<span id="cb45-8"><a href="index.html#cb45-8" tabindex="-1"></a>IQR_profit <span class="ot">&lt;-</span> Q3_profit <span class="sc">-</span> Q1_profit</span>
+<span id="cb45-9"><a href="index.html#cb45-9" tabindex="-1"></a></span>
+<span id="cb45-10"><a href="index.html#cb45-10" tabindex="-1"></a><span class="co"># Filter out outliers</span></span>
+<span id="cb45-11"><a href="index.html#cb45-11" tabindex="-1"></a>df_cleaned <span class="ot">&lt;-</span> df_cleaned <span class="sc">%&gt;%</span></span>
+<span id="cb45-12"><a href="index.html#cb45-12" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(Sales <span class="sc">&lt;</span> (Q1_sales <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> IQR_sales) <span class="sc">|</span> Sales <span class="sc">&gt;</span> (Q3_sales <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> IQR_sales))) <span class="sc">%&gt;%</span></span>
+<span id="cb45-13"><a href="index.html#cb45-13" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(Profit <span class="sc">&lt;</span> (Q1_profit <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> IQR_profit) <span class="sc">|</span> Profit <span class="sc">&gt;</span> (Q3_profit <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> IQR_profit)))</span>
+<span id="cb45-14"><a href="index.html#cb45-14" tabindex="-1"></a></span>
+<span id="cb45-15"><a href="index.html#cb45-15" tabindex="-1"></a><span class="co"># Find out how many records were affected</span></span>
+<span id="cb45-16"><a href="index.html#cb45-16" tabindex="-1"></a><span class="fu">dim</span>(df_cleaned)</span></code></pre></div>
+<pre><code>## [1] 4 6</code></pre>
+<ul>
+<li>Only one row had outliers and was removed. The data is now clean and ready for further analysis.</li>
+</ul>
+</div>
+<div id="data-visualization" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Data Visualization<a href="index.html#data-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Data visualization is the representation of data through use of common graphics, such as charts, plots, infographics and even animations. In this course we will use the famous <code>ggplot2</code> library to create charts and graphs. <code>ggplot</code> is one of the most popular and flexible data visualization libraries in R. It follows the <strong>grammar of graphics</strong> philosophy, allowing you to build plots in layers. Here are some of the basic plots in data visualization;</p>
+<ul>
+<li><strong>Scatter Plots: </strong> used to visualize the relationship between two variables in R.</li>
+<li><strong>Bar Charts: </strong> used to compare categorical data.</li>
+<li><strong>Histograms: </strong> used to represent distribution of a single continuous variable.</li>
+</ul>
+<p>Visualizations are powerful tools that help you see patterns and insights that raw data might hide. A well-made plot can communicate your findings more effectively than numbers alone.</p>
+<p><span style="color: orange;"><strong>Try it: </strong></span></p>
+<p>Lets use the above data set that we cleaned to plot simple charts in R using <code>ggplot</code> library.</p>
+<ul>
+<li>Install the package if not installed</li>
+</ul>
+<pre><code>install.packages(&quot;ggplot2&quot;)</code></pre>
+<ul>
+<li>Load the library</li>
+</ul>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="index.html#cb48-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<p>There are 5 key steps in plotting in ggplot;</p>
+<ol style="list-style-type: decimal">
+<li><strong>The Setup</strong> - Read the data set, define x and y axis. <code>ggplot(data, aes(x, y))+...</code></li>
+<li><strong>The Labels</strong> - Title, X and Y axis labels. <code>... + labs(xlab=, ylab=, title=) + ...</code></li>
+<li><strong>The Theme</strong> - Default, Black and White, colored etc. <code>....+ &lt;theme_type&gt;..</code></li>
+<li><strong>The Facets</strong> - Individual Graphs for each group in data with exactly same range</li>
+<li><strong>The Layers or geoms</strong> - The actual plot type - e.g Bar plot, Box plot, Violin plot etc. <code>...+ geom_bar() + ...</code> for bar chart, <code>...+ geom_point() + ...</code> for scatter plot etc.</li>
+</ol>
+<p>Lets explore how to create a basic chart using <code>ggplot2</code> library in R. We will create a sample student data set that we will use to visualize data in R.</p>
+<p>Create the data set</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="index.html#cb49-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb49-2"><a href="index.html#cb49-2" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="index.html#cb49-3" tabindex="-1"></a><span class="co"># Sample data for students </span></span>
+<span id="cb49-4"><a href="index.html#cb49-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">27</span>)</span>
+<span id="cb49-5"><a href="index.html#cb49-5" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="index.html#cb49-6" tabindex="-1"></a>students_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb49-7"><a href="index.html#cb49-7" tabindex="-1"></a>  <span class="at">student_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,</span>
+<span id="cb49-8"><a href="index.html#cb49-8" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">sample</span>(<span class="dv">50</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb49-9"><a href="index.html#cb49-9" tabindex="-1"></a>  <span class="at">study_hours =</span> <span class="fu">sample</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">30</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb49-10"><a href="index.html#cb49-10" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb49-11"><a href="index.html#cb49-11" tabindex="-1"></a>  <span class="at">grade =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Freshman&quot;</span>, <span class="st">&quot;Sophomore&quot;</span>, <span class="st">&quot;Junior&quot;</span>, <span class="st">&quot;Senior&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb49-12"><a href="index.html#cb49-12" tabindex="-1"></a>)</span>
+<span id="cb49-13"><a href="index.html#cb49-13" tabindex="-1"></a></span>
+<span id="cb49-14"><a href="index.html#cb49-14" tabindex="-1"></a><span class="fu">head</span>(students_df)</span></code></pre></div>
+<pre><code>##   student_id score study_hours gender    grade
+## 1          1    54          10   Male Freshman
+## 2          2    99           8   Male   Junior
+## 3          3    58          21   Male   Senior
+## 4          4    89          13   Male   Junior
+## 5          5    68          23 Female Freshman
+## 6          6    65          10 Female   Junior</code></pre>
+<p>Plot the charts;</p>
+<p><strong>Scatter plot</strong></p>
+<p>We will plot to show the relationship between study hours and scores where scores is assumed to depend on study hours. Therefore scores will be on the y-axis and the study hours will be at the x-axis.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="index.html#cb51-1" tabindex="-1"></a><span class="co"># The set up</span></span>
+<span id="cb51-2"><a href="index.html#cb51-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> students_df, </span>
+<span id="cb51-3"><a href="index.html#cb51-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> study_hours, <span class="at">y =</span> score)) <span class="sc">+</span> </span>
+<span id="cb51-4"><a href="index.html#cb51-4" tabindex="-1"></a>  <span class="co"># The geoms - for scatter plot </span></span>
+<span id="cb51-5"><a href="index.html#cb51-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb51-6"><a href="index.html#cb51-6" tabindex="-1"></a>  </span>
+<span id="cb51-7"><a href="index.html#cb51-7" tabindex="-1"></a>  <span class="co"># Labels </span></span>
+<span id="cb51-8"><a href="index.html#cb51-8" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb51-9"><a href="index.html#cb51-9" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Study hours vs scores&quot;</span>,</span>
+<span id="cb51-10"><a href="index.html#cb51-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Weekly study hours&quot;</span>,</span>
+<span id="cb51-11"><a href="index.html#cb51-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Scores&quot;</span></span>
+<span id="cb51-12"><a href="index.html#cb51-12" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb51-13"><a href="index.html#cb51-13" tabindex="-1"></a>  </span>
+<span id="cb51-14"><a href="index.html#cb51-14" tabindex="-1"></a>  <span class="co"># Theme</span></span>
+<span id="cb51-15"><a href="index.html#cb51-15" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>From the chart, study hours per week does not have an effect of the score - remember this is randomly generated data set.</p>
+<p><strong>Bar Chart</strong></p>
+<p>We will find the count of students in each grade level</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="index.html#cb52-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> students_df, </span>
+<span id="cb52-2"><a href="index.html#cb52-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>grade)) <span class="sc">+</span> </span>
+<span id="cb52-3"><a href="index.html#cb52-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
+<span id="cb52-4"><a href="index.html#cb52-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb52-5"><a href="index.html#cb52-5" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Students by grade level&quot;</span>,</span>
+<span id="cb52-6"><a href="index.html#cb52-6" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Grade level&quot;</span>,</span>
+<span id="cb52-7"><a href="index.html#cb52-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Number of Students&quot;</span></span>
+<span id="cb52-8"><a href="index.html#cb52-8" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb52-9"><a href="index.html#cb52-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>The Senior grade has the fewest students while the Sophomore grade takes the lead in the student population.</p>
+<p><strong>Pie Chart</strong></p>
+<p>We will plot the gender distribution of students on a pie chart to show the proportion of male and female students.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="index.html#cb53-1" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
+<span id="cb53-2"><a href="index.html#cb53-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb53-3"><a href="index.html#cb53-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb53-4"><a href="index.html#cb53-4" tabindex="-1"></a></span>
+<span id="cb53-5"><a href="index.html#cb53-5" tabindex="-1"></a><span class="co"># Ensure `gender` column is recognized</span></span>
+<span id="cb53-6"><a href="index.html#cb53-6" tabindex="-1"></a>students_df<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(students_df<span class="sc">$</span>gender)</span>
+<span id="cb53-7"><a href="index.html#cb53-7" tabindex="-1"></a></span>
+<span id="cb53-8"><a href="index.html#cb53-8" tabindex="-1"></a><span class="co"># Count gender distribution</span></span>
+<span id="cb53-9"><a href="index.html#cb53-9" tabindex="-1"></a>gender_count <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">count</span>(students_df, gender)</span>
+<span id="cb53-10"><a href="index.html#cb53-10" tabindex="-1"></a></span>
+<span id="cb53-11"><a href="index.html#cb53-11" tabindex="-1"></a><span class="co"># Create Pie Chart</span></span>
+<span id="cb53-12"><a href="index.html#cb53-12" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gender_count, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> n, <span class="at">fill =</span> gender)) <span class="sc">+</span> </span>
+<span id="cb53-13"><a href="index.html#cb53-13" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb53-14"><a href="index.html#cb53-14" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb53-15"><a href="index.html#cb53-15" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb53-16"><a href="index.html#cb53-16" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Gender Distribution of Students&quot;</span>,</span>
+<span id="cb53-17"><a href="index.html#cb53-17" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Gender&quot;</span></span>
+<span id="cb53-18"><a href="index.html#cb53-18" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb53-19"><a href="index.html#cb53-19" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb53-20"><a href="index.html#cb53-20" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb53-21"><a href="index.html#cb53-21" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb53-22"><a href="index.html#cb53-22" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb53-23"><a href="index.html#cb53-23" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb53-24"><a href="index.html#cb53-24" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb53-25"><a href="index.html#cb53-25" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>From the pie chart, most students in the school are females.</p>
+<p><strong>Histogram</strong></p>
+<p>Finally we will plot a histogram to plot the distribution of scores.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="index.html#cb54-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> students_df,</span>
+<span id="cb54-2"><a href="index.html#cb54-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>score)) <span class="sc">+</span> </span>
+<span id="cb54-3"><a href="index.html#cb54-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb54-4"><a href="index.html#cb54-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb54-5"><a href="index.html#cb54-5" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Students&#39; scores distribution&quot;</span>,</span>
+<span id="cb54-6"><a href="index.html#cb54-6" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Score&quot;</span>, </span>
+<span id="cb54-7"><a href="index.html#cb54-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Count of students&quot;</span></span>
+<span id="cb54-8"><a href="index.html#cb54-8" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb54-9"><a href="index.html#cb54-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+</div>
+<div id="hands-on-exercises" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> <span style="color: green;"><strong>Hands-on Exercises</strong></span><a href="index.html#hands-on-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You will be required to work with a randomly generated patients data. Here are the steps to take to work on this exercise;</p>
+<ul>
+<li>You will run the code below to generate the data set.</li>
+</ul>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="index.html#cb56-1" tabindex="-1"></a><span class="co"># Set seed for reproducibility </span></span>
+<span id="cb56-2"><a href="index.html#cb56-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">71</span>)</span>
+<span id="cb56-3"><a href="index.html#cb56-3" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="index.html#cb56-4" tabindex="-1"></a><span class="co"># Generate the data set </span></span>
+<span id="cb56-5"><a href="index.html#cb56-5" tabindex="-1"></a>patients_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb56-6"><a href="index.html#cb56-6" tabindex="-1"></a>  <span class="at">patient_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>,</span>
+<span id="cb56-7"><a href="index.html#cb56-7" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">sample</span>(<span class="dv">20</span><span class="sc">:</span><span class="dv">80</span>, <span class="dv">1000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb56-8"><a href="index.html#cb56-8" tabindex="-1"></a>  <span class="at">height_cm =</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">165</span>, <span class="at">sd=</span><span class="dv">10</span>), </span>
+<span id="cb56-9"><a href="index.html#cb56-9" tabindex="-1"></a>  <span class="at">weight_kg =</span> <span class="fu">runif</span>(<span class="dv">1000</span>, <span class="at">min=</span><span class="dv">50</span>, <span class="at">max=</span><span class="dv">135</span>),</span>
+<span id="cb56-10"><a href="index.html#cb56-10" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>), <span class="dv">1000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb56-11"><a href="index.html#cb56-11" tabindex="-1"></a>  <span class="at">condition =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Hypertension&quot;</span>, <span class="st">&quot;Malaria&quot;</span>, <span class="st">&quot;Pneumonia&quot;</span>, <span class="st">&quot;Diabetes&quot;</span>, </span>
+<span id="cb56-12"><a href="index.html#cb56-12" tabindex="-1"></a>                       <span class="st">&quot;Asthma&quot;</span>, <span class="st">&quot;Healthy&quot;</span>), <span class="dv">1000</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb56-13"><a href="index.html#cb56-13" tabindex="-1"></a>)</span>
+<span id="cb56-14"><a href="index.html#cb56-14" tabindex="-1"></a></span>
+<span id="cb56-15"><a href="index.html#cb56-15" tabindex="-1"></a><span class="fu">head</span>(patients_data)</span></code></pre></div>
+<pre><code>##   patient_id age height_cm weight_kg gender    condition
+## 1          1  78  177.6077 108.48587 Female     Diabetes
+## 2          2  47  146.4456 130.03183 Female      Healthy
+## 3          3  34  158.7752  61.70929 Female      Malaria
+## 4          4  67  146.2848 114.83419 Female       Asthma
+## 5          5  65  146.6927  86.65565   Male Hypertension
+## 6          6  20  155.5785  74.65025   Male      Healthy</code></pre>
+<p>You will use the <code>patients_data</code> to answer the questions below;</p>
+<ol style="list-style-type: decimal">
+<li>Identify the data types for each column using the <code>str()</code> function.</li>
+<li>Find the shape of the data set using the <code>dim</code> function.</li>
+<li>Save the <code>patients_data</code> to CSV and name the file <code>patients_data.csv</code>.</li>
+<li>Import the saved data set as <code>patients_df</code>.</li>
+<li>Using the imported data set, <code>patients_df</code>, create the following charts.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Plot a histogram to show the distribution of height.</li>
+<li>Create a bar chart to compare the number of male and female patients.</li>
+<li>Use a pie chart to show the composition of different health conditions.</li>
+<li>Plot a scatter plot to show the relationship between age and weight.</li>
+</ol>
+<hr />
+<p><span style="color: brown;"><strong>Solution</strong></span></p>
+<p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="functions.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/balsaedi/RCourse/edit/main/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/balsaedi/RCourse/blob/main/index.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

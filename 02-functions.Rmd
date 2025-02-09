@@ -1,0 +1,487 @@
+# Functions
+In programming, **functions** are like little blocks of code that perform a specific task. Think of them as reusable instructions that you can call whenever you need them.
+
+Here’s why functions are super helpful:
+
+- **Avoid repetition:** Instead of writing the same code multiple times, you can just call the function.
+- **Cleaner code:** Your code becomes easier to read and maintain because functions help organize it better.
+- **Easier debugging:** When something goes wrong, you only need to check the function itself rather than searching through your entire program.
+
+**Why Use Functions?**
+
+Imagine having to rewrite a set of instructions every time you need them! With functions, you write the code once and reuse it as many times as you want. A good *rule of thumb* is: if you expect to run a specific set of instructions more than twice, create a function for it.
+
+**What Can Functions Do?**
+
+Functions are flexible and can be used for many different purposes:
+
+- **Take input** (called arguments)
+- **Process the input** based on what the function is meant to do
+- **Return a result** after completing the task
+
+## Writing Functions 
+Lets take a tour on different types of functions in R before diving deep into writing functions. This will help you understand when to write functions and when to use readily-available functions. There are three main types of functions:
+
+1. **User-Defined Functions (UDF)** – Custom functions you write for your specific needs.
+2. **Built-in functions** – These come pre-loaded in R. Example: `mean()`
+3. **Package functions** – Functions from external R packages you can install. Example: `ggplot()` and `select()` from `ggplot2` and `dplyr` respectively.
+
+### User-Defined Functions
+The best way to grasp how functions work in R is by **creating your own!** These are called* **User-Defined Functions (UDFs)**, and they allow you to design custom tasks that fit your needs.
+
+In R, functions typically follow this format:
+```
+function_name <- function(argument_1, argument_2) { 
+  # Function body (your instructions go here)
+  return(output)
+}
+```
+
+Let’s break down the key elements:
+
+1. **Function Name:**
+
+- This is how you’ll call your function later. When you create a function, you assign it a name and save it as a new object. For example, if you name your function `calculate_mean`, that’s the name you’ll use every time you want to run the function.
+
+2. **Arguments** (also called Parameters):
+
+- Arguments are placed inside the parentheses. They tell the function what input to expect or how to modify its behavior. Think of them as placeholders for the data you'll provide later when you run the function.
+
+3. **Function Body:**
+
+- Inside the curly brackets `{}`, you’ll write the instructions that the function will follow to accomplish the task. This is the "heart" of the function.
+
+4. **Return Statement:**
+
+- The `return()` function tells R what result to give you after the function finishes its job. It’s optional, but it helps if you want to store the function’s result in a variable.
+
+Let’s write a simple function that calculates the mean (average) of two numbers:
+```{r}
+mean_two_numbers <- function(num_1, num_2) {
+  mean <- (num_1 + num_2) / 2
+  return(mean)
+}
+```
+
+**How to Use the Function:**
+
+To find the mean of 10 and 20, simply call the function like this:
+```{r}
+mean_two_numbers(10, 20)
+```
+
+Let's add a few more simple tasks: writing a function that calculates the difference between two numbers. Why is this important? Well, imagine you have two values and you want to find their difference—that's exactly what this function will help us do!
+```{r}
+# Function to calculate the difference between two numbers
+calculate_difference <- function(x, y) {
+  # Subtract the second number (y) from the first number (x)
+  difference <- x - y
+  # Return the difference result so we can use it later
+  return(difference)
+}
+```
+
+You see!:
+
+- `x` and `y` are our arguments: These are the two numbers we’ll use in our calculation.
+- The subtraction happens inside the function: We simply subtract `y` from `x` and store the result in difference.
+Finally, we return the difference: This way, we can use the result when we call the function.
+
+Now, let's put it to the test! We’ll run the function with different sets of numbers and see what we get:
+```{r}
+calculate_difference(10, 5)  # 10 - 5 = 5
+calculate_difference(25, 15) # 25 - 15 = 10
+calculate_difference(50, 30) # 50 - 30 = 20
+```
+
+Notice how easy it is to calculate the difference between any two numbers by just calling our function? That's the power of writing your own functions—they make life a lot easier!
+
+Now, lets make it more interesting! How about a function that greets you by name? We can do the same in R by creating a simple function that takes someone’s name and returns a greeting. 
+
+Here is how we do it: 
+```{r}
+# Function to greet a student by their name
+greet_student <- function(student_name) {
+  # Create a personalized greeting
+  greeting <- paste("Hello", student_name, "!")
+  # Return the greeting so we can use it later
+  return(greeting)
+}
+```
+
+Remember!
+
+- We use `student_name` as the argument: This is where you pass in the name of the student.
+- We combine `"Hello"` with the name: The `paste()` function(that is an -in-built function which will discuss later in the course) helps us put the pieces together to form a full sentence.
+- Return the greeting: The function gives us back a customized message, ready to greet anyone!
+
+Lets try it out with different names
+```{r}
+greet_student("John")    # Hello John!
+greet_student("Alice")   # Hello Alice!
+greet_student("Michael") # Hello Michael!
+```
+
+Remember to try it out with your name! 
+
+<span style="color: orange;">**Key Takeaways:**</span> 
+
+By writing these two simple functions, you’ve already tackled a lot of important concepts in R! You now know:
+
+1. How to create a function.
+2. How to pass arguments (inputs/parameters) to a function.
+3. How to return a result that you can use later.
+
+<span style="color: green;">**Practical Exercise**</span> 
+
+In this exercise, you’ll get hands-on practice creating your own functions in R. Follow the instructions below to write functions that perform specific tasks. Remember to test your functions with different input values!
+
+1. Create a function called `add_numbers` that takes two arguments, `a` and `b`, and returns their sum.
+2. Write a function named `is_even` that takes a single argument, `num`, and returns `"Even"` if the number is even, or `"Odd"` if it’s odd.
+3. Create a function called `find_max` that takes three arguments and returns the largest of the three numbers.
+
+_______________________________________________________________________
+
+<span style="color: brown;">**________________________________________________________________________________**</span>
+
+### Built-in Fuctions
+
+We have learned how to create our own user-defined functions (UDFs) to perform specific tasks. Now, let's dive deeper into R's capabilities by exploring its built-in functions. These handy tools are readily available for you to use anytime, making your coding experience even smoother.
+
+R is packed with a treasure trove of built-in functions that allow you to perform a variety of tasks with just a few simple commands. Whether you're crunching numbers or analyzing data, these functions are your best friends.
+
+Here’s a sneak peek at some of the most useful built-in functions in R:
+
+- `print()`: This function displays an R object right on your console. It's like saying, "Hey, look at this!"
+```{r}
+print("Hello Mum")
+```
+- `min()` and `max()`: Need to find the smallest or largest number in a bunch? These functions will do just that for a numeric vector.
+
+- `sum()`: Want to add up a series of numbers? Use `sum()` to get the total of a numeric vector.
+- `mean()`: This function calculates the average of your numbers. Perfect for when you need to find the middle ground!
+- `range()`: Curious about the minimum and maximum values of your numeric vector? range() has you covered.
+- `str()`: Want to understand the structure of an R object? `str()` will give you a clear picture of what’s inside.
+- `ncol()`: If you're working with matrices or data frames, this function tells you how many columns you have.
+- `length()`: This one returns the number of items in an R object, whether it’s a vector, a list, or a matrix.
+
+Here’s a quick example to show you how easy it is to use these functions with a vector of numbers:
+```{r}
+v <- c(1, 3, 0.2, 1.5, 1.7)  # Create a vector
+
+print(v) # Display the vector
+
+sum(v) # Calculate the total sum
+
+mean(v) # Find the average
+
+length(v) # Get the number of elements
+```
+
+As you can see, working with R's built-in functions is straightforward and super helpful. Start experimenting with these functions and watch how they can simplify your coding experience!
+
+<span style="color: orange;">**Key Takeaways:**</span> 
+
+By completing this exercise, you've already tackled several important concepts in R! You now know:
+
+1. How to create a vector and use it for calculations.
+2. How to utilize built-in functions like `sum()`, `max()`, `min()`, `mean()`, and `length()`.
+3. How to derive meaningful statistics from data using R's built-in capabilities
+
+R has a wealth of resources on this topic, and as you gain more experience and knowledge, you'll uncover even more advanced built-in functions that can simplify your programming tasks.
+
+<span style="color: green;">**Practical Exercise**</span> 
+
+In this exercise, you are required to create a vector named `numbers` that contains the following values: `4, 8, 15, 16, 23, 42`. After creating the vector, you will use various built-in functions to analyze it based on the instructions below;
+
+i. Use the `sum()` function to calculate the total of the `numbers` vector.
+ii. Use the `max()` function to find the maximum value in the `numbers` vector.
+iii. Use the `min()` function to find the minimum value in the `numbers` vector.
+iv. Use the `mean()` function to calculate the average of the `numbers` vector.
+v. Use the `length()` function to find out how many elements are in your numbers vector.
+
+_______________________________________________________________________
+<span style="color: brown;">**Solution**</span> 
+
+
+<span style="color: brown;">**________________________________________________________________________________**</span>
+
+### Package Functions 
+
+Just like we've learned about **User-Defined** and **Built-in** Functions, R also provides a vast number of additional functions through packages. These packages extend R’s capabilities and allow you to perform specific tasks, from data manipulation to machine learning, with ease.
+
+**What are R Package Functions?**
+Packages in R are collections of R functions, data, and compiled code that are stored in a well-defined format. While R comes with a set of built-in functions, packages allow you to go beyond the basic functionality. You can install and load packages based on the task you want to accomplish.
+
+Think of package functions as tools in a toolbox: not everything is built-in, but by adding specific tools, you can perform new tasks easily.
+
+Lets explore how to get started using the functions;
+
+- **Installing and Loading Packages**
+
+To use functions from a package, you first need to install the package and load it into your R session.
+```
+install.packages("package_name")
+```
+
+Every time you start a new R session if you want to use the functions from that package. Load the package by;
+```
+library(package_name)
+```
+
+To put this into real-life action, let’s learn about the `dplyr` package, which is commonly used for data manipulation. It contains many useful functions to work with data frames or tibbles (a modern version of data frames). 
+
+Here’s an example of how to install and load dplyr, and use some of its core functions.
+
+1. Install the package
+```
+install.packages("dplyr")  # Install it once
+```
+
+2. Load the package
+```{r}
+library(dplyr)  # Load it whenever you need to use it
+```
+
+3. Let’s explore a few package functions from dplyr:
+
+- `select()`: Chooses specific columns from a dataset.
+- `filter()`: Filters rows based on conditions.
+- `mutate()`: Adds new variables (columns) or modifies existing ones.
+- `summarise()`: Summarizes data, such as calculating the mean or total
+
+We will create a data frame to demonstrate how to use functions from the `dplyr` package.
+```{r}
+# Create a data frame for demonstration
+data <- data.frame(
+  Name = c("John", "Jane", "David", "Anna"),
+  Age = c(28, 34, 22, 19),
+  Score = c(85, 90, 88, 92)
+)
+
+# 1. Select only the Name and Score columns
+selected_data <- dplyr::select(data, Name, Score)
+selected_data
+
+# 2. Filter rows where Score is greater than 88
+filtered_data <- filter(data, Score > 88)
+filtered_data
+
+# 3. Add a new column that increases Score by 10
+mutated_data <- mutate(data, New_Score = Score + 10)
+mutated_data
+
+# 4. Calculate the average age
+summary_data <- summarise(data, Average_Age = mean(Age))
+summary_data
+```
+
+
+In this example, we used functions from the `dplyr` package to select columns, filter rows, modify data, and summarize it!
+
+<span style="color: orange;">**Key Takeaways: **</span> 
+
+By learning about R package functions, you’ve unlocked even more tools to work efficiently in R. Here’s what you’ve learned today:
+
+1. How to install and load R packages.
+2. How to use package functions like those in `dplyr` for data manipulation.
+3. How to perform tasks like selecting columns, filtering data, and summarizing values.
+
+Packages in R allow you to extend the functionality of the base language for specific tasks.
+With packages, R becomes an even more powerful tool, allowing you to work with more advanced data sets and perform complex operations with ease!
+
+<span style="color: green;">**Practical Exercise**</span> 
+
+In this exercise, you will use the functions from the `dplyr` package to manipulate the `iris` data set. Remember the `dplyr` package is installed by:
+```
+install.packages("dplyr")
+```
+
+and is loaded by:
+```
+library(dplyr)
+```
+
+The iris data set is loaded by
+```{r}
+data("iris")
+
+# view the first few columns 
+head(iris)
+```
+
+Solve the following questions;
+
+i. Use the `select` function to select the `Sepal.Length`, `Sepal.Width`, and `Species` columns. 
+ii. Use the `filter` function to filter rows where `Sepal.Length` is greater than 5. 
+iii. Use the `mutate` function to create a new column `Sepal.Ratio` that divides `Sepal.Length` by `Sepal.Width`.
+
+_______________________________________________________________________
+<span style="color: brown;">**Solution**</span> 
+
+
+
+
+<span style="color: brown;">**________________________________________________________________________________**</span>
+
+### Type of arguments in R functions
+
+Now that we’ve learned and explored different types of functions, let's dive into function arguments to strengthen your understanding of writing functions. Arguments are essential components of any function. Although it’s possible to write a function without parameters, like the example below, most functions do require arguments to tell them what data to process
+```{r}
+hello <- function() {
+  print('Hello, my friend')
+}
+```
+
+**Why Arguments Matter**
+
+Arguments are the input for functions. They allow us to give the function specific values to work with. If we want a function to handle different cases or data, arguments give us that flexibility.
+
+When defining arguments, you include them inside the parentheses of the function definition, separated by commas. Generally, functions with more arguments tend to be more complex, but they also offer greater control over what the function does.
+```
+# Creating a function with arguments 
+my_function <- function(argument1, argument2){
+  # function body
+}
+```
+
+**Handling Missing Arguments**
+
+Whenever you create a function with parameters, you must provide the values for those parameters when calling the function. Otherwise, R will return an error. For example, if you forget to supply both numbers in a function to calculate their mean, the function won’t work.
+
+But you can avoid this issue by using *default arguments*. These are preset values that the function will use if you don’t provide them during the call. Let’s modify our mean function to demonstrate:
+```{r}
+mean_two_numbers <- function(num_1, num_2 = 30) {
+  mean <- (num_1 + num_2) / 2
+  return (mean)
+}
+```
+
+In this version, if you only provide one value when calling the function, R will automatically use the default value for the second number (which is 30 in this case):
+
+```{r}
+mean_two_numbers(num_1 = 10)
+```
+
+You now understand how arguments work and the importance of default values in making functions more flexible and error-proof.
+
+<span style="color: green;">**Practical Exercise**</span>
+
+1. Create a function `greet` that prints a simple message like `"Hello, welcome to R programming!"`.
+2. Write a function `multiply_numbers` that takes two arguments, `a` and `b`, and returns the product of these numbers
+3. Create a function `calculate_total` that accepts two arguments, price and tax_rate. Set a default value of `tax_rate = 0.15` (15%).
+
+_______________________________________________________________________
+<span style="color: brown;">**Solution**</span> 
+
+
+
+<span style="color: brown;">**________________________________________________________________________________**</span>
+
+### Understanding Return Values in R Functions
+
+In many programming languages, functions take data as input and produce some result as output. Often, you must use a `return` statement to explicitly give back the result. Otherwise, the value might only be visible inside the function and not available to use later. But in R, the situation is a little more relaxed!
+
+In R, a function will always return a value that can be stored in a variable, even without a return statement. However, for clarity and good practice, it's still helpful to include return to show your intent.
+
+Let’s walk through an example:
+```{r}
+mean_sum <- function(num_1, num_2) {
+  mean <- (num_1 + num_2) / 2
+  sum <- num_1 + num_2
+  return(list(mean = mean, sum = sum))
+}
+```
+
+Now, calling the function:
+```{r}
+results <- mean_sum(10, 20)
+print(results)  # You'll see both the mean and sum printed
+```
+
+## Calling the Functions 
+
+In previous sections, we’ve seen how to call functions with different arguments. Now, let's dig a little deeper into how **R works behind the scenes** when you pass arguments to a function.
+
+R allows two main ways of passing arguments:
+
+1. **By position** – The arguments are passed in the same order as the function definition.
+2. **By name** – You explicitly mention the argument name and its value.
+
+You can also **mix** these two strategies! Let’s explore these options using an example.
+
+Here's a simple function that takes two arguments: name and surname.
+```{r}
+hello <- function(name, surname) {
+  print(paste('Hello', name, surname))
+}
+```
+
+Lets call the function using different strategies;
+
+1. **By Position**
+
+You pass the arguments in the exact order the function expects.
+```{r}
+hello('Jane', 'McCain')
+```
+
+2. **By Name**
+
+When using this method, the order doesn’t matter. You just specify the argument names.
+```{r}
+hello(surname = 'McCain', name = 'Jane')
+```
+
+3. **Mixing Position and Name**
+
+You can mix both approaches. Named arguments are matched first, then the remaining ones are matched by position
+```{r}
+hello(surname = 'McCain', 'Jane')
+```
+
+This flexibility can make your code easier to read and maintain, especially when functions have many arguments!
+
+## Function Documentation
+
+Finally when writing functions, it’s always a good idea to provide documentation to guide users on how to use the function. This is especially important when dealing with complex functions or when the function is shared with others.
+
+One simple way to add documentation is by including comments in the body of your function. These comments explain what each part of the function does. This is an informal method, but it helps both you and others quickly understand what’s happening in the function.
+
+Here’s an example:
+```{r}
+hello <- function(name, surname) {
+  # Say hello to a person with their name and surname
+  print(paste('Hello,', name, surname))
+}
+```
+
+If you call the function without executing it, you’ll see its structure along with the comments:
+```{r}
+hello
+```
+
+If your function is part of a larger package and you want it to be properly documented, you should write formal documentation in a separate `.Rd` file. These files store structured documentation, which you can access using `?function_name` in R, similar to the help file you see for built-in functions like `?mean`.
+
+Formal documentation includes details such as:
+
+- Function name and description.
+- Arguments and their roles.
+- Examples of how to use the function.
+- Output that the function returns.
+- This approach ensures that users can easily understand and use your function, even in complex packages.
+
+## <span style="color: green;">**Hands-on Exercise**</span> 
+
+You will attempt this **hands-on exercise** to confirm your understanding of functions. For one of the functions you created, add comments inside the function to explain what each part of the function does.
+
+1. Create a User-Defined Function (UDF) named `calculate_area` that takes two arguments: `length` and `width`. The function should return the area of a rectangle.
+2. Create a vector named `values` with the numbers `4, 8, 15, 16, 23, 42`. Use the built-in `sum()` function to calculate the total of the values vector and print the result.
+3. Write a function named `greet` that takes one argument, `student_name`, and prints a greeting. Modify the function to have a default argument that greets a `"Student"` if no name is provided.
+4. Create a function named `mean_and_median` that takes a numeric vector as an argument and returns both the mean and median of that vector as a list.
+
+_______________________________________________________________________
+<span style="color: brown;">**Solution**</span> 
+
+
+<span style="color: brown;">**________________________________________________________________________________**</span>

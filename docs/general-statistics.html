@@ -1,0 +1,2083 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 General Statistics | Statistical Computing</title>
+  <meta name="description" content="Chapter 4 General Statistics | Statistical Computing" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 General Statistics | Statistical Computing" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 General Statistics | Statistical Computing" />
+  
+  
+  
+
+<meta name="author" content="Dr. Basim Alsaedi" />
+
+
+<meta name="date" content="2025-02-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="group-manipulation.html"/>
+<link rel="next" href="simple-linear-regression.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SHORT TITLE HERE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Reviews</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#data-types-and-structures"><i class="fa fa-check"></i><b>1.1</b> Data Types and Structures</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#data-types"><i class="fa fa-check"></i><b>1.1.1</b> Data Types</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#data-structures"><i class="fa fa-check"></i><b>1.1.2</b> Data Structures</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#data-importing-and-exporting"><i class="fa fa-check"></i><b>1.2</b> Data Importing and Exporting</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#data-cleaning"><i class="fa fa-check"></i><b>1.3</b> Data Cleaning</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#data-visualization"><i class="fa fa-check"></i><b>1.4</b> Data Visualization</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#hands-on-exercises"><i class="fa fa-check"></i><b>1.5</b> <span style="color: green;"><strong>Hands-on Exercises</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>2</b> Functions</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="functions.html"><a href="functions.html#writing-functions"><i class="fa fa-check"></i><b>2.1</b> Writing Functions</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="functions.html"><a href="functions.html#user-defined-functions"><i class="fa fa-check"></i><b>2.1.1</b> User-Defined Functions</a></li>
+<li class="chapter" data-level="2.1.2" data-path="functions.html"><a href="functions.html#built-in-fuctions"><i class="fa fa-check"></i><b>2.1.2</b> Built-in Fuctions</a></li>
+<li class="chapter" data-level="2.1.3" data-path="functions.html"><a href="functions.html#package-functions"><i class="fa fa-check"></i><b>2.1.3</b> Package Functions</a></li>
+<li class="chapter" data-level="2.1.4" data-path="functions.html"><a href="functions.html#type-of-arguments-in-r-functions"><i class="fa fa-check"></i><b>2.1.4</b> Type of arguments in R functions</a></li>
+<li class="chapter" data-level="2.1.5" data-path="functions.html"><a href="functions.html#understanding-return-values-in-r-functions"><i class="fa fa-check"></i><b>2.1.5</b> Understanding Return Values in R Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="functions.html"><a href="functions.html#calling-the-functions"><i class="fa fa-check"></i><b>2.2</b> Calling the Functions</a></li>
+<li class="chapter" data-level="2.3" data-path="functions.html"><a href="functions.html#function-documentation"><i class="fa fa-check"></i><b>2.3</b> Function Documentation</a></li>
+<li class="chapter" data-level="2.4" data-path="functions.html"><a href="functions.html#hands-on-exercise"><i class="fa fa-check"></i><b>2.4</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="group-manipulation.html"><a href="group-manipulation.html"><i class="fa fa-check"></i><b>3</b> Group Manipulation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="group-manipulation.html"><a href="group-manipulation.html#apply-family"><i class="fa fa-check"></i><b>3.1</b> Apply Family</a></li>
+<li class="chapter" data-level="3.2" data-path="group-manipulation.html"><a href="group-manipulation.html#aggregate-plyr"><i class="fa fa-check"></i><b>3.2</b> Aggregate Plyr</a></li>
+<li class="chapter" data-level="3.3" data-path="group-manipulation.html"><a href="group-manipulation.html#data-reshaping"><i class="fa fa-check"></i><b>3.3</b> Data Reshaping</a></li>
+<li class="chapter" data-level="3.4" data-path="group-manipulation.html"><a href="group-manipulation.html#hands-on-exercise-1"><i class="fa fa-check"></i><b>3.4</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="general-statistics.html"><a href="general-statistics.html"><i class="fa fa-check"></i><b>4</b> General Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="general-statistics.html"><a href="general-statistics.html#tabulating-factors-and-creating-contingency-tables"><i class="fa fa-check"></i><b>4.1</b> Tabulating Factors and Creating Contingency Tables</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-factors-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Understanding Factors in R</a></li>
+<li class="chapter" data-level="4.1.2" data-path="general-statistics.html"><a href="general-statistics.html#creating-frequency-tables"><i class="fa fa-check"></i><b>4.1.2</b> Creating Frequency Tables</a></li>
+<li class="chapter" data-level="4.1.3" data-path="general-statistics.html"><a href="general-statistics.html#creating-contingency-tables"><i class="fa fa-check"></i><b>4.1.3</b> Creating Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.4" data-path="general-statistics.html"><a href="general-statistics.html#adding-margins-to-contingency-tables"><i class="fa fa-check"></i><b>4.1.4</b> Adding Margins to Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.5" data-path="general-statistics.html"><a href="general-statistics.html#computing-row-and-column-proportions"><i class="fa fa-check"></i><b>4.1.5</b> Computing Row and Column Proportions</a></li>
+<li class="chapter" data-level="4.1.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-contingency-tables"><i class="fa fa-check"></i><b>4.1.6</b> Visualizing Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises"><i class="fa fa-check"></i><b>4.1.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="general-statistics.html"><a href="general-statistics.html#calculating-quantiles"><i class="fa fa-check"></i><b>4.2</b> Calculating Quantiles</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-quantiles"><i class="fa fa-check"></i><b>4.2.1</b> Understanding Quantiles</a></li>
+<li class="chapter" data-level="4.2.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-quantiles-in-r"><i class="fa fa-check"></i><b>4.2.2</b> Computing Quantiles in R</a></li>
+<li class="chapter" data-level="4.2.3" data-path="general-statistics.html"><a href="general-statistics.html#computing-specific-quantiles"><i class="fa fa-check"></i><b>4.2.3</b> Computing Specific Quantiles</a></li>
+<li class="chapter" data-level="4.2.4" data-path="general-statistics.html"><a href="general-statistics.html#using-summary-for-quick-insights"><i class="fa fa-check"></i><b>4.2.4</b> Using <code>summary()</code> for Quick Insights</a></li>
+<li class="chapter" data-level="4.2.5" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-quantiles"><i class="fa fa-check"></i><b>4.2.5</b> Visualizing Quantiles</a></li>
+<li class="chapter" data-level="4.2.6" data-path="general-statistics.html"><a href="general-statistics.html#finding-interquartile-range-iqr"><i class="fa fa-check"></i><b>4.2.6</b> Finding Interquartile Range (IQR)</a></li>
+<li class="chapter" data-level="4.2.7" data-path="general-statistics.html"><a href="general-statistics.html#finding-outliers-using-iqr"><i class="fa fa-check"></i><b>4.2.7</b> Finding Outliers Using IQR</a></li>
+<li class="chapter" data-level="4.2.8" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>4.2.8</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="general-statistics.html"><a href="general-statistics.html#z-scores"><i class="fa fa-check"></i><b>4.3</b> z-Scores</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-z-scores"><i class="fa fa-check"></i><b>4.3.1</b> Understanding z-Scores</a></li>
+<li class="chapter" data-level="4.3.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-z-scores-in-r"><i class="fa fa-check"></i><b>4.3.2</b> Computing z-Scores in R</a></li>
+<li class="chapter" data-level="4.3.3" data-path="general-statistics.html"><a href="general-statistics.html#computing-z-scores-using-scale"><i class="fa fa-check"></i><b>4.3.3</b> Computing z-Scores Using <code>scale()</code></a></li>
+<li class="chapter" data-level="4.3.4" data-path="general-statistics.html"><a href="general-statistics.html#interpreting-z-scores"><i class="fa fa-check"></i><b>4.3.4</b> Interpreting z-Scores</a></li>
+<li class="chapter" data-level="4.3.5" data-path="general-statistics.html"><a href="general-statistics.html#using-z-scores-to-detect-outliers"><i class="fa fa-check"></i><b>4.3.5</b> Using z-Scores to Detect Outliers</a></li>
+<li class="chapter" data-level="4.3.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-z-scores"><i class="fa fa-check"></i><b>4.3.6</b> Visualizing z-Scores</a></li>
+<li class="chapter" data-level="4.3.7" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercises-2"><i class="fa fa-check"></i><b>4.3.7</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="general-statistics.html"><a href="general-statistics.html#inferential-statistics"><i class="fa fa-check"></i><b>4.4</b> Inferential Statistics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="general-statistics.html"><a href="general-statistics.html#basic-concepts"><i class="fa fa-check"></i><b>4.4.1</b> Basic Concepts</a></li>
+<li class="chapter" data-level="4.4.2" data-path="general-statistics.html"><a href="general-statistics.html#confidence-intervals"><i class="fa fa-check"></i><b>4.4.2</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="4.4.3" data-path="general-statistics.html"><a href="general-statistics.html#hypothesis-testing"><i class="fa fa-check"></i><b>4.4.3</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="4.4.4" data-path="general-statistics.html"><a href="general-statistics.html#steps-in-hypothesis-testing"><i class="fa fa-check"></i><b>4.4.4</b> Steps in Hypothesis Testing</a></li>
+<li class="chapter" data-level="4.4.5" data-path="general-statistics.html"><a href="general-statistics.html#one-sample-t-test"><i class="fa fa-check"></i><b>4.4.5</b> One-Sample t-Test</a></li>
+<li class="chapter" data-level="4.4.6" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-means"><i class="fa fa-check"></i><b>4.4.6</b> Comparing Two Sample Means</a></li>
+<li class="chapter" data-level="4.4.7" data-path="general-statistics.html"><a href="general-statistics.html#testing-proportions"><i class="fa fa-check"></i><b>4.4.7</b> Testing Proportions</a></li>
+<li class="chapter" data-level="4.4.8" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-1"><i class="fa fa-check"></i><b>4.4.8</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="general-statistics.html"><a href="general-statistics.html#testing-the-mean-of-a-sample-t-test-and-its-confidence-interval"><i class="fa fa-check"></i><b>4.5</b> Testing the Mean of a Sample (t-Test) and its Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-the-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Understanding the t-Test</a></li>
+<li class="chapter" data-level="4.5.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-confidence-intervals-for-the-mean"><i class="fa fa-check"></i><b>4.5.2</b> Computing Confidence Intervals for the Mean</a></li>
+<li class="chapter" data-level="4.5.3" data-path="general-statistics.html"><a href="general-statistics.html#performing-a-one-sample-t-test"><i class="fa fa-check"></i><b>4.5.3</b> Performing a One-Sample t-Test</a></li>
+<li class="chapter" data-level="4.5.4" data-path="general-statistics.html"><a href="general-statistics.html#one-sided-vs.-two-sided-tests"><i class="fa fa-check"></i><b>4.5.4</b> One-Sided vs. Two-Sided Tests</a></li>
+<li class="chapter" data-level="4.5.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-means-independent-t-test"><i class="fa fa-check"></i><b>4.5.5</b> Comparing Two Sample Means (Independent t-Test)</a></li>
+<li class="chapter" data-level="4.5.6" data-path="general-statistics.html"><a href="general-statistics.html#paired-t-test-dependent-samples"><i class="fa fa-check"></i><b>4.5.6</b> Paired t-Test (Dependent Samples)</a></li>
+<li class="chapter" data-level="4.5.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-2"><i class="fa fa-check"></i><b>4.5.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="general-statistics.html"><a href="general-statistics.html#testing-a-sample-proportion-and-its-confidence-interval"><i class="fa fa-check"></i><b>4.6</b> Testing a Sample Proportion and its Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-proportion-testing"><i class="fa fa-check"></i><b>4.6.1</b> Understanding Proportion Testing</a></li>
+<li class="chapter" data-level="4.6.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-confidence-intervals-for-proportions"><i class="fa fa-check"></i><b>4.6.2</b> Computing Confidence Intervals for Proportions</a></li>
+<li class="chapter" data-level="4.6.3" data-path="general-statistics.html"><a href="general-statistics.html#performing-a-one-sample-proportion-test"><i class="fa fa-check"></i><b>4.6.3</b> Performing a One-Sample Proportion Test</a></li>
+<li class="chapter" data-level="4.6.4" data-path="general-statistics.html"><a href="general-statistics.html#one-sided-proportion-tests"><i class="fa fa-check"></i><b>4.6.4</b> One-Sided Proportion Tests</a></li>
+<li class="chapter" data-level="4.6.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-proportions"><i class="fa fa-check"></i><b>4.6.5</b> Comparing Two Sample Proportions</a></li>
+<li class="chapter" data-level="4.6.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-proportions"><i class="fa fa-check"></i><b>4.6.6</b> Visualizing Proportions</a></li>
+<li class="chapter" data-level="4.6.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-3"><i class="fa fa-check"></i><b>4.6.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="general-statistics.html"><a href="general-statistics.html#comparing-the-means-of-two-samples"><i class="fa fa-check"></i><b>4.7</b> Comparing the Means of Two Samples</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-two-sample-t-test"><i class="fa fa-check"></i><b>4.7.1</b> Understanding Two-Sample t-Test</a></li>
+<li class="chapter" data-level="4.7.2" data-path="general-statistics.html"><a href="general-statistics.html#independent-unpaired-t-test"><i class="fa fa-check"></i><b>4.7.2</b> Independent (Unpaired) t-Test</a></li>
+<li class="chapter" data-level="4.7.3" data-path="general-statistics.html"><a href="general-statistics.html#checking-assumptions"><i class="fa fa-check"></i><b>4.7.3</b> Checking Assumptions</a></li>
+<li class="chapter" data-level="4.7.4" data-path="general-statistics.html"><a href="general-statistics.html#performing-t-test-with-unequal-variances"><i class="fa fa-check"></i><b>4.7.4</b> Performing t-Test with Unequal Variances</a></li>
+<li class="chapter" data-level="4.7.5" data-path="general-statistics.html"><a href="general-statistics.html#paired-t-test-dependent-samples-1"><i class="fa fa-check"></i><b>4.7.5</b> Paired t-Test (Dependent Samples)</a></li>
+<li class="chapter" data-level="4.7.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-group-differences"><i class="fa fa-check"></i><b>4.7.6</b> Visualizing Group Differences</a></li>
+<li class="chapter" data-level="4.7.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-4"><i class="fa fa-check"></i><b>4.7.7</b> Practical Exercises</a></li>
+<li class="chapter" data-level="4.7.8" data-path="general-statistics.html"><a href="general-statistics.html#exercise-4-visualizing-group-differences"><i class="fa fa-check"></i><b>4.7.8</b> Exercise 4: Visualizing Group Differences</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="general-statistics.html"><a href="general-statistics.html#performing-pairwise-comparisons-between-group-means"><i class="fa fa-check"></i><b>4.8</b> Performing Pairwise Comparisons Between Group Means</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-pairwise-comparisons"><i class="fa fa-check"></i><b>4.8.1</b> Understanding Pairwise Comparisons</a></li>
+<li class="chapter" data-level="4.8.2" data-path="general-statistics.html"><a href="general-statistics.html#performing-pairwise-t-tests"><i class="fa fa-check"></i><b>4.8.2</b> Performing Pairwise t-Tests</a></li>
+<li class="chapter" data-level="4.8.3" data-path="general-statistics.html"><a href="general-statistics.html#tukeys-hsd-test"><i class="fa fa-check"></i><b>4.8.3</b> Tukey’s HSD Test</a></li>
+<li class="chapter" data-level="4.8.4" data-path="general-statistics.html"><a href="general-statistics.html#bonferroni-and-holm-corrections"><i class="fa fa-check"></i><b>4.8.4</b> Bonferroni and Holm Corrections</a></li>
+<li class="chapter" data-level="4.8.5" data-path="general-statistics.html"><a href="general-statistics.html#dunnetts-test-comparing-to-a-control-group"><i class="fa fa-check"></i><b>4.8.5</b> Dunnett’s Test (Comparing to a Control Group)</a></li>
+<li class="chapter" data-level="4.8.6" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-5"><i class="fa fa-check"></i><b>4.8.6</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercise-2"><i class="fa fa-check"></i><b>4.9</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="general-statistics.html"><a href="general-statistics.html#exercise-1-descriptive-statistics"><i class="fa fa-check"></i><b>4.9.1</b> Exercise 1: Descriptive Statistics</a></li>
+<li class="chapter" data-level="4.9.2" data-path="general-statistics.html"><a href="general-statistics.html#exercise-2-confidence-interval-for-mean"><i class="fa fa-check"></i><b>4.9.2</b> Exercise 2: Confidence Interval for Mean</a></li>
+<li class="chapter" data-level="4.9.3" data-path="general-statistics.html"><a href="general-statistics.html#exercise-3-one-sample-t-test"><i class="fa fa-check"></i><b>4.9.3</b> Exercise 3: One-Sample t-Test**</a></li>
+<li class="chapter" data-level="4.9.4" data-path="general-statistics.html"><a href="general-statistics.html#exercise-4-proportion-test"><i class="fa fa-check"></i><b>4.9.4</b> Exercise 4: Proportion Test</a></li>
+<li class="chapter" data-level="4.9.5" data-path="general-statistics.html"><a href="general-statistics.html#exercise-5-comparing-two-sample-means"><i class="fa fa-check"></i><b>4.9.5</b> Exercise 5: Comparing Two Sample Means</a></li>
+<li class="chapter" data-level="4.9.6" data-path="general-statistics.html"><a href="general-statistics.html#exercise-6-data-visualization"><i class="fa fa-check"></i><b>4.9.6</b> Exercise 6: Data Visualization</a></li>
+<li class="chapter" data-level="4.9.7" data-path="general-statistics.html"><a href="general-statistics.html#exercise-7-scatterplot-with-regression-line"><i class="fa fa-check"></i><b>4.9.7</b> Exercise 7: Scatterplot with Regression Line</a></li>
+<li class="chapter" data-level="4.9.8" data-path="general-statistics.html"><a href="general-statistics.html#exercise-8-pairwise-comparisons"><i class="fa fa-check"></i><b>4.9.8</b> Exercise 8: Pairwise Comparisons</a></li>
+<li class="chapter" data-level="4.9.9" data-path="general-statistics.html"><a href="general-statistics.html#exercise-9-tukeys-hsd-test"><i class="fa fa-check"></i><b>4.9.9</b> Exercise 9: Tukey’s HSD Test</a></li>
+<li class="chapter" data-level="4.9.10" data-path="general-statistics.html"><a href="general-statistics.html#exercise-10-comparing-a-treatment-to-a-control"><i class="fa fa-check"></i><b>4.9.10</b> Exercise 10: Comparing a Treatment to a Control</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#basics-of-wilkinson-rogers-notation-y-x-linear-regression"><i class="fa fa-check"></i><b>5.1</b> Basics of Wilkinson-Rogers Notation (y ~ x), Linear Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#scatterplots-with-regression-lines-reading-lm-output"><i class="fa fa-check"></i><b>5.2</b> Scatterplots with Regression Lines, Reading lm() Output</a></li>
+<li class="chapter" data-level="5.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#confidence-intervals-for-regression-coefficients-testing-coefficients"><i class="fa fa-check"></i><b>5.3</b> Confidence Intervals for Regression Coefficients, Testing Coefficients</a></li>
+<li class="chapter" data-level="5.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#identifying-points-in-a-plot"><i class="fa fa-check"></i><b>5.4</b> Identifying Points in a Plot</a></li>
+<li class="chapter" data-level="5.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#hands-on-exercise-3"><i class="fa fa-check"></i><b>5.5</b> <span style="color: green;"><strong>Hands-On Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html"><i class="fa fa-check"></i><b>6</b> Reproducibility and Report with R Markdown</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#key-tools-in-r-for-reproducibility-and-reporting"><i class="fa fa-check"></i><b>6.1</b> Key Tools in R for Reproducibility and Reporting</a></li>
+<li class="chapter" data-level="6.2" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#creating-reproducible-reports"><i class="fa fa-check"></i><b>6.2</b> Creating Reproducible Reports</a></li>
+<li class="chapter" data-level="6.3" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#going-beyond-shiny-for-interactive-reporting"><i class="fa fa-check"></i><b>6.3</b> Going Beyond: Shiny for Interactive Reporting</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-shiny.html"><a href="r-shiny.html"><i class="fa fa-check"></i><b>7</b> R Shiny</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="r-shiny.html"><a href="r-shiny.html#structure-of-a-shiny-app"><i class="fa fa-check"></i><b>7.1</b> Structure of a Shiny App</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="r-shiny.html"><a href="r-shiny.html#user-interfaceui"><i class="fa fa-check"></i><b>7.1.1</b> User Interface(ui)</a></li>
+<li class="chapter" data-level="7.1.2" data-path="r-shiny.html"><a href="r-shiny.html#server"><i class="fa fa-check"></i><b>7.1.2</b> Server</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="r-shiny.html"><a href="r-shiny.html#hands-on-exercise-4"><i class="fa fa-check"></i><b>7.2</b> <span style="color: green;"><strong>Hands-On Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="building-r-packages.html"><a href="building-r-packages.html"><i class="fa fa-check"></i><b>8</b> Building R Packages</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="building-r-packages.html"><a href="building-r-packages.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="building-r-packages.html"><a href="building-r-packages.html#prerequisites"><i class="fa fa-check"></i><b>8.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="8.3" data-path="building-r-packages.html"><a href="building-r-packages.html#building-a-simple-r-package"><i class="fa fa-check"></i><b>8.3</b> Building a simple R package</a></li>
+<li class="chapter" data-level="8.4" data-path="building-r-packages.html"><a href="building-r-packages.html#making-a-new-r-project"><i class="fa fa-check"></i><b>8.4</b> Making A New R Project</a></li>
+<li class="chapter" data-level="8.5" data-path="building-r-packages.html"><a href="building-r-packages.html#adding-documentation"><i class="fa fa-check"></i><b>8.5</b> Adding Documentation</a></li>
+<li class="chapter" data-level="8.6" data-path="building-r-packages.html"><a href="building-r-packages.html#uploading-and-installing-from-github"><i class="fa fa-check"></i><b>8.6</b> Uploading and Installing from Github</a></li>
+<li class="chapter" data-level="8.7" data-path="building-r-packages.html"><a href="building-r-packages.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>8.7</b> <span style="color: green;"><strong>Hands-on Exercises</strong></span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Computing</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="general-statistics" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> General Statistics<a href="general-statistics.html#general-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<hr />
+<div id="tabulating-factors-and-creating-contingency-tables" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Tabulating Factors and Creating Contingency Tables<a href="general-statistics.html#tabulating-factors-and-creating-contingency-tables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This section explores how to handle categorical data using <strong>factors</strong> and <strong>contingency tables</strong> in R. We will learn how to:</p>
+<hr />
+<div id="understanding-factors-in-r" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Understanding Factors in R<a href="general-statistics.html#understanding-factors-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Factors store <strong>categorical variables</strong> efficiently and allow statistical functions to recognize <strong>levels</strong>.</p>
+<div id="example-creating-a-factor-variable" class="section level4 hasAnchor" number="4.1.1.1">
+<h4><span class="header-section-number">4.1.1.1</span> Example: Creating a Factor Variable<a href="general-statistics.html#example-creating-a-factor-variable" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="general-statistics.html#cb153-1" tabindex="-1"></a><span class="co"># Creating a categorical variable</span></span>
+<span id="cb153-2"><a href="general-statistics.html#cb153-2" tabindex="-1"></a>survey_response <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Agree&quot;</span>, <span class="st">&quot;Disagree&quot;</span>, <span class="st">&quot;Neutral&quot;</span>, <span class="st">&quot;Agree&quot;</span>, <span class="st">&quot;Agree&quot;</span>, <span class="st">&quot;Disagree&quot;</span>)</span>
+<span id="cb153-3"><a href="general-statistics.html#cb153-3" tabindex="-1"></a></span>
+<span id="cb153-4"><a href="general-statistics.html#cb153-4" tabindex="-1"></a><span class="co"># Convert to factor</span></span>
+<span id="cb153-5"><a href="general-statistics.html#cb153-5" tabindex="-1"></a>survey_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(survey_response)</span>
+<span id="cb153-6"><a href="general-statistics.html#cb153-6" tabindex="-1"></a></span>
+<span id="cb153-7"><a href="general-statistics.html#cb153-7" tabindex="-1"></a><span class="co"># Print the factor</span></span>
+<span id="cb153-8"><a href="general-statistics.html#cb153-8" tabindex="-1"></a><span class="fu">print</span>(survey_factor)</span></code></pre></div>
+<pre><code>## [1] Agree    Disagree Neutral  Agree    Agree    Disagree
+## Levels: Agree Disagree Neutral</code></pre>
+</div>
+<div id="example-reordering-factor-levels" class="section level4 hasAnchor" number="4.1.1.2">
+<h4><span class="header-section-number">4.1.1.2</span> <strong>Example: Reordering Factor Levels</strong><a href="general-statistics.html#example-reordering-factor-levels" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="general-statistics.html#cb155-1" tabindex="-1"></a>survey_factor_ordered <span class="ot">&lt;-</span> <span class="fu">factor</span>(survey_response, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Disagree&quot;</span>, <span class="st">&quot;Neutral&quot;</span>, <span class="st">&quot;Agree&quot;</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb155-2"><a href="general-statistics.html#cb155-2" tabindex="-1"></a><span class="fu">print</span>(survey_factor_ordered)</span></code></pre></div>
+<pre><code>## [1] Agree    Disagree Neutral  Agree    Agree    Disagree
+## Levels: Disagree &lt; Neutral &lt; Agree</code></pre>
+<hr />
+</div>
+</div>
+<div id="creating-frequency-tables" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Creating Frequency Tables<a href="general-statistics.html#creating-frequency-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>frequency table</strong> counts the number of occurrences of each category.</p>
+<div id="example-using-table-to-create-a-frequency-table" class="section level4 hasAnchor" number="4.1.2.1">
+<h4><span class="header-section-number">4.1.2.1</span> Example: Using <code>table()</code> to Create a Frequency Table<a href="general-statistics.html#example-using-table-to-create-a-frequency-table" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="general-statistics.html#cb157-1" tabindex="-1"></a><span class="fu">table</span>(survey_factor)</span></code></pre></div>
+<pre><code>## survey_factor
+##    Agree Disagree  Neutral 
+##        3        2        1</code></pre>
+</div>
+<div id="example-getting-proportions-with-prop.table" class="section level4 hasAnchor" number="4.1.2.2">
+<h4><span class="header-section-number">4.1.2.2</span> <strong>Example: Getting Proportions with <code>prop.table()</code></strong><a href="general-statistics.html#example-getting-proportions-with-prop.table" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="general-statistics.html#cb159-1" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(survey_factor))</span></code></pre></div>
+<pre><code>## survey_factor
+##     Agree  Disagree   Neutral 
+## 0.5000000 0.3333333 0.1666667</code></pre>
+<hr />
+</div>
+</div>
+<div id="creating-contingency-tables" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Creating Contingency Tables<a href="general-statistics.html#creating-contingency-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>contingency table</strong> (cross-tabulation) is used to summarize two categorical variables.</p>
+<div id="example-2-way-contingency-table" class="section level4 hasAnchor" number="4.1.3.1">
+<h4><span class="header-section-number">4.1.3.1</span> Example: 2-Way Contingency Table<a href="general-statistics.html#example-2-way-contingency-table" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="general-statistics.html#cb161-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb161-2"><a href="general-statistics.html#cb161-2" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>)</span>
+<span id="cb161-3"><a href="general-statistics.html#cb161-3" tabindex="-1"></a></span>
+<span id="cb161-4"><a href="general-statistics.html#cb161-4" tabindex="-1"></a><span class="co"># Creating a contingency table</span></span>
+<span id="cb161-5"><a href="general-statistics.html#cb161-5" tabindex="-1"></a>contingency_table <span class="ot">&lt;-</span> <span class="fu">table</span>(gender, survey_factor)</span>
+<span id="cb161-6"><a href="general-statistics.html#cb161-6" tabindex="-1"></a></span>
+<span id="cb161-7"><a href="general-statistics.html#cb161-7" tabindex="-1"></a><span class="co"># Display the table</span></span>
+<span id="cb161-8"><a href="general-statistics.html#cb161-8" tabindex="-1"></a><span class="fu">print</span>(contingency_table)</span></code></pre></div>
+<pre><code>##         survey_factor
+## gender   Agree Disagree Neutral
+##   Female     0        2       1
+##   Male       3        0       0</code></pre>
+<hr />
+</div>
+</div>
+<div id="adding-margins-to-contingency-tables" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Adding Margins to Contingency Tables<a href="general-statistics.html#adding-margins-to-contingency-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can add row and column totals using <code>addmargins()</code>.</p>
+<div id="example-adding-margins" class="section level4 hasAnchor" number="4.1.4.1">
+<h4><span class="header-section-number">4.1.4.1</span> Example: Adding Margins<a href="general-statistics.html#example-adding-margins" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="general-statistics.html#cb163-1" tabindex="-1"></a><span class="fu">addmargins</span>(contingency_table)</span></code></pre></div>
+<pre><code>##         survey_factor
+## gender   Agree Disagree Neutral Sum
+##   Female     0        2       1   3
+##   Male       3        0       0   3
+##   Sum        3        2       1   6</code></pre>
+<hr />
+</div>
+</div>
+<div id="computing-row-and-column-proportions" class="section level3 hasAnchor" number="4.1.5">
+<h3><span class="header-section-number">4.1.5</span> Computing Row and Column Proportions<a href="general-statistics.html#computing-row-and-column-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-row-proportions" class="section level4 hasAnchor" number="4.1.5.1">
+<h4><span class="header-section-number">4.1.5.1</span> Example: Row Proportions<a href="general-statistics.html#example-row-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="general-statistics.html#cb165-1" tabindex="-1"></a><span class="fu">prop.table</span>(contingency_table, <span class="at">margin =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##         survey_factor
+## gender       Agree  Disagree   Neutral
+##   Female 0.0000000 0.6666667 0.3333333
+##   Male   1.0000000 0.0000000 0.0000000</code></pre>
+</div>
+<div id="example-column-proportions" class="section level4 hasAnchor" number="4.1.5.2">
+<h4><span class="header-section-number">4.1.5.2</span> Example: Column Proportions<a href="general-statistics.html#example-column-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="general-statistics.html#cb167-1" tabindex="-1"></a><span class="fu">prop.table</span>(contingency_table, <span class="at">margin =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##         survey_factor
+## gender   Agree Disagree Neutral
+##   Female     0        1       1
+##   Male       1        0       0</code></pre>
+<hr />
+</div>
+</div>
+<div id="visualizing-contingency-tables" class="section level3 hasAnchor" number="4.1.6">
+<h3><span class="header-section-number">4.1.6</span> Visualizing Contingency Tables<a href="general-statistics.html#visualizing-contingency-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-bar-plot" class="section level4 hasAnchor" number="4.1.6.1">
+<h4><span class="header-section-number">4.1.6.1</span> Example: Bar Plot<a href="general-statistics.html#example-bar-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="general-statistics.html#cb169-1" tabindex="-1"></a><span class="fu">barplot</span>(contingency_table, <span class="at">beside =</span> <span class="cn">TRUE</span>, <span class="at">legend =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+</div>
+<div id="example-mosaic-plot" class="section level4 hasAnchor" number="4.1.6.2">
+<h4><span class="header-section-number">4.1.6.2</span> Example: Mosaic Plot<a href="general-statistics.html#example-mosaic-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="general-statistics.html#cb170-1" tabindex="-1"></a><span class="fu">mosaicplot</span>(contingency_table, <span class="at">main =</span> <span class="st">&quot;Survey Responses by Gender&quot;</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;skyblue&quot;</span>, <span class="st">&quot;pink&quot;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="practical-exercises" class="section level3 hasAnchor" number="4.1.7">
+<h3><span class="header-section-number">4.1.7</span> Practical Exercises<a href="general-statistics.html#practical-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-1-working-with-factors" class="section level4 hasAnchor" number="4.1.7.1">
+<h4><span class="header-section-number">4.1.7.1</span> Exercise 1: Working with Factors<a href="general-statistics.html#exercise-1-working-with-factors" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Create a factor variable from the following data:</li>
+</ol>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="general-statistics.html#cb171-1" tabindex="-1"></a>   education <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;High School&quot;</span>, <span class="st">&quot;College&quot;</span>, <span class="st">&quot;College&quot;</span>, <span class="st">&quot;PhD&quot;</span>, <span class="st">&quot;Masters&quot;</span>, <span class="st">&quot;High School&quot;</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Convert it into an <strong>ordered factor</strong> with levels: <code>"High School" &lt; "College" &lt; "Masters" &lt; "PhD"</code><br />
+</li>
+<li>Print the ordered factor.</li>
+</ol>
+<hr />
+</div>
+<div id="exercise-2-creating-a-contingency-table" class="section level4 hasAnchor" number="4.1.7.2">
+<h4><span class="header-section-number">4.1.7.2</span> Exercise 2: Creating a Contingency Table<a href="general-statistics.html#exercise-2-creating-a-contingency-table" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Create two categorical variables:</li>
+</ol>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="general-statistics.html#cb172-1" tabindex="-1"></a>   department <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Sales&quot;</span>, <span class="st">&quot;HR&quot;</span>, <span class="st">&quot;IT&quot;</span>, <span class="st">&quot;Sales&quot;</span>, <span class="st">&quot;HR&quot;</span>, <span class="st">&quot;IT&quot;</span>, <span class="st">&quot;Sales&quot;</span>, <span class="st">&quot;IT&quot;</span>)</span>
+<span id="cb172-2"><a href="general-statistics.html#cb172-2" tabindex="-1"></a>   status <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Full-Time&quot;</span>, <span class="st">&quot;Part-Time&quot;</span>, <span class="st">&quot;Full-Time&quot;</span>, <span class="st">&quot;Part-Time&quot;</span>, <span class="st">&quot;Full-Time&quot;</span>, <span class="st">&quot;Full-Time&quot;</span>, <span class="st">&quot;Part-Time&quot;</span>, <span class="st">&quot;Full-Time&quot;</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Generate a contingency table.</li>
+<li>Compute <strong>row and column proportions</strong>.</li>
+<li>Add <strong>margins</strong> to the table.</li>
+</ol>
+<hr />
+</div>
+<div id="exercise-3-titanic-dataset-analysis" class="section level4 hasAnchor" number="4.1.7.3">
+<h4><span class="header-section-number">4.1.7.3</span> Exercise 3: Titanic Dataset Analysis<a href="general-statistics.html#exercise-3-titanic-dataset-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Use the built-in <strong>Titanic dataset</strong> to:</p>
+<ol style="list-style-type: decimal">
+<li><p>Create a <strong>contingency table</strong> of <strong>passenger class (<code>Pclass</code>)</strong> and <strong>survival (<code>Survived</code>)</strong>.</p></li>
+<li><p>Compute row and column proportions.</p></li>
+<li><p>Create a bar plot.</p></li>
+</ol>
+<hr />
+</div>
+</div>
+</div>
+<div id="calculating-quantiles" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Calculating Quantiles<a href="general-statistics.html#calculating-quantiles" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Quantiles are statistical measures that <strong>divide a dataset into equal parts</strong>. They help summarize distributions, identify outliers, and assess skewness.</p>
+<div id="understanding-quantiles" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Understanding Quantiles<a href="general-statistics.html#understanding-quantiles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Quantiles divide data into <strong>equal-sized groups</strong>:</p>
+<ul>
+<li><p><strong>Median (50th percentile)</strong>: The middle value of a dataset.</p></li>
+<li><p><strong>Quartiles (25th, 50th, 75th percentiles)</strong>: Divide data into four equal parts.</p></li>
+<li><p><strong>Deciles (10th, 20th, …, 90th percentiles)</strong>: Divide data into ten equal parts.</p></li>
+<li><p><strong>Percentiles (1st, 2nd, …, 99th percentiles)</strong>: Divide data into 100 equal parts.</p></li>
+</ul>
+</div>
+<div id="computing-quantiles-in-r" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Computing Quantiles in R<a href="general-statistics.html#computing-quantiles-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-finding-quartiles" class="section level4 hasAnchor" number="4.2.2.1">
+<h4><span class="header-section-number">4.2.2.1</span> Example: Finding Quartiles<a href="general-statistics.html#example-finding-quartiles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="general-statistics.html#cb173-1" tabindex="-1"></a><span class="co"># Create a dataset</span></span>
+<span id="cb173-2"><a href="general-statistics.html#cb173-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">21</span>, <span class="dv">13</span>, <span class="dv">18</span>)</span>
+<span id="cb173-3"><a href="general-statistics.html#cb173-3" tabindex="-1"></a></span>
+<span id="cb173-4"><a href="general-statistics.html#cb173-4" tabindex="-1"></a><span class="do">### Compute quartiles</span></span>
+<span id="cb173-5"><a href="general-statistics.html#cb173-5" tabindex="-1"></a><span class="fu">quantile</span>(data)</span></code></pre></div>
+<pre><code>##   0%  25%  50%  75% 100% 
+##    3    7   12   14   21</code></pre>
+<ul>
+<li><strong>25% (Q1)</strong>: First quartile</li>
+<li><strong>50% (Q2)</strong>: Median</li>
+<li><strong>75% (Q3)</strong>: Third quartile</li>
+<li><strong>100%</strong>: Maximum value</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="computing-specific-quantiles" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Computing Specific Quantiles<a href="general-statistics.html#computing-specific-quantiles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-finding-the-10th-and-90th-percentiles" class="section level4 hasAnchor" number="4.2.3.1">
+<h4><span class="header-section-number">4.2.3.1</span> Example: Finding the 10th and 90th Percentiles<a href="general-statistics.html#example-finding-the-10th-and-90th-percentiles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="general-statistics.html#cb175-1" tabindex="-1"></a><span class="fu">quantile</span>(data, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.10</span>, <span class="fl">0.90</span>))</span></code></pre></div>
+<pre><code>##  10%  90% 
+##  4.6 18.6</code></pre>
+<hr />
+</div>
+</div>
+<div id="using-summary-for-quick-insights" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Using <code>summary()</code> for Quick Insights<a href="general-statistics.html#using-summary-for-quick-insights" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="general-statistics.html#cb177-1" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    3.00    7.00   12.00   11.22   14.00   21.00</code></pre>
+<p>The <strong>summary()</strong> function provides:</p>
+<ul>
+<li><p><strong>Min</strong>: Minimum value</p></li>
+<li><p><strong>1st Qu. (Q1, 25%)</strong>: First quartile</p></li>
+<li><p><strong>Median (Q2, 50%)</strong>: Second quartile</p></li>
+<li><p><strong>Mean</strong>: Average value</p></li>
+<li><p><strong>3rd Qu. (Q3, 75%)</strong>: Third quartile</p></li>
+<li><p><strong>Max</strong>: Maximum value</p></li>
+</ul>
+<hr />
+</div>
+<div id="visualizing-quantiles" class="section level3 hasAnchor" number="4.2.5">
+<h3><span class="header-section-number">4.2.5</span> Visualizing Quantiles<a href="general-statistics.html#visualizing-quantiles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-boxplot-to-show-quartiles" class="section level4 hasAnchor" number="4.2.5.1">
+<h4><span class="header-section-number">4.2.5.1</span> Example: Boxplot to Show Quartiles<a href="general-statistics.html#example-boxplot-to-show-quartiles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="general-statistics.html#cb179-1" tabindex="-1"></a><span class="fu">boxplot</span>(data, <span class="at">main =</span> <span class="st">&quot;Boxplot of Data&quot;</span>, <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-77-1.png" width="672" />
+In a boxplot:</p>
+<ul>
+<li><p><strong>The median (Q2) as a thick line in the box</strong></p></li>
+<li><p><strong>The interquartile range (IQR, Q1 to Q3) as the box</strong></p></li>
+<li><p><strong>Outliers as individual points</strong></p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="finding-interquartile-range-iqr" class="section level3 hasAnchor" number="4.2.6">
+<h3><span class="header-section-number">4.2.6</span> Finding Interquartile Range (IQR)<a href="general-statistics.html#finding-interquartile-range-iqr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>IQR</strong> measures <strong>the spread of the middle 50% of the data</strong>:</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="general-statistics.html#cb180-1" tabindex="-1"></a><span class="fu">IQR</span>(data)</span></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<p>OR manually:</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="general-statistics.html#cb182-1" tabindex="-1"></a>iqr_value <span class="ot">&lt;-</span> <span class="fu">quantile</span>(data, <span class="fl">0.75</span>) <span class="sc">-</span> <span class="fu">quantile</span>(data, <span class="fl">0.25</span>)</span>
+<span id="cb182-2"><a href="general-statistics.html#cb182-2" tabindex="-1"></a><span class="fu">print</span>(iqr_value)</span></code></pre></div>
+<pre><code>## 75% 
+##   7</code></pre>
+<hr />
+</div>
+<div id="finding-outliers-using-iqr" class="section level3 hasAnchor" number="4.2.7">
+<h3><span class="header-section-number">4.2.7</span> Finding Outliers Using IQR<a href="general-statistics.html#finding-outliers-using-iqr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Outliers are <strong>values outside</strong> <code>Q1 - 1.5*IQR</code> and <code>Q3 + 1.5*IQR</code>.</p>
+<div id="example-detecting-outliers" class="section level4 hasAnchor" number="4.2.7.1">
+<h4><span class="header-section-number">4.2.7.1</span> Example: Detecting Outliers<a href="general-statistics.html#example-detecting-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="general-statistics.html#cb184-1" tabindex="-1"></a><span class="co"># Compute quartiles</span></span>
+<span id="cb184-2"><a href="general-statistics.html#cb184-2" tabindex="-1"></a>q1 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(data, <span class="fl">0.25</span>)</span>
+<span id="cb184-3"><a href="general-statistics.html#cb184-3" tabindex="-1"></a>q3 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(data, <span class="fl">0.75</span>)</span>
+<span id="cb184-4"><a href="general-statistics.html#cb184-4" tabindex="-1"></a>iqr_value <span class="ot">&lt;-</span> <span class="fu">IQR</span>(data)</span>
+<span id="cb184-5"><a href="general-statistics.html#cb184-5" tabindex="-1"></a></span>
+<span id="cb184-6"><a href="general-statistics.html#cb184-6" tabindex="-1"></a><span class="co"># Define outlier thresholds</span></span>
+<span id="cb184-7"><a href="general-statistics.html#cb184-7" tabindex="-1"></a>lower_bound <span class="ot">&lt;-</span> q1 <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> iqr_value</span>
+<span id="cb184-8"><a href="general-statistics.html#cb184-8" tabindex="-1"></a>upper_bound <span class="ot">&lt;-</span> q3 <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> iqr_value</span>
+<span id="cb184-9"><a href="general-statistics.html#cb184-9" tabindex="-1"></a></span>
+<span id="cb184-10"><a href="general-statistics.html#cb184-10" tabindex="-1"></a><span class="co"># Find outliers</span></span>
+<span id="cb184-11"><a href="general-statistics.html#cb184-11" tabindex="-1"></a>outliers <span class="ot">&lt;-</span> data[data <span class="sc">&lt;</span> lower_bound <span class="sc">|</span> data <span class="sc">&gt;</span> upper_bound]</span>
+<span id="cb184-12"><a href="general-statistics.html#cb184-12" tabindex="-1"></a><span class="fu">print</span>(outliers)</span></code></pre></div>
+<pre><code>## numeric(0)</code></pre>
+<hr />
+</div>
+</div>
+<div id="hands-on-exercises-1" class="section level3 hasAnchor" number="4.2.8">
+<h3><span class="header-section-number">4.2.8</span> Hands-on Exercises<a href="general-statistics.html#hands-on-exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-1-computing-quartiles" class="section level4 hasAnchor" number="4.2.8.1">
+<h4><span class="header-section-number">4.2.8.1</span> Exercise 1: Computing Quartiles<a href="general-statistics.html#exercise-1-computing-quartiles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Create a dataset:</li>
+</ol>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="general-statistics.html#cb186-1" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">78</span>, <span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">92</span>, <span class="dv">60</span>, <span class="dv">73</span>, <span class="dv">81</span>, <span class="dv">95</span>, <span class="dv">88</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Compute <strong>Q1, Q2 (median), and Q3</strong>.</li>
+<li>Calculate the <strong>IQR</strong>.</li>
+<li>Plot a <strong>boxplot</strong>.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+<div id="exercise-2-computing-custom-quantiles" class="section level4 hasAnchor" number="4.2.8.2">
+<h4><span class="header-section-number">4.2.8.2</span> Exercise 2: Computing Custom Quantiles<a href="general-statistics.html#exercise-2-computing-custom-quantiles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Use the dataset:</li>
+</ol>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="general-statistics.html#cb187-1" tabindex="-1"></a>heights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">165</span>, <span class="dv">170</span>, <span class="dv">175</span>, <span class="dv">180</span>, <span class="dv">185</span>, <span class="dv">190</span>, <span class="dv">195</span>, <span class="dv">200</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Find the <strong>5th, 25th, 50th, 75th, and 95th percentiles</strong>.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+<div id="exercise-3-finding-outliers" class="section level4 hasAnchor" number="4.2.8.3">
+<h4><span class="header-section-number">4.2.8.3</span> Exercise 3: Finding Outliers<a href="general-statistics.html#exercise-3-finding-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Use the dataset:</li>
+</ol>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="general-statistics.html#cb188-1" tabindex="-1"></a>salaries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">40000</span>, <span class="dv">42000</span>, <span class="dv">45000</span>, <span class="dv">47000</span>, <span class="dv">50000</span>, <span class="dv">52000</span>, <span class="dv">55000</span>, <span class="dv">58000</span>, <span class="dv">60000</span>, <span class="dv">100000</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Compute <strong>Q1, Q3, and IQR</strong>.</li>
+<li>Identify <strong>outliers</strong>.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+<hr />
+</div>
+</div>
+</div>
+<div id="z-scores" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> z-Scores<a href="general-statistics.html#z-scores" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <strong>z-score</strong> (also called the <strong>standard score</strong>) tells us how many standard deviations a data point is from the <strong>mean</strong>. It is a useful measure for comparing values across different distributions and detecting <strong>outliers</strong>.</p>
+<div id="understanding-z-scores" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Understanding z-Scores<a href="general-statistics.html#understanding-z-scores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>z-score formula</strong> is:</p>
+<p><span class="math display">\[
+    z = \frac{x - \mu}{\sigma}
+    \]</span></p>
+<p>Where:</p>
+<ul>
+<li><p><span class="math inline">\(x\)</span> = data point</p></li>
+<li><p><span class="math inline">\(\mu\)</span> = mean of the dataset</p></li>
+<li><p><span class="math inline">\(\sigma\)</span> = standard deviation of the dataset</p></li>
+</ul>
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li><p><span class="math inline">\(z = 0\)</span> → The value is <strong>equal</strong> to the mean.</p></li>
+<li><p><span class="math inline">\(z &gt; 0\)</span> → The value is <strong>above</strong> the mean.</p></li>
+<li><p><span class="math inline">\(z &lt; 0\)</span> → The value is <strong>below</strong> the mean.</p></li>
+<li><p><span class="math inline">\(|z| &gt; 2\)</span> → The value is <strong>unusual</strong>.</p></li>
+<li><p><span class="math inline">\(|z| &gt; 3\)</span> → The value is <strong>potentially an outlier</strong>.</p></li>
+</ul>
+<hr />
+</div>
+<div id="computing-z-scores-in-r" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Computing z-Scores in R<a href="general-statistics.html#computing-z-scores-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-computing-z-scores-manually" class="section level4 hasAnchor" number="4.3.2.1">
+<h4><span class="header-section-number">4.3.2.1</span> Example: Computing z-Scores Manually<a href="general-statistics.html#example-computing-z-scores-manually" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="general-statistics.html#cb189-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb189-2"><a href="general-statistics.html#cb189-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">55</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">95</span>)</span>
+<span id="cb189-3"><a href="general-statistics.html#cb189-3" tabindex="-1"></a></span>
+<span id="cb189-4"><a href="general-statistics.html#cb189-4" tabindex="-1"></a><span class="co"># Compute mean and standard deviation</span></span>
+<span id="cb189-5"><a href="general-statistics.html#cb189-5" tabindex="-1"></a>mean_value <span class="ot">&lt;-</span> <span class="fu">mean</span>(data)</span>
+<span id="cb189-6"><a href="general-statistics.html#cb189-6" tabindex="-1"></a>sd_value <span class="ot">&lt;-</span> <span class="fu">sd</span>(data)</span>
+<span id="cb189-7"><a href="general-statistics.html#cb189-7" tabindex="-1"></a></span>
+<span id="cb189-8"><a href="general-statistics.html#cb189-8" tabindex="-1"></a><span class="co"># Compute z-scores</span></span>
+<span id="cb189-9"><a href="general-statistics.html#cb189-9" tabindex="-1"></a>z_scores <span class="ot">&lt;-</span> (data <span class="sc">-</span> mean_value) <span class="sc">/</span> sd_value</span>
+<span id="cb189-10"><a href="general-statistics.html#cb189-10" tabindex="-1"></a><span class="fu">print</span>(z_scores)</span></code></pre></div>
+<pre><code>##  [1] -1.4863011 -1.1560120 -0.8257228 -0.4954337 -0.1651446  0.1651446  0.4954337
+##  [8]  0.8257228  1.1560120  1.4863011</code></pre>
+<hr />
+</div>
+</div>
+<div id="computing-z-scores-using-scale" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Computing z-Scores Using <code>scale()</code><a href="general-statistics.html#computing-z-scores-using-scale" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>scale()</code> function standardizes a dataset (converts it into z-scores):</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="general-statistics.html#cb191-1" tabindex="-1"></a><span class="co"># Compute z-scores using scale()</span></span>
+<span id="cb191-2"><a href="general-statistics.html#cb191-2" tabindex="-1"></a>z_scaled <span class="ot">&lt;-</span> <span class="fu">scale</span>(data)</span>
+<span id="cb191-3"><a href="general-statistics.html#cb191-3" tabindex="-1"></a><span class="fu">print</span>(z_scaled)</span></code></pre></div>
+<pre><code>##             [,1]
+##  [1,] -1.4863011
+##  [2,] -1.1560120
+##  [3,] -0.8257228
+##  [4,] -0.4954337
+##  [5,] -0.1651446
+##  [6,]  0.1651446
+##  [7,]  0.4954337
+##  [8,]  0.8257228
+##  [9,]  1.1560120
+## [10,]  1.4863011
+## attr(,&quot;scaled:center&quot;)
+## [1] 72.5
+## attr(,&quot;scaled:scale&quot;)
+## [1] 15.13825</code></pre>
+<p>The <code>scale()</code> function <strong>automatically</strong> centers and scales the data.</p>
+<hr />
+</div>
+<div id="interpreting-z-scores" class="section level3 hasAnchor" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Interpreting z-Scores<a href="general-statistics.html#interpreting-z-scores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s compute the <strong>z-score of 80</strong> from our dataset:</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="general-statistics.html#cb193-1" tabindex="-1"></a>z_80 <span class="ot">&lt;-</span> (<span class="dv">80</span> <span class="sc">-</span> mean_value) <span class="sc">/</span> sd_value</span>
+<span id="cb193-2"><a href="general-statistics.html#cb193-2" tabindex="-1"></a><span class="fu">print</span>(z_80)</span></code></pre></div>
+<pre><code>## [1] 0.4954337</code></pre>
+<p>If <strong><span class="math inline">\(z = 0.5\)</span></strong>, this means <strong>80 is 0.5 standard deviations above the mean</strong>.</p>
+<hr />
+</div>
+<div id="using-z-scores-to-detect-outliers" class="section level3 hasAnchor" number="4.3.5">
+<h3><span class="header-section-number">4.3.5</span> Using z-Scores to Detect Outliers<a href="general-statistics.html#using-z-scores-to-detect-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Outliers are values that have <strong><span class="math inline">\(|z| &gt; 3\)</span></strong>.</p>
+<div id="example-finding-outliers" class="section level4 hasAnchor" number="4.3.5.1">
+<h4><span class="header-section-number">4.3.5.1</span> Example: Finding Outliers<a href="general-statistics.html#example-finding-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="general-statistics.html#cb195-1" tabindex="-1"></a><span class="co"># Identify values with |z| &gt; 3</span></span>
+<span id="cb195-2"><a href="general-statistics.html#cb195-2" tabindex="-1"></a>outliers <span class="ot">&lt;-</span> data[<span class="fu">abs</span>(z_scores) <span class="sc">&gt;</span> <span class="dv">3</span>]</span>
+<span id="cb195-3"><a href="general-statistics.html#cb195-3" tabindex="-1"></a><span class="fu">print</span>(outliers)</span></code></pre></div>
+<pre><code>## numeric(0)</code></pre>
+<hr />
+</div>
+</div>
+<div id="visualizing-z-scores" class="section level3 hasAnchor" number="4.3.6">
+<h3><span class="header-section-number">4.3.6</span> Visualizing z-Scores<a href="general-statistics.html#visualizing-z-scores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-histogram-of-z-scores" class="section level4 hasAnchor" number="4.3.6.1">
+<h4><span class="header-section-number">4.3.6.1</span> Example: Histogram of z-Scores<a href="general-statistics.html#example-histogram-of-z-scores" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="general-statistics.html#cb197-1" tabindex="-1"></a><span class="fu">hist</span>(z_scores, <span class="at">main =</span> <span class="st">&quot;Histogram of z-Scores&quot;</span>, <span class="at">col =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;z-Scores&quot;</span>)</span>
+<span id="cb197-2"><a href="general-statistics.html#cb197-2" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="co"># Marking outlier thresholds</span></span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+</div>
+<div id="example-standard-normal-curve-with-z-scores" class="section level4 hasAnchor" number="4.3.6.2">
+<h4><span class="header-section-number">4.3.6.2</span> Example: Standard Normal Curve with z-Scores<a href="general-statistics.html#example-standard-normal-curve-with-z-scores" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="general-statistics.html#cb198-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length=</span><span class="dv">100</span>)</span>
+<span id="cb198-2"><a href="general-statistics.html#cb198-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x)</span>
+<span id="cb198-3"><a href="general-statistics.html#cb198-3" tabindex="-1"></a></span>
+<span id="cb198-4"><a href="general-statistics.html#cb198-4" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">type=</span><span class="st">&quot;l&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">main=</span><span class="st">&quot;Standard Normal Distribution&quot;</span>)</span>
+<span id="cb198-5"><a href="general-statistics.html#cb198-5" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>) <span class="co"># Mark z-scores</span></span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="hands-on-exercises-2" class="section level3 hasAnchor" number="4.3.7">
+<h3><span class="header-section-number">4.3.7</span> Hands-on Exercises<a href="general-statistics.html#hands-on-exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-1-compute-z-scores" class="section level4 hasAnchor" number="4.3.7.1">
+<h4><span class="header-section-number">4.3.7.1</span> Exercise 1: Compute z-Scores<a href="general-statistics.html#exercise-1-compute-z-scores" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Use the dataset:</li>
+</ol>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="general-statistics.html#cb199-1" tabindex="-1"></a>   heights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">165</span>, <span class="dv">170</span>, <span class="dv">175</span>, <span class="dv">180</span>, <span class="dv">185</span>, <span class="dv">190</span>, <span class="dv">195</span>, <span class="dv">200</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Compute the <strong>mean</strong> and <strong>standard deviation</strong>.</p></li>
+<li><p>Calculate the <strong>z-scores</strong>.</p></li>
+<li><p>Find any <strong>outliers</strong> (<span class="math inline">\(|z| &gt; 3\)</span>).</p></li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+<div id="exercise-2-standardize-data-using-scale" class="section level4 hasAnchor" number="4.3.7.2">
+<h4><span class="header-section-number">4.3.7.2</span> Exercise 2: Standardize Data Using <code>scale()</code><a href="general-statistics.html#exercise-2-standardize-data-using-scale" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Use the dataset:</li>
+</ol>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="general-statistics.html#cb200-1" tabindex="-1"></a>   weights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">95</span>, <span class="dv">100</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Standardize the data using <code>scale()</code>.</p></li>
+<li><p>Plot a <strong>histogram</strong> of the z-scores.</p></li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+<div id="exercise-3-identifying-outliers" class="section level4 hasAnchor" number="4.3.7.3">
+<h4><span class="header-section-number">4.3.7.3</span> Exercise 3: Identifying Outliers<a href="general-statistics.html#exercise-3-identifying-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Use the dataset:</li>
+</ol>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="general-statistics.html#cb201-1" tabindex="-1"></a>   salaries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">40000</span>, <span class="dv">45000</span>, <span class="dv">50000</span>, <span class="dv">55000</span>, <span class="dv">60000</span>, <span class="dv">65000</span>, <span class="dv">70000</span>, <span class="dv">75000</span>, <span class="dv">80000</span>, <span class="dv">200000</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Compute <strong>z-scores</strong>.</p></li>
+<li><p>Identify <strong>outliers</strong>.</p></li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+</div>
+</div>
+<div id="inferential-statistics" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Inferential Statistics<a href="general-statistics.html#inferential-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Inferential statistics</strong> allows us to <strong>make conclusions</strong> about a population based on a <strong>sample</strong>.</p>
+<div id="basic-concepts" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Basic Concepts<a href="general-statistics.html#basic-concepts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="population-vs.-sample" class="section level4 hasAnchor" number="4.4.1.1">
+<h4><span class="header-section-number">4.4.1.1</span> Population vs. Sample<a href="general-statistics.html#population-vs.-sample" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><p><strong>Population</strong>: The entire group we want to study.</p></li>
+<li><p><strong>Sample</strong>: A subset of the population used for analysis.</p></li>
+</ul>
+</div>
+<div id="parameter-vs.-statistic" class="section level4 hasAnchor" number="4.4.1.2">
+<h4><span class="header-section-number">4.4.1.2</span> Parameter vs. Statistic<a href="general-statistics.html#parameter-vs.-statistic" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><p><strong>Parameter</strong>: A value that describes the population.</p></li>
+<li><p><strong>Statistic</strong>: A value computed from a sample.</p></li>
+</ul>
+</div>
+<div id="common-inferential-techniques" class="section level4 hasAnchor" number="4.4.1.3">
+<h4><span class="header-section-number">4.4.1.3</span> Common Inferential Techniques<a href="general-statistics.html#common-inferential-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p><strong>Confidence Intervals</strong> – Estimating population values.</p></li>
+<li><p><strong>Hypothesis Testing</strong> – Testing claims about populations.</p></li>
+</ol>
+<hr />
+</div>
+</div>
+<div id="confidence-intervals" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Confidence Intervals<a href="general-statistics.html#confidence-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>confidence interval (CI)</strong> gives a range where we expect a population parameter to lie.</p>
+<div id="example-confidence-interval-for-a-mean" class="section level4 hasAnchor" number="4.4.2.1">
+<h4><span class="header-section-number">4.4.2.1</span> Example: Confidence Interval for a Mean<a href="general-statistics.html#example-confidence-interval-for-a-mean" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="general-statistics.html#cb202-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb202-2"><a href="general-statistics.html#cb202-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">55</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">95</span>)</span>
+<span id="cb202-3"><a href="general-statistics.html#cb202-3" tabindex="-1"></a></span>
+<span id="cb202-4"><a href="general-statistics.html#cb202-4" tabindex="-1"></a><span class="co"># Mean and standard deviation</span></span>
+<span id="cb202-5"><a href="general-statistics.html#cb202-5" tabindex="-1"></a>mean_data <span class="ot">&lt;-</span> <span class="fu">mean</span>(data)</span>
+<span id="cb202-6"><a href="general-statistics.html#cb202-6" tabindex="-1"></a>sd_data <span class="ot">&lt;-</span> <span class="fu">sd</span>(data)</span>
+<span id="cb202-7"><a href="general-statistics.html#cb202-7" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(data)</span>
+<span id="cb202-8"><a href="general-statistics.html#cb202-8" tabindex="-1"></a></span>
+<span id="cb202-9"><a href="general-statistics.html#cb202-9" tabindex="-1"></a><span class="co"># Compute confidence interval (95% confidence)</span></span>
+<span id="cb202-10"><a href="general-statistics.html#cb202-10" tabindex="-1"></a>error_margin <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df=</span>n<span class="dv">-1</span>) <span class="sc">*</span> (sd_data <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb202-11"><a href="general-statistics.html#cb202-11" tabindex="-1"></a>lower_bound <span class="ot">&lt;-</span> mean_data <span class="sc">-</span> error_margin</span>
+<span id="cb202-12"><a href="general-statistics.html#cb202-12" tabindex="-1"></a>upper_bound <span class="ot">&lt;-</span> mean_data <span class="sc">+</span> error_margin</span>
+<span id="cb202-13"><a href="general-statistics.html#cb202-13" tabindex="-1"></a></span>
+<span id="cb202-14"><a href="general-statistics.html#cb202-14" tabindex="-1"></a><span class="co"># Print confidence interval</span></span>
+<span id="cb202-15"><a href="general-statistics.html#cb202-15" tabindex="-1"></a><span class="fu">c</span>(lower_bound, upper_bound)</span></code></pre></div>
+<pre><code>## [1] 61.67075 83.32925</code></pre>
+<p>We are <strong>95% confident</strong> that the population mean lies within this range.</p>
+<hr />
+</div>
+</div>
+<div id="hypothesis-testing" class="section level3 hasAnchor" number="4.4.3">
+<h3><span class="header-section-number">4.4.3</span> Hypothesis Testing<a href="general-statistics.html#hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Hypothesis testing helps us determine whether a <strong>claim about a population</strong> is supported by sample data.</p>
+</div>
+<div id="steps-in-hypothesis-testing" class="section level3 hasAnchor" number="4.4.4">
+<h3><span class="header-section-number">4.4.4</span> Steps in Hypothesis Testing<a href="general-statistics.html#steps-in-hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p><strong>State the null (<span class="math inline">\(H_0\)</span>) and alternative (<span class="math inline">\(H_A\)</span>) hypotheses.</strong></p></li>
+<li><p><strong>Select a significance level (<span class="math inline">\(\alpha\)</span>).</strong></p></li>
+<li><p><strong>Compute the test statistic.</strong></p></li>
+<li><p><strong>Compare the test statistic to a critical value or p-value.</strong></p></li>
+<li><p><strong>Make a conclusion.</strong></p></li>
+</ol>
+<hr />
+</div>
+<div id="one-sample-t-test" class="section level3 hasAnchor" number="4.4.5">
+<h3><span class="header-section-number">4.4.5</span> One-Sample t-Test<a href="general-statistics.html#one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Tests if the sample mean is different from a known population mean.</p>
+<div id="example-testing-if-a-sample-mean-differs-from-70" class="section level4 hasAnchor" number="4.4.5.1">
+<h4><span class="header-section-number">4.4.5.1</span> Example: Testing If a Sample Mean Differs from 70<a href="general-statistics.html#example-testing-if-a-sample-mean-differs-from-70" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="general-statistics.html#cb204-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb204-2"><a href="general-statistics.html#cb204-2" tabindex="-1"></a>sample_data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">68</span>, <span class="dv">72</span>, <span class="dv">75</span>, <span class="dv">70</span>, <span class="dv">66</span>, <span class="dv">71</span>, <span class="dv">69</span>, <span class="dv">74</span>, <span class="dv">67</span>)</span>
+<span id="cb204-3"><a href="general-statistics.html#cb204-3" tabindex="-1"></a></span>
+<span id="cb204-4"><a href="general-statistics.html#cb204-4" tabindex="-1"></a><span class="co"># One-sample t-test (H0: Mean = 70)</span></span>
+<span id="cb204-5"><a href="general-statistics.html#cb204-5" tabindex="-1"></a></span>
+<span id="cb204-6"><a href="general-statistics.html#cb204-6" tabindex="-1"></a><span class="fu">t.test</span>(sample_data, <span class="at">mu =</span> <span class="dv">70</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  sample_data
+## t = -0.28446, df = 9, p-value = 0.7825
+## alternative hypothesis: true mean is not equal to 70
+## 95 percent confidence interval:
+##  67.31429 72.08571
+## sample estimates:
+## mean of x 
+##      69.7</code></pre>
+<ul>
+<li><p>If <strong>p-value &lt; 0.05</strong>, reject <span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>If <strong>p-value &gt; 0.05</strong>, fail to reject <span class="math inline">\(H_0\)</span>.</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="comparing-two-sample-means" class="section level3 hasAnchor" number="4.4.6">
+<h3><span class="header-section-number">4.4.6</span> Comparing Two Sample Means<a href="general-statistics.html#comparing-two-sample-means" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>two-sample t-test</strong> compares the means of <strong>two independent groups</strong>.</p>
+<div id="example-comparing-male-vs.-female-heights" class="section level4 hasAnchor" number="4.4.6.1">
+<h4><span class="header-section-number">4.4.6.1</span> Example: Comparing Male vs. Female Heights<a href="general-statistics.html#example-comparing-male-vs.-female-heights" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="general-statistics.html#cb206-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb206-2"><a href="general-statistics.html#cb206-2" tabindex="-1"></a>male_heights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">175</span>, <span class="dv">180</span>, <span class="dv">185</span>, <span class="dv">190</span>, <span class="dv">195</span>)</span>
+<span id="cb206-3"><a href="general-statistics.html#cb206-3" tabindex="-1"></a>female_heights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">160</span>, <span class="dv">165</span>, <span class="dv">168</span>, <span class="dv">170</span>, <span class="dv">175</span>, <span class="dv">178</span>)</span>
+<span id="cb206-4"><a href="general-statistics.html#cb206-4" tabindex="-1"></a></span>
+<span id="cb206-5"><a href="general-statistics.html#cb206-5" tabindex="-1"></a><span class="co"># Two-sample t-test</span></span>
+<span id="cb206-6"><a href="general-statistics.html#cb206-6" tabindex="-1"></a><span class="fu">t.test</span>(male_heights, female_heights)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  male_heights and female_heights
+## t = 2.8225, df = 8.9621, p-value = 0.02005
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##   2.607164 23.726169
+## sample estimates:
+## mean of x mean of y 
+##  182.5000  169.3333</code></pre>
+<ul>
+<li><p>If <strong>p-value &lt; 0.05</strong>, the means are <strong>significantly different</strong>.</p></li>
+<li><p>If <strong>p-value &gt; 0.05</strong>, the means are <strong>not significantly different</strong>.</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="testing-proportions" class="section level3 hasAnchor" number="4.4.7">
+<h3><span class="header-section-number">4.4.7</span> Testing Proportions<a href="general-statistics.html#testing-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>proportion test</strong> is used for categorical data.</p>
+<div id="example-testing-if-60-of-people-prefer-brand-a" class="section level4 hasAnchor" number="4.4.7.1">
+<h4><span class="header-section-number">4.4.7.1</span> Example: Testing if 60% of People Prefer Brand A<a href="general-statistics.html#example-testing-if-60-of-people-prefer-brand-a" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="general-statistics.html#cb208-1" tabindex="-1"></a><span class="co"># Sample data: 55 people prefer Brand A out of 100</span></span>
+<span id="cb208-2"><a href="general-statistics.html#cb208-2" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">55</span>, <span class="dv">100</span>, <span class="at">p =</span> <span class="fl">0.60</span>)</span></code></pre></div>
+<pre><code>## 
+##  1-sample proportions test with continuity correction
+## 
+## data:  55 out of 100, null probability 0.6
+## X-squared = 0.84375, df = 1, p-value = 0.3583
+## alternative hypothesis: true p is not equal to 0.6
+## 95 percent confidence interval:
+##  0.4475426 0.6485719
+## sample estimates:
+##    p 
+## 0.55</code></pre>
+<ul>
+<li><p>If <strong>p-value &lt; 0.05</strong>, reject <span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>If <strong>p-value &gt; 0.05</strong>, fail to reject <span class="math inline">\(H_0\)</span>.</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="practical-exercises-1" class="section level3 hasAnchor" number="4.4.8">
+<h3><span class="header-section-number">4.4.8</span> Practical Exercises<a href="general-statistics.html#practical-exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-1-confidence-interval-for-population-mean" class="section level4 hasAnchor" number="4.4.8.1">
+<h4><span class="header-section-number">4.4.8.1</span> Exercise 1: Confidence Interval for Population Mean<a href="general-statistics.html#exercise-1-confidence-interval-for-population-mean" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Use the dataset:</li>
+</ol>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="general-statistics.html#cb210-1" tabindex="-1"></a>weights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">95</span>, <span class="dv">100</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Compute a <strong>95% confidence interval</strong> for the population mean.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+<div id="exercise-2-hypothesis-test-for-a-mean" class="section level4 hasAnchor" number="4.4.8.2">
+<h4><span class="header-section-number">4.4.8.2</span> Exercise 2: Hypothesis Test for a Mean<a href="general-statistics.html#exercise-2-hypothesis-test-for-a-mean" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Use the dataset:</li>
+</ol>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="general-statistics.html#cb211-1" tabindex="-1"></a>test_scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">78</span>, <span class="dv">82</span>, <span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">88</span>, <span class="dv">79</span>, <span class="dv">84</span>, <span class="dv">87</span>, <span class="dv">92</span>, <span class="dv">81</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Test whether the mean test score is <strong>greater than 80</strong>.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+<div id="exercise-3-comparing-two-sample-means" class="section level4 hasAnchor" number="4.4.8.3">
+<h4><span class="header-section-number">4.4.8.3</span> Exercise 3: Comparing Two Sample Means<a href="general-statistics.html#exercise-3-comparing-two-sample-means" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Create two samples:</li>
+</ol>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="general-statistics.html#cb212-1" tabindex="-1"></a>group_A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">18</span>, <span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">25</span>, <span class="dv">27</span>, <span class="dv">30</span>)</span>
+<span id="cb212-2"><a href="general-statistics.html#cb212-2" tabindex="-1"></a>group_B <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">19</span>, <span class="dv">21</span>, <span class="dv">24</span>, <span class="dv">26</span>, <span class="dv">28</span>, <span class="dv">32</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Perform a <strong>two-sample t-test</strong>.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+<div id="exercise-4-testing-a-sample-proportion" class="section level4 hasAnchor" number="4.4.8.4">
+<h4><span class="header-section-number">4.4.8.4</span> Exercise 4: Testing a Sample Proportion<a href="general-statistics.html#exercise-4-testing-a-sample-proportion" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>Suppose <strong>45 out of 100 people</strong> prefer Product X.</p></li>
+<li><p>Test if the true proportion is <strong>different from 50%</strong>.</p></li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+<hr />
+<hr />
+</div>
+</div>
+</div>
+<div id="testing-the-mean-of-a-sample-t-test-and-its-confidence-interval" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Testing the Mean of a Sample (t-Test) and its Confidence Interval<a href="general-statistics.html#testing-the-mean-of-a-sample-t-test-and-its-confidence-interval" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>t-test</strong> is used to test whether the mean of a sample is <strong>significantly different</strong> from a hypothesized population mean. It helps answer questions like:</p>
+<ul>
+<li><p>“Is the average test score significantly different from 70?”</p></li>
+<li><p>“Does the sample data suggest a real effect, or is it due to random chance?”</p></li>
+</ul>
+<hr />
+<div id="understanding-the-t-test" class="section level3 hasAnchor" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Understanding the t-Test<a href="general-statistics.html#understanding-the-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>one-sample t-test</strong> formula:</p>
+<p><span class="math display">\[
+    t = \frac{\bar{x} - \mu}{s / \sqrt{n}}
+    \]</span></p>
+<p>Where:</p>
+<ul>
+<li><p><span class="math inline">\(\bar{x}\)</span> = sample mean</p></li>
+<li><p><span class="math inline">\(\mu\)</span> = population mean</p></li>
+<li><p><span class="math inline">\(s\)</span> = sample standard deviation</p></li>
+<li><p><span class="math inline">\(n\)</span> = sample size</p></li>
+</ul>
+<div id="key-assumptions" class="section level4 hasAnchor" number="4.5.1.1">
+<h4><span class="header-section-number">4.5.1.1</span> Key Assumptions:<a href="general-statistics.html#key-assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><p>The data is <strong>normally distributed</strong> (or <span class="math inline">\(n &gt; 30\)</span>).</p></li>
+<li><p>The sample is <strong>randomly selected</strong>.</p></li>
+<li><p>The standard deviation is <strong>unknown</strong> (if known, use a <strong>z-test</strong> instead).</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="computing-confidence-intervals-for-the-mean" class="section level3 hasAnchor" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> Computing Confidence Intervals for the Mean<a href="general-statistics.html#computing-confidence-intervals-for-the-mean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>confidence interval (CI)</strong> provides a range where the true population mean is expected to lie.</p>
+<div id="example-95-confidence-interval-for-a-sample-mean" class="section level4 hasAnchor" number="4.5.2.1">
+<h4><span class="header-section-number">4.5.2.1</span> Example: 95% Confidence Interval for a Sample Mean<a href="general-statistics.html#example-95-confidence-interval-for-a-sample-mean" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="general-statistics.html#cb213-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb213-2"><a href="general-statistics.html#cb213-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">95</span>, <span class="dv">100</span>)</span>
+<span id="cb213-3"><a href="general-statistics.html#cb213-3" tabindex="-1"></a></span>
+<span id="cb213-4"><a href="general-statistics.html#cb213-4" tabindex="-1"></a><span class="co"># Compute mean, standard deviation, and sample size</span></span>
+<span id="cb213-5"><a href="general-statistics.html#cb213-5" tabindex="-1"></a>mean_data <span class="ot">&lt;-</span> <span class="fu">mean</span>(data)</span>
+<span id="cb213-6"><a href="general-statistics.html#cb213-6" tabindex="-1"></a>sd_data <span class="ot">&lt;-</span> <span class="fu">sd</span>(data)</span>
+<span id="cb213-7"><a href="general-statistics.html#cb213-7" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(data)</span>
+<span id="cb213-8"><a href="general-statistics.html#cb213-8" tabindex="-1"></a></span>
+<span id="cb213-9"><a href="general-statistics.html#cb213-9" tabindex="-1"></a><span class="co"># Compute confidence interval (95% confidence level)</span></span>
+<span id="cb213-10"><a href="general-statistics.html#cb213-10" tabindex="-1"></a>error_margin <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df=</span>n<span class="dv">-1</span>) <span class="sc">*</span> (sd_data <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb213-11"><a href="general-statistics.html#cb213-11" tabindex="-1"></a>lower_bound <span class="ot">&lt;-</span> mean_data <span class="sc">-</span> error_margin</span>
+<span id="cb213-12"><a href="general-statistics.html#cb213-12" tabindex="-1"></a>upper_bound <span class="ot">&lt;-</span> mean_data <span class="sc">+</span> error_margin</span>
+<span id="cb213-13"><a href="general-statistics.html#cb213-13" tabindex="-1"></a></span>
+<span id="cb213-14"><a href="general-statistics.html#cb213-14" tabindex="-1"></a><span class="co"># Print confidence interval</span></span>
+<span id="cb213-15"><a href="general-statistics.html#cb213-15" tabindex="-1"></a><span class="fu">c</span>(lower_bound, upper_bound)</span></code></pre></div>
+<pre><code>## [1] 66.67075 88.32925</code></pre>
+<p>We are <strong>95% confident</strong> that the population mean lies within this range.</p>
+<hr />
+</div>
+</div>
+<div id="performing-a-one-sample-t-test" class="section level3 hasAnchor" number="4.5.3">
+<h3><span class="header-section-number">4.5.3</span> Performing a One-Sample t-Test<a href="general-statistics.html#performing-a-one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>one-sample t-test</strong> checks whether the sample mean is significantly different from a given value.</p>
+<div id="example-testing-if-the-mean-is-different-from-70" class="section level4 hasAnchor" number="4.5.3.1">
+<h4><span class="header-section-number">4.5.3.1</span> Example: Testing if the Mean is Different from 70<a href="general-statistics.html#example-testing-if-the-mean-is-different-from-70" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="general-statistics.html#cb215-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb215-2"><a href="general-statistics.html#cb215-2" tabindex="-1"></a>sample_data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">68</span>, <span class="dv">72</span>, <span class="dv">75</span>, <span class="dv">70</span>, <span class="dv">66</span>, <span class="dv">71</span>, <span class="dv">69</span>, <span class="dv">74</span>, <span class="dv">67</span>)</span>
+<span id="cb215-3"><a href="general-statistics.html#cb215-3" tabindex="-1"></a></span>
+<span id="cb215-4"><a href="general-statistics.html#cb215-4" tabindex="-1"></a><span class="co"># Perform one-sample t-test</span></span>
+<span id="cb215-5"><a href="general-statistics.html#cb215-5" tabindex="-1"></a><span class="fu">t.test</span>(sample_data, <span class="at">mu =</span> <span class="dv">70</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  sample_data
+## t = -0.28446, df = 9, p-value = 0.7825
+## alternative hypothesis: true mean is not equal to 70
+## 95 percent confidence interval:
+##  67.31429 72.08571
+## sample estimates:
+## mean of x 
+##      69.7</code></pre>
+<ul>
+<li><p>If <strong>p-value &lt; 0.05</strong>, reject <span class="math inline">\(H_0\)</span> → The mean is <strong>significantly different</strong> from 70.</p></li>
+<li><p>If <strong>p-value &gt; 0.05</strong>, fail to reject <span class="math inline">\(H_0\)</span> → No significant difference.</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="one-sided-vs.-two-sided-tests" class="section level3 hasAnchor" number="4.5.4">
+<h3><span class="header-section-number">4.5.4</span> One-Sided vs. Two-Sided Tests<a href="general-statistics.html#one-sided-vs.-two-sided-tests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>By default, <code>t.test()</code> performs a <strong>two-sided test</strong> (<span class="math inline">\(H_A: \mu \neq 70\)</span>).</p>
+<p>If we want to test whether the mean is <strong>greater than</strong> or <strong>less than</strong> a value:</p>
+<div id="example-testing-if-mean-is-greater-than-70" class="section level4 hasAnchor" number="4.5.4.1">
+<h4><span class="header-section-number">4.5.4.1</span> Example: Testing if Mean is Greater Than 70<a href="general-statistics.html#example-testing-if-mean-is-greater-than-70" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="general-statistics.html#cb217-1" tabindex="-1"></a><span class="fu">t.test</span>(sample_data, <span class="at">mu =</span> <span class="dv">70</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  sample_data
+## t = -0.28446, df = 9, p-value = 0.6088
+## alternative hypothesis: true mean is greater than 70
+## 95 percent confidence interval:
+##  67.76676      Inf
+## sample estimates:
+## mean of x 
+##      69.7</code></pre>
+</div>
+<div id="example-testing-if-mean-is-less-than-70" class="section level4 hasAnchor" number="4.5.4.2">
+<h4><span class="header-section-number">4.5.4.2</span> Example: Testing if Mean is Less Than 70<a href="general-statistics.html#example-testing-if-mean-is-less-than-70" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="general-statistics.html#cb219-1" tabindex="-1"></a><span class="fu">t.test</span>(sample_data, <span class="at">mu =</span> <span class="dv">70</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  sample_data
+## t = -0.28446, df = 9, p-value = 0.3912
+## alternative hypothesis: true mean is less than 70
+## 95 percent confidence interval:
+##      -Inf 71.63324
+## sample estimates:
+## mean of x 
+##      69.7</code></pre>
+<hr />
+</div>
+</div>
+<div id="comparing-two-sample-means-independent-t-test" class="section level3 hasAnchor" number="4.5.5">
+<h3><span class="header-section-number">4.5.5</span> Comparing Two Sample Means (Independent t-Test)<a href="general-statistics.html#comparing-two-sample-means-independent-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>two-sample t-test</strong> checks if two groups have significantly different means.</p>
+<div id="example-comparing-male-vs.-female-heights-1" class="section level4 hasAnchor" number="4.5.5.1">
+<h4><span class="header-section-number">4.5.5.1</span> Example: Comparing Male vs. Female Heights<a href="general-statistics.html#example-comparing-male-vs.-female-heights-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="general-statistics.html#cb221-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb221-2"><a href="general-statistics.html#cb221-2" tabindex="-1"></a>male_heights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">175</span>, <span class="dv">180</span>, <span class="dv">185</span>, <span class="dv">190</span>, <span class="dv">195</span>)</span>
+<span id="cb221-3"><a href="general-statistics.html#cb221-3" tabindex="-1"></a>female_heights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">160</span>, <span class="dv">165</span>, <span class="dv">168</span>, <span class="dv">170</span>, <span class="dv">175</span>, <span class="dv">178</span>)</span>
+<span id="cb221-4"><a href="general-statistics.html#cb221-4" tabindex="-1"></a></span>
+<span id="cb221-5"><a href="general-statistics.html#cb221-5" tabindex="-1"></a><span class="co"># Perform independent t-test</span></span>
+<span id="cb221-6"><a href="general-statistics.html#cb221-6" tabindex="-1"></a><span class="fu">t.test</span>(male_heights, female_heights)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  male_heights and female_heights
+## t = 2.8225, df = 8.9621, p-value = 0.02005
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##   2.607164 23.726169
+## sample estimates:
+## mean of x mean of y 
+##  182.5000  169.3333</code></pre>
+<hr />
+</div>
+</div>
+<div id="paired-t-test-dependent-samples" class="section level3 hasAnchor" number="4.5.6">
+<h3><span class="header-section-number">4.5.6</span> Paired t-Test (Dependent Samples)<a href="general-statistics.html#paired-t-test-dependent-samples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>paired t-test</strong> compares <strong>before and after</strong> measurements.</p>
+<div id="example-testing-before-vs.-after-training-scores" class="section level4 hasAnchor" number="4.5.6.1">
+<h4><span class="header-section-number">4.5.6.1</span> Example: Testing Before vs. After Training Scores<a href="general-statistics.html#example-testing-before-vs.-after-training-scores" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="general-statistics.html#cb223-1" tabindex="-1"></a><span class="co"># Scores before and after training</span></span>
+<span id="cb223-2"><a href="general-statistics.html#cb223-2" tabindex="-1"></a>before <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">90</span>)</span>
+<span id="cb223-3"><a href="general-statistics.html#cb223-3" tabindex="-1"></a>after  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">68</span>, <span class="dv">75</span>, <span class="dv">78</span>, <span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">92</span>)</span>
+<span id="cb223-4"><a href="general-statistics.html#cb223-4" tabindex="-1"></a></span>
+<span id="cb223-5"><a href="general-statistics.html#cb223-5" tabindex="-1"></a><span class="co"># Perform paired t-test</span></span>
+<span id="cb223-6"><a href="general-statistics.html#cb223-6" tabindex="-1"></a><span class="fu">t.test</span>(before, after, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  before and after
+## t = -7.8393, df = 6, p-value = 0.0002277
+## alternative hypothesis: true mean difference is not equal to 0
+## 95 percent confidence interval:
+##  -4.873641 -2.554930
+## sample estimates:
+## mean difference 
+##       -3.714286</code></pre>
+<hr />
+</div>
+</div>
+<div id="practical-exercises-2" class="section level3 hasAnchor" number="4.5.7">
+<h3><span class="header-section-number">4.5.7</span> Practical Exercises<a href="general-statistics.html#practical-exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-1-compute-a-confidence-interval" class="section level4 hasAnchor" number="4.5.7.1">
+<h4><span class="header-section-number">4.5.7.1</span> Exercise 1: Compute a Confidence Interval<a href="general-statistics.html#exercise-1-compute-a-confidence-interval" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Use the dataset:</li>
+</ol>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="general-statistics.html#cb225-1" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">78</span>, <span class="dv">82</span>, <span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">88</span>, <span class="dv">79</span>, <span class="dv">84</span>, <span class="dv">87</span>, <span class="dv">92</span>, <span class="dv">81</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Compute a <strong>95% confidence interval</strong> for the mean.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+<div id="exercise-2-one-sample-t-test" class="section level4 hasAnchor" number="4.5.7.2">
+<h4><span class="header-section-number">4.5.7.2</span> Exercise 2: One-Sample t-Test<a href="general-statistics.html#exercise-2-one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Use the dataset:</li>
+</ol>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="general-statistics.html#cb226-1" tabindex="-1"></a>weights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">95</span>, <span class="dv">100</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Test whether the mean is <strong>different from 72</strong>.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+<div id="exercise-3-comparing-two-groups" class="section level4 hasAnchor" number="4.5.7.3">
+<h4><span class="header-section-number">4.5.7.3</span> Exercise 3: Comparing Two Groups<a href="general-statistics.html#exercise-3-comparing-two-groups" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Use the dataset:</li>
+</ol>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="general-statistics.html#cb227-1" tabindex="-1"></a>group_A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">18</span>, <span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">25</span>, <span class="dv">27</span>, <span class="dv">30</span>)</span>
+<span id="cb227-2"><a href="general-statistics.html#cb227-2" tabindex="-1"></a>group_B <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">19</span>, <span class="dv">21</span>, <span class="dv">24</span>, <span class="dv">26</span>, <span class="dv">28</span>, <span class="dv">32</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Perform an <strong>independent two-sample t-test</strong>.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+<div id="exercise-4-paired-t-test" class="section level4 hasAnchor" number="4.5.7.4">
+<h4><span class="header-section-number">4.5.7.4</span> Exercise 4: Paired t-Test<a href="general-statistics.html#exercise-4-paired-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>A study measures reaction time <strong>before and after caffeine consumption</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="general-statistics.html#cb228-1" tabindex="-1"></a>before_caffeine <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">300</span>, <span class="dv">320</span>, <span class="dv">310</span>, <span class="dv">305</span>, <span class="dv">315</span>, <span class="dv">290</span>, <span class="dv">295</span>)</span>
+<span id="cb228-2"><a href="general-statistics.html#cb228-2" tabindex="-1"></a>after_caffeine  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">280</span>, <span class="dv">300</span>, <span class="dv">290</span>, <span class="dv">285</span>, <span class="dv">295</span>, <span class="dv">275</span>, <span class="dv">280</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Perform a <strong>paired t-test</strong> to determine if caffeine affects reaction time.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+</div>
+</div>
+<div id="testing-a-sample-proportion-and-its-confidence-interval" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Testing a Sample Proportion and its Confidence Interval<a href="general-statistics.html#testing-a-sample-proportion-and-its-confidence-interval" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>proportion test</strong> is used when we want to <strong>make inferences about categorical data</strong>. This test helps us:</p>
+<ul>
+<li><p>Estimate the <strong>proportion of a population</strong> with a certain characteristic.</p></li>
+<li><p>Determine whether a sample proportion <strong>differs significantly</strong> from a hypothesized value.</p></li>
+</ul>
+<hr />
+<div id="understanding-proportion-testing" class="section level3 hasAnchor" number="4.6.1">
+<h3><span class="header-section-number">4.6.1</span> Understanding Proportion Testing<a href="general-statistics.html#understanding-proportion-testing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>sample proportion</strong> is calculated as:</p>
+<p><span class="math display">\[
+    \hat{p} = \frac{x}{n}
+    \]</span></p>
+<p>Where:</p>
+<ul>
+<li><p><span class="math inline">\(x\)</span> = Number of successes (e.g., people who answered “Yes”)</p></li>
+<li><p><span class="math inline">\(n\)</span> = Total number of observations</p></li>
+</ul>
+<p>The <strong>confidence interval (CI)</strong> for a proportion is given by:</p>
+<p><span class="math display">\[
+    \hat{p} \pm Z \times \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}
+    \]</span></p>
+<p>Where:</p>
+<ul>
+<li><p><span class="math inline">\(Z\)</span> = Critical value for the confidence level (e.g., 1.96 for 95%)</p></li>
+<li><p><span class="math inline">\(\hat{p}\)</span> = Sample proportion</p></li>
+<li><p><span class="math inline">\(n\)</span> = Sample size</p></li>
+</ul>
+<hr />
+</div>
+<div id="computing-confidence-intervals-for-proportions" class="section level3 hasAnchor" number="4.6.2">
+<h3><span class="header-section-number">4.6.2</span> Computing Confidence Intervals for Proportions<a href="general-statistics.html#computing-confidence-intervals-for-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can calculate <strong>confidence intervals</strong> for proportions using <code>prop.test()</code>.</p>
+<div id="example-95-confidence-interval-for-proportion" class="section level4 hasAnchor" number="4.6.2.1">
+<h4><span class="header-section-number">4.6.2.1</span> Example: 95% Confidence Interval for Proportion<a href="general-statistics.html#example-95-confidence-interval-for-proportion" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Suppose <strong>60 out of 100</strong> people <strong>prefer Brand A</strong>.</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="general-statistics.html#cb229-1" tabindex="-1"></a><span class="co"># Number of successes (people preferring Brand A)</span></span>
+<span id="cb229-2"><a href="general-statistics.html#cb229-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">60</span></span>
+<span id="cb229-3"><a href="general-statistics.html#cb229-3" tabindex="-1"></a><span class="co"># Total sample size</span></span>
+<span id="cb229-4"><a href="general-statistics.html#cb229-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb229-5"><a href="general-statistics.html#cb229-5" tabindex="-1"></a></span>
+<span id="cb229-6"><a href="general-statistics.html#cb229-6" tabindex="-1"></a><span class="co"># Compute confidence interval</span></span>
+<span id="cb229-7"><a href="general-statistics.html#cb229-7" tabindex="-1"></a><span class="fu">prop.test</span>(x, n, <span class="at">conf.level =</span> <span class="fl">0.95</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##  1-sample proportions test without continuity correction
+## 
+## data:  x out of n, null probability 0.5
+## X-squared = 4, df = 1, p-value = 0.0455
+## alternative hypothesis: true p is not equal to 0.5
+## 95 percent confidence interval:
+##  0.5020026 0.6905987
+## sample estimates:
+##   p 
+## 0.6</code></pre>
+<p>We are <strong>95% confident</strong> that the true proportion of people who prefer Brand A falls within the computed confidence interval.</p>
+<hr />
+</div>
+</div>
+<div id="performing-a-one-sample-proportion-test" class="section level3 hasAnchor" number="4.6.3">
+<h3><span class="header-section-number">4.6.3</span> Performing a One-Sample Proportion Test<a href="general-statistics.html#performing-a-one-sample-proportion-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We test whether a sample proportion is significantly different from a hypothesized proportion <span class="math inline">\(p_0\)</span>.</p>
+<div id="example-testing-if-60-prefer-brand-a" class="section level4 hasAnchor" number="4.6.3.1">
+<h4><span class="header-section-number">4.6.3.1</span> Example: Testing if 60% Prefer Brand A<a href="general-statistics.html#example-testing-if-60-prefer-brand-a" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We test:</p>
+<p><span class="math display">\[
+    H_0: p = 0.60
+    \]</span></p>
+<p><span class="math display">\[
+  H_A: p \neq 0.60
+  \]</span></p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="general-statistics.html#cb231-1" tabindex="-1"></a><span class="fu">prop.test</span>(x, n, <span class="at">p =</span> <span class="fl">0.60</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##  1-sample proportions test without continuity correction
+## 
+## data:  x out of n, null probability 0.6
+## X-squared = 0, df = 1, p-value = 1
+## alternative hypothesis: true p is not equal to 0.6
+## 95 percent confidence interval:
+##  0.5020026 0.6905987
+## sample estimates:
+##   p 
+## 0.6</code></pre>
+<ul>
+<li><p>If <strong>p-value &lt; 0.05</strong>, reject <span class="math inline">\(H_0\)</span> → The sample proportion is <strong>significantly different</strong> from 60%.</p></li>
+<li><p>If <strong>p-value &gt; 0.05</strong>, fail to reject <span class="math inline">\(H_0\)</span> → No significant difference.</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="one-sided-proportion-tests" class="section level3 hasAnchor" number="4.6.4">
+<h3><span class="header-section-number">4.6.4</span> One-Sided Proportion Tests<a href="general-statistics.html#one-sided-proportion-tests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If we want to test if the proportion is <strong>greater than</strong> or <strong>less than</strong> a given value:</p>
+<div id="example-testing-if-proportion-is-greater-than-50" class="section level4 hasAnchor" number="4.6.4.1">
+<h4><span class="header-section-number">4.6.4.1</span> Example: Testing if Proportion is Greater Than 50%<a href="general-statistics.html#example-testing-if-proportion-is-greater-than-50" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="general-statistics.html#cb233-1" tabindex="-1"></a><span class="fu">prop.test</span>(x, n, <span class="at">p =</span> <span class="fl">0.50</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##  1-sample proportions test without continuity correction
+## 
+## data:  x out of n, null probability 0.5
+## X-squared = 4, df = 1, p-value = 0.02275
+## alternative hypothesis: true p is greater than 0.5
+## 95 percent confidence interval:
+##  0.5178095 1.0000000
+## sample estimates:
+##   p 
+## 0.6</code></pre>
+</div>
+<div id="example-testing-if-proportion-is-less-than-70" class="section level4 hasAnchor" number="4.6.4.2">
+<h4><span class="header-section-number">4.6.4.2</span> Example: Testing if Proportion is Less Than 70%<a href="general-statistics.html#example-testing-if-proportion-is-less-than-70" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="general-statistics.html#cb235-1" tabindex="-1"></a><span class="fu">prop.test</span>(x, n, <span class="at">p =</span> <span class="fl">0.70</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##  1-sample proportions test without continuity correction
+## 
+## data:  x out of n, null probability 0.7
+## X-squared = 4.7619, df = 1, p-value = 0.01455
+## alternative hypothesis: true p is less than 0.7
+## 95 percent confidence interval:
+##  0.0000000 0.6769219
+## sample estimates:
+##   p 
+## 0.6</code></pre>
+<hr />
+</div>
+</div>
+<div id="comparing-two-sample-proportions" class="section level3 hasAnchor" number="4.6.5">
+<h3><span class="header-section-number">4.6.5</span> Comparing Two Sample Proportions<a href="general-statistics.html#comparing-two-sample-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can compare <strong>two proportions</strong> to determine if they are significantly different.</p>
+<div id="example-comparing-success-rates-of-two-groups" class="section level4 hasAnchor" number="4.6.5.1">
+<h4><span class="header-section-number">4.6.5.1</span> Example: Comparing Success Rates of Two Groups<a href="general-statistics.html#example-comparing-success-rates-of-two-groups" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><p><strong>Group 1:</strong> 30 successes out of 50</p></li>
+<li><p><strong>Group 2:</strong> 45 successes out of 80</p></li>
+</ul>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="general-statistics.html#cb237-1" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">45</span>), <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">80</span>), <span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##  2-sample test for equality of proportions without continuity correction
+## 
+## data:  c(30, 45) out of c(50, 80)
+## X-squared = 0.17727, df = 1, p-value = 0.6737
+## alternative hypothesis: two.sided
+## 95 percent confidence interval:
+##  -0.1364425  0.2114425
+## sample estimates:
+## prop 1 prop 2 
+## 0.6000 0.5625</code></pre>
+<ul>
+<li><p>If <strong>p-value &lt; 0.05</strong>, the two proportions are <strong>significantly different</strong>.</p></li>
+<li><p>If <strong>p-value &gt; 0.05</strong>, no significant difference.</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="visualizing-proportions" class="section level3 hasAnchor" number="4.6.6">
+<h3><span class="header-section-number">4.6.6</span> Visualizing Proportions<a href="general-statistics.html#visualizing-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-bar-plot-of-proportions" class="section level4 hasAnchor" number="4.6.6.1">
+<h4><span class="header-section-number">4.6.6.1</span> Example: Bar Plot of Proportions<a href="general-statistics.html#example-bar-plot-of-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="general-statistics.html#cb239-1" tabindex="-1"></a>successes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">45</span>)</span>
+<span id="cb239-2"><a href="general-statistics.html#cb239-2" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">80</span>)</span>
+<span id="cb239-3"><a href="general-statistics.html#cb239-3" tabindex="-1"></a>proportions <span class="ot">&lt;-</span> successes <span class="sc">/</span> total</span>
+<span id="cb239-4"><a href="general-statistics.html#cb239-4" tabindex="-1"></a></span>
+<span id="cb239-5"><a href="general-statistics.html#cb239-5" tabindex="-1"></a><span class="fu">barplot</span>(proportions, <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Group 1&quot;</span>, <span class="st">&quot;Group 2&quot;</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb239-6"><a href="general-statistics.html#cb239-6" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Comparison of Two Proportions&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">ylab =</span> <span class="st">&quot;Proportion&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="practical-exercises-3" class="section level3 hasAnchor" number="4.6.7">
+<h3><span class="header-section-number">4.6.7</span> Practical Exercises<a href="general-statistics.html#practical-exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-1-compute-a-confidence-interval-1" class="section level4 hasAnchor" number="4.6.7.1">
+<h4><span class="header-section-number">4.6.7.1</span> Exercise 1: Compute a Confidence Interval<a href="general-statistics.html#exercise-1-compute-a-confidence-interval-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>A survey shows that <strong>150 out of 500</strong> people support a new policy.</p></li>
+<li><p>Compute a <strong>95% confidence interval</strong> for the proportion.</p></li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+<div id="exercise-2-one-sample-proportion-test" class="section level4 hasAnchor" number="4.6.7.2">
+<h4><span class="header-section-number">4.6.7.2</span> Exercise 2: One-Sample Proportion Test<a href="general-statistics.html#exercise-2-one-sample-proportion-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>A sample of <strong>200 students</strong> finds that <strong>140 prefer online learning</strong>.</p></li>
+<li><p>Test if the proportion is <strong>different from 65%</strong>.</p></li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+<div id="exercise-3-one-sided-proportion-test" class="section level4 hasAnchor" number="4.6.7.3">
+<h4><span class="header-section-number">4.6.7.3</span> Exercise 3: One-Sided Proportion Test<a href="general-statistics.html#exercise-3-one-sided-proportion-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p>In a company, <strong>45 out of 100 employees</strong> prefer remote work.</p></li>
+<li><p>Test if the proportion is <strong>greater than 40%</strong>.</p></li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+<div id="exercise-4-comparing-two-proportions" class="section level4 hasAnchor" number="4.6.7.4">
+<h4><span class="header-section-number">4.6.7.4</span> Exercise 4: Comparing Two Proportions<a href="general-statistics.html#exercise-4-comparing-two-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Two groups were surveyed:</li>
+</ol>
+<ul>
+<li><p><strong>Group A:</strong> 85 out of 150 prefer a new product.</p></li>
+<li><p><strong>Group B:</strong> 75 out of 130 prefer the new product.</p></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Test whether the proportions are significantly different.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+<hr />
+</div>
+</div>
+</div>
+<div id="comparing-the-means-of-two-samples" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Comparing the Means of Two Samples<a href="general-statistics.html#comparing-the-means-of-two-samples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Comparing the means of two independent samples is essential in determining if there is a significant difference between two groups.</p>
+<hr />
+<div id="understanding-two-sample-t-test" class="section level3 hasAnchor" number="4.7.1">
+<h3><span class="header-section-number">4.7.1</span> Understanding Two-Sample t-Test<a href="general-statistics.html#understanding-two-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>two-sample t-test</strong> checks whether the means of two independent groups are significantly different.</p>
+<p><strong>Hypotheses:</strong></p>
+<ul>
+<li><p><strong>Null Hypothesis (<span class="math inline">\(H_0\)</span>)</strong>: The two group means are equal.</p></li>
+<li><p><strong>Alternative Hypothesis (<span class="math inline">\(H_A\)</span>)</strong>: The two group means are different.</p></li>
+</ul>
+<p><span class="math display">\[
+  t = \frac{\bar{x_1} - \bar{x_2}}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
+  \]</span></p>
+<p>Where:</p>
+<ul>
+<li><p><span class="math inline">\(\bar{x_1}, \bar{x_2}\)</span> = Sample means</p></li>
+<li><p><span class="math inline">\(s_1, s_2\)</span> = Standard deviations</p></li>
+<li><p><span class="math inline">\(n_1, n_2\)</span> = Sample sizes</p></li>
+</ul>
+<hr />
+</div>
+<div id="independent-unpaired-t-test" class="section level3 hasAnchor" number="4.7.2">
+<h3><span class="header-section-number">4.7.2</span> Independent (Unpaired) t-Test<a href="general-statistics.html#independent-unpaired-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This test is used when the two samples are <strong>independent</strong>.</p>
+<div id="example-comparing-heights-of-males-and-females" class="section level4 hasAnchor" number="4.7.2.1">
+<h4><span class="header-section-number">4.7.2.1</span> Example: Comparing Heights of Males and Females<a href="general-statistics.html#example-comparing-heights-of-males-and-females" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="general-statistics.html#cb240-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb240-2"><a href="general-statistics.html#cb240-2" tabindex="-1"></a>male_heights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">175</span>, <span class="dv">180</span>, <span class="dv">185</span>, <span class="dv">190</span>, <span class="dv">195</span>)</span>
+<span id="cb240-3"><a href="general-statistics.html#cb240-3" tabindex="-1"></a>female_heights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">160</span>, <span class="dv">165</span>, <span class="dv">168</span>, <span class="dv">170</span>, <span class="dv">175</span>, <span class="dv">178</span>)</span>
+<span id="cb240-4"><a href="general-statistics.html#cb240-4" tabindex="-1"></a></span>
+<span id="cb240-5"><a href="general-statistics.html#cb240-5" tabindex="-1"></a><span class="co"># Perform independent t-test</span></span>
+<span id="cb240-6"><a href="general-statistics.html#cb240-6" tabindex="-1"></a><span class="fu">t.test</span>(male_heights, female_heights)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  male_heights and female_heights
+## t = 2.8225, df = 8.9621, p-value = 0.02005
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##   2.607164 23.726169
+## sample estimates:
+## mean of x mean of y 
+##  182.5000  169.3333</code></pre>
+<ul>
+<li><p>If <strong>p-value &lt; 0.05</strong>, reject <span class="math inline">\(H_0\)</span> → The two means are significantly different.</p></li>
+<li><p>If <strong>p-value &gt; 0.05</strong>, fail to reject <span class="math inline">\(H_0\)</span> → No significant difference.</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="checking-assumptions" class="section level3 hasAnchor" number="4.7.3">
+<h3><span class="header-section-number">4.7.3</span> Checking Assumptions<a href="general-statistics.html#checking-assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before running a t-test, we must check:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Normality</strong> (Use Shapiro-Wilk test)</p></li>
+<li><p><strong>Equal Variances</strong> (Use F-test)</p></li>
+</ol>
+<div id="example-checking-normality" class="section level4 hasAnchor" number="4.7.3.1">
+<h4><span class="header-section-number">4.7.3.1</span> Example: Checking Normality<a href="general-statistics.html#example-checking-normality" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="general-statistics.html#cb242-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(male_heights)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  male_heights
+## W = 0.98189, p-value = 0.9606</code></pre>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="general-statistics.html#cb244-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(female_heights)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  female_heights
+## W = 0.9841, p-value = 0.97</code></pre>
+</div>
+<div id="example-checking-equal-variances" class="section level4 hasAnchor" number="4.7.3.2">
+<h4><span class="header-section-number">4.7.3.2</span> Example: Checking Equal Variances<a href="general-statistics.html#example-checking-equal-variances" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="general-statistics.html#cb246-1" tabindex="-1"></a><span class="fu">var.test</span>(male_heights, female_heights)</span></code></pre></div>
+<pre><code>## 
+##  F test to compare two variances
+## 
+## data:  male_heights and female_heights
+## F = 2.0317, num df = 5, denom df = 5, p-value = 0.4551
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+##   0.2843024 14.5195451
+## sample estimates:
+## ratio of variances 
+##           2.031734</code></pre>
+<ul>
+<li><p>If <strong>p-value &lt; 0.05</strong>, variances are <strong>not equal</strong> → Use <code>var.equal = FALSE</code> in <code>t.test()</code>.</p></li>
+<li><p>If <strong>p-value &gt; 0.05</strong>, variances are <strong>equal</strong> → Use <code>var.equal = TRUE</code>.</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="performing-t-test-with-unequal-variances" class="section level3 hasAnchor" number="4.7.4">
+<h3><span class="header-section-number">4.7.4</span> Performing t-Test with Unequal Variances<a href="general-statistics.html#performing-t-test-with-unequal-variances" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-when-variances-are-unequal" class="section level4 hasAnchor" number="4.7.4.1">
+<h4><span class="header-section-number">4.7.4.1</span> Example: When Variances are Unequal<a href="general-statistics.html#example-when-variances-are-unequal" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="general-statistics.html#cb248-1" tabindex="-1"></a><span class="fu">t.test</span>(male_heights, female_heights, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  male_heights and female_heights
+## t = 2.8225, df = 8.9621, p-value = 0.02005
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##   2.607164 23.726169
+## sample estimates:
+## mean of x mean of y 
+##  182.5000  169.3333</code></pre>
+</div>
+<div id="example-when-variances-are-equal" class="section level4 hasAnchor" number="4.7.4.2">
+<h4><span class="header-section-number">4.7.4.2</span> Example: When Variances are Equal<a href="general-statistics.html#example-when-variances-are-equal" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="general-statistics.html#cb250-1" tabindex="-1"></a><span class="fu">t.test</span>(male_heights, female_heights, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  male_heights and female_heights
+## t = 2.8225, df = 10, p-value = 0.01808
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##   2.772665 23.560668
+## sample estimates:
+## mean of x mean of y 
+##  182.5000  169.3333</code></pre>
+<hr />
+</div>
+</div>
+<div id="paired-t-test-dependent-samples-1" class="section level3 hasAnchor" number="4.7.5">
+<h3><span class="header-section-number">4.7.5</span> Paired t-Test (Dependent Samples)<a href="general-statistics.html#paired-t-test-dependent-samples-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>paired t-test</strong> is used when <strong>the same subjects are measured twice</strong> (e.g., before and after treatment).</p>
+<div id="example-testing-before-vs.-after-training-scores-1" class="section level4 hasAnchor" number="4.7.5.1">
+<h4><span class="header-section-number">4.7.5.1</span> Example: Testing Before vs. After Training Scores<a href="general-statistics.html#example-testing-before-vs.-after-training-scores-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="general-statistics.html#cb252-1" tabindex="-1"></a><span class="co"># Scores before and after training</span></span>
+<span id="cb252-2"><a href="general-statistics.html#cb252-2" tabindex="-1"></a>before <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">90</span>)</span>
+<span id="cb252-3"><a href="general-statistics.html#cb252-3" tabindex="-1"></a>after  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">68</span>, <span class="dv">75</span>, <span class="dv">78</span>, <span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">92</span>)</span>
+<span id="cb252-4"><a href="general-statistics.html#cb252-4" tabindex="-1"></a></span>
+<span id="cb252-5"><a href="general-statistics.html#cb252-5" tabindex="-1"></a><span class="co"># Perform paired t-test</span></span>
+<span id="cb252-6"><a href="general-statistics.html#cb252-6" tabindex="-1"></a><span class="fu">t.test</span>(before, after, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  before and after
+## t = -7.8393, df = 6, p-value = 0.0002277
+## alternative hypothesis: true mean difference is not equal to 0
+## 95 percent confidence interval:
+##  -4.873641 -2.554930
+## sample estimates:
+## mean difference 
+##       -3.714286</code></pre>
+<hr />
+</div>
+</div>
+<div id="visualizing-group-differences" class="section level3 hasAnchor" number="4.7.6">
+<h3><span class="header-section-number">4.7.6</span> Visualizing Group Differences<a href="general-statistics.html#visualizing-group-differences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-boxplot-comparing-two-groups" class="section level4 hasAnchor" number="4.7.6.1">
+<h4><span class="header-section-number">4.7.6.1</span> Example: Boxplot Comparing Two Groups<a href="general-statistics.html#example-boxplot-comparing-two-groups" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="general-statistics.html#cb254-1" tabindex="-1"></a><span class="co"># Combine data into a dataframe</span></span>
+<span id="cb254-2"><a href="general-statistics.html#cb254-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb254-3"><a href="general-statistics.html#cb254-3" tabindex="-1"></a>  <span class="at">Height =</span> <span class="fu">c</span>(male_heights, female_heights),</span>
+<span id="cb254-4"><a href="general-statistics.html#cb254-4" tabindex="-1"></a>  <span class="at">Gender =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>), <span class="at">each =</span> <span class="dv">6</span>)</span>
+<span id="cb254-5"><a href="general-statistics.html#cb254-5" tabindex="-1"></a>)</span>
+<span id="cb254-6"><a href="general-statistics.html#cb254-6" tabindex="-1"></a></span>
+<span id="cb254-7"><a href="general-statistics.html#cb254-7" tabindex="-1"></a><span class="co"># Plot boxplot</span></span>
+<span id="cb254-8"><a href="general-statistics.html#cb254-8" tabindex="-1"></a><span class="fu">boxplot</span>(Height <span class="sc">~</span> Gender, <span class="at">data =</span> data, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="at">main =</span> <span class="st">&quot;Height Comparison&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="practical-exercises-4" class="section level3 hasAnchor" number="4.7.7">
+<h3><span class="header-section-number">4.7.7</span> Practical Exercises<a href="general-statistics.html#practical-exercises-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-1-independent-t-test" class="section level4 hasAnchor" number="4.7.7.1">
+<h4><span class="header-section-number">4.7.7.1</span> Exercise 1: Independent t-Test<a href="general-statistics.html#exercise-1-independent-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Two groups take an exam:</li>
+</ol>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="general-statistics.html#cb255-1" tabindex="-1"></a>group_A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">78</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">90</span>, <span class="dv">92</span>, <span class="dv">95</span>)</span>
+<span id="cb255-2"><a href="general-statistics.html#cb255-2" tabindex="-1"></a>group_B <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">75</span>, <span class="dv">78</span>, <span class="dv">82</span>, <span class="dv">85</span>, <span class="dv">87</span>, <span class="dv">89</span>, <span class="dv">91</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Test if their mean scores are <strong>significantly different</strong>.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+<div id="exercise-2-checking-assumptions" class="section level4 hasAnchor" number="4.7.7.2">
+<h4><span class="header-section-number">4.7.7.2</span> Exercise 2: Checking Assumptions<a href="general-statistics.html#exercise-2-checking-assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Use the dataset:</li>
+</ol>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="general-statistics.html#cb256-1" tabindex="-1"></a>data_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">18</span>, <span class="dv">20</span>)</span>
+<span id="cb256-2"><a href="general-statistics.html#cb256-2" tabindex="-1"></a>data_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">15</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Check for <strong>normality</strong> and <strong>equal variances</strong>.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+<div id="exercise-3-paired-t-test" class="section level4 hasAnchor" number="4.7.7.3">
+<h4><span class="header-section-number">4.7.7.3</span> Exercise 3: Paired t-Test<a href="general-statistics.html#exercise-3-paired-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>A fitness test is conducted <strong>before and after training</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="general-statistics.html#cb257-1" tabindex="-1"></a>before_fitness <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">55</span>, <span class="dv">60</span>, <span class="dv">62</span>, <span class="dv">65</span>, <span class="dv">67</span>, <span class="dv">70</span>)</span>
+<span id="cb257-2"><a href="general-statistics.html#cb257-2" tabindex="-1"></a>after_fitness  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">58</span>, <span class="dv">63</span>, <span class="dv">65</span>, <span class="dv">68</span>, <span class="dv">70</span>, <span class="dv">73</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Test if there is a significant improvement after training.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+</div>
+<div id="exercise-4-visualizing-group-differences" class="section level3 hasAnchor" number="4.7.8">
+<h3><span class="header-section-number">4.7.8</span> Exercise 4: Visualizing Group Differences<a href="general-statistics.html#exercise-4-visualizing-group-differences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Create two datasets:</li>
+</ol>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="general-statistics.html#cb258-1" tabindex="-1"></a>treatment <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">110</span>, <span class="dv">120</span>, <span class="dv">130</span>, <span class="dv">140</span>)</span>
+<span id="cb258-2"><a href="general-statistics.html#cb258-2" tabindex="-1"></a>control <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">95</span>, <span class="dv">105</span>, <span class="dv">115</span>, <span class="dv">125</span>, <span class="dv">135</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Plot a <strong>boxplot</strong> to compare the groups.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+</div>
+<div id="performing-pairwise-comparisons-between-group-means" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Performing Pairwise Comparisons Between Group Means<a href="general-statistics.html#performing-pairwise-comparisons-between-group-means" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When comparing more than two groups, <strong>pairwise comparisons</strong> allow us to identify which groups differ significantly.<br />
+Common methods include:</p>
+<ul>
+<li><p><strong>t-Tests with adjustments for multiple comparisons</strong></p></li>
+<li><p><strong>Tukey’s Honest Significant Difference (HSD) test</strong></p></li>
+<li><p><strong>Bonferroni correction</strong></p></li>
+<li><p><strong>Dunnett’s test (comparing to a control group)</strong></p></li>
+</ul>
+<hr />
+<div id="understanding-pairwise-comparisons" class="section level3 hasAnchor" number="4.8.1">
+<h3><span class="header-section-number">4.8.1</span> Understanding Pairwise Comparisons<a href="general-statistics.html#understanding-pairwise-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When comparing multiple groups, running <strong>multiple t-tests</strong> increases the risk of <strong>Type I errors</strong> (false positives).<br />
+To correct this, we apply <strong>multiple comparison adjustments</strong> like:</p>
+<ul>
+<li><p><strong>Bonferroni correction</strong> (divides alpha by the number of comparisons)</p></li>
+<li><p><strong>Holm correction</strong> (stepwise adjustment)</p></li>
+<li><p><strong>Tukey’s HSD</strong> (for ANOVA post-hoc comparisons)</p></li>
+</ul>
+<hr />
+</div>
+<div id="performing-pairwise-t-tests" class="section level3 hasAnchor" number="4.8.2">
+<h3><span class="header-section-number">4.8.2</span> Performing Pairwise t-Tests<a href="general-statistics.html#performing-pairwise-t-tests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>pairwise.t.test()</code> function performs multiple t-tests while adjusting for multiple comparisons.</p>
+<div id="example-comparing-exam-scores-across-three-groups" class="section level4 hasAnchor" number="4.8.2.1">
+<h4><span class="header-section-number">4.8.2.1</span> Example: Comparing Exam Scores Across Three Groups<a href="general-statistics.html#example-comparing-exam-scores-across-three-groups" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="general-statistics.html#cb259-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb259-2"><a href="general-statistics.html#cb259-2" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Group A&quot;</span>, <span class="st">&quot;Group B&quot;</span>, <span class="st">&quot;Group C&quot;</span>), <span class="at">each =</span> <span class="dv">5</span>)</span>
+<span id="cb259-3"><a href="general-statistics.html#cb259-3" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">90</span>, <span class="dv">92</span>, <span class="dv">94</span>, <span class="dv">78</span>, <span class="dv">80</span>, <span class="dv">83</span>, <span class="dv">85</span>, <span class="dv">87</span>, <span class="dv">70</span>, <span class="dv">72</span>, <span class="dv">75</span>, <span class="dv">77</span>, <span class="dv">79</span>)</span>
+<span id="cb259-4"><a href="general-statistics.html#cb259-4" tabindex="-1"></a></span>
+<span id="cb259-5"><a href="general-statistics.html#cb259-5" tabindex="-1"></a><span class="do">### Perform pairwise t-tests with Bonferroni correction</span></span>
+<span id="cb259-6"><a href="general-statistics.html#cb259-6" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(scores, group, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  scores and group 
+## 
+##         Group A Group B
+## Group B 0.024   -      
+## Group C 6.8e-05 0.013  
+## 
+## P value adjustment method: bonferroni</code></pre>
+<ul>
+<li><p>The output provides <strong>p-values</strong> for each pairwise comparison.</p></li>
+<li><p>If <strong>p-value &lt; 0.05</strong>, the groups <strong>significantly differ</strong>.</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="tukeys-hsd-test" class="section level3 hasAnchor" number="4.8.3">
+<h3><span class="header-section-number">4.8.3</span> Tukey’s HSD Test<a href="general-statistics.html#tukeys-hsd-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Tukey’s <strong>Honest Significant Difference (HSD)</strong> test is used after <strong>ANOVA</strong> to compare all groups.</p>
+<div id="example-tukeys-hsd-test" class="section level4 hasAnchor" number="4.8.3.1">
+<h4><span class="header-section-number">4.8.3.1</span> Example: Tukey’s HSD Test<a href="general-statistics.html#example-tukeys-hsd-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="general-statistics.html#cb261-1" tabindex="-1"></a><span class="co"># Create dataset</span></span>
+<span id="cb261-2"><a href="general-statistics.html#cb261-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb261-3"><a href="general-statistics.html#cb261-3" tabindex="-1"></a>  <span class="at">Group =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="at">each =</span> <span class="dv">5</span>)),</span>
+<span id="cb261-4"><a href="general-statistics.html#cb261-4" tabindex="-1"></a>  <span class="at">Score =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">90</span>, <span class="dv">92</span>, <span class="dv">94</span>, <span class="dv">78</span>, <span class="dv">80</span>, <span class="dv">83</span>, <span class="dv">85</span>, <span class="dv">87</span>, <span class="dv">70</span>, <span class="dv">72</span>, <span class="dv">75</span>, <span class="dv">77</span>, <span class="dv">79</span>)</span>
+<span id="cb261-5"><a href="general-statistics.html#cb261-5" tabindex="-1"></a>)</span>
+<span id="cb261-6"><a href="general-statistics.html#cb261-6" tabindex="-1"></a></span>
+<span id="cb261-7"><a href="general-statistics.html#cb261-7" tabindex="-1"></a><span class="co"># Perform ANOVA</span></span>
+<span id="cb261-8"><a href="general-statistics.html#cb261-8" tabindex="-1"></a>anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(Score <span class="sc">~</span> Group, <span class="at">data =</span> data)</span>
+<span id="cb261-9"><a href="general-statistics.html#cb261-9" tabindex="-1"></a></span>
+<span id="cb261-10"><a href="general-statistics.html#cb261-10" tabindex="-1"></a><span class="co"># Tukey&#39;s HSD Test</span></span>
+<span id="cb261-11"><a href="general-statistics.html#cb261-11" tabindex="-1"></a><span class="fu">TukeyHSD</span>(anova_model)</span></code></pre></div>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = Score ~ Group, data = data)
+## 
+## $Group
+##      diff       lwr       upr     p adj
+## B-A  -7.2 -13.26805 -1.131954 0.0206029
+## C-A -15.2 -21.26805 -9.131954 0.0000620
+## C-B  -8.0 -14.06805 -1.931954 0.0109527</code></pre>
+<ul>
+<li><p>The test provides <strong>confidence intervals</strong> for differences between groups.</p></li>
+<li><p>If <strong>p-value &lt; 0.05</strong>, the groups <strong>significantly differ</strong>.</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="bonferroni-and-holm-corrections" class="section level3 hasAnchor" number="4.8.4">
+<h3><span class="header-section-number">4.8.4</span> Bonferroni and Holm Corrections<a href="general-statistics.html#bonferroni-and-holm-corrections" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>Bonferroni correction</strong> divides alpha (0.05) by the number of comparisons.</p>
+<p>The <strong>Holm correction</strong> adjusts p-values stepwise, maintaining more power.</p>
+<div id="example-comparing-methods" class="section level4 hasAnchor" number="4.8.4.1">
+<h4><span class="header-section-number">4.8.4.1</span> Example: Comparing Methods<a href="general-statistics.html#example-comparing-methods" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="general-statistics.html#cb263-1" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(scores, group, <span class="at">p.adjust.method =</span> <span class="st">&quot;holm&quot;</span>)  <span class="co"># Holm</span></span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  scores and group 
+## 
+##         Group A Group B
+## Group B 0.0085  -      
+## Group C 6.8e-05 0.0085 
+## 
+## P value adjustment method: holm</code></pre>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="general-statistics.html#cb265-1" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(scores, group, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)  <span class="co"># Bonferroni</span></span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  scores and group 
+## 
+##         Group A Group B
+## Group B 0.024   -      
+## Group C 6.8e-05 0.013  
+## 
+## P value adjustment method: bonferroni</code></pre>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="general-statistics.html#cb267-1" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(scores, group, <span class="at">p.adjust.method =</span> <span class="st">&quot;BH&quot;</span>)  <span class="co"># Benjamini-Hochberg</span></span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  scores and group 
+## 
+##         Group A Group B
+## Group B 0.0081  -      
+## Group C 6.8e-05 0.0064 
+## 
+## P value adjustment method: BH</code></pre>
+<ul>
+<li><p><strong>Bonferroni</strong> is more conservative.</p></li>
+<li><p><strong>Holm</strong> maintains statistical power.</p></li>
+<li><p><strong>BH (Benjamini-Hochberg)</strong> controls the false discovery rate.</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="dunnetts-test-comparing-to-a-control-group" class="section level3 hasAnchor" number="4.8.5">
+<h3><span class="header-section-number">4.8.5</span> Dunnett’s Test (Comparing to a Control Group)<a href="general-statistics.html#dunnetts-test-comparing-to-a-control-group" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dunnett’s test compares <strong>all groups against a control group</strong>.</p>
+<div id="example-comparing-treatment-groups-to-a-control" class="section level4 hasAnchor" number="4.8.5.1">
+<h4><span class="header-section-number">4.8.5.1</span> Example: Comparing Treatment Groups to a Control<a href="general-statistics.html#example-comparing-treatment-groups-to-a-control" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="general-statistics.html#cb269-1" tabindex="-1"></a><span class="co"># Create dataset</span></span>
+<span id="cb269-2"><a href="general-statistics.html#cb269-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb269-3"><a href="general-statistics.html#cb269-3" tabindex="-1"></a>  <span class="at">Treatment =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Drug A&quot;</span>, <span class="st">&quot;Drug B&quot;</span>), <span class="at">each =</span> <span class="dv">5</span>)),</span>
+<span id="cb269-4"><a href="general-statistics.html#cb269-4" tabindex="-1"></a>  <span class="at">Response =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">55</span>, <span class="dv">53</span>, <span class="dv">52</span>, <span class="dv">54</span>, <span class="dv">60</span>, <span class="dv">62</span>, <span class="dv">65</span>, <span class="dv">67</span>, <span class="dv">64</span>, <span class="dv">70</span>, <span class="dv">72</span>, <span class="dv">75</span>, <span class="dv">78</span>, <span class="dv">77</span>)</span>
+<span id="cb269-5"><a href="general-statistics.html#cb269-5" tabindex="-1"></a>)</span>
+<span id="cb269-6"><a href="general-statistics.html#cb269-6" tabindex="-1"></a></span>
+<span id="cb269-7"><a href="general-statistics.html#cb269-7" tabindex="-1"></a><span class="co"># Perform ANOVA</span></span>
+<span id="cb269-8"><a href="general-statistics.html#cb269-8" tabindex="-1"></a>anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(Response <span class="sc">~</span> Treatment, <span class="at">data =</span> data)</span>
+<span id="cb269-9"><a href="general-statistics.html#cb269-9" tabindex="-1"></a></span>
+<span id="cb269-10"><a href="general-statistics.html#cb269-10" tabindex="-1"></a><span class="co"># Perform Dunnett’s test</span></span>
+<span id="cb269-11"><a href="general-statistics.html#cb269-11" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb269-12"><a href="general-statistics.html#cb269-12" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glht</span>(anova_model, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Treatment =</span> <span class="st">&quot;Dunnett&quot;</span>)))</span></code></pre></div>
+<pre><code>## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: Dunnett Contrasts
+## 
+## 
+## Fit: aov(formula = Response ~ Treatment, data = data)
+## 
+## Linear Hypotheses:
+##                       Estimate Std. Error t value Pr(&gt;|t|)    
+## Drug A - Control == 0   10.800      1.724   6.263 7.98e-05 ***
+## Drug B - Control == 0   21.600      1.724  12.527 5.79e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## (Adjusted p values reported -- single-step method)</code></pre>
+<ul>
+<li><p>Compares <strong>Drug A and Drug B</strong> to the <strong>Control</strong>.</p></li>
+<li><p><strong>p-values</strong> tell if treatments differ from the control.</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="practical-exercises-5" class="section level3 hasAnchor" number="4.8.6">
+<h3><span class="header-section-number">4.8.6</span> Practical Exercises<a href="general-statistics.html#practical-exercises-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-1-perform-pairwise-comparisons" class="section level4 hasAnchor" number="4.8.6.1">
+<h4><span class="header-section-number">4.8.6.1</span> Exercise 1: Perform Pairwise Comparisons<a href="general-statistics.html#exercise-1-perform-pairwise-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Create three groups of <strong>exam scores</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="general-statistics.html#cb271-1" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Class A&quot;</span>, <span class="st">&quot;Class B&quot;</span>, <span class="st">&quot;Class C&quot;</span>), <span class="at">each =</span> <span class="dv">6</span>)</span>
+<span id="cb271-2"><a href="general-statistics.html#cb271-2" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">78</span>, <span class="dv">80</span>, <span class="dv">82</span>, <span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">90</span>, <span class="dv">70</span>, <span class="dv">73</span>, <span class="dv">75</span>, <span class="dv">77</span>, <span class="dv">78</span>, <span class="dv">80</span>, <span class="dv">60</span>, <span class="dv">62</span>, <span class="dv">65</span>, <span class="dv">68</span>, <span class="dv">70</span>, <span class="dv">72</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Perform <strong>pairwise t-tests</strong> with <strong>Holm correction</strong>.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+<div id="exercise-2-tukeys-hsd-test" class="section level4 hasAnchor" number="4.8.6.2">
+<h4><span class="header-section-number">4.8.6.2</span> Exercise 2: Tukey’s HSD Test<a href="general-statistics.html#exercise-2-tukeys-hsd-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Create <strong>three treatment groups</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="general-statistics.html#cb272-1" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Treatment A&quot;</span>, <span class="st">&quot;Treatment B&quot;</span>), <span class="at">each =</span> <span class="dv">5</span>)</span>
+<span id="cb272-2"><a href="general-statistics.html#cb272-2" tabindex="-1"></a>values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">18</span>, <span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">25</span>, <span class="dv">27</span>, <span class="dv">30</span>, <span class="dv">29</span>, <span class="dv">31</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Perform <strong>ANOVA</strong> and <strong>Tukey’s HSD test</strong>.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+</div>
+<div id="exercise-3-comparing-to-a-control-group" class="section level4 hasAnchor" number="4.8.6.3">
+<h4><span class="header-section-number">4.8.6.3</span> Exercise 3: Comparing to a Control Group<a href="general-statistics.html#exercise-3-comparing-to-a-control-group" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>A clinical trial tests three conditions:</li>
+</ol>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="general-statistics.html#cb273-1" tabindex="-1"></a>condition <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Low Dose&quot;</span>, <span class="st">&quot;High Dose&quot;</span>), <span class="at">each =</span> <span class="dv">6</span>)</span>
+<span id="cb273-2"><a href="general-statistics.html#cb273-2" tabindex="-1"></a>blood_pressure <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">130</span>, <span class="dv">128</span>, <span class="dv">132</span>, <span class="dv">129</span>, <span class="dv">131</span>, <span class="dv">130</span>, <span class="dv">125</span>, <span class="dv">123</span>, <span class="dv">120</span>, <span class="dv">124</span>, <span class="dv">126</span>, <span class="dv">122</span>, <span class="dv">115</span>, <span class="dv">113</span>, <span class="dv">118</span>, <span class="dv">116</span>, <span class="dv">117</span>, <span class="dv">114</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Perform <strong>Dunnett’s test</strong> to compare treatments against the control.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<hr />
+<hr />
+</div>
+</div>
+</div>
+<div id="hands-on-exercise-2" class="section level2 hasAnchor" number="4.9">
+<h2><span class="header-section-number">4.9</span> <span style="color: green;"><strong>Hands-on Exercise</strong></span><a href="general-statistics.html#hands-on-exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1-descriptive-statistics" class="section level3 hasAnchor" number="4.9.1">
+<h3><span class="header-section-number">4.9.1</span> Exercise 1: Descriptive Statistics<a href="general-statistics.html#exercise-1-descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Create a dataset of <strong>monthly sales revenue</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="general-statistics.html#cb274-1" tabindex="-1"></a>revenue <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12000</span>, <span class="dv">13500</span>, <span class="dv">14200</span>, <span class="dv">16000</span>, <span class="dv">17000</span>, <span class="dv">12500</span>, <span class="dv">14000</span>, <span class="dv">15000</span>, <span class="dv">15500</span>, <span class="dv">16500</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Compute:</li>
+</ol>
+<ul>
+<li><p><strong>Mean, median, standard deviation</strong></p></li>
+<li><p><strong>Minimum and maximum values</strong></p></li>
+<li><p><strong>Interquartile range (IQR)</strong></p></li>
+</ul>
+<p><strong>Solution</strong></p>
+<hr />
+</div>
+<div id="exercise-2-confidence-interval-for-mean" class="section level3 hasAnchor" number="4.9.2">
+<h3><span class="header-section-number">4.9.2</span> Exercise 2: Confidence Interval for Mean<a href="general-statistics.html#exercise-2-confidence-interval-for-mean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Use the dataset:</li>
+</ol>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="general-statistics.html#cb275-1" tabindex="-1"></a>test_scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">95</span>, <span class="dv">100</span>, <span class="dv">105</span>, <span class="dv">110</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Compute a <strong>95% confidence interval</strong> for the mean.</li>
+</ol>
+<p><strong>Solution</strong></p>
+<hr />
+</div>
+<div id="exercise-3-one-sample-t-test" class="section level3 hasAnchor" number="4.9.3">
+<h3><span class="header-section-number">4.9.3</span> Exercise 3: One-Sample t-Test**<a href="general-statistics.html#exercise-3-one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Use the dataset:</li>
+</ol>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="general-statistics.html#cb276-1" tabindex="-1"></a>weights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">95</span>, <span class="dv">100</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Test if the mean weight is <strong>significantly different from 72</strong>.</li>
+</ol>
+<p><strong>Solution</strong></p>
+<hr />
+</div>
+<div id="exercise-4-proportion-test" class="section level3 hasAnchor" number="4.9.4">
+<h3><span class="header-section-number">4.9.4</span> Exercise 4: Proportion Test<a href="general-statistics.html#exercise-4-proportion-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>A survey finds that <strong>65 out of 120</strong> respondents prefer a new product.</p></li>
+<li><p>Test if the proportion is <strong>different from 50%</strong>.</p></li>
+</ol>
+<p><strong>Solution</strong></p>
+<hr />
+</div>
+<div id="exercise-5-comparing-two-sample-means" class="section level3 hasAnchor" number="4.9.5">
+<h3><span class="header-section-number">4.9.5</span> Exercise 5: Comparing Two Sample Means<a href="general-statistics.html#exercise-5-comparing-two-sample-means" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Two classes take a math test:</li>
+</ol>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="general-statistics.html#cb277-1" tabindex="-1"></a>class_A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">78</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">90</span>, <span class="dv">92</span>, <span class="dv">95</span>)</span>
+<span id="cb277-2"><a href="general-statistics.html#cb277-2" tabindex="-1"></a>class_B <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">75</span>, <span class="dv">78</span>, <span class="dv">82</span>, <span class="dv">85</span>, <span class="dv">87</span>, <span class="dv">89</span>, <span class="dv">91</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Test if their mean scores are <strong>significantly different</strong>.</li>
+</ol>
+<p><strong>Solution</strong></p>
+<hr />
+</div>
+<div id="exercise-6-data-visualization" class="section level3 hasAnchor" number="4.9.6">
+<h3><span class="header-section-number">4.9.6</span> Exercise 6: Data Visualization<a href="general-statistics.html#exercise-6-data-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Use the dataset:</li>
+</ol>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="general-statistics.html#cb278-1" tabindex="-1"></a>categories <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Create a <strong>bar chart</strong>.</li>
+</ol>
+<p><strong>Solution</strong></p>
+<hr />
+</div>
+<div id="exercise-7-scatterplot-with-regression-line" class="section level3 hasAnchor" number="4.9.7">
+<h3><span class="header-section-number">4.9.7</span> Exercise 7: Scatterplot with Regression Line<a href="general-statistics.html#exercise-7-scatterplot-with-regression-line" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Create <strong>two variables</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="general-statistics.html#cb279-1" tabindex="-1"></a>experience <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span>
+<span id="cb279-2"><a href="general-statistics.html#cb279-2" tabindex="-1"></a>salary <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">40000</span>, <span class="dv">42000</span>, <span class="dv">45000</span>, <span class="dv">47000</span>, <span class="dv">50000</span>, <span class="dv">52000</span>, <span class="dv">55000</span>, <span class="dv">58000</span>, <span class="dv">60000</span>, <span class="dv">63000</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Create a <strong>scatterplot with a regression line</strong>.</li>
+</ol>
+<p><strong>Solution</strong></p>
+<hr />
+</div>
+<div id="exercise-8-pairwise-comparisons" class="section level3 hasAnchor" number="4.9.8">
+<h3><span class="header-section-number">4.9.8</span> Exercise 8: Pairwise Comparisons<a href="general-statistics.html#exercise-8-pairwise-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Create a dataset with <strong>three groups</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="general-statistics.html#cb280-1" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Group A&quot;</span>, <span class="st">&quot;Group B&quot;</span>, <span class="st">&quot;Group C&quot;</span>), <span class="at">each =</span> <span class="dv">5</span>)</span>
+<span id="cb280-2"><a href="general-statistics.html#cb280-2" tabindex="-1"></a>values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">90</span>, <span class="dv">92</span>, <span class="dv">94</span>, <span class="dv">78</span>, <span class="dv">80</span>, <span class="dv">83</span>, <span class="dv">85</span>, <span class="dv">87</span>, <span class="dv">70</span>, <span class="dv">72</span>, <span class="dv">75</span>, <span class="dv">77</span>, <span class="dv">79</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Perform <strong>pairwise t-tests</strong>.</li>
+</ol>
+<p><strong>Solution</strong></p>
+<hr />
+</div>
+<div id="exercise-9-tukeys-hsd-test" class="section level3 hasAnchor" number="4.9.9">
+<h3><span class="header-section-number">4.9.9</span> Exercise 9: Tukey’s HSD Test<a href="general-statistics.html#exercise-9-tukeys-hsd-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Use the dataset:</li>
+</ol>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="general-statistics.html#cb281-1" tabindex="-1"></a>treatment <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Treatment A&quot;</span>, <span class="st">&quot;Treatment B&quot;</span>), <span class="at">each =</span> <span class="dv">5</span>)</span>
+<span id="cb281-2"><a href="general-statistics.html#cb281-2" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">55</span>, <span class="dv">53</span>, <span class="dv">52</span>, <span class="dv">54</span>, <span class="dv">60</span>, <span class="dv">62</span>, <span class="dv">65</span>, <span class="dv">67</span>, <span class="dv">64</span>, <span class="dv">70</span>, <span class="dv">72</span>, <span class="dv">75</span>, <span class="dv">78</span>, <span class="dv">77</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Perform <strong>ANOVA</strong> and <strong>Tukey’s HSD test</strong>.</li>
+</ol>
+<p><strong>Solution</strong></p>
+<hr />
+</div>
+<div id="exercise-10-comparing-a-treatment-to-a-control" class="section level3 hasAnchor" number="4.9.10">
+<h3><span class="header-section-number">4.9.10</span> Exercise 10: Comparing a Treatment to a Control<a href="general-statistics.html#exercise-10-comparing-a-treatment-to-a-control" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>A clinical trial tests three conditions:</li>
+</ol>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="general-statistics.html#cb282-1" tabindex="-1"></a>condition <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Low Dose&quot;</span>, <span class="st">&quot;High Dose&quot;</span>), <span class="at">each =</span> <span class="dv">6</span>)</span>
+<span id="cb282-2"><a href="general-statistics.html#cb282-2" tabindex="-1"></a>blood_pressure <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">130</span>, <span class="dv">128</span>, <span class="dv">132</span>, <span class="dv">129</span>, <span class="dv">131</span>, <span class="dv">130</span>, <span class="dv">125</span>, <span class="dv">123</span>, <span class="dv">120</span>, <span class="dv">124</span>, <span class="dv">126</span>, <span class="dv">122</span>, <span class="dv">115</span>, <span class="dv">113</span>, <span class="dv">118</span>, <span class="dv">116</span>, <span class="dv">117</span>, <span class="dv">114</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Perform <strong>Dunnett’s test</strong> to compare treatments against the control.</li>
+</ol>
+<p><strong>Solution</strong></p>
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="group-manipulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simple-linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/balsaedi/RCourse/edit/main/04-general_statistics.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/balsaedi/RCourse/blob/main/04-general_statistics.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Capstone Project | R Course</title>
+  <meta name="description" content="Chapter 10 Capstone Project | R Course" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Capstone Project | R Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Capstone Project | R Course" />
+  
+  
+  
+
+<meta name="author" content="YOUR NAME HERE" />
+
+
+<meta name="date" content="2024-10-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="time-series-analysis.html"/>
+<link rel="next" href="datasets.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SHORT TITLE HERE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to R and Basic Programming Concepts</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#overview-of-r-programming"><i class="fa fa-check"></i><b>1.1</b> Overview of R Programming</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#introduction-to-r"><i class="fa fa-check"></i><b>1.1.1</b> Introduction to R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#importance-of-r-in-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Importance of R in Data Analysis</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#application-of-r-in-various-industries"><i class="fa fa-check"></i><b>1.1.3</b> Application of R in Various Industries</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#introduction-to-the-r-ecosystem"><i class="fa fa-check"></i><b>1.2</b> Introduction to the R ecosystem</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#r-studio"><i class="fa fa-check"></i><b>1.2.1</b> R Studio</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#cran"><i class="fa fa-check"></i><b>1.2.2</b> CRAN</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#setting-up-r-environment"><i class="fa fa-check"></i><b>1.3</b> Setting Up R Environment</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#installation-of-r-and-rstudio"><i class="fa fa-check"></i><b>1.3.1</b> Installation of R and RStudio</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#introduction-to-rstudio-interface"><i class="fa fa-check"></i><b>1.3.2</b> Introduction to RStudio Interface</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#basic-r-syntax-and-commands"><i class="fa fa-check"></i><b>1.3.3</b> Basic R Syntax and Commands</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hands-on-exercise"><i class="fa fa-check"></i><b>1.4</b> Hands-on Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html"><i class="fa fa-check"></i><b>2</b> Basic Data Types and Structures</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-types"><i class="fa fa-check"></i><b>2.1</b> Data types</a></li>
+<li class="chapter" data-level="2.2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-structures"><i class="fa fa-check"></i><b>2.2</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#vector"><i class="fa fa-check"></i><b>2.2.1</b> Vector</a></li>
+<li class="chapter" data-level="2.2.2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#matrix"><i class="fa fa-check"></i><b>2.2.2</b> Matrix</a></li>
+<li class="chapter" data-level="2.2.3" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-frame"><i class="fa fa-check"></i><b>2.2.3</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#hands-on-exercises"><i class="fa fa-check"></i><b>2.3</b> <span style="color: green;">Hands-on Exercises</span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html"><i class="fa fa-check"></i><b>3</b> Data Importing and Exporting</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-importing"><i class="fa fa-check"></i><b>3.1</b> Introduction to Data Importing</a></li>
+<li class="chapter" data-level="3.2" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#demonstration-of-data-importing"><i class="fa fa-check"></i><b>3.2</b> Demonstration of Data Importing</a></li>
+<li class="chapter" data-level="3.3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-exporting"><i class="fa fa-check"></i><b>3.3</b> Introduction to Data Exporting</a></li>
+<li class="chapter" data-level="3.4" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#practical-exercise"><i class="fa fa-check"></i><b>3.4</b> Practical Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation.html"><a href="data-manipulation.html#basic-data-manipulation"><i class="fa fa-check"></i><b>4.1</b> Basic Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="data-manipulation.html"><a href="data-manipulation.html#introduction-to-data-manipulation"><i class="fa fa-check"></i><b>4.1.1</b> Introduction to Data Manipulation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-manipulation.html"><a href="data-manipulation.html#subsetting-and-filtering-data"><i class="fa fa-check"></i><b>4.1.2</b> Subsetting and Filtering Data:</a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-manipulation.html"><a href="data-manipulation.html#sorting-data"><i class="fa fa-check"></i><b>4.1.3</b> Sorting Data</a></li>
+<li class="chapter" data-level="4.1.4" data-path="data-manipulation.html"><a href="data-manipulation.html#basic-data-cleaning"><i class="fa fa-check"></i><b>4.1.4</b> Basic Data Cleaning</a></li>
+<li class="chapter" data-level="4.1.5" data-path="data-manipulation.html"><a href="data-manipulation.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>4.1.5</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>4.2</b> Data Manipulation with Dplyr</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-manipulation.html"><a href="data-manipulation.html#introduction-to-dplyr-package"><i class="fa fa-check"></i><b>4.2.1</b> Introduction to Dplyr package</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-manipulation.html"><a href="data-manipulation.html#key-functions-in-dplyr"><i class="fa fa-check"></i><b>4.2.2</b> Key Functions in dplyr</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-manipulation.html"><a href="data-manipulation.html#select"><i class="fa fa-check"></i><b>4.2.3</b> select</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-manipulation.html"><a href="data-manipulation.html#filter"><i class="fa fa-check"></i><b>4.2.4</b> filter</a></li>
+<li class="chapter" data-level="4.2.5" data-path="data-manipulation.html"><a href="data-manipulation.html#arrange"><i class="fa fa-check"></i><b>4.2.5</b> arrange</a></li>
+<li class="chapter" data-level="4.2.6" data-path="data-manipulation.html"><a href="data-manipulation.html#mutate"><i class="fa fa-check"></i><b>4.2.6</b> mutate</a></li>
+<li class="chapter" data-level="4.2.7" data-path="data-manipulation.html"><a href="data-manipulation.html#summarise"><i class="fa fa-check"></i><b>4.2.7</b> Summarise</a></li>
+<li class="chapter" data-level="4.2.8" data-path="data-manipulation.html"><a href="data-manipulation.html#group_by"><i class="fa fa-check"></i><b>4.2.8</b> group_by</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation.html"><a href="data-manipulation.html#chaining"><i class="fa fa-check"></i><b>4.3</b> Chaining</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data-manipulation.html"><a href="data-manipulation.html#hands-on-exercises-2"><i class="fa fa-check"></i><b>4.3.1</b> Hands-on Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>5</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-visualization.html"><a href="data-visualization.html#basic-data-visualization"><i class="fa fa-check"></i><b>5.1</b> Basic Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data-visualization.html"><a href="data-visualization.html#introduction-to-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> Introduction to ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="data-visualization.html"><a href="data-visualization.html#advanced-data-visualization"><i class="fa fa-check"></i><b>5.2</b> Advanced Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="data-visualization.html"><a href="data-visualization.html#creating-complex-visualizations"><i class="fa fa-check"></i><b>5.2.1</b> Creating Complex Visualizations</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-visualization.html"><a href="data-visualization.html#combining-multiple-plots"><i class="fa fa-check"></i><b>5.2.2</b> Combining Multiple Plots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html"><i class="fa fa-check"></i><b>6</b> Explanatory Data Analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#introduction-to-eda"><i class="fa fa-check"></i><b>6.1</b> Introduction to EDA</a></li>
+<li class="chapter" data-level="6.2" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#choosing-a-data-set"><i class="fa fa-check"></i><b>6.2</b> Choosing a data set</a></li>
+<li class="chapter" data-level="6.3" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#conducting-eda"><i class="fa fa-check"></i><b>6.3</b> Conducting EDA</a></li>
+<li class="chapter" data-level="6.4" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#present-findings"><i class="fa fa-check"></i><b>6.4</b> Present Findings</a></li>
+<li class="chapter" data-level="6.5" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#eda---example"><i class="fa fa-check"></i><b>6.5</b> <span style="color: brown;">EDA - Example</span></a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#introduction"><i class="fa fa-check"></i><b>6.5.1</b> <span style="color: brown;">Introduction</span></a></li>
+<li class="chapter" data-level="6.5.2" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#data-assessment-and-cleaning"><i class="fa fa-check"></i><b>6.5.2</b> <span style="color: brown;">Data Assessment and Cleaning</span></a></li>
+<li class="chapter" data-level="6.5.3" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#data-visualization-1"><i class="fa fa-check"></i><b>6.5.3</b> <span style="color: brown;">Data Visualization</span></a></li>
+<li class="chapter" data-level="6.5.4" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#key-findings"><i class="fa fa-check"></i><b>6.5.4</b> <span style="color: brown;">Key Findings</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistical-analysis.html"><a href="statistical-analysis.html"><i class="fa fa-check"></i><b>7</b> Statistical Analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#basic-statistical-concepts"><i class="fa fa-check"></i><b>7.1</b> Basic Statistical Concepts</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-descriptive-statistics"><i class="fa fa-check"></i><b>7.1.1</b> Introduction to Descriptive Statistics</a></li>
+<li class="chapter" data-level="7.1.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#visualization-of-descriptive-statistics"><i class="fa fa-check"></i><b>7.1.2</b> Visualization of Descriptive Statistics</a></li>
+<li class="chapter" data-level="7.1.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercise-1"><i class="fa fa-check"></i><b>7.1.3</b> Hands On Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#correlation-and-regression-analysis"><i class="fa fa-check"></i><b>7.2</b> Correlation and Regression Analysis</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-correlation"><i class="fa fa-check"></i><b>7.2.1</b> Introduction to Correlation</a></li>
+<li class="chapter" data-level="7.2.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-regression-analysis"><i class="fa fa-check"></i><b>7.2.2</b> Introduction to Regression Analysis</a></li>
+<li class="chapter" data-level="7.2.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>7.2.3</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#advanced-statistical-methods"><i class="fa fa-check"></i><b>7.3</b> Advanced Statistical Methods</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-hypothesis-testing"><i class="fa fa-check"></i><b>7.3.1</b> Introduction to Hypothesis Testing</a></li>
+<li class="chapter" data-level="7.3.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercises-4"><i class="fa fa-check"></i><b>7.3.2</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="statistical-analysis.html"><a href="statistical-analysis.html#project-applying-statistical-analysis"><i class="fa fa-check"></i><b>7.4</b> Project: Applying Statistical Analysis</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#project-overview"><i class="fa fa-check"></i><b>7.4.1</b> Project Overview</a></li>
+<li class="chapter" data-level="7.4.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#conducting-statistical-analysis"><i class="fa fa-check"></i><b>7.4.2</b> Conducting Statistical Analysis</a></li>
+<li class="chapter" data-level="7.4.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#presenting-statistical-findings"><i class="fa fa-check"></i><b>7.4.3</b> Presenting Statistical Findings</a></li>
+<li class="chapter" data-level="7.4.4" data-path="statistical-analysis.html"><a href="statistical-analysis.html#example-ecommerce-statistical-analysis"><i class="fa fa-check"></i><b>7.4.4</b> <span style="color: brown;">Example: Ecommerce Statistical Analysis</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html"><i class="fa fa-check"></i><b>8</b> Working with Real-World Data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#handling-large-datasets"><i class="fa fa-check"></i><b>8.1</b> Handling Large Datasets</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#challenges-of-large-data-sets"><i class="fa fa-check"></i><b>8.1.1</b> Challenges of Large Data sets</a></li>
+<li class="chapter" data-level="8.1.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#efficient-data-handling-techniques"><i class="fa fa-check"></i><b>8.1.2</b> Efficient Data Handling Techniques</a></li>
+<li class="chapter" data-level="8.1.3" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#reading-and-writing-large-files"><i class="fa fa-check"></i><b>8.1.3</b> Reading and Writing Large Files</a></li>
+<li class="chapter" data-level="8.1.4" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#hands-on-exercises-5"><i class="fa fa-check"></i><b>8.1.4</b> Hands-On Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#data-cleaning-and-transformation"><i class="fa fa-check"></i><b>8.2</b> Data Cleaning and Transformation</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#introduction-to-data-cleaning"><i class="fa fa-check"></i><b>8.2.1</b> Introduction to Data Cleaning</a></li>
+<li class="chapter" data-level="8.2.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#hands-on-exercises-6"><i class="fa fa-check"></i><b>8.2.2</b> Hands-On Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="time-series-analysis.html"><a href="time-series-analysis.html"><i class="fa fa-check"></i><b>9</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#introduction-to-time-series-data"><i class="fa fa-check"></i><b>9.1</b> Introduction to Time Series Data</a></li>
+<li class="chapter" data-level="9.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#basic-time-series-concepts"><i class="fa fa-check"></i><b>9.2</b> Basic Time Series Concepts</a></li>
+<li class="chapter" data-level="9.3" data-path="time-series-analysis.html"><a href="time-series-analysis.html#basic-time-series-forecasting"><i class="fa fa-check"></i><b>9.3</b> Basic Time Series Forecasting</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#moving-averages"><i class="fa fa-check"></i><b>9.3.1</b> Moving Averages</a></li>
+<li class="chapter" data-level="9.3.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#arima-model"><i class="fa fa-check"></i><b>9.3.2</b> ARIMA model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="time-series-analysis.html"><a href="time-series-analysis.html#hands-on-exercises-7"><i class="fa fa-check"></i><b>9.4</b> Hands-On Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="capstone-project.html"><a href="capstone-project.html"><i class="fa fa-check"></i><b>10</b> Capstone Project</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="capstone-project.html"><a href="capstone-project.html#introduction-2"><i class="fa fa-check"></i><b>10.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="capstone-project.html"><a href="capstone-project.html#project-overview-and-objectives"><i class="fa fa-check"></i><b>10.1.1</b> Project Overview and Objectives</a></li>
+<li class="chapter" data-level="10.1.2" data-path="capstone-project.html"><a href="capstone-project.html#group-formation"><i class="fa fa-check"></i><b>10.1.2</b> Group Formation</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="capstone-project.html"><a href="capstone-project.html#project-planning"><i class="fa fa-check"></i><b>10.2</b> Project Planning</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="capstone-project.html"><a href="capstone-project.html#defining-the-problem-statement"><i class="fa fa-check"></i><b>10.2.1</b> Defining the problem statement</a></li>
+<li class="chapter" data-level="10.2.2" data-path="capstone-project.html"><a href="capstone-project.html#planning-the-analysis-workflow"><i class="fa fa-check"></i><b>10.2.2</b> Planning the Analysis WorkFlow</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="capstone-project.html"><a href="capstone-project.html#project-execution"><i class="fa fa-check"></i><b>10.3</b> Project Execution</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="capstone-project.html"><a href="capstone-project.html#part-1"><i class="fa fa-check"></i><b>10.3.1</b> Part 1</a></li>
+<li class="chapter" data-level="10.3.2" data-path="capstone-project.html"><a href="capstone-project.html#part-2"><i class="fa fa-check"></i><b>10.3.2</b> Part 2</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="capstone-project.html"><a href="capstone-project.html#project-presentations-and-feedback"><i class="fa fa-check"></i><b>10.4</b> Project Presentations and Feedback</a></li>
+<li class="chapter" data-level="10.5" data-path="capstone-project.html"><a href="capstone-project.html#example-ecommerce-project"><i class="fa fa-check"></i><b>10.5</b> <span style="color: brown;">Example: Ecommerce Project</span></a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="capstone-project.html"><a href="capstone-project.html#part-1-1"><i class="fa fa-check"></i><b>10.5.1</b> <span style="color: brown;">Part 1</span></a></li>
+<li class="chapter" data-level="10.5.2" data-path="capstone-project.html"><a href="capstone-project.html#part-2-1"><i class="fa fa-check"></i><b>10.5.2</b> <span style="color: brown;">Part 2</span></a></li>
+<li class="chapter" data-level="10.5.3" data-path="capstone-project.html"><a href="capstone-project.html#presentation-and-feedback"><i class="fa fa-check"></i><b>10.5.3</b> <span style="color: brown;">Presentation and Feedback</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>11</b> Datasets</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="capstone-project" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Capstone Project<a href="capstone-project.html#capstone-project" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-2" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Introduction<a href="capstone-project.html#introduction-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="project-overview-and-objectives" class="section level3 hasAnchor" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> Project Overview and Objectives<a href="capstone-project.html#project-overview-and-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>The main objective of this capstone project is to allow the student apply all the skills and techniques learned through the camp in a comprehensive real-world analysis.</p></li>
+<li><p>It greatly emphasizes on teamwork, critical thinking and creativity</p></li>
+</ul>
+</div>
+<div id="group-formation" class="section level3 hasAnchor" number="10.1.2">
+<h3><span class="header-section-number">10.1.2</span> Group Formation<a href="capstone-project.html#group-formation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Participants are divided into 5 groups, each consisting of 5 members.
+Each group is assigned a different data set. These are the proposed data sets and their links to download them:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Healthcare Data set</strong></li>
+</ol>
+<p><a href="https://www.kaggle.com/datasets/imtkaggleteam/mental-health?select=1-+mental-illnesses-prevalence.csv" class="uri">https://www.kaggle.com/datasets/imtkaggleteam/mental-health?select=1-+mental-illnesses-prevalence.csv</a></p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Retail Sale data</strong></li>
+</ol>
+<p><a href="https://www.kaggle.com/datasets/manjeetsingh/retaildataset" class="uri">https://www.kaggle.com/datasets/manjeetsingh/retaildataset</a></p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Financial Transaction Data</strong></li>
+</ol>
+<p><a href="https://www.kaggle.com/datasets/apoorvwatsky/bank-transaction-data" class="uri">https://www.kaggle.com/datasets/apoorvwatsky/bank-transaction-data</a></p>
+<p><a href="https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud" class="uri">https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud</a></p>
+<ol start="4" style="list-style-type: decimal">
+<li><p><strong>Social Media Data</strong></p></li>
+<li><p><strong>Environmental Data set</strong></p></li>
+</ol>
+<p><a href="https://www.kaggle.com/datasets/sevgisarac/temperature-change" class="uri">https://www.kaggle.com/datasets/sevgisarac/temperature-change</a></p>
+</div>
+</div>
+<div id="project-planning" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Project Planning<a href="capstone-project.html#project-planning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="defining-the-problem-statement" class="section level3 hasAnchor" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Defining the problem statement<a href="capstone-project.html#defining-the-problem-statement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Using your assigned data set, you will be required to;</p>
+<ul>
+<li>define a clear problem statement to address.</li>
+<li>narrow down on the scope of the project to make it manageable within the given timeframe</li>
+<li>outline your project goals and the expected outcomes</li>
+</ul>
+</div>
+<div id="planning-the-analysis-workflow" class="section level3 hasAnchor" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> Planning the Analysis WorkFlow<a href="capstone-project.html#planning-the-analysis-workflow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In your groups, you are required to plan the analysis including:</p>
+<ul>
+<li><strong>Data Cleaning and Preprocessing</strong></li>
+</ul>
+<p>You will identify potential issues for instance missing values and outliers ,then plan how to address them</p>
+<ul>
+<li><strong>Explanatory Data Analysis</strong></li>
+</ul>
+<p>Plan how to conduct the initial exploration of the data set to understand the data structure and key patterns</p>
+<ul>
+<li><strong>Model Selection and Application</strong></li>
+</ul>
+<p>Discuss on the potential statistical or machine learning models that could be applied to the data</p>
+<ul>
+<li><strong>Evaluation and Interpretation</strong></li>
+</ul>
+<p>Plan how to evaluate the model’s performance and interpret the results.</p>
+</div>
+</div>
+<div id="project-execution" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Project Execution<a href="capstone-project.html#project-execution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="part-1" class="section level3 hasAnchor" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> Part 1<a href="capstone-project.html#part-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="data-cleaning-and-preprocessing" class="section level4 hasAnchor" number="10.3.1.1">
+<h4><span class="header-section-number">10.3.1.1</span> Data Cleaning and Preprocessing<a href="capstone-project.html#data-cleaning-and-preprocessing" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The groups will begin by cleaning and preparing the data sets including;</p>
+<ul>
+<li>Handling missing values</li>
+<li>Correcting inconsistencies in the data set</li>
+<li>Ensuring data is ready for analysis</li>
+</ul>
+<p>The instructirs will provide support and guidance as needed, answering questions and help in troubleshooting issues</p>
+</div>
+<div id="explanatory-data-analysiseda" class="section level4 hasAnchor" number="10.3.1.2">
+<h4><span class="header-section-number">10.3.1.2</span> Explanatory Data Analysis(EDA)<a href="capstone-project.html#explanatory-data-analysiseda" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The groups will then;</p>
+<ul>
+<li>Perform EDA to uncover insights, identify trends and explore the relationships between variables</li>
+<li>Visualize the data using <code>ggplot2</code> or any other tool to better understand the data.</li>
+<li>Document their findings and decide on the next step in the analysis</li>
+</ul>
+</div>
+</div>
+<div id="part-2" class="section level3 hasAnchor" number="10.3.2">
+<h3><span class="header-section-number">10.3.2</span> Part 2<a href="capstone-project.html#part-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="model-building-and-analysis" class="section level4 hasAnchor" number="10.3.2.1">
+<h4><span class="header-section-number">10.3.2.1</span> Model Building and Analysis<a href="capstone-project.html#model-building-and-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Each group is required to;</p>
+<ul>
+<li>Select and apply an appropriate statistical or machine learning model to address their research questions</li>
+<li>Train, test and fine-tune the model as needed.</li>
+<li>Emphasize on the interpreting the model outputs, understanding the implications and ensuring the results align with the project goals</li>
+</ul>
+</div>
+<div id="evaluation-and-insights" class="section level4 hasAnchor" number="10.3.2.2">
+<h4><span class="header-section-number">10.3.2.2</span> Evaluation and Insights<a href="capstone-project.html#evaluation-and-insights" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The groups will then;</p>
+<ul>
+<li>evaluate the performance of their models using relevant metrics (e.g., accuracy, RMSE, precision, recall).</li>
+<li>discuss on the insights gained from the analysis and how these insights could be applied in a real-world context.</li>
+<li>prepare visualizations and summary reports to effectively communicate their findings.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="project-presentations-and-feedback" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Project Presentations and Feedback<a href="capstone-project.html#project-presentations-and-feedback" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Each group will finally present their project that will include;</p>
+<ul>
+<li>An overview of the data set and the problem statement.</li>
+<li>The steps taken during data cleaning, EDA, and model building.</li>
+<li>The key findings, model performance, and final insights.</li>
+<li>Visualizations and any actionable recommendations based on the analysis.</li>
+</ul>
+<hr />
+</div>
+<div id="example-ecommerce-project" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> <span style="color: brown;">Example: Ecommerce Project</span><a href="capstone-project.html#example-ecommerce-project" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Load the libraries</p>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="capstone-project.html#cb656-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb656-2"><a href="capstone-project.html#cb656-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb656-3"><a href="capstone-project.html#cb656-3" tabindex="-1"></a><span class="fu">library</span>(caret)</span></code></pre></div>
+<p>Load the data</p>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="capstone-project.html#cb657-1" tabindex="-1"></a>ecommerce <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/ecommerce.csv&quot;</span>)</span>
+<span id="cb657-2"><a href="capstone-project.html#cb657-2" tabindex="-1"></a></span>
+<span id="cb657-3"><a href="capstone-project.html#cb657-3" tabindex="-1"></a><span class="co"># Get a glimpse of the data set</span></span>
+<span id="cb657-4"><a href="capstone-project.html#cb657-4" tabindex="-1"></a><span class="fu">str</span>(ecommerce)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    55000 obs. of  13 variables:
+##  $ CID                  : int  943146 180079 337580 180333 447553 200614 668787 933551 414167 889269 ...
+##  $ TID                  : num  5.88e+09 1.02e+09 3.81e+09 1.40e+09 8.01e+09 ...
+##  $ Gender               : chr  &quot;Female&quot; &quot;Male&quot; &quot;Other&quot; &quot;Other&quot; ...
+##  $ Age.Group            : chr  &quot;25-45&quot; &quot;25-45&quot; &quot;60 and above&quot; &quot;60 and above&quot; ...
+##  $ Purchase.Date        : chr  &quot;30/08/2023 20:27:08&quot; &quot;23/02/2024 09:33:46&quot; &quot;06/03/2022 09:09:50&quot; &quot;04/11/2020 04:41:57&quot; ...
+##  $ Product.Category     : chr  &quot;Electronics&quot; &quot;Electronics&quot; &quot;Clothing&quot; &quot;Sports &amp; Fitness&quot; ...
+##  $ Discount.Availed     : chr  &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; &quot;No&quot; ...
+##  $ Discount.Name        : chr  &quot;FESTIVE50&quot; &quot;SEASONALOFFER21&quot; &quot;SEASONALOFFER21&quot; &quot;&quot; ...
+##  $ Discount.Amount..INR.: num  64.3 175.2 211.5 0 439.9 ...
+##  $ Gross.Amount         : num  725 4639 1986 5696 2293 ...
+##  $ Net.Amount           : num  661 4464 1775 5696 1853 ...
+##  $ Purchase.Method      : chr  &quot;Credit Card&quot; &quot;Credit Card&quot; &quot;Credit Card&quot; &quot;Debit Card&quot; ...
+##  $ Location             : chr  &quot;Ahmedabad&quot; &quot;Bangalore&quot; &quot;Delhi&quot; &quot;Delhi&quot; ...</code></pre>
+<div id="part-1-1" class="section level3 hasAnchor" number="10.5.1">
+<h3><span class="header-section-number">10.5.1</span> <span style="color: brown;">Part 1</span><a href="capstone-project.html#part-1-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span style="color: brown;"><strong>Data Cleaning and Preprocessing</strong></span></p>
+<p>We check for missing values in the data set to understand if any imputation or removal is needed. The columns that have missing values so we can decide whether to impute or remove them</p>
+<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="capstone-project.html#cb659-1" tabindex="-1"></a><span class="co"># Count of missing values per column</span></span>
+<span id="cb659-2"><a href="capstone-project.html#cb659-2" tabindex="-1"></a><span class="fu">sapply</span>(ecommerce, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x)))</span></code></pre></div>
+<pre><code>##                   CID                   TID                Gender 
+##                     0                     0                     0 
+##             Age.Group         Purchase.Date      Product.Category 
+##                     0                     0                     0 
+##      Discount.Availed         Discount.Name Discount.Amount..INR. 
+##                     0                     0                     0 
+##          Gross.Amount            Net.Amount       Purchase.Method 
+##                     0                     0                     0 
+##              Location 
+##                     0</code></pre>
+<p>There were no null values in the data set.</p>
+<p>The outliers in the <code>Gross.Amount</code> and <code>Net.Amount</code> columns were then identified using IQR method. The removal of outliers ensures a more reliable analysis, particularly for numerical data.</p>
+<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="capstone-project.html#cb661-1" tabindex="-1"></a><span class="co"># Outlier detection function using IQR</span></span>
+<span id="cb661-2"><a href="capstone-project.html#cb661-2" tabindex="-1"></a>identify_outliers_iqr <span class="ot">&lt;-</span> <span class="cf">function</span>(column) {</span>
+<span id="cb661-3"><a href="capstone-project.html#cb661-3" tabindex="-1"></a>  Q1 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(column, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb661-4"><a href="capstone-project.html#cb661-4" tabindex="-1"></a>  Q3 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(column, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb661-5"><a href="capstone-project.html#cb661-5" tabindex="-1"></a>  IQR_value <span class="ot">&lt;-</span> Q3 <span class="sc">-</span> Q1</span>
+<span id="cb661-6"><a href="capstone-project.html#cb661-6" tabindex="-1"></a>  lower_bound <span class="ot">&lt;-</span> Q1 <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> IQR_value</span>
+<span id="cb661-7"><a href="capstone-project.html#cb661-7" tabindex="-1"></a>  upper_bound <span class="ot">&lt;-</span> Q3 <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> IQR_value</span>
+<span id="cb661-8"><a href="capstone-project.html#cb661-8" tabindex="-1"></a>  <span class="fu">return</span>(column <span class="sc">&lt;</span> lower_bound <span class="sc">|</span> column <span class="sc">&gt;</span> upper_bound)</span>
+<span id="cb661-9"><a href="capstone-project.html#cb661-9" tabindex="-1"></a>}</span>
+<span id="cb661-10"><a href="capstone-project.html#cb661-10" tabindex="-1"></a></span>
+<span id="cb661-11"><a href="capstone-project.html#cb661-11" tabindex="-1"></a><span class="co"># Removing outliers</span></span>
+<span id="cb661-12"><a href="capstone-project.html#cb661-12" tabindex="-1"></a>outliers <span class="ot">&lt;-</span> <span class="fu">identify_outliers_iqr</span>(ecommerce<span class="sc">$</span>Net.Amount)</span>
+<span id="cb661-13"><a href="capstone-project.html#cb661-13" tabindex="-1"></a>ecommerce_clean <span class="ot">&lt;-</span> ecommerce[<span class="sc">!</span>outliers, ]</span></code></pre></div>
+<p>Shape of the old ecommerce data set</p>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="capstone-project.html#cb662-1" tabindex="-1"></a><span class="fu">dim</span>(ecommerce)</span></code></pre></div>
+<pre><code>## [1] 55000    13</code></pre>
+<p>Shape of the new ecommerce data set</p>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="capstone-project.html#cb664-1" tabindex="-1"></a><span class="fu">dim</span>(ecommerce_clean)</span></code></pre></div>
+<pre><code>## [1] 54999    13</code></pre>
+<p>There was only one outlier in the entire dataset that was identified and removed.</p>
+<p>The <code>Purchase.Date</code> column needed to be converted to a proper date column</p>
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="capstone-project.html#cb666-1" tabindex="-1"></a><span class="co"># Convert &#39;Purchase Date&#39; to Date type</span></span>
+<span id="cb666-2"><a href="capstone-project.html#cb666-2" tabindex="-1"></a>ecommerce_clean<span class="sc">$</span>Purchase.Date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(ecommerce_clean<span class="sc">$</span>Purchase.Date, <span class="at">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
+<span id="cb666-3"><a href="capstone-project.html#cb666-3" tabindex="-1"></a></span>
+<span id="cb666-4"><a href="capstone-project.html#cb666-4" tabindex="-1"></a><span class="co"># Confirm the operation</span></span>
+<span id="cb666-5"><a href="capstone-project.html#cb666-5" tabindex="-1"></a><span class="fu">str</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(ecommerce_clean, Purchase.Date))</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    54999 obs. of  1 variable:
+##  $ Purchase.Date: Date, format: NA NA ...</code></pre>
+<p><span style="color: brown;"><strong>Explanatory Data Analysis</strong></span></p>
+<p>Explanatory data analysis was performed to understand tge distribution, relationships and the underlying structure of the data set.</p>
+<p>The distribution of Gross Amount was plotted</p>
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="capstone-project.html#cb668-1" tabindex="-1"></a><span class="co"># Histogram for Gross Amount</span></span>
+<span id="cb668-2"><a href="capstone-project.html#cb668-2" tabindex="-1"></a><span class="fu">ggplot</span>(ecommerce_clean, <span class="fu">aes</span>(<span class="at">x =</span> Gross.Amount)) <span class="sc">+</span></span>
+<span id="cb668-3"><a href="capstone-project.html#cb668-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb668-4"><a href="capstone-project.html#cb668-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribution of Gross Amount&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Gross Amount (INR)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb668-5"><a href="capstone-project.html#cb668-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-280-1.png" width="672" /></p>
+<p>This histogram shows that the data appears to be right-skewed, meaning most transactions occur within the lower range (around 1000-4000 INR), with fewer transactions as the Gross Amount increases. There is a gradual decline in frequency for higher amounts, with very few transactions beyond 6000 INR. The highest frequency is concentrated between 1000 and 4000 INR.</p>
+<p>The bar chart to compare the number of transactions across different of product categories in the store was plotted</p>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="capstone-project.html#cb669-1" tabindex="-1"></a><span class="co"># Bar chart for Product Category</span></span>
+<span id="cb669-2"><a href="capstone-project.html#cb669-2" tabindex="-1"></a><span class="fu">ggplot</span>(ecommerce_clean, <span class="fu">aes</span>(<span class="at">x =</span> Product.Category)) <span class="sc">+</span></span>
+<span id="cb669-3"><a href="capstone-project.html#cb669-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb669-4"><a href="capstone-project.html#cb669-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of Transactions by Product Category&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Product Category&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Transaction Count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb669-5"><a href="capstone-project.html#cb669-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-281-1.png" width="672" /></p>
+<p>The bar chart shows the number of transactions by product category. Electronics has the highest number of transactions, followed by Clothing and Beauty and Health. Categories like Books, Home &amp; Kitchen, and Other have moderate transaction counts, while categories like Pet Care, Toys &amp; Games, and Sports &amp; Fitness have significantly fewer transactions. The chart highlights which product categories are more popular in terms of transactions</p>
+<p>Finally, the distribution of Net Amount spent by gender was plotted on a boxplot.</p>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="capstone-project.html#cb670-1" tabindex="-1"></a><span class="co"># Box plot of Net Amount by Gender</span></span>
+<span id="cb670-2"><a href="capstone-project.html#cb670-2" tabindex="-1"></a><span class="fu">ggplot</span>(ecommerce_clean, <span class="fu">aes</span>(<span class="at">x =</span> Gender, <span class="at">y =</span> Net.Amount)) <span class="sc">+</span></span>
+<span id="cb670-3"><a href="capstone-project.html#cb670-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;pink&quot;</span>, <span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;gray&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb670-4"><a href="capstone-project.html#cb670-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Net Amount by Gender&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Gender&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Net Amount (INR)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb670-5"><a href="capstone-project.html#cb670-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-282-1.png" width="672" /></p>
+<p>This boxplot illustrates the distribution of the Net Amount (INR) spent by customers, categorized by Gender (Female, Male, Other). Here’s a brief description:</p>
+<ul>
+<li><strong>Female</strong>: The median net amount spent is slightly above 3000 INR, with most of the data falling between 2000 and 4500 INR. There are a few outliers above 8000 INR.</li>
+<li><strong>Male</strong>: The median is close to that of females, slightly below 4000 INR. The interquartile range (IQR) is similar, and there are also outliers.</li>
+<li><strong>Other</strong>: The distribution follows a similar pattern, with the median around 4000 INR. The spread of data is broader, and outliers are visible above 8000 INR.</li>
+</ul>
+<p>The boxplot suggests that, overall, net spending is relatively consistent across genders, with some variations in the range of outliers</p>
+</div>
+<div id="part-2-1" class="section level3 hasAnchor" number="10.5.2">
+<h3><span class="header-section-number">10.5.2</span> <span style="color: brown;">Part 2</span><a href="capstone-project.html#part-2-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span style="color: brown;"><strong>Model Building and Analysis</strong></span></p>
+<p>In this project, we agreed upon building a multiple linear regression model where the <code>Net.Amount</code> was the target variable and the independent (predictor) variables will include the features that might influence the <code>Net.Amount</code>, such as; <code>Age.Group</code>, <code>Gender</code>, <code>Discount.Availed</code>, <code>Purchase.Method</code>, <code>Product.Category</code> and <code>Location</code>.</p>
+<p>Categorical variables like Gender, Age Group, and Purchase Method were then converted into numerical formats.</p>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="capstone-project.html#cb671-1" tabindex="-1"></a><span class="co"># Convert categorical variables to factors</span></span>
+<span id="cb671-2"><a href="capstone-project.html#cb671-2" tabindex="-1"></a>ecommerce_clean<span class="sc">$</span>Gender <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(ecommerce_clean<span class="sc">$</span>Gender)</span>
+<span id="cb671-3"><a href="capstone-project.html#cb671-3" tabindex="-1"></a>ecommerce_clean<span class="sc">$</span>Age.Group <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(ecommerce_clean<span class="sc">$</span>Age.Group)</span>
+<span id="cb671-4"><a href="capstone-project.html#cb671-4" tabindex="-1"></a>ecommerce_clean<span class="sc">$</span>Purchase.Method <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(ecommerce_clean<span class="sc">$</span>Purchase.Method)</span>
+<span id="cb671-5"><a href="capstone-project.html#cb671-5" tabindex="-1"></a>ecommerce_clean<span class="sc">$</span>Product.Category <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(ecommerce_clean<span class="sc">$</span>Product.Category)</span>
+<span id="cb671-6"><a href="capstone-project.html#cb671-6" tabindex="-1"></a>ecommerce_clean<span class="sc">$</span>Location <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(ecommerce_clean<span class="sc">$</span>Location)</span></code></pre></div>
+<p>The data was then split into train and test data sets</p>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="capstone-project.html#cb672-1" tabindex="-1"></a><span class="co"># Split the data into training (70%) and testing (30%) sets</span></span>
+<span id="cb672-2"><a href="capstone-project.html#cb672-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb672-3"><a href="capstone-project.html#cb672-3" tabindex="-1"></a>sample_split <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ecommerce_clean), <span class="fl">0.7</span> <span class="sc">*</span> <span class="fu">nrow</span>(ecommerce_clean))</span>
+<span id="cb672-4"><a href="capstone-project.html#cb672-4" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> ecommerce_clean[sample_split, ]</span>
+<span id="cb672-5"><a href="capstone-project.html#cb672-5" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> ecommerce_clean[<span class="sc">-</span>sample_split, ]</span></code></pre></div>
+<p>The categorical variables converted to numerical were then encoded.</p>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="capstone-project.html#cb673-1" tabindex="-1"></a><span class="co"># Encode categorical variables in the training set</span></span>
+<span id="cb673-2"><a href="capstone-project.html#cb673-2" tabindex="-1"></a>train_data_encoded <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(Net.Amount <span class="sc">~</span> Gender <span class="sc">+</span> Age.Group <span class="sc">+</span> Purchase.Method <span class="sc">+</span> Discount.Availed <span class="sc">+</span> Product.Category <span class="sc">+</span> Location, <span class="at">data =</span> train_data)</span>
+<span id="cb673-3"><a href="capstone-project.html#cb673-3" tabindex="-1"></a>train_data_encoded <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(train_data_encoded)</span>
+<span id="cb673-4"><a href="capstone-project.html#cb673-4" tabindex="-1"></a></span>
+<span id="cb673-5"><a href="capstone-project.html#cb673-5" tabindex="-1"></a><span class="co"># Keep the Net.Amount column in train set</span></span>
+<span id="cb673-6"><a href="capstone-project.html#cb673-6" tabindex="-1"></a>train_data_encoded<span class="sc">$</span>Net.Amount <span class="ot">&lt;-</span> train_data<span class="sc">$</span>Net.Amount</span>
+<span id="cb673-7"><a href="capstone-project.html#cb673-7" tabindex="-1"></a></span>
+<span id="cb673-8"><a href="capstone-project.html#cb673-8" tabindex="-1"></a><span class="co"># Repeat for the test data </span></span>
+<span id="cb673-9"><a href="capstone-project.html#cb673-9" tabindex="-1"></a><span class="co"># Encode categorical variables in the test set</span></span>
+<span id="cb673-10"><a href="capstone-project.html#cb673-10" tabindex="-1"></a>test_data_encoded <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(Net.Amount <span class="sc">~</span> Gender <span class="sc">+</span> Age.Group <span class="sc">+</span> Purchase.Method <span class="sc">+</span> Discount.Availed <span class="sc">+</span> Product.Category <span class="sc">+</span> Location, <span class="at">data =</span> test_data)</span>
+<span id="cb673-11"><a href="capstone-project.html#cb673-11" tabindex="-1"></a>test_data_encoded <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(test_data_encoded)</span>
+<span id="cb673-12"><a href="capstone-project.html#cb673-12" tabindex="-1"></a></span>
+<span id="cb673-13"><a href="capstone-project.html#cb673-13" tabindex="-1"></a><span class="co"># Keep the Net.Amount column in test set</span></span>
+<span id="cb673-14"><a href="capstone-project.html#cb673-14" tabindex="-1"></a>test_data_encoded<span class="sc">$</span>Net.Amount <span class="ot">&lt;-</span> test_data<span class="sc">$</span>Net.Amount</span></code></pre></div>
+<p>Build the linear regression model</p>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="capstone-project.html#cb674-1" tabindex="-1"></a><span class="co"># Build the multiple linear regression model on the training data</span></span>
+<span id="cb674-2"><a href="capstone-project.html#cb674-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Net.Amount <span class="sc">~</span> ., <span class="at">data =</span> train_data_encoded)</span>
+<span id="cb674-3"><a href="capstone-project.html#cb674-3" tabindex="-1"></a></span>
+<span id="cb674-4"><a href="capstone-project.html#cb674-4" tabindex="-1"></a><span class="co"># Summary of the model</span></span>
+<span id="cb674-5"><a href="capstone-project.html#cb674-5" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Net.Amount ~ ., data = train_data_encoded)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3100.5 -1451.8   -52.9  1332.8  5515.0 
+## 
+## Coefficients: (1 not defined because of singularities)
+##                                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                         2922.7304    62.2970  46.916  &lt; 2e-16 ***
+## `(Intercept)`                              NA         NA      NA       NA    
+## GenderMale                            18.7397    21.5887   0.868  0.38538    
+## GenderOther                           66.6799    21.4213   3.113  0.00185 ** 
+## `Age.Group25-45`                      67.7744    21.2104   3.195  0.00140 ** 
+## `Age.Group45-60`                      36.5292    25.3083   1.443  0.14892    
+## `Age.Group60 and above`               86.3172    43.0016   2.007  0.04472 *  
+## `Age.Groupunder 18`                   55.5425    42.4655   1.308  0.19090    
+## `Purchase.MethodCredit Card`         105.1751    42.0126   2.503  0.01230 *  
+## `Purchase.MethodDebit Card`          104.3915    43.3421   2.409  0.01602 *  
+## `Purchase.MethodGoogle Pay UPI`       13.7136    56.1214   0.244  0.80696    
+## `Purchase.MethodInternational Card`   36.2170    55.4604   0.653  0.51375    
+## `Purchase.MethodNet Banking`          90.0141    48.4290   1.859  0.06308 .  
+## `Purchase.MethodPaytm UPI`            91.0705    56.7732   1.604  0.10870    
+## `Purchase.MethodPhonePe UPI`         136.4385    56.1132   2.431  0.01504 *  
+## Discount.AvailedYes                 -281.3110    17.5761 -16.005  &lt; 2e-16 ***
+## Product.CategoryBooks                -38.4254    45.2165  -0.850  0.39544    
+## Product.CategoryClothing             -39.0045    30.0357  -1.299  0.19409    
+## Product.CategoryElectronics          -39.1260    27.7011  -1.412  0.15783    
+## `Product.CategoryHome &amp; Kitchen`     -10.9165    35.7606  -0.305  0.76016    
+## Product.CategoryOther                -20.9221    50.1273  -0.417  0.67640    
+## `Product.CategoryPet Care`           -73.7840    55.9987  -1.318  0.18765    
+## `Product.CategorySports &amp; Fitness`    12.9042    35.7471   0.361  0.71811    
+## `Product.CategoryToys &amp; Games`        49.4816    57.0082   0.868  0.38541    
+## LocationBangalore                    -60.5951    45.4800  -1.332  0.18275    
+## LocationChennai                      -37.2571    50.3080  -0.741  0.45895    
+## LocationDehradun                     -45.1176    95.0935  -0.474  0.63518    
+## LocationDelhi                        -37.1564    44.1082  -0.842  0.39957    
+## LocationHyderabad                    -38.9091    48.1375  -0.808  0.41893    
+## LocationJaipur                       -10.5647    64.5081  -0.164  0.86991    
+## LocationKolkata                      -53.1287    56.2195  -0.945  0.34465    
+## LocationLucknow                      -17.1844    72.5735  -0.237  0.81282    
+## LocationMumbai                       -44.7562    43.9977  -1.017  0.30905    
+## LocationOther                          0.1508    74.8008   0.002  0.99839    
+## LocationPune                         -42.6380    51.6193  -0.826  0.40880    
+## LocationSrinagar                     -49.5176    97.1690  -0.510  0.61033    
+## LocationVaranasi                      35.5776    94.3117   0.377  0.70600    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1724 on 38463 degrees of freedom
+## Multiple R-squared:  0.007814,   Adjusted R-squared:  0.006911 
+## F-statistic: 8.655 on 35 and 38463 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Predictions were then performed by the model</p>
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="capstone-project.html#cb676-1" tabindex="-1"></a><span class="co"># Predict Net Amount on test data</span></span>
+<span id="cb676-2"><a href="capstone-project.html#cb676-2" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> test_data_encoded)</span></code></pre></div>
+<pre><code>## Warning in predict.lm(model, newdata = test_data_encoded): prediction from a
+## rank-deficient fit may be misleading</code></pre>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="capstone-project.html#cb678-1" tabindex="-1"></a><span class="co"># View the first few predictions</span></span>
+<span id="cb678-2"><a href="capstone-project.html#cb678-2" tabindex="-1"></a><span class="fu">head</span>(predictions)</span></code></pre></div>
+<pre><code>##        1        4        9       13       14       15 
+## 2775.243 3155.867 2934.921 2714.964 2651.550 2759.720</code></pre>
+<p><span style="color: brown;"><strong>Evaluation and insights</strong></span></p>
+<p>The model was evaluated using Mean Squared Error(MSE) and Root Squared Error(RMSE)</p>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="capstone-project.html#cb680-1" tabindex="-1"></a><span class="co"># Calculate predictions on the test set</span></span>
+<span id="cb680-2"><a href="capstone-project.html#cb680-2" tabindex="-1"></a>test_predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> test_data_encoded)</span></code></pre></div>
+<pre><code>## Warning in predict.lm(model, newdata = test_data_encoded): prediction from a
+## rank-deficient fit may be misleading</code></pre>
+<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="capstone-project.html#cb682-1" tabindex="-1"></a><span class="co"># Calculate MSE and RMSE</span></span>
+<span id="cb682-2"><a href="capstone-project.html#cb682-2" tabindex="-1"></a>mse <span class="ot">&lt;-</span> <span class="fu">mean</span>((test_predictions <span class="sc">-</span> test_data_encoded<span class="sc">$</span>Net.Amount)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb682-3"><a href="capstone-project.html#cb682-3" tabindex="-1"></a>rmse <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(mse)</span>
+<span id="cb682-4"><a href="capstone-project.html#cb682-4" tabindex="-1"></a></span>
+<span id="cb682-5"><a href="capstone-project.html#cb682-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Mean Squared Error (MSE):&quot;</span>, mse, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Mean Squared Error (MSE): 2935271</code></pre>
+<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="capstone-project.html#cb684-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Root Mean Squared Error (RMSE):&quot;</span>, rmse, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Root Mean Squared Error (RMSE): 1713.263</code></pre>
+<p>A QQ plot was used to assess if the residuals follow a normal distribution.</p>
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="capstone-project.html#cb686-1" tabindex="-1"></a><span class="co"># QQ Plot</span></span>
+<span id="cb686-2"><a href="capstone-project.html#cb686-2" tabindex="-1"></a><span class="fu">qqnorm</span>(model<span class="sc">$</span>residuals)</span>
+<span id="cb686-3"><a href="capstone-project.html#cb686-3" tabindex="-1"></a><span class="fu">qqline</span>(model<span class="sc">$</span>residuals, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-289-1.png" width="672" /></p>
+<p>The predicted values have a different pattern(straight-line) with the original values(sigmoid-curve)</p>
+</div>
+<div id="presentation-and-feedback" class="section level3 hasAnchor" number="10.5.3">
+<h3><span class="header-section-number">10.5.3</span> <span style="color: brown;">Presentation and Feedback</span><a href="capstone-project.html#presentation-and-feedback" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The model identifies some statistically significant predictors, its overall fit is quite average, as indicated by unexpected R-squared values and substantial error metrics (MSE and RMSE). The limited explanatory power suggests that other relevant variables or non-linear relationships may exist and could be explored to improve the model’s performance. Further diagnostics, feature engineering, or transformations might be necessary to enhance predictive accuracy</p>
+<p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="time-series-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="datasets.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/balsaedi/RCourse/edit/main/10-capstone-project.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/balsaedi/RCourse/blob/main/10-capstone-project.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Functions | Statistical Computing</title>
+  <meta name="description" content="Chapter 2 Functions | Statistical Computing" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Functions | Statistical Computing" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Functions | Statistical Computing" />
+  
+  
+  
+
+<meta name="author" content="Dr. Basim Alsaedi" />
+
+
+<meta name="date" content="2025-02-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="group-manipulation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SHORT TITLE HERE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Reviews</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#data-types-and-structures"><i class="fa fa-check"></i><b>1.1</b> Data Types and Structures</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#data-types"><i class="fa fa-check"></i><b>1.1.1</b> Data Types</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#data-structures"><i class="fa fa-check"></i><b>1.1.2</b> Data Structures</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#data-importing-and-exporting"><i class="fa fa-check"></i><b>1.2</b> Data Importing and Exporting</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#data-cleaning"><i class="fa fa-check"></i><b>1.3</b> Data Cleaning</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#data-visualization"><i class="fa fa-check"></i><b>1.4</b> Data Visualization</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#hands-on-exercises"><i class="fa fa-check"></i><b>1.5</b> <span style="color: green;"><strong>Hands-on Exercises</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>2</b> Functions</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="functions.html"><a href="functions.html#writing-functions"><i class="fa fa-check"></i><b>2.1</b> Writing Functions</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="functions.html"><a href="functions.html#user-defined-functions"><i class="fa fa-check"></i><b>2.1.1</b> User-Defined Functions</a></li>
+<li class="chapter" data-level="2.1.2" data-path="functions.html"><a href="functions.html#built-in-fuctions"><i class="fa fa-check"></i><b>2.1.2</b> Built-in Fuctions</a></li>
+<li class="chapter" data-level="2.1.3" data-path="functions.html"><a href="functions.html#package-functions"><i class="fa fa-check"></i><b>2.1.3</b> Package Functions</a></li>
+<li class="chapter" data-level="2.1.4" data-path="functions.html"><a href="functions.html#type-of-arguments-in-r-functions"><i class="fa fa-check"></i><b>2.1.4</b> Type of arguments in R functions</a></li>
+<li class="chapter" data-level="2.1.5" data-path="functions.html"><a href="functions.html#understanding-return-values-in-r-functions"><i class="fa fa-check"></i><b>2.1.5</b> Understanding Return Values in R Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="functions.html"><a href="functions.html#calling-the-functions"><i class="fa fa-check"></i><b>2.2</b> Calling the Functions</a></li>
+<li class="chapter" data-level="2.3" data-path="functions.html"><a href="functions.html#function-documentation"><i class="fa fa-check"></i><b>2.3</b> Function Documentation</a></li>
+<li class="chapter" data-level="2.4" data-path="functions.html"><a href="functions.html#hands-on-exercise"><i class="fa fa-check"></i><b>2.4</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="group-manipulation.html"><a href="group-manipulation.html"><i class="fa fa-check"></i><b>3</b> Group Manipulation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="group-manipulation.html"><a href="group-manipulation.html#apply-family"><i class="fa fa-check"></i><b>3.1</b> Apply Family</a></li>
+<li class="chapter" data-level="3.2" data-path="group-manipulation.html"><a href="group-manipulation.html#aggregate-plyr"><i class="fa fa-check"></i><b>3.2</b> Aggregate Plyr</a></li>
+<li class="chapter" data-level="3.3" data-path="group-manipulation.html"><a href="group-manipulation.html#data-reshaping"><i class="fa fa-check"></i><b>3.3</b> Data Reshaping</a></li>
+<li class="chapter" data-level="3.4" data-path="group-manipulation.html"><a href="group-manipulation.html#hands-on-exercise-1"><i class="fa fa-check"></i><b>3.4</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="general-statistics.html"><a href="general-statistics.html"><i class="fa fa-check"></i><b>4</b> General Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="general-statistics.html"><a href="general-statistics.html#tabulating-factors-and-creating-contingency-tables"><i class="fa fa-check"></i><b>4.1</b> Tabulating Factors and Creating Contingency Tables</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-factors-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Understanding Factors in R</a></li>
+<li class="chapter" data-level="4.1.2" data-path="general-statistics.html"><a href="general-statistics.html#creating-frequency-tables"><i class="fa fa-check"></i><b>4.1.2</b> Creating Frequency Tables</a></li>
+<li class="chapter" data-level="4.1.3" data-path="general-statistics.html"><a href="general-statistics.html#creating-contingency-tables"><i class="fa fa-check"></i><b>4.1.3</b> Creating Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.4" data-path="general-statistics.html"><a href="general-statistics.html#adding-margins-to-contingency-tables"><i class="fa fa-check"></i><b>4.1.4</b> Adding Margins to Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.5" data-path="general-statistics.html"><a href="general-statistics.html#computing-row-and-column-proportions"><i class="fa fa-check"></i><b>4.1.5</b> Computing Row and Column Proportions</a></li>
+<li class="chapter" data-level="4.1.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-contingency-tables"><i class="fa fa-check"></i><b>4.1.6</b> Visualizing Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises"><i class="fa fa-check"></i><b>4.1.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="general-statistics.html"><a href="general-statistics.html#calculating-quantiles"><i class="fa fa-check"></i><b>4.2</b> Calculating Quantiles</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-quantiles"><i class="fa fa-check"></i><b>4.2.1</b> Understanding Quantiles</a></li>
+<li class="chapter" data-level="4.2.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-quantiles-in-r"><i class="fa fa-check"></i><b>4.2.2</b> Computing Quantiles in R</a></li>
+<li class="chapter" data-level="4.2.3" data-path="general-statistics.html"><a href="general-statistics.html#computing-specific-quantiles"><i class="fa fa-check"></i><b>4.2.3</b> Computing Specific Quantiles</a></li>
+<li class="chapter" data-level="4.2.4" data-path="general-statistics.html"><a href="general-statistics.html#using-summary-for-quick-insights"><i class="fa fa-check"></i><b>4.2.4</b> Using <code>summary()</code> for Quick Insights</a></li>
+<li class="chapter" data-level="4.2.5" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-quantiles"><i class="fa fa-check"></i><b>4.2.5</b> Visualizing Quantiles</a></li>
+<li class="chapter" data-level="4.2.6" data-path="general-statistics.html"><a href="general-statistics.html#finding-interquartile-range-iqr"><i class="fa fa-check"></i><b>4.2.6</b> Finding Interquartile Range (IQR)</a></li>
+<li class="chapter" data-level="4.2.7" data-path="general-statistics.html"><a href="general-statistics.html#finding-outliers-using-iqr"><i class="fa fa-check"></i><b>4.2.7</b> Finding Outliers Using IQR</a></li>
+<li class="chapter" data-level="4.2.8" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>4.2.8</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="general-statistics.html"><a href="general-statistics.html#z-scores"><i class="fa fa-check"></i><b>4.3</b> z-Scores</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-z-scores"><i class="fa fa-check"></i><b>4.3.1</b> Understanding z-Scores</a></li>
+<li class="chapter" data-level="4.3.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-z-scores-in-r"><i class="fa fa-check"></i><b>4.3.2</b> Computing z-Scores in R</a></li>
+<li class="chapter" data-level="4.3.3" data-path="general-statistics.html"><a href="general-statistics.html#computing-z-scores-using-scale"><i class="fa fa-check"></i><b>4.3.3</b> Computing z-Scores Using <code>scale()</code></a></li>
+<li class="chapter" data-level="4.3.4" data-path="general-statistics.html"><a href="general-statistics.html#interpreting-z-scores"><i class="fa fa-check"></i><b>4.3.4</b> Interpreting z-Scores</a></li>
+<li class="chapter" data-level="4.3.5" data-path="general-statistics.html"><a href="general-statistics.html#using-z-scores-to-detect-outliers"><i class="fa fa-check"></i><b>4.3.5</b> Using z-Scores to Detect Outliers</a></li>
+<li class="chapter" data-level="4.3.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-z-scores"><i class="fa fa-check"></i><b>4.3.6</b> Visualizing z-Scores</a></li>
+<li class="chapter" data-level="4.3.7" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercises-2"><i class="fa fa-check"></i><b>4.3.7</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="general-statistics.html"><a href="general-statistics.html#inferential-statistics"><i class="fa fa-check"></i><b>4.4</b> Inferential Statistics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="general-statistics.html"><a href="general-statistics.html#basic-concepts"><i class="fa fa-check"></i><b>4.4.1</b> Basic Concepts</a></li>
+<li class="chapter" data-level="4.4.2" data-path="general-statistics.html"><a href="general-statistics.html#confidence-intervals"><i class="fa fa-check"></i><b>4.4.2</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="4.4.3" data-path="general-statistics.html"><a href="general-statistics.html#hypothesis-testing"><i class="fa fa-check"></i><b>4.4.3</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="4.4.4" data-path="general-statistics.html"><a href="general-statistics.html#steps-in-hypothesis-testing"><i class="fa fa-check"></i><b>4.4.4</b> Steps in Hypothesis Testing</a></li>
+<li class="chapter" data-level="4.4.5" data-path="general-statistics.html"><a href="general-statistics.html#one-sample-t-test"><i class="fa fa-check"></i><b>4.4.5</b> One-Sample t-Test</a></li>
+<li class="chapter" data-level="4.4.6" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-means"><i class="fa fa-check"></i><b>4.4.6</b> Comparing Two Sample Means</a></li>
+<li class="chapter" data-level="4.4.7" data-path="general-statistics.html"><a href="general-statistics.html#testing-proportions"><i class="fa fa-check"></i><b>4.4.7</b> Testing Proportions</a></li>
+<li class="chapter" data-level="4.4.8" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-1"><i class="fa fa-check"></i><b>4.4.8</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="general-statistics.html"><a href="general-statistics.html#testing-the-mean-of-a-sample-t-test-and-its-confidence-interval"><i class="fa fa-check"></i><b>4.5</b> Testing the Mean of a Sample (t-Test) and its Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-the-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Understanding the t-Test</a></li>
+<li class="chapter" data-level="4.5.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-confidence-intervals-for-the-mean"><i class="fa fa-check"></i><b>4.5.2</b> Computing Confidence Intervals for the Mean</a></li>
+<li class="chapter" data-level="4.5.3" data-path="general-statistics.html"><a href="general-statistics.html#performing-a-one-sample-t-test"><i class="fa fa-check"></i><b>4.5.3</b> Performing a One-Sample t-Test</a></li>
+<li class="chapter" data-level="4.5.4" data-path="general-statistics.html"><a href="general-statistics.html#one-sided-vs.-two-sided-tests"><i class="fa fa-check"></i><b>4.5.4</b> One-Sided vs. Two-Sided Tests</a></li>
+<li class="chapter" data-level="4.5.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-means-independent-t-test"><i class="fa fa-check"></i><b>4.5.5</b> Comparing Two Sample Means (Independent t-Test)</a></li>
+<li class="chapter" data-level="4.5.6" data-path="general-statistics.html"><a href="general-statistics.html#paired-t-test-dependent-samples"><i class="fa fa-check"></i><b>4.5.6</b> Paired t-Test (Dependent Samples)</a></li>
+<li class="chapter" data-level="4.5.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-2"><i class="fa fa-check"></i><b>4.5.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="general-statistics.html"><a href="general-statistics.html#testing-a-sample-proportion-and-its-confidence-interval"><i class="fa fa-check"></i><b>4.6</b> Testing a Sample Proportion and its Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-proportion-testing"><i class="fa fa-check"></i><b>4.6.1</b> Understanding Proportion Testing</a></li>
+<li class="chapter" data-level="4.6.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-confidence-intervals-for-proportions"><i class="fa fa-check"></i><b>4.6.2</b> Computing Confidence Intervals for Proportions</a></li>
+<li class="chapter" data-level="4.6.3" data-path="general-statistics.html"><a href="general-statistics.html#performing-a-one-sample-proportion-test"><i class="fa fa-check"></i><b>4.6.3</b> Performing a One-Sample Proportion Test</a></li>
+<li class="chapter" data-level="4.6.4" data-path="general-statistics.html"><a href="general-statistics.html#one-sided-proportion-tests"><i class="fa fa-check"></i><b>4.6.4</b> One-Sided Proportion Tests</a></li>
+<li class="chapter" data-level="4.6.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-proportions"><i class="fa fa-check"></i><b>4.6.5</b> Comparing Two Sample Proportions</a></li>
+<li class="chapter" data-level="4.6.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-proportions"><i class="fa fa-check"></i><b>4.6.6</b> Visualizing Proportions</a></li>
+<li class="chapter" data-level="4.6.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-3"><i class="fa fa-check"></i><b>4.6.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="general-statistics.html"><a href="general-statistics.html#comparing-the-means-of-two-samples"><i class="fa fa-check"></i><b>4.7</b> Comparing the Means of Two Samples</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-two-sample-t-test"><i class="fa fa-check"></i><b>4.7.1</b> Understanding Two-Sample t-Test</a></li>
+<li class="chapter" data-level="4.7.2" data-path="general-statistics.html"><a href="general-statistics.html#independent-unpaired-t-test"><i class="fa fa-check"></i><b>4.7.2</b> Independent (Unpaired) t-Test</a></li>
+<li class="chapter" data-level="4.7.3" data-path="general-statistics.html"><a href="general-statistics.html#checking-assumptions"><i class="fa fa-check"></i><b>4.7.3</b> Checking Assumptions</a></li>
+<li class="chapter" data-level="4.7.4" data-path="general-statistics.html"><a href="general-statistics.html#performing-t-test-with-unequal-variances"><i class="fa fa-check"></i><b>4.7.4</b> Performing t-Test with Unequal Variances</a></li>
+<li class="chapter" data-level="4.7.5" data-path="general-statistics.html"><a href="general-statistics.html#paired-t-test-dependent-samples-1"><i class="fa fa-check"></i><b>4.7.5</b> Paired t-Test (Dependent Samples)</a></li>
+<li class="chapter" data-level="4.7.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-group-differences"><i class="fa fa-check"></i><b>4.7.6</b> Visualizing Group Differences</a></li>
+<li class="chapter" data-level="4.7.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-4"><i class="fa fa-check"></i><b>4.7.7</b> Practical Exercises</a></li>
+<li class="chapter" data-level="4.7.8" data-path="general-statistics.html"><a href="general-statistics.html#exercise-4-visualizing-group-differences"><i class="fa fa-check"></i><b>4.7.8</b> Exercise 4: Visualizing Group Differences</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="general-statistics.html"><a href="general-statistics.html#performing-pairwise-comparisons-between-group-means"><i class="fa fa-check"></i><b>4.8</b> Performing Pairwise Comparisons Between Group Means</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-pairwise-comparisons"><i class="fa fa-check"></i><b>4.8.1</b> Understanding Pairwise Comparisons</a></li>
+<li class="chapter" data-level="4.8.2" data-path="general-statistics.html"><a href="general-statistics.html#performing-pairwise-t-tests"><i class="fa fa-check"></i><b>4.8.2</b> Performing Pairwise t-Tests</a></li>
+<li class="chapter" data-level="4.8.3" data-path="general-statistics.html"><a href="general-statistics.html#tukeys-hsd-test"><i class="fa fa-check"></i><b>4.8.3</b> Tukey’s HSD Test</a></li>
+<li class="chapter" data-level="4.8.4" data-path="general-statistics.html"><a href="general-statistics.html#bonferroni-and-holm-corrections"><i class="fa fa-check"></i><b>4.8.4</b> Bonferroni and Holm Corrections</a></li>
+<li class="chapter" data-level="4.8.5" data-path="general-statistics.html"><a href="general-statistics.html#dunnetts-test-comparing-to-a-control-group"><i class="fa fa-check"></i><b>4.8.5</b> Dunnett’s Test (Comparing to a Control Group)</a></li>
+<li class="chapter" data-level="4.8.6" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-5"><i class="fa fa-check"></i><b>4.8.6</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercise-2"><i class="fa fa-check"></i><b>4.9</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="general-statistics.html"><a href="general-statistics.html#exercise-1-descriptive-statistics"><i class="fa fa-check"></i><b>4.9.1</b> Exercise 1: Descriptive Statistics</a></li>
+<li class="chapter" data-level="4.9.2" data-path="general-statistics.html"><a href="general-statistics.html#exercise-2-confidence-interval-for-mean"><i class="fa fa-check"></i><b>4.9.2</b> Exercise 2: Confidence Interval for Mean</a></li>
+<li class="chapter" data-level="4.9.3" data-path="general-statistics.html"><a href="general-statistics.html#exercise-3-one-sample-t-test"><i class="fa fa-check"></i><b>4.9.3</b> Exercise 3: One-Sample t-Test**</a></li>
+<li class="chapter" data-level="4.9.4" data-path="general-statistics.html"><a href="general-statistics.html#exercise-4-proportion-test"><i class="fa fa-check"></i><b>4.9.4</b> Exercise 4: Proportion Test</a></li>
+<li class="chapter" data-level="4.9.5" data-path="general-statistics.html"><a href="general-statistics.html#exercise-5-comparing-two-sample-means"><i class="fa fa-check"></i><b>4.9.5</b> Exercise 5: Comparing Two Sample Means</a></li>
+<li class="chapter" data-level="4.9.6" data-path="general-statistics.html"><a href="general-statistics.html#exercise-6-data-visualization"><i class="fa fa-check"></i><b>4.9.6</b> Exercise 6: Data Visualization</a></li>
+<li class="chapter" data-level="4.9.7" data-path="general-statistics.html"><a href="general-statistics.html#exercise-7-scatterplot-with-regression-line"><i class="fa fa-check"></i><b>4.9.7</b> Exercise 7: Scatterplot with Regression Line</a></li>
+<li class="chapter" data-level="4.9.8" data-path="general-statistics.html"><a href="general-statistics.html#exercise-8-pairwise-comparisons"><i class="fa fa-check"></i><b>4.9.8</b> Exercise 8: Pairwise Comparisons</a></li>
+<li class="chapter" data-level="4.9.9" data-path="general-statistics.html"><a href="general-statistics.html#exercise-9-tukeys-hsd-test"><i class="fa fa-check"></i><b>4.9.9</b> Exercise 9: Tukey’s HSD Test</a></li>
+<li class="chapter" data-level="4.9.10" data-path="general-statistics.html"><a href="general-statistics.html#exercise-10-comparing-a-treatment-to-a-control"><i class="fa fa-check"></i><b>4.9.10</b> Exercise 10: Comparing a Treatment to a Control</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#basics-of-wilkinson-rogers-notation-y-x-linear-regression"><i class="fa fa-check"></i><b>5.1</b> Basics of Wilkinson-Rogers Notation (y ~ x), Linear Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#scatterplots-with-regression-lines-reading-lm-output"><i class="fa fa-check"></i><b>5.2</b> Scatterplots with Regression Lines, Reading lm() Output</a></li>
+<li class="chapter" data-level="5.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#confidence-intervals-for-regression-coefficients-testing-coefficients"><i class="fa fa-check"></i><b>5.3</b> Confidence Intervals for Regression Coefficients, Testing Coefficients</a></li>
+<li class="chapter" data-level="5.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#identifying-points-in-a-plot"><i class="fa fa-check"></i><b>5.4</b> Identifying Points in a Plot</a></li>
+<li class="chapter" data-level="5.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#hands-on-exercise-3"><i class="fa fa-check"></i><b>5.5</b> <span style="color: green;"><strong>Hands-On Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html"><i class="fa fa-check"></i><b>6</b> Reproducibility and Report with R Markdown</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#key-tools-in-r-for-reproducibility-and-reporting"><i class="fa fa-check"></i><b>6.1</b> Key Tools in R for Reproducibility and Reporting</a></li>
+<li class="chapter" data-level="6.2" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#creating-reproducible-reports"><i class="fa fa-check"></i><b>6.2</b> Creating Reproducible Reports</a></li>
+<li class="chapter" data-level="6.3" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#going-beyond-shiny-for-interactive-reporting"><i class="fa fa-check"></i><b>6.3</b> Going Beyond: Shiny for Interactive Reporting</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-shiny.html"><a href="r-shiny.html"><i class="fa fa-check"></i><b>7</b> R Shiny</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="r-shiny.html"><a href="r-shiny.html#structure-of-a-shiny-app"><i class="fa fa-check"></i><b>7.1</b> Structure of a Shiny App</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="r-shiny.html"><a href="r-shiny.html#user-interfaceui"><i class="fa fa-check"></i><b>7.1.1</b> User Interface(ui)</a></li>
+<li class="chapter" data-level="7.1.2" data-path="r-shiny.html"><a href="r-shiny.html#server"><i class="fa fa-check"></i><b>7.1.2</b> Server</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="r-shiny.html"><a href="r-shiny.html#hands-on-exercise-4"><i class="fa fa-check"></i><b>7.2</b> <span style="color: green;"><strong>Hands-On Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="building-r-packages.html"><a href="building-r-packages.html"><i class="fa fa-check"></i><b>8</b> Building R Packages</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="building-r-packages.html"><a href="building-r-packages.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="building-r-packages.html"><a href="building-r-packages.html#prerequisites"><i class="fa fa-check"></i><b>8.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="8.3" data-path="building-r-packages.html"><a href="building-r-packages.html#building-a-simple-r-package"><i class="fa fa-check"></i><b>8.3</b> Building a simple R package</a></li>
+<li class="chapter" data-level="8.4" data-path="building-r-packages.html"><a href="building-r-packages.html#making-a-new-r-project"><i class="fa fa-check"></i><b>8.4</b> Making A New R Project</a></li>
+<li class="chapter" data-level="8.5" data-path="building-r-packages.html"><a href="building-r-packages.html#adding-documentation"><i class="fa fa-check"></i><b>8.5</b> Adding Documentation</a></li>
+<li class="chapter" data-level="8.6" data-path="building-r-packages.html"><a href="building-r-packages.html#uploading-and-installing-from-github"><i class="fa fa-check"></i><b>8.6</b> Uploading and Installing from Github</a></li>
+<li class="chapter" data-level="8.7" data-path="building-r-packages.html"><a href="building-r-packages.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>8.7</b> <span style="color: green;"><strong>Hands-on Exercises</strong></span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Computing</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="functions" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Functions<a href="functions.html#functions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In programming, <strong>functions</strong> are like little blocks of code that perform a specific task. Think of them as reusable instructions that you can call whenever you need them.</p>
+<p>Here’s why functions are super helpful:</p>
+<ul>
+<li><strong>Avoid repetition:</strong> Instead of writing the same code multiple times, you can just call the function.</li>
+<li><strong>Cleaner code:</strong> Your code becomes easier to read and maintain because functions help organize it better.</li>
+<li><strong>Easier debugging:</strong> When something goes wrong, you only need to check the function itself rather than searching through your entire program.</li>
+</ul>
+<p><strong>Why Use Functions?</strong></p>
+<p>Imagine having to rewrite a set of instructions every time you need them! With functions, you write the code once and reuse it as many times as you want. A good <em>rule of thumb</em> is: if you expect to run a specific set of instructions more than twice, create a function for it.</p>
+<p><strong>What Can Functions Do?</strong></p>
+<p>Functions are flexible and can be used for many different purposes:</p>
+<ul>
+<li><strong>Take input</strong> (called arguments)</li>
+<li><strong>Process the input</strong> based on what the function is meant to do</li>
+<li><strong>Return a result</strong> after completing the task</li>
+</ul>
+<div id="writing-functions" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Writing Functions<a href="functions.html#writing-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Lets take a tour on different types of functions in R before diving deep into writing functions. This will help you understand when to write functions and when to use readily-available functions. There are three main types of functions:</p>
+<ol style="list-style-type: decimal">
+<li><strong>User-Defined Functions (UDF)</strong> – Custom functions you write for your specific needs.</li>
+<li><strong>Built-in functions</strong> – These come pre-loaded in R. Example: <code>mean()</code></li>
+<li><strong>Package functions</strong> – Functions from external R packages you can install. Example: <code>ggplot()</code> and <code>select()</code> from <code>ggplot2</code> and <code>dplyr</code> respectively.</li>
+</ol>
+<div id="user-defined-functions" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> User-Defined Functions<a href="functions.html#user-defined-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The best way to grasp how functions work in R is by <strong>creating your own!</strong> These are called* <strong>User-Defined Functions (UDFs)</strong>, and they allow you to design custom tasks that fit your needs.</p>
+<p>In R, functions typically follow this format:</p>
+<pre><code>function_name &lt;- function(argument_1, argument_2) { 
+  # Function body (your instructions go here)
+  return(output)
+}</code></pre>
+<p>Let’s break down the key elements:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Function Name:</strong></li>
+</ol>
+<ul>
+<li>This is how you’ll call your function later. When you create a function, you assign it a name and save it as a new object. For example, if you name your function <code>calculate_mean</code>, that’s the name you’ll use every time you want to run the function.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Arguments</strong> (also called Parameters):</li>
+</ol>
+<ul>
+<li>Arguments are placed inside the parentheses. They tell the function what input to expect or how to modify its behavior. Think of them as placeholders for the data you’ll provide later when you run the function.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Function Body:</strong></li>
+</ol>
+<ul>
+<li>Inside the curly brackets <code>{}</code>, you’ll write the instructions that the function will follow to accomplish the task. This is the “heart” of the function.</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Return Statement:</strong></li>
+</ol>
+<ul>
+<li>The <code>return()</code> function tells R what result to give you after the function finishes its job. It’s optional, but it helps if you want to store the function’s result in a variable.</li>
+</ul>
+<p>Let’s write a simple function that calculates the mean (average) of two numbers:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="functions.html#cb59-1" tabindex="-1"></a>mean_two_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(num_1, num_2) {</span>
+<span id="cb59-2"><a href="functions.html#cb59-2" tabindex="-1"></a>  mean <span class="ot">&lt;-</span> (num_1 <span class="sc">+</span> num_2) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb59-3"><a href="functions.html#cb59-3" tabindex="-1"></a>  <span class="fu">return</span>(mean)</span>
+<span id="cb59-4"><a href="functions.html#cb59-4" tabindex="-1"></a>}</span></code></pre></div>
+<p><strong>How to Use the Function:</strong></p>
+<p>To find the mean of 10 and 20, simply call the function like this:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="functions.html#cb60-1" tabindex="-1"></a><span class="fu">mean_two_numbers</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<p>Let’s add a few more simple tasks: writing a function that calculates the difference between two numbers. Why is this important? Well, imagine you have two values and you want to find their difference—that’s exactly what this function will help us do!</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="functions.html#cb62-1" tabindex="-1"></a><span class="co"># Function to calculate the difference between two numbers</span></span>
+<span id="cb62-2"><a href="functions.html#cb62-2" tabindex="-1"></a>calculate_difference <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb62-3"><a href="functions.html#cb62-3" tabindex="-1"></a>  <span class="co"># Subtract the second number (y) from the first number (x)</span></span>
+<span id="cb62-4"><a href="functions.html#cb62-4" tabindex="-1"></a>  difference <span class="ot">&lt;-</span> x <span class="sc">-</span> y</span>
+<span id="cb62-5"><a href="functions.html#cb62-5" tabindex="-1"></a>  <span class="co"># Return the difference result so we can use it later</span></span>
+<span id="cb62-6"><a href="functions.html#cb62-6" tabindex="-1"></a>  <span class="fu">return</span>(difference)</span>
+<span id="cb62-7"><a href="functions.html#cb62-7" tabindex="-1"></a>}</span></code></pre></div>
+<p>You see!:</p>
+<ul>
+<li><code>x</code> and <code>y</code> are our arguments: These are the two numbers we’ll use in our calculation.</li>
+<li>The subtraction happens inside the function: We simply subtract <code>y</code> from <code>x</code> and store the result in difference.
+Finally, we return the difference: This way, we can use the result when we call the function.</li>
+</ul>
+<p>Now, let’s put it to the test! We’ll run the function with different sets of numbers and see what we get:</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="functions.html#cb63-1" tabindex="-1"></a><span class="fu">calculate_difference</span>(<span class="dv">10</span>, <span class="dv">5</span>)  <span class="co"># 10 - 5 = 5</span></span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="functions.html#cb65-1" tabindex="-1"></a><span class="fu">calculate_difference</span>(<span class="dv">25</span>, <span class="dv">15</span>) <span class="co"># 25 - 15 = 10</span></span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="functions.html#cb67-1" tabindex="-1"></a><span class="fu">calculate_difference</span>(<span class="dv">50</span>, <span class="dv">30</span>) <span class="co"># 50 - 30 = 20</span></span></code></pre></div>
+<pre><code>## [1] 20</code></pre>
+<p>Notice how easy it is to calculate the difference between any two numbers by just calling our function? That’s the power of writing your own functions—they make life a lot easier!</p>
+<p>Now, lets make it more interesting! How about a function that greets you by name? We can do the same in R by creating a simple function that takes someone’s name and returns a greeting.</p>
+<p>Here is how we do it:</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="functions.html#cb69-1" tabindex="-1"></a><span class="co"># Function to greet a student by their name</span></span>
+<span id="cb69-2"><a href="functions.html#cb69-2" tabindex="-1"></a>greet_student <span class="ot">&lt;-</span> <span class="cf">function</span>(student_name) {</span>
+<span id="cb69-3"><a href="functions.html#cb69-3" tabindex="-1"></a>  <span class="co"># Create a personalized greeting</span></span>
+<span id="cb69-4"><a href="functions.html#cb69-4" tabindex="-1"></a>  greeting <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;Hello&quot;</span>, student_name, <span class="st">&quot;!&quot;</span>)</span>
+<span id="cb69-5"><a href="functions.html#cb69-5" tabindex="-1"></a>  <span class="co"># Return the greeting so we can use it later</span></span>
+<span id="cb69-6"><a href="functions.html#cb69-6" tabindex="-1"></a>  <span class="fu">return</span>(greeting)</span>
+<span id="cb69-7"><a href="functions.html#cb69-7" tabindex="-1"></a>}</span></code></pre></div>
+<p>Remember!</p>
+<ul>
+<li>We use <code>student_name</code> as the argument: This is where you pass in the name of the student.</li>
+<li>We combine <code>"Hello"</code> with the name: The <code>paste()</code> function(that is an -in-built function which will discuss later in the course) helps us put the pieces together to form a full sentence.</li>
+<li>Return the greeting: The function gives us back a customized message, ready to greet anyone!</li>
+</ul>
+<p>Lets try it out with different names</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="functions.html#cb70-1" tabindex="-1"></a><span class="fu">greet_student</span>(<span class="st">&quot;John&quot;</span>)    <span class="co"># Hello John!</span></span></code></pre></div>
+<pre><code>## [1] &quot;Hello John !&quot;</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="functions.html#cb72-1" tabindex="-1"></a><span class="fu">greet_student</span>(<span class="st">&quot;Alice&quot;</span>)   <span class="co"># Hello Alice!</span></span></code></pre></div>
+<pre><code>## [1] &quot;Hello Alice !&quot;</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="functions.html#cb74-1" tabindex="-1"></a><span class="fu">greet_student</span>(<span class="st">&quot;Michael&quot;</span>) <span class="co"># Hello Michael!</span></span></code></pre></div>
+<pre><code>## [1] &quot;Hello Michael !&quot;</code></pre>
+<p>Remember to try it out with your name!</p>
+<p><span style="color: orange;"><strong>Key Takeaways:</strong></span></p>
+<p>By writing these two simple functions, you’ve already tackled a lot of important concepts in R! You now know:</p>
+<ol style="list-style-type: decimal">
+<li>How to create a function.</li>
+<li>How to pass arguments (inputs/parameters) to a function.</li>
+<li>How to return a result that you can use later.</li>
+</ol>
+<p><span style="color: green;"><strong>Practical Exercise</strong></span></p>
+<p>In this exercise, you’ll get hands-on practice creating your own functions in R. Follow the instructions below to write functions that perform specific tasks. Remember to test your functions with different input values!</p>
+<ol style="list-style-type: decimal">
+<li>Create a function called <code>add_numbers</code> that takes two arguments, <code>a</code> and <code>b</code>, and returns their sum.</li>
+<li>Write a function named <code>is_even</code> that takes a single argument, <code>num</code>, and returns <code>"Even"</code> if the number is even, or <code>"Odd"</code> if it’s odd.</li>
+<li>Create a function called <code>find_max</code> that takes three arguments and returns the largest of the three numbers.</li>
+</ol>
+<hr />
+<p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
+</div>
+<div id="built-in-fuctions" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Built-in Fuctions<a href="functions.html#built-in-fuctions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We have learned how to create our own user-defined functions (UDFs) to perform specific tasks. Now, let’s dive deeper into R’s capabilities by exploring its built-in functions. These handy tools are readily available for you to use anytime, making your coding experience even smoother.</p>
+<p>R is packed with a treasure trove of built-in functions that allow you to perform a variety of tasks with just a few simple commands. Whether you’re crunching numbers or analyzing data, these functions are your best friends.</p>
+<p>Here’s a sneak peek at some of the most useful built-in functions in R:</p>
+<ul>
+<li><code>print()</code>: This function displays an R object right on your console. It’s like saying, “Hey, look at this!”</li>
+</ul>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="functions.html#cb76-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello Mum&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Hello Mum&quot;</code></pre>
+<ul>
+<li><p><code>min()</code> and <code>max()</code>: Need to find the smallest or largest number in a bunch? These functions will do just that for a numeric vector.</p></li>
+<li><p><code>sum()</code>: Want to add up a series of numbers? Use <code>sum()</code> to get the total of a numeric vector.</p></li>
+<li><p><code>mean()</code>: This function calculates the average of your numbers. Perfect for when you need to find the middle ground!</p></li>
+<li><p><code>range()</code>: Curious about the minimum and maximum values of your numeric vector? range() has you covered.</p></li>
+<li><p><code>str()</code>: Want to understand the structure of an R object? <code>str()</code> will give you a clear picture of what’s inside.</p></li>
+<li><p><code>ncol()</code>: If you’re working with matrices or data frames, this function tells you how many columns you have.</p></li>
+<li><p><code>length()</code>: This one returns the number of items in an R object, whether it’s a vector, a list, or a matrix.</p></li>
+</ul>
+<p>Here’s a quick example to show you how easy it is to use these functions with a vector of numbers:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="functions.html#cb78-1" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="fl">0.2</span>, <span class="fl">1.5</span>, <span class="fl">1.7</span>)  <span class="co"># Create a vector</span></span>
+<span id="cb78-2"><a href="functions.html#cb78-2" tabindex="-1"></a></span>
+<span id="cb78-3"><a href="functions.html#cb78-3" tabindex="-1"></a><span class="fu">print</span>(v) <span class="co"># Display the vector</span></span></code></pre></div>
+<pre><code>## [1] 1.0 3.0 0.2 1.5 1.7</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="functions.html#cb80-1" tabindex="-1"></a><span class="fu">sum</span>(v) <span class="co"># Calculate the total sum</span></span></code></pre></div>
+<pre><code>## [1] 7.4</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="functions.html#cb82-1" tabindex="-1"></a><span class="fu">mean</span>(v) <span class="co"># Find the average</span></span></code></pre></div>
+<pre><code>## [1] 1.48</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="functions.html#cb84-1" tabindex="-1"></a><span class="fu">length</span>(v) <span class="co"># Get the number of elements</span></span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>As you can see, working with R’s built-in functions is straightforward and super helpful. Start experimenting with these functions and watch how they can simplify your coding experience!</p>
+<p><span style="color: orange;"><strong>Key Takeaways:</strong></span></p>
+<p>By completing this exercise, you’ve already tackled several important concepts in R! You now know:</p>
+<ol style="list-style-type: decimal">
+<li>How to create a vector and use it for calculations.</li>
+<li>How to utilize built-in functions like <code>sum()</code>, <code>max()</code>, <code>min()</code>, <code>mean()</code>, and <code>length()</code>.</li>
+<li>How to derive meaningful statistics from data using R’s built-in capabilities</li>
+</ol>
+<p>R has a wealth of resources on this topic, and as you gain more experience and knowledge, you’ll uncover even more advanced built-in functions that can simplify your programming tasks.</p>
+<p><span style="color: green;"><strong>Practical Exercise</strong></span></p>
+<p>In this exercise, you are required to create a vector named <code>numbers</code> that contains the following values: <code>4, 8, 15, 16, 23, 42</code>. After creating the vector, you will use various built-in functions to analyze it based on the instructions below;</p>
+<ol style="list-style-type: lower-roman">
+<li>Use the <code>sum()</code> function to calculate the total of the <code>numbers</code> vector.</li>
+<li>Use the <code>max()</code> function to find the maximum value in the <code>numbers</code> vector.</li>
+<li>Use the <code>min()</code> function to find the minimum value in the <code>numbers</code> vector.</li>
+<li>Use the <code>mean()</code> function to calculate the average of the <code>numbers</code> vector.</li>
+<li>Use the <code>length()</code> function to find out how many elements are in your numbers vector.</li>
+</ol>
+<hr />
+<p><span style="color: brown;"><strong>Solution</strong></span></p>
+<p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
+</div>
+<div id="package-functions" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Package Functions<a href="functions.html#package-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Just like we’ve learned about <strong>User-Defined</strong> and <strong>Built-in</strong> Functions, R also provides a vast number of additional functions through packages. These packages extend R’s capabilities and allow you to perform specific tasks, from data manipulation to machine learning, with ease.</p>
+<p><strong>What are R Package Functions?</strong>
+Packages in R are collections of R functions, data, and compiled code that are stored in a well-defined format. While R comes with a set of built-in functions, packages allow you to go beyond the basic functionality. You can install and load packages based on the task you want to accomplish.</p>
+<p>Think of package functions as tools in a toolbox: not everything is built-in, but by adding specific tools, you can perform new tasks easily.</p>
+<p>Lets explore how to get started using the functions;</p>
+<ul>
+<li><strong>Installing and Loading Packages</strong></li>
+</ul>
+<p>To use functions from a package, you first need to install the package and load it into your R session.</p>
+<pre><code>install.packages(&quot;package_name&quot;)</code></pre>
+<p>Every time you start a new R session if you want to use the functions from that package. Load the package by;</p>
+<pre><code>library(package_name)</code></pre>
+<p>To put this into real-life action, let’s learn about the <code>dplyr</code> package, which is commonly used for data manipulation. It contains many useful functions to work with data frames or tibbles (a modern version of data frames).</p>
+<p>Here’s an example of how to install and load dplyr, and use some of its core functions.</p>
+<ol style="list-style-type: decimal">
+<li>Install the package</li>
+</ol>
+<pre><code>install.packages(&quot;dplyr&quot;)  # Install it once</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Load the package</li>
+</ol>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="functions.html#cb89-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)  <span class="co"># Load it whenever you need to use it</span></span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Let’s explore a few package functions from dplyr:</li>
+</ol>
+<ul>
+<li><code>select()</code>: Chooses specific columns from a dataset.</li>
+<li><code>filter()</code>: Filters rows based on conditions.</li>
+<li><code>mutate()</code>: Adds new variables (columns) or modifies existing ones.</li>
+<li><code>summarise()</code>: Summarizes data, such as calculating the mean or total</li>
+</ul>
+<p>We will create a data frame to demonstrate how to use functions from the <code>dplyr</code> package.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="functions.html#cb90-1" tabindex="-1"></a><span class="co"># Create a data frame for demonstration</span></span>
+<span id="cb90-2"><a href="functions.html#cb90-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb90-3"><a href="functions.html#cb90-3" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Jane&quot;</span>, <span class="st">&quot;David&quot;</span>, <span class="st">&quot;Anna&quot;</span>),</span>
+<span id="cb90-4"><a href="functions.html#cb90-4" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">34</span>, <span class="dv">22</span>, <span class="dv">19</span>),</span>
+<span id="cb90-5"><a href="functions.html#cb90-5" tabindex="-1"></a>  <span class="at">Score =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">88</span>, <span class="dv">92</span>)</span>
+<span id="cb90-6"><a href="functions.html#cb90-6" tabindex="-1"></a>)</span>
+<span id="cb90-7"><a href="functions.html#cb90-7" tabindex="-1"></a></span>
+<span id="cb90-8"><a href="functions.html#cb90-8" tabindex="-1"></a><span class="co"># 1. Select only the Name and Score columns</span></span>
+<span id="cb90-9"><a href="functions.html#cb90-9" tabindex="-1"></a>selected_data <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(data, Name, Score)</span>
+<span id="cb90-10"><a href="functions.html#cb90-10" tabindex="-1"></a>selected_data</span></code></pre></div>
+<pre><code>##    Name Score
+## 1  John    85
+## 2  Jane    90
+## 3 David    88
+## 4  Anna    92</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="functions.html#cb92-1" tabindex="-1"></a><span class="co"># 2. Filter rows where Score is greater than 88</span></span>
+<span id="cb92-2"><a href="functions.html#cb92-2" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(data, Score <span class="sc">&gt;</span> <span class="dv">88</span>)</span>
+<span id="cb92-3"><a href="functions.html#cb92-3" tabindex="-1"></a>filtered_data</span></code></pre></div>
+<pre><code>##   Name Age Score
+## 1 Jane  34    90
+## 2 Anna  19    92</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="functions.html#cb94-1" tabindex="-1"></a><span class="co"># 3. Add a new column that increases Score by 10</span></span>
+<span id="cb94-2"><a href="functions.html#cb94-2" tabindex="-1"></a>mutated_data <span class="ot">&lt;-</span> <span class="fu">mutate</span>(data, <span class="at">New_Score =</span> Score <span class="sc">+</span> <span class="dv">10</span>)</span>
+<span id="cb94-3"><a href="functions.html#cb94-3" tabindex="-1"></a>mutated_data</span></code></pre></div>
+<pre><code>##    Name Age Score New_Score
+## 1  John  28    85        95
+## 2  Jane  34    90       100
+## 3 David  22    88        98
+## 4  Anna  19    92       102</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="functions.html#cb96-1" tabindex="-1"></a><span class="co"># 4. Calculate the average age</span></span>
+<span id="cb96-2"><a href="functions.html#cb96-2" tabindex="-1"></a>summary_data <span class="ot">&lt;-</span> <span class="fu">summarise</span>(data, <span class="at">Average_Age =</span> <span class="fu">mean</span>(Age))</span>
+<span id="cb96-3"><a href="functions.html#cb96-3" tabindex="-1"></a>summary_data</span></code></pre></div>
+<pre><code>##   Average_Age
+## 1       25.75</code></pre>
+<p>In this example, we used functions from the <code>dplyr</code> package to select columns, filter rows, modify data, and summarize it!</p>
+<p><span style="color: orange;"><strong>Key Takeaways: </strong></span></p>
+<p>By learning about R package functions, you’ve unlocked even more tools to work efficiently in R. Here’s what you’ve learned today:</p>
+<ol style="list-style-type: decimal">
+<li>How to install and load R packages.</li>
+<li>How to use package functions like those in <code>dplyr</code> for data manipulation.</li>
+<li>How to perform tasks like selecting columns, filtering data, and summarizing values.</li>
+</ol>
+<p>Packages in R allow you to extend the functionality of the base language for specific tasks.
+With packages, R becomes an even more powerful tool, allowing you to work with more advanced data sets and perform complex operations with ease!</p>
+<p><span style="color: green;"><strong>Practical Exercise</strong></span></p>
+<p>In this exercise, you will use the functions from the <code>dplyr</code> package to manipulate the <code>iris</code> data set. Remember the <code>dplyr</code> package is installed by:</p>
+<pre><code>install.packages(&quot;dplyr&quot;)</code></pre>
+<p>and is loaded by:</p>
+<pre><code>library(dplyr)</code></pre>
+<p>The iris data set is loaded by</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="functions.html#cb100-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;iris&quot;</span>)</span>
+<span id="cb100-2"><a href="functions.html#cb100-2" tabindex="-1"></a></span>
+<span id="cb100-3"><a href="functions.html#cb100-3" tabindex="-1"></a><span class="co"># view the first few columns </span></span>
+<span id="cb100-4"><a href="functions.html#cb100-4" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Solve the following questions;</p>
+<ol style="list-style-type: lower-roman">
+<li>Use the <code>select</code> function to select the <code>Sepal.Length</code>, <code>Sepal.Width</code>, and <code>Species</code> columns.</li>
+<li>Use the <code>filter</code> function to filter rows where <code>Sepal.Length</code> is greater than 5.</li>
+<li>Use the <code>mutate</code> function to create a new column <code>Sepal.Ratio</code> that divides <code>Sepal.Length</code> by <code>Sepal.Width</code>.</li>
+</ol>
+<hr />
+<p><span style="color: brown;"><strong>Solution</strong></span></p>
+<p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
+</div>
+<div id="type-of-arguments-in-r-functions" class="section level3 hasAnchor" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Type of arguments in R functions<a href="functions.html#type-of-arguments-in-r-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now that we’ve learned and explored different types of functions, let’s dive into function arguments to strengthen your understanding of writing functions. Arguments are essential components of any function. Although it’s possible to write a function without parameters, like the example below, most functions do require arguments to tell them what data to process</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="functions.html#cb102-1" tabindex="-1"></a>hello <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb102-2"><a href="functions.html#cb102-2" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&#39;Hello, my friend&#39;</span>)</span>
+<span id="cb102-3"><a href="functions.html#cb102-3" tabindex="-1"></a>}</span></code></pre></div>
+<p><strong>Why Arguments Matter</strong></p>
+<p>Arguments are the input for functions. They allow us to give the function specific values to work with. If we want a function to handle different cases or data, arguments give us that flexibility.</p>
+<p>When defining arguments, you include them inside the parentheses of the function definition, separated by commas. Generally, functions with more arguments tend to be more complex, but they also offer greater control over what the function does.</p>
+<pre><code># Creating a function with arguments 
+my_function &lt;- function(argument1, argument2){
+  # function body
+}</code></pre>
+<p><strong>Handling Missing Arguments</strong></p>
+<p>Whenever you create a function with parameters, you must provide the values for those parameters when calling the function. Otherwise, R will return an error. For example, if you forget to supply both numbers in a function to calculate their mean, the function won’t work.</p>
+<p>But you can avoid this issue by using <em>default arguments</em>. These are preset values that the function will use if you don’t provide them during the call. Let’s modify our mean function to demonstrate:</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="functions.html#cb104-1" tabindex="-1"></a>mean_two_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(num_1, <span class="at">num_2 =</span> <span class="dv">30</span>) {</span>
+<span id="cb104-2"><a href="functions.html#cb104-2" tabindex="-1"></a>  mean <span class="ot">&lt;-</span> (num_1 <span class="sc">+</span> num_2) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb104-3"><a href="functions.html#cb104-3" tabindex="-1"></a>  <span class="fu">return</span> (mean)</span>
+<span id="cb104-4"><a href="functions.html#cb104-4" tabindex="-1"></a>}</span></code></pre></div>
+<p>In this version, if you only provide one value when calling the function, R will automatically use the default value for the second number (which is 30 in this case):</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="functions.html#cb105-1" tabindex="-1"></a><span class="fu">mean_two_numbers</span>(<span class="at">num_1 =</span> <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] 20</code></pre>
+<p>You now understand how arguments work and the importance of default values in making functions more flexible and error-proof.</p>
+<p><span style="color: green;"><strong>Practical Exercise</strong></span></p>
+<ol style="list-style-type: decimal">
+<li>Create a function <code>greet</code> that prints a simple message like <code>"Hello, welcome to R programming!"</code>.</li>
+<li>Write a function <code>multiply_numbers</code> that takes two arguments, <code>a</code> and <code>b</code>, and returns the product of these numbers</li>
+<li>Create a function <code>calculate_total</code> that accepts two arguments, price and tax_rate. Set a default value of <code>tax_rate = 0.15</code> (15%).</li>
+</ol>
+<hr />
+<p><span style="color: brown;"><strong>Solution</strong></span></p>
+<p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
+</div>
+<div id="understanding-return-values-in-r-functions" class="section level3 hasAnchor" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> Understanding Return Values in R Functions<a href="functions.html#understanding-return-values-in-r-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In many programming languages, functions take data as input and produce some result as output. Often, you must use a <code>return</code> statement to explicitly give back the result. Otherwise, the value might only be visible inside the function and not available to use later. But in R, the situation is a little more relaxed!</p>
+<p>In R, a function will always return a value that can be stored in a variable, even without a return statement. However, for clarity and good practice, it’s still helpful to include return to show your intent.</p>
+<p>Let’s walk through an example:</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="functions.html#cb107-1" tabindex="-1"></a>mean_sum <span class="ot">&lt;-</span> <span class="cf">function</span>(num_1, num_2) {</span>
+<span id="cb107-2"><a href="functions.html#cb107-2" tabindex="-1"></a>  mean <span class="ot">&lt;-</span> (num_1 <span class="sc">+</span> num_2) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb107-3"><a href="functions.html#cb107-3" tabindex="-1"></a>  sum <span class="ot">&lt;-</span> num_1 <span class="sc">+</span> num_2</span>
+<span id="cb107-4"><a href="functions.html#cb107-4" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">sum =</span> sum))</span>
+<span id="cb107-5"><a href="functions.html#cb107-5" tabindex="-1"></a>}</span></code></pre></div>
+<p>Now, calling the function:</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="functions.html#cb108-1" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">mean_sum</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span>
+<span id="cb108-2"><a href="functions.html#cb108-2" tabindex="-1"></a><span class="fu">print</span>(results)  <span class="co"># You&#39;ll see both the mean and sum printed</span></span></code></pre></div>
+<pre><code>## $mean
+## [1] 15
+## 
+## $sum
+## [1] 30</code></pre>
+</div>
+</div>
+<div id="calling-the-functions" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Calling the Functions<a href="functions.html#calling-the-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In previous sections, we’ve seen how to call functions with different arguments. Now, let’s dig a little deeper into how <strong>R works behind the scenes</strong> when you pass arguments to a function.</p>
+<p>R allows two main ways of passing arguments:</p>
+<ol style="list-style-type: decimal">
+<li><strong>By position</strong> – The arguments are passed in the same order as the function definition.</li>
+<li><strong>By name</strong> – You explicitly mention the argument name and its value.</li>
+</ol>
+<p>You can also <strong>mix</strong> these two strategies! Let’s explore these options using an example.</p>
+<p>Here’s a simple function that takes two arguments: name and surname.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="functions.html#cb110-1" tabindex="-1"></a>hello <span class="ot">&lt;-</span> <span class="cf">function</span>(name, surname) {</span>
+<span id="cb110-2"><a href="functions.html#cb110-2" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&#39;Hello&#39;</span>, name, surname))</span>
+<span id="cb110-3"><a href="functions.html#cb110-3" tabindex="-1"></a>}</span></code></pre></div>
+<p>Lets call the function using different strategies;</p>
+<ol style="list-style-type: decimal">
+<li><strong>By Position</strong></li>
+</ol>
+<p>You pass the arguments in the exact order the function expects.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="functions.html#cb111-1" tabindex="-1"></a><span class="fu">hello</span>(<span class="st">&#39;Jane&#39;</span>, <span class="st">&#39;McCain&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Hello Jane McCain&quot;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>By Name</strong></li>
+</ol>
+<p>When using this method, the order doesn’t matter. You just specify the argument names.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="functions.html#cb113-1" tabindex="-1"></a><span class="fu">hello</span>(<span class="at">surname =</span> <span class="st">&#39;McCain&#39;</span>, <span class="at">name =</span> <span class="st">&#39;Jane&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Hello Jane McCain&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Mixing Position and Name</strong></li>
+</ol>
+<p>You can mix both approaches. Named arguments are matched first, then the remaining ones are matched by position</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="functions.html#cb115-1" tabindex="-1"></a><span class="fu">hello</span>(<span class="at">surname =</span> <span class="st">&#39;McCain&#39;</span>, <span class="st">&#39;Jane&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Hello Jane McCain&quot;</code></pre>
+<p>This flexibility can make your code easier to read and maintain, especially when functions have many arguments!</p>
+</div>
+<div id="function-documentation" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Function Documentation<a href="functions.html#function-documentation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Finally when writing functions, it’s always a good idea to provide documentation to guide users on how to use the function. This is especially important when dealing with complex functions or when the function is shared with others.</p>
+<p>One simple way to add documentation is by including comments in the body of your function. These comments explain what each part of the function does. This is an informal method, but it helps both you and others quickly understand what’s happening in the function.</p>
+<p>Here’s an example:</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="functions.html#cb117-1" tabindex="-1"></a>hello <span class="ot">&lt;-</span> <span class="cf">function</span>(name, surname) {</span>
+<span id="cb117-2"><a href="functions.html#cb117-2" tabindex="-1"></a>  <span class="co"># Say hello to a person with their name and surname</span></span>
+<span id="cb117-3"><a href="functions.html#cb117-3" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&#39;Hello,&#39;</span>, name, surname))</span>
+<span id="cb117-4"><a href="functions.html#cb117-4" tabindex="-1"></a>}</span></code></pre></div>
+<p>If you call the function without executing it, you’ll see its structure along with the comments:</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="functions.html#cb118-1" tabindex="-1"></a>hello</span></code></pre></div>
+<pre><code>## function(name, surname) {
+##   # Say hello to a person with their name and surname
+##   print(paste(&#39;Hello,&#39;, name, surname))
+## }</code></pre>
+<p>If your function is part of a larger package and you want it to be properly documented, you should write formal documentation in a separate <code>.Rd</code> file. These files store structured documentation, which you can access using <code>?function_name</code> in R, similar to the help file you see for built-in functions like <code>?mean</code>.</p>
+<p>Formal documentation includes details such as:</p>
+<ul>
+<li>Function name and description.</li>
+<li>Arguments and their roles.</li>
+<li>Examples of how to use the function.</li>
+<li>Output that the function returns.</li>
+<li>This approach ensures that users can easily understand and use your function, even in complex packages.</li>
+</ul>
+</div>
+<div id="hands-on-exercise" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> <span style="color: green;"><strong>Hands-on Exercise</strong></span><a href="functions.html#hands-on-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You will attempt this <strong>hands-on exercise</strong> to confirm your understanding of functions. For one of the functions you created, add comments inside the function to explain what each part of the function does.</p>
+<ol style="list-style-type: decimal">
+<li>Create a User-Defined Function (UDF) named <code>calculate_area</code> that takes two arguments: <code>length</code> and <code>width</code>. The function should return the area of a rectangle.</li>
+<li>Create a vector named <code>values</code> with the numbers <code>4, 8, 15, 16, 23, 42</code>. Use the built-in <code>sum()</code> function to calculate the total of the values vector and print the result.</li>
+<li>Write a function named <code>greet</code> that takes one argument, <code>student_name</code>, and prints a greeting. Modify the function to have a default argument that greets a <code>"Student"</code> if no name is provided.</li>
+<li>Create a function named <code>mean_and_median</code> that takes a numeric vector as an argument and returns both the mean and median of that vector as a list.</li>
+</ol>
+<hr />
+<p><span style="color: brown;"><strong>Solution</strong></span></p>
+<p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="group-manipulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/balsaedi/RCourse/edit/main/02-functions.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/balsaedi/RCourse/blob/main/02-functions.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

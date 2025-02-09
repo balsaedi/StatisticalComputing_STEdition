@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Building R Packages | Statistical Computing</title>
+  <meta name="description" content="Chapter 8 Building R Packages | Statistical Computing" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Building R Packages | Statistical Computing" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Building R Packages | Statistical Computing" />
+  
+  
+  
+
+<meta name="author" content="Dr. Basim Alsaedi" />
+
+
+<meta name="date" content="2025-02-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r-shiny.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SHORT TITLE HERE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Reviews</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#data-types-and-structures"><i class="fa fa-check"></i><b>1.1</b> Data Types and Structures</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#data-types"><i class="fa fa-check"></i><b>1.1.1</b> Data Types</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#data-structures"><i class="fa fa-check"></i><b>1.1.2</b> Data Structures</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#data-importing-and-exporting"><i class="fa fa-check"></i><b>1.2</b> Data Importing and Exporting</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#data-cleaning"><i class="fa fa-check"></i><b>1.3</b> Data Cleaning</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#data-visualization"><i class="fa fa-check"></i><b>1.4</b> Data Visualization</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#hands-on-exercises"><i class="fa fa-check"></i><b>1.5</b> <span style="color: green;"><strong>Hands-on Exercises</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>2</b> Functions</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="functions.html"><a href="functions.html#writing-functions"><i class="fa fa-check"></i><b>2.1</b> Writing Functions</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="functions.html"><a href="functions.html#user-defined-functions"><i class="fa fa-check"></i><b>2.1.1</b> User-Defined Functions</a></li>
+<li class="chapter" data-level="2.1.2" data-path="functions.html"><a href="functions.html#built-in-fuctions"><i class="fa fa-check"></i><b>2.1.2</b> Built-in Fuctions</a></li>
+<li class="chapter" data-level="2.1.3" data-path="functions.html"><a href="functions.html#package-functions"><i class="fa fa-check"></i><b>2.1.3</b> Package Functions</a></li>
+<li class="chapter" data-level="2.1.4" data-path="functions.html"><a href="functions.html#type-of-arguments-in-r-functions"><i class="fa fa-check"></i><b>2.1.4</b> Type of arguments in R functions</a></li>
+<li class="chapter" data-level="2.1.5" data-path="functions.html"><a href="functions.html#understanding-return-values-in-r-functions"><i class="fa fa-check"></i><b>2.1.5</b> Understanding Return Values in R Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="functions.html"><a href="functions.html#calling-the-functions"><i class="fa fa-check"></i><b>2.2</b> Calling the Functions</a></li>
+<li class="chapter" data-level="2.3" data-path="functions.html"><a href="functions.html#function-documentation"><i class="fa fa-check"></i><b>2.3</b> Function Documentation</a></li>
+<li class="chapter" data-level="2.4" data-path="functions.html"><a href="functions.html#hands-on-exercise"><i class="fa fa-check"></i><b>2.4</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="group-manipulation.html"><a href="group-manipulation.html"><i class="fa fa-check"></i><b>3</b> Group Manipulation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="group-manipulation.html"><a href="group-manipulation.html#apply-family"><i class="fa fa-check"></i><b>3.1</b> Apply Family</a></li>
+<li class="chapter" data-level="3.2" data-path="group-manipulation.html"><a href="group-manipulation.html#aggregate-plyr"><i class="fa fa-check"></i><b>3.2</b> Aggregate Plyr</a></li>
+<li class="chapter" data-level="3.3" data-path="group-manipulation.html"><a href="group-manipulation.html#data-reshaping"><i class="fa fa-check"></i><b>3.3</b> Data Reshaping</a></li>
+<li class="chapter" data-level="3.4" data-path="group-manipulation.html"><a href="group-manipulation.html#hands-on-exercise-1"><i class="fa fa-check"></i><b>3.4</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="general-statistics.html"><a href="general-statistics.html"><i class="fa fa-check"></i><b>4</b> General Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="general-statistics.html"><a href="general-statistics.html#tabulating-factors-and-creating-contingency-tables"><i class="fa fa-check"></i><b>4.1</b> Tabulating Factors and Creating Contingency Tables</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-factors-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Understanding Factors in R</a></li>
+<li class="chapter" data-level="4.1.2" data-path="general-statistics.html"><a href="general-statistics.html#creating-frequency-tables"><i class="fa fa-check"></i><b>4.1.2</b> Creating Frequency Tables</a></li>
+<li class="chapter" data-level="4.1.3" data-path="general-statistics.html"><a href="general-statistics.html#creating-contingency-tables"><i class="fa fa-check"></i><b>4.1.3</b> Creating Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.4" data-path="general-statistics.html"><a href="general-statistics.html#adding-margins-to-contingency-tables"><i class="fa fa-check"></i><b>4.1.4</b> Adding Margins to Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.5" data-path="general-statistics.html"><a href="general-statistics.html#computing-row-and-column-proportions"><i class="fa fa-check"></i><b>4.1.5</b> Computing Row and Column Proportions</a></li>
+<li class="chapter" data-level="4.1.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-contingency-tables"><i class="fa fa-check"></i><b>4.1.6</b> Visualizing Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises"><i class="fa fa-check"></i><b>4.1.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="general-statistics.html"><a href="general-statistics.html#calculating-quantiles"><i class="fa fa-check"></i><b>4.2</b> Calculating Quantiles</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-quantiles"><i class="fa fa-check"></i><b>4.2.1</b> Understanding Quantiles</a></li>
+<li class="chapter" data-level="4.2.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-quantiles-in-r"><i class="fa fa-check"></i><b>4.2.2</b> Computing Quantiles in R</a></li>
+<li class="chapter" data-level="4.2.3" data-path="general-statistics.html"><a href="general-statistics.html#computing-specific-quantiles"><i class="fa fa-check"></i><b>4.2.3</b> Computing Specific Quantiles</a></li>
+<li class="chapter" data-level="4.2.4" data-path="general-statistics.html"><a href="general-statistics.html#using-summary-for-quick-insights"><i class="fa fa-check"></i><b>4.2.4</b> Using <code>summary()</code> for Quick Insights</a></li>
+<li class="chapter" data-level="4.2.5" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-quantiles"><i class="fa fa-check"></i><b>4.2.5</b> Visualizing Quantiles</a></li>
+<li class="chapter" data-level="4.2.6" data-path="general-statistics.html"><a href="general-statistics.html#finding-interquartile-range-iqr"><i class="fa fa-check"></i><b>4.2.6</b> Finding Interquartile Range (IQR)</a></li>
+<li class="chapter" data-level="4.2.7" data-path="general-statistics.html"><a href="general-statistics.html#finding-outliers-using-iqr"><i class="fa fa-check"></i><b>4.2.7</b> Finding Outliers Using IQR</a></li>
+<li class="chapter" data-level="4.2.8" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>4.2.8</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="general-statistics.html"><a href="general-statistics.html#z-scores"><i class="fa fa-check"></i><b>4.3</b> z-Scores</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-z-scores"><i class="fa fa-check"></i><b>4.3.1</b> Understanding z-Scores</a></li>
+<li class="chapter" data-level="4.3.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-z-scores-in-r"><i class="fa fa-check"></i><b>4.3.2</b> Computing z-Scores in R</a></li>
+<li class="chapter" data-level="4.3.3" data-path="general-statistics.html"><a href="general-statistics.html#computing-z-scores-using-scale"><i class="fa fa-check"></i><b>4.3.3</b> Computing z-Scores Using <code>scale()</code></a></li>
+<li class="chapter" data-level="4.3.4" data-path="general-statistics.html"><a href="general-statistics.html#interpreting-z-scores"><i class="fa fa-check"></i><b>4.3.4</b> Interpreting z-Scores</a></li>
+<li class="chapter" data-level="4.3.5" data-path="general-statistics.html"><a href="general-statistics.html#using-z-scores-to-detect-outliers"><i class="fa fa-check"></i><b>4.3.5</b> Using z-Scores to Detect Outliers</a></li>
+<li class="chapter" data-level="4.3.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-z-scores"><i class="fa fa-check"></i><b>4.3.6</b> Visualizing z-Scores</a></li>
+<li class="chapter" data-level="4.3.7" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercises-2"><i class="fa fa-check"></i><b>4.3.7</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="general-statistics.html"><a href="general-statistics.html#inferential-statistics"><i class="fa fa-check"></i><b>4.4</b> Inferential Statistics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="general-statistics.html"><a href="general-statistics.html#basic-concepts"><i class="fa fa-check"></i><b>4.4.1</b> Basic Concepts</a></li>
+<li class="chapter" data-level="4.4.2" data-path="general-statistics.html"><a href="general-statistics.html#confidence-intervals"><i class="fa fa-check"></i><b>4.4.2</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="4.4.3" data-path="general-statistics.html"><a href="general-statistics.html#hypothesis-testing"><i class="fa fa-check"></i><b>4.4.3</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="4.4.4" data-path="general-statistics.html"><a href="general-statistics.html#steps-in-hypothesis-testing"><i class="fa fa-check"></i><b>4.4.4</b> Steps in Hypothesis Testing</a></li>
+<li class="chapter" data-level="4.4.5" data-path="general-statistics.html"><a href="general-statistics.html#one-sample-t-test"><i class="fa fa-check"></i><b>4.4.5</b> One-Sample t-Test</a></li>
+<li class="chapter" data-level="4.4.6" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-means"><i class="fa fa-check"></i><b>4.4.6</b> Comparing Two Sample Means</a></li>
+<li class="chapter" data-level="4.4.7" data-path="general-statistics.html"><a href="general-statistics.html#testing-proportions"><i class="fa fa-check"></i><b>4.4.7</b> Testing Proportions</a></li>
+<li class="chapter" data-level="4.4.8" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-1"><i class="fa fa-check"></i><b>4.4.8</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="general-statistics.html"><a href="general-statistics.html#testing-the-mean-of-a-sample-t-test-and-its-confidence-interval"><i class="fa fa-check"></i><b>4.5</b> Testing the Mean of a Sample (t-Test) and its Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-the-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Understanding the t-Test</a></li>
+<li class="chapter" data-level="4.5.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-confidence-intervals-for-the-mean"><i class="fa fa-check"></i><b>4.5.2</b> Computing Confidence Intervals for the Mean</a></li>
+<li class="chapter" data-level="4.5.3" data-path="general-statistics.html"><a href="general-statistics.html#performing-a-one-sample-t-test"><i class="fa fa-check"></i><b>4.5.3</b> Performing a One-Sample t-Test</a></li>
+<li class="chapter" data-level="4.5.4" data-path="general-statistics.html"><a href="general-statistics.html#one-sided-vs.-two-sided-tests"><i class="fa fa-check"></i><b>4.5.4</b> One-Sided vs. Two-Sided Tests</a></li>
+<li class="chapter" data-level="4.5.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-means-independent-t-test"><i class="fa fa-check"></i><b>4.5.5</b> Comparing Two Sample Means (Independent t-Test)</a></li>
+<li class="chapter" data-level="4.5.6" data-path="general-statistics.html"><a href="general-statistics.html#paired-t-test-dependent-samples"><i class="fa fa-check"></i><b>4.5.6</b> Paired t-Test (Dependent Samples)</a></li>
+<li class="chapter" data-level="4.5.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-2"><i class="fa fa-check"></i><b>4.5.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="general-statistics.html"><a href="general-statistics.html#testing-a-sample-proportion-and-its-confidence-interval"><i class="fa fa-check"></i><b>4.6</b> Testing a Sample Proportion and its Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-proportion-testing"><i class="fa fa-check"></i><b>4.6.1</b> Understanding Proportion Testing</a></li>
+<li class="chapter" data-level="4.6.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-confidence-intervals-for-proportions"><i class="fa fa-check"></i><b>4.6.2</b> Computing Confidence Intervals for Proportions</a></li>
+<li class="chapter" data-level="4.6.3" data-path="general-statistics.html"><a href="general-statistics.html#performing-a-one-sample-proportion-test"><i class="fa fa-check"></i><b>4.6.3</b> Performing a One-Sample Proportion Test</a></li>
+<li class="chapter" data-level="4.6.4" data-path="general-statistics.html"><a href="general-statistics.html#one-sided-proportion-tests"><i class="fa fa-check"></i><b>4.6.4</b> One-Sided Proportion Tests</a></li>
+<li class="chapter" data-level="4.6.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-proportions"><i class="fa fa-check"></i><b>4.6.5</b> Comparing Two Sample Proportions</a></li>
+<li class="chapter" data-level="4.6.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-proportions"><i class="fa fa-check"></i><b>4.6.6</b> Visualizing Proportions</a></li>
+<li class="chapter" data-level="4.6.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-3"><i class="fa fa-check"></i><b>4.6.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="general-statistics.html"><a href="general-statistics.html#comparing-the-means-of-two-samples"><i class="fa fa-check"></i><b>4.7</b> Comparing the Means of Two Samples</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-two-sample-t-test"><i class="fa fa-check"></i><b>4.7.1</b> Understanding Two-Sample t-Test</a></li>
+<li class="chapter" data-level="4.7.2" data-path="general-statistics.html"><a href="general-statistics.html#independent-unpaired-t-test"><i class="fa fa-check"></i><b>4.7.2</b> Independent (Unpaired) t-Test</a></li>
+<li class="chapter" data-level="4.7.3" data-path="general-statistics.html"><a href="general-statistics.html#checking-assumptions"><i class="fa fa-check"></i><b>4.7.3</b> Checking Assumptions</a></li>
+<li class="chapter" data-level="4.7.4" data-path="general-statistics.html"><a href="general-statistics.html#performing-t-test-with-unequal-variances"><i class="fa fa-check"></i><b>4.7.4</b> Performing t-Test with Unequal Variances</a></li>
+<li class="chapter" data-level="4.7.5" data-path="general-statistics.html"><a href="general-statistics.html#paired-t-test-dependent-samples-1"><i class="fa fa-check"></i><b>4.7.5</b> Paired t-Test (Dependent Samples)</a></li>
+<li class="chapter" data-level="4.7.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-group-differences"><i class="fa fa-check"></i><b>4.7.6</b> Visualizing Group Differences</a></li>
+<li class="chapter" data-level="4.7.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-4"><i class="fa fa-check"></i><b>4.7.7</b> Practical Exercises</a></li>
+<li class="chapter" data-level="4.7.8" data-path="general-statistics.html"><a href="general-statistics.html#exercise-4-visualizing-group-differences"><i class="fa fa-check"></i><b>4.7.8</b> Exercise 4: Visualizing Group Differences</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="general-statistics.html"><a href="general-statistics.html#performing-pairwise-comparisons-between-group-means"><i class="fa fa-check"></i><b>4.8</b> Performing Pairwise Comparisons Between Group Means</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-pairwise-comparisons"><i class="fa fa-check"></i><b>4.8.1</b> Understanding Pairwise Comparisons</a></li>
+<li class="chapter" data-level="4.8.2" data-path="general-statistics.html"><a href="general-statistics.html#performing-pairwise-t-tests"><i class="fa fa-check"></i><b>4.8.2</b> Performing Pairwise t-Tests</a></li>
+<li class="chapter" data-level="4.8.3" data-path="general-statistics.html"><a href="general-statistics.html#tukeys-hsd-test"><i class="fa fa-check"></i><b>4.8.3</b> Tukey’s HSD Test</a></li>
+<li class="chapter" data-level="4.8.4" data-path="general-statistics.html"><a href="general-statistics.html#bonferroni-and-holm-corrections"><i class="fa fa-check"></i><b>4.8.4</b> Bonferroni and Holm Corrections</a></li>
+<li class="chapter" data-level="4.8.5" data-path="general-statistics.html"><a href="general-statistics.html#dunnetts-test-comparing-to-a-control-group"><i class="fa fa-check"></i><b>4.8.5</b> Dunnett’s Test (Comparing to a Control Group)</a></li>
+<li class="chapter" data-level="4.8.6" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-5"><i class="fa fa-check"></i><b>4.8.6</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercise-2"><i class="fa fa-check"></i><b>4.9</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="general-statistics.html"><a href="general-statistics.html#exercise-1-descriptive-statistics"><i class="fa fa-check"></i><b>4.9.1</b> Exercise 1: Descriptive Statistics</a></li>
+<li class="chapter" data-level="4.9.2" data-path="general-statistics.html"><a href="general-statistics.html#exercise-2-confidence-interval-for-mean"><i class="fa fa-check"></i><b>4.9.2</b> Exercise 2: Confidence Interval for Mean</a></li>
+<li class="chapter" data-level="4.9.3" data-path="general-statistics.html"><a href="general-statistics.html#exercise-3-one-sample-t-test"><i class="fa fa-check"></i><b>4.9.3</b> Exercise 3: One-Sample t-Test**</a></li>
+<li class="chapter" data-level="4.9.4" data-path="general-statistics.html"><a href="general-statistics.html#exercise-4-proportion-test"><i class="fa fa-check"></i><b>4.9.4</b> Exercise 4: Proportion Test</a></li>
+<li class="chapter" data-level="4.9.5" data-path="general-statistics.html"><a href="general-statistics.html#exercise-5-comparing-two-sample-means"><i class="fa fa-check"></i><b>4.9.5</b> Exercise 5: Comparing Two Sample Means</a></li>
+<li class="chapter" data-level="4.9.6" data-path="general-statistics.html"><a href="general-statistics.html#exercise-6-data-visualization"><i class="fa fa-check"></i><b>4.9.6</b> Exercise 6: Data Visualization</a></li>
+<li class="chapter" data-level="4.9.7" data-path="general-statistics.html"><a href="general-statistics.html#exercise-7-scatterplot-with-regression-line"><i class="fa fa-check"></i><b>4.9.7</b> Exercise 7: Scatterplot with Regression Line</a></li>
+<li class="chapter" data-level="4.9.8" data-path="general-statistics.html"><a href="general-statistics.html#exercise-8-pairwise-comparisons"><i class="fa fa-check"></i><b>4.9.8</b> Exercise 8: Pairwise Comparisons</a></li>
+<li class="chapter" data-level="4.9.9" data-path="general-statistics.html"><a href="general-statistics.html#exercise-9-tukeys-hsd-test"><i class="fa fa-check"></i><b>4.9.9</b> Exercise 9: Tukey’s HSD Test</a></li>
+<li class="chapter" data-level="4.9.10" data-path="general-statistics.html"><a href="general-statistics.html#exercise-10-comparing-a-treatment-to-a-control"><i class="fa fa-check"></i><b>4.9.10</b> Exercise 10: Comparing a Treatment to a Control</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#basics-of-wilkinson-rogers-notation-y-x-linear-regression"><i class="fa fa-check"></i><b>5.1</b> Basics of Wilkinson-Rogers Notation (y ~ x), Linear Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#scatterplots-with-regression-lines-reading-lm-output"><i class="fa fa-check"></i><b>5.2</b> Scatterplots with Regression Lines, Reading lm() Output</a></li>
+<li class="chapter" data-level="5.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#confidence-intervals-for-regression-coefficients-testing-coefficients"><i class="fa fa-check"></i><b>5.3</b> Confidence Intervals for Regression Coefficients, Testing Coefficients</a></li>
+<li class="chapter" data-level="5.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#identifying-points-in-a-plot"><i class="fa fa-check"></i><b>5.4</b> Identifying Points in a Plot</a></li>
+<li class="chapter" data-level="5.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#hands-on-exercise-3"><i class="fa fa-check"></i><b>5.5</b> <span style="color: green;"><strong>Hands-On Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html"><i class="fa fa-check"></i><b>6</b> Reproducibility and Report with R Markdown</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#key-tools-in-r-for-reproducibility-and-reporting"><i class="fa fa-check"></i><b>6.1</b> Key Tools in R for Reproducibility and Reporting</a></li>
+<li class="chapter" data-level="6.2" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#creating-reproducible-reports"><i class="fa fa-check"></i><b>6.2</b> Creating Reproducible Reports</a></li>
+<li class="chapter" data-level="6.3" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#going-beyond-shiny-for-interactive-reporting"><i class="fa fa-check"></i><b>6.3</b> Going Beyond: Shiny for Interactive Reporting</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-shiny.html"><a href="r-shiny.html"><i class="fa fa-check"></i><b>7</b> R Shiny</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="r-shiny.html"><a href="r-shiny.html#structure-of-a-shiny-app"><i class="fa fa-check"></i><b>7.1</b> Structure of a Shiny App</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="r-shiny.html"><a href="r-shiny.html#user-interfaceui"><i class="fa fa-check"></i><b>7.1.1</b> User Interface(ui)</a></li>
+<li class="chapter" data-level="7.1.2" data-path="r-shiny.html"><a href="r-shiny.html#server"><i class="fa fa-check"></i><b>7.1.2</b> Server</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="r-shiny.html"><a href="r-shiny.html#hands-on-exercise-4"><i class="fa fa-check"></i><b>7.2</b> <span style="color: green;"><strong>Hands-On Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="building-r-packages.html"><a href="building-r-packages.html"><i class="fa fa-check"></i><b>8</b> Building R Packages</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="building-r-packages.html"><a href="building-r-packages.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="building-r-packages.html"><a href="building-r-packages.html#prerequisites"><i class="fa fa-check"></i><b>8.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="8.3" data-path="building-r-packages.html"><a href="building-r-packages.html#building-a-simple-r-package"><i class="fa fa-check"></i><b>8.3</b> Building a simple R package</a></li>
+<li class="chapter" data-level="8.4" data-path="building-r-packages.html"><a href="building-r-packages.html#making-a-new-r-project"><i class="fa fa-check"></i><b>8.4</b> Making A New R Project</a></li>
+<li class="chapter" data-level="8.5" data-path="building-r-packages.html"><a href="building-r-packages.html#adding-documentation"><i class="fa fa-check"></i><b>8.5</b> Adding Documentation</a></li>
+<li class="chapter" data-level="8.6" data-path="building-r-packages.html"><a href="building-r-packages.html#uploading-and-installing-from-github"><i class="fa fa-check"></i><b>8.6</b> Uploading and Installing from Github</a></li>
+<li class="chapter" data-level="8.7" data-path="building-r-packages.html"><a href="building-r-packages.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>8.7</b> <span style="color: green;"><strong>Hands-on Exercises</strong></span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Computing</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="building-r-packages" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Building R Packages<a href="building-r-packages.html#building-r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Introduction<a href="building-r-packages.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the second chapter we introduced about functions and we later talked about package functions, here we will now focus on how to build those packages. Packages are bundles of code and data to perform created by R users or community to perform a set of goven tasks.</p>
+<p>In this course you have encountered several packages like <code>dplyr</code>, <code>plyr</code> and <code>ggplot2</code> and might have installed one or many of them. Packages provide a ready-to-use functions and data sets that produce results faster without the need to write everything from scratch. Here we will discuss how you can create you own package in R. This will give you a deeper appreciation of the packages you rely on daily basis and how they are built.</p>
+<p>CRAN(The Comprehensive R Archive Network) and GitHub provide a repository where one can host and install packages to their local environments.</p>
+<p>In this guide, we will walk through how to create a package and host the packages either on GitHub.</p>
+</div>
+<div id="prerequisites" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Prerequisites<a href="building-r-packages.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before we jump in, there are a few packages you will want to have ready to help us along the way. We will install <code>devtools</code> and <code>roxygen2</code>.</p>
+<p>Install the packages</p>
+<pre><code># Install devtools 
+install.packages(&quot;devtools&quot;)
+
+# Install roxygen
+install.packages(&quot;roxygen2&quot;)</code></pre>
+<p>It might be necessary to restart R studio after installing the above packages</p>
+</div>
+<div id="building-a-simple-r-package" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Building a simple R package<a href="building-r-packages.html#building-a-simple-r-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here is where the fun begin! We will create a simple R package to serve you with the basics of building packages. The package will involve two functions;</p>
+<ol style="list-style-type: lower-roman">
+<li>A function to convert temperature from degrees Fahrenheit(<span class="math inline">\(^oF\)</span>) to degrees Celsius(<span class="math inline">\(^oC\)</span>).</li>
+<li>A function to convert temperature from degrees Celsius(<span class="math inline">\(^oC\)</span>) to degrees Fahrenheit(<span class="math inline">\(^oF\)</span>).</li>
+</ol>
+<p><strong>Step 1</strong></p>
+<p>Create a folder that will hold the whole R package, in our case we will name the folder <code>F2C_R_package</code> like the one below.</p>
+<p><img src="images/F2C_R_package_image.png" /></p>
+<p><strong>Step 2</strong></p>
+<p>Currently this folder is empty, lets create another folder inside this <code>F2C_R_package</code> folder and name it <code>R</code>.
+<img src="images/R_inner_folder.png" /></p>
+<p>Here is where all the R scripts are stored. It can hold any amount of R files and each R file can hold any amount of R functions. You could example give each function each own file or insert more than function in a file.</p>
+<p>For large projects it is recommended to group similar functions in the same R file.</p>
+<p><strong>Step 3</strong></p>
+<p>In our new R package, we will write both the two functions discussed above in the same file called, <code>temp_conversion.R</code> that has the code below;</p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="building-r-packages.html#cb335-1" tabindex="-1"></a><span class="co"># Convert from Fahrenheit to Celsius</span></span>
+<span id="cb335-2"><a href="building-r-packages.html#cb335-2" tabindex="-1"></a>F_to_C <span class="ot">&lt;-</span> <span class="cf">function</span>(F_temp){</span>
+<span id="cb335-3"><a href="building-r-packages.html#cb335-3" tabindex="-1"></a>  C_temp <span class="ot">&lt;-</span> (F_temp <span class="sc">-</span><span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
+<span id="cb335-4"><a href="building-r-packages.html#cb335-4" tabindex="-1"></a>  <span class="fu">return</span> (C_temp)</span>
+<span id="cb335-5"><a href="building-r-packages.html#cb335-5" tabindex="-1"></a>}</span>
+<span id="cb335-6"><a href="building-r-packages.html#cb335-6" tabindex="-1"></a></span>
+<span id="cb335-7"><a href="building-r-packages.html#cb335-7" tabindex="-1"></a><span class="co"># Convert from Celsius to Fahrenheit</span></span>
+<span id="cb335-8"><a href="building-r-packages.html#cb335-8" tabindex="-1"></a>C_to_F <span class="ot">&lt;-</span> <span class="cf">function</span>(C_temp){</span>
+<span id="cb335-9"><a href="building-r-packages.html#cb335-9" tabindex="-1"></a>  F_temp <span class="ot">&lt;-</span> (C_temp <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb335-10"><a href="building-r-packages.html#cb335-10" tabindex="-1"></a>  <span class="fu">return</span>(F_temp)</span>
+<span id="cb335-11"><a href="building-r-packages.html#cb335-11" tabindex="-1"></a>}</span></code></pre></div>
+<p>That is the whole file for now, it has less than 15 lines of code.</p>
+<p><img src="images/temp_conversion_image.png" /></p>
+<p><strong>Step 4</strong></p>
+<p>Next, create a file called <code>DESCRIPTION</code> in the <code>F2C_R_package</code> directory. This will be a plain text file with no extension and it will hold some of the metadata on the R package. In our case, it will hold the following lines of code specifying the package name, type, title and the version number.</p>
+<pre><code>Package: F2CTempConverter
+Type: Package
+Title: Temperature Conversion Package for Demonstration
+Version: 0.0.1.0</code></pre>
+<p>This is now a working R package and can be loaded by;</p>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="building-r-packages.html#cb337-1" tabindex="-1"></a><span class="fu">library</span>(devtools);</span>
+<span id="cb337-2"><a href="building-r-packages.html#cb337-2" tabindex="-1"></a></span>
+<span id="cb337-3"><a href="building-r-packages.html#cb337-3" tabindex="-1"></a><span class="fu">load_all</span>(<span class="st">&quot;F2C_R_package&quot;</span>) <span class="co"># Load the directory path to where the package is</span></span></code></pre></div>
+<pre><code>## ℹ Loading F2CTempConverter</code></pre>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="building-r-packages.html#cb339-1" tabindex="-1"></a><span class="co"># Lets convert the temperature from Fahrenheit to Celsius</span></span>
+<span id="cb339-2"><a href="building-r-packages.html#cb339-2" tabindex="-1"></a><span class="fu">F_to_C</span>(<span class="dv">79</span>)</span></code></pre></div>
+<pre><code>## [1] 26.11111</code></pre>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="building-r-packages.html#cb341-1" tabindex="-1"></a><span class="co"># Converting from Celsius to Fahrenheit</span></span>
+<span id="cb341-2"><a href="building-r-packages.html#cb341-2" tabindex="-1"></a><span class="fu">C_to_F</span>(<span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## [1] 68</code></pre>
+<p>After this its good to add documentation to help users know what the function does.</p>
+</div>
+<div id="making-a-new-r-project" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Making A New R Project<a href="building-r-packages.html#making-a-new-r-project" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What we just did was an overview of how a package is created. Lets now explore how you can create a complete package with documentation.</p>
+<p>To do this go to <code>File &gt; New Project ...</code> and the dialog box below should pop up.</p>
+<p><img src="images/new_project_dialog_box.png" /></p>
+<p>We will choose the <code>Existing Directory</code> option then <code>browse</code> to the <code>F2C_R_package</code> and click <code>Create Project</code> to create project from an existing directory. Now you should be able to see the project inside the package directory.</p>
+<p><img src="images/package_directory_content.png" /></p>
+</div>
+<div id="adding-documentation" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Adding Documentation<a href="building-r-packages.html#adding-documentation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Documentation helps others use the package that we have built, furthermore we can refer to the documentation to refer what we did after a long time. Documentation shows up in the <code>Help</code> tab of R Studio when running the function <code>help</code>. Just run the following in R studio to understand what I meant.</p>
+<pre><code>help(lm)</code></pre>
+<p><code>?</code> does the same thing as <code>help</code></p>
+<pre><code>?lm</code></pre>
+<p>You see there a tab that pops up with a documentation on <code>Linear Models</code></p>
+<p><img src="images/lm_documentation.png" /></p>
+<p>The <code>roxygen2</code> package is used to make these helpful markdown files. We will then add some explanations to the code file, <code>temp_conversion.R</code>. Update the code to look the one below.</p>
+<pre><code>#&#39; Fahrenheit conversion
+#&#39;
+#&#39; Convert degrees Fahrenheit temperatures to degrees Celsius
+#&#39; @param F_temp The temperature in degrees Fahrenheit
+#&#39; @return The temperature in degrees Celsius
+#&#39; @examples 
+#&#39; temp1 &lt;- F_to_C(50);
+#&#39; temp2 &lt;- F_to_C( c(50, 63, 23) );
+#&#39; @export
+F_to_C &lt;- function(F_temp){
+    C_temp &lt;- (F_temp - 32) * 5/9;
+    return(C_temp);
+}
+
+#&#39; Celsius conversion
+#&#39;
+#&#39; Convert degrees Celsius temperatures to degrees Fahrenheit
+#&#39; @param C_temp The temperature in degrees Celsius
+#&#39; @return The temperature in degrees Fahrenheit
+#&#39; @examples 
+#&#39; temp1 &lt;- C_to_F(22);
+#&#39; temp2 &lt;- C_to_F( c(-2, 12, 23) );
+#&#39; @export
+C_to_F &lt;- function(C_temp){
+    F_temp &lt;- (C_temp * 9/5) + 32;
+    return(F_temp);
+}</code></pre>
+<p>The size of the code has increased but we now have helpful reminders to use each function. Lets go through each line type and explain;</p>
+<ul>
+<li><code>#' Fahrenheit conversion</code> and <code>#' Celsius conversion</code> are the function titles.</li>
+<li><code>@param F_temp</code> and <code>@param C_temp</code> are the function parameters or arguments .</li>
+<li><code>' @return ...</code> is used to indicate the return value of the function.</li>
+<li><code>#' @examples ...</code> is shows an example use case of the function.</li>
+</ul>
+<p>The format explained above is called the Roxygen format and there are more tags recognized by the <code>roxygen2</code> package. For more information visit <a href="http://kbroman.org/pkg_primer/pages/docs.html">Karl Broman’s page</a>. This format makes it easy to create files in markdown for documentation.</p>
+<p>Now that we have the documentation ready, lets open the project as guided earlier and run the following in the console.</p>
+<pre><code>library(roxygen2); # Read in the roxygen2 R package
+roxygenise();      # Builds the help files</code></pre>
+<p>and here is how our package will look like.
+<img src="images/documented_package_dir.png" /></p>
+<p>“man” and a plain text <code>NAMESPACE</code> have been added. The <code>man</code> directory holds the written help files while the <code>NAMESPACE</code> works with R to integrate them into the package correctly. The <code>NAMESPACE</code> file should not be edited by hand. Here are the contents of the namespace file.</p>
+<pre><code># Generated by roxygen2: do not edit by hand
+
+export(C_to_F)
+export(F_to_C)</code></pre>
+<p>Inside the <code>man</code> directory there are two markdown files for the <code>C_to_F</code> and <code>F_to_C</code> functions. Feel free to load the package</p>
+<pre><code>library(devtools);
+load_all(&quot;F2C_R_package&quot;)</code></pre>
+<p>as earlier and ask for help with <code>F_to_C</code>.</p>
+<pre><code>?F_to_C</code></pre>
+<p>The below will be presented in the ‘Help’ tab of R Studio.
+<img src="images/function_documentation_markdown.png" /></p>
+</div>
+<div id="uploading-and-installing-from-github" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Uploading and Installing from Github<a href="building-r-packages.html#uploading-and-installing-from-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that we have package read and working we can upload to github for sharing and version control. Follow the steps below to get your package hosted and ready for sharing.</p>
+<p><strong>Step 1: Create a github repo</strong></p>
+<ol style="list-style-type: decimal">
+<li>Visit <a href="https://github.com">github</a> and sign in(or sign up if you don’t have an account)</li>
+<li>Click the <strong>New</strong> button to create a new repository.</li>
+<li>Name the repository ideally the same as the package name. In our case we will name our repository <code>F2C_R_package</code>. Add a description and make the repository public so that anyone can access it. Don’t initialize a README file since you will pushing your files from R Studio.</li>
+<li>Finally click <strong>Create repository</strong>.</li>
+</ol>
+<p><strong>Step 2: Set up Git in R Studio</strong></p>
+<ol style="list-style-type: decimal">
+<li>Open your package project in R Studio.</li>
+<li>Go to <code>Tools &gt; Project Options &gt; Git/SVN</code> and select <code>Git</code> to enable version control.</li>
+<li>To commit you package to GitHub, first make sure you have git installed locally then link your R Studio project to your GitHub repository using the following commands in the terminal.</li>
+</ol>
+<pre><code># Intialize git in the project 
+git init 
+
+# Add all the files 
+git add . 
+
+# Commit files with a message
+git commit -m &quot;First upload of F2C_R_package&quot; 
+
+# Add your github repository as the remote 
+git remote add origin https://github.com/your-username/F2C_R_package.git
+
+# Push your commit to github
+git push -u origin main</code></pre>
+<p>Replace <code>your-username</code> with your actual Github username. This will push the package files to GitHub.</p>
+<p><strong>Step 3: Install your Package from Github on Any Machine</strong></p>
+<p>Now, that your package is ready on Github, you can use the <code>devtools</code> package in R:</p>
+<ol style="list-style-type: decimal">
+<li>Open an R session.</li>
+<li>Install devtools if you haven’t already(we installed it earlier)</li>
+</ol>
+<pre><code>install.packages(&quot;devtools&quot;)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Use <code>devtools::install_github</code> to install the packge from Github.</li>
+</ol>
+<pre><code>devtools::install_github(&quot;your-username/F2C_R_package&quot;)</code></pre>
+<p>Remember to replace <code>"your-username"</code> with you actual github details. R will download and install the package from GitHub. You can now load it via</p>
+<pre><code>library(F2C_R_package)</code></pre>
+<p><strong>Additional Tips</strong></p>
+<ul>
+<li>remember to update your repo whenever you make changes to the package.</li>
+<li>Add a README file for documentation on how the file works and how to install it.</li>
+</ul>
+<p><em>You package is now on GitHub and ready for installation and use!</em></p>
+</div>
+<div id="hands-on-exercises-3" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> <span style="color: green;"><strong>Hands-on Exercises</strong></span><a href="building-r-packages.html#hands-on-exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Create a package called weight converter that converts mass from Kilograms(kg) to Pounds(lb) and vice versa.</p>
+<ul>
+<li>Tag it as version <code>0.0.1</code> in the <code>DESCRIPTION</code> file.</li>
+<li>Add necessary documentations</li>
+<li>Upload it to Github</li>
+<li>Add README file to show how to install and use the file</li>
+<li>Install on your local machine from GitHub using <code>devtools</code> library.</li>
+<li>Finally, test your newly installed package and run some code.</li>
+</ul>
+<hr />
+<p><span style="color: brown;"><strong>Solution</strong></span></p>
+<p>Instruction to;</p>
+<ul>
+<li>Test the functionalities (Function to convert Kilos to pounds and back)</li>
+<li>Check documentation</li>
+<li>Check version tagged in the <code>DESCRIPTION</code> file.</li>
+<li>Check if package pushed to github(optional)</li>
+</ul>
+<p>Complete Solution in <code>K2P_R_package</code> directory</p>
+<p>Here is how the package is created;</p>
+<ul>
+<li>Install the packages required to build the app.</li>
+</ul>
+<pre><code># Install devtools 
+install.packages(&quot;devtools&quot;)
+
+# Install roxygen
+install.packages(&quot;roxygen2&quot;)</code></pre>
+<ul>
+<li>Create a folder and name it <code>K2P_R_package</code>.</li>
+<li>In the <code>K2P_R_package</code> directory, create a directory called <code>R</code>.</li>
+<li>In the <code>R</code> directory, created an R script file called <code>mass_converter.R</code>.</li>
+<li>Add the lines below to the <code>mass_converter.R</code> to create a function <code>K_to_P</code> that converts mass from Kilo to Pounds.</li>
+</ul>
+<pre><code>K_to_P &lt;- function(K_mass){
+  P_mass &lt;- (K_mass * 2.20462)
+  return (P_mass)
+}</code></pre>
+<ul>
+<li>Add the lines below to the <code>mass_converter.R</code> to create a function <code>P_to_K</code> that converts mass from Pounds to Kilos.</li>
+</ul>
+<pre><code>P_to_K &lt;- function(P_mass){
+  K_mass &lt;- (P_mass/2.20462)
+  return (K_mass)
+}</code></pre>
+<ul>
+<li>Under the <code>K2P_R_package</code> directory, add a file named <code>DESCRIPTION</code> and add the following lines;</li>
+</ul>
+<pre><code>Package: K2PMassConverter
+Type: Package
+Title: Convert mass from kilo to pounds and vice versa
+Version: 0.0.1
+RoxygenNote: 7.3.2</code></pre>
+<ul>
+<li>This is now a working file and can be add loaded to the R workspace by;</li>
+</ul>
+<pre><code>library(devtools);
+load_all(&quot;K2P_R_package&quot;) # Load the directory path to where the package is</code></pre>
+<ul>
+<li>Test the functionalities of the package by trying to convert mass from Kilos to Pounds and back.</li>
+</ul>
+<pre><code>K_to_P(53) # Convert from Kilos to Pounds
+P_to_K(156) # COnvert from Pounds to Kilos</code></pre>
+<ul>
+<li>The package can be uploaded to github or CRAN for collaboration. In this case, upload to github but first open it as a project. You will click <code>File&gt;New Project&gt;Existing Directory</code> then select the <code>K2P_R_package</code> folder.</li>
+<li>Add a documentation to the package by adding these lines above the <code>K_to_P</code> function.</li>
+</ul>
+<pre><code>#&#39; Kilogram conversion
+#&#39;
+#&#39; Convert mass in Kilogram to Pounds
+#&#39; @param K_mass The mass in Kilograms
+#&#39; @return The mass in Pounds
+#&#39; @examples 
+#&#39; mass1 &lt;- K_to_P(69);
+#&#39; mass2 &lt;- K_to_P( c(55, 69, 71) );
+#&#39; @export</code></pre>
+<ul>
+<li>Add these lines above the <code>P_to_K</code> function</li>
+</ul>
+<pre><code>#&#39; Pounds conversion
+#&#39;
+#&#39; Convert mass in Pounds to Kilograms
+#&#39; @param P_mass The mass in Pounds
+#&#39; @return The mass in Kilograms
+#&#39; @examples 
+#&#39; mass1 &lt;- P_to_K(150);
+#&#39; mass2 &lt;- P_to_K( c(200, 155, 342) );
+#&#39; @export</code></pre>
+<ul>
+<li>The whole <code>mass_converter.R</code> script will look like this</li>
+</ul>
+<pre><code>#&#39; Kilogram conversion
+#&#39;
+#&#39; Convert mass in Kilogram to Pounds
+#&#39; @param K_mass The mass in Kilograms
+#&#39; @return The mass in Pounds
+#&#39; @examples 
+#&#39; mass1 &lt;- K_to_P(69);
+#&#39; mass2 &lt;- K_to_P( c(55, 69, 71) );
+#&#39; @export
+K_to_P &lt;- function(K_mass){
+  P_mass &lt;- (K_mass * 2.20462)
+  return (P_mass)
+}
+
+#&#39; Pounds conversion
+#&#39;
+#&#39; Convert mass in Pounds to Kilograms
+#&#39; @param P_mass The mass in Pounds
+#&#39; @return The mass in Kilograms
+#&#39; @examples 
+#&#39; mass1 &lt;- P_to_K(150);
+#&#39; mass2 &lt;- P_to_K( c(200, 155, 342) );
+#&#39; @export
+P_to_K &lt;- function(P_mass){
+  K_mass &lt;- (P_mass/2.20462)
+  return (K_mass)
+}</code></pre>
+<p>To the console while the project is still open run the lines below to package the help file and the whole package</p>
+<pre><code>library(roxygen2); # Read in the roxygen2 R package
+roxygenise();      # Builds the help files</code></pre>
+<ul>
+<li>Visit github and create a new repo, finally commit your work.</li>
+<li>To find the documentation to specific functions on the <code>K2P_R_package</code> run</li>
+</ul>
+<pre><code>?K_to_P</code></pre>
+<ul>
+<li>Try that to the <code>P_to_K</code> function.</li>
+</ul>
+<p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-shiny.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/balsaedi/RCourse/edit/main/08-building_R_packages.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/balsaedi/RCourse/blob/main/08-building_R_packages.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

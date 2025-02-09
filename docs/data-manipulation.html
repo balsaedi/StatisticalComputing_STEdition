@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Data Manipulation | R Course</title>
+  <meta name="description" content="Chapter 4 Data Manipulation | R Course" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Data Manipulation | R Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Data Manipulation | R Course" />
+  
+  
+  
+
+<meta name="author" content="YOUR NAME HERE" />
+
+
+<meta name="date" content="2024-10-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-importing-and-exporting.html"/>
+<link rel="next" href="data-visualization.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SHORT TITLE HERE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to R and Basic Programming Concepts</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#overview-of-r-programming"><i class="fa fa-check"></i><b>1.1</b> Overview of R Programming</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#introduction-to-r"><i class="fa fa-check"></i><b>1.1.1</b> Introduction to R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#importance-of-r-in-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Importance of R in Data Analysis</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#application-of-r-in-various-industries"><i class="fa fa-check"></i><b>1.1.3</b> Application of R in Various Industries</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#introduction-to-the-r-ecosystem"><i class="fa fa-check"></i><b>1.2</b> Introduction to the R ecosystem</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#r-studio"><i class="fa fa-check"></i><b>1.2.1</b> R Studio</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#cran"><i class="fa fa-check"></i><b>1.2.2</b> CRAN</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#setting-up-r-environment"><i class="fa fa-check"></i><b>1.3</b> Setting Up R Environment</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#installation-of-r-and-rstudio"><i class="fa fa-check"></i><b>1.3.1</b> Installation of R and RStudio</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#introduction-to-rstudio-interface"><i class="fa fa-check"></i><b>1.3.2</b> Introduction to RStudio Interface</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#basic-r-syntax-and-commands"><i class="fa fa-check"></i><b>1.3.3</b> Basic R Syntax and Commands</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hands-on-exercise"><i class="fa fa-check"></i><b>1.4</b> Hands-on Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html"><i class="fa fa-check"></i><b>2</b> Basic Data Types and Structures</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-types"><i class="fa fa-check"></i><b>2.1</b> Data types</a></li>
+<li class="chapter" data-level="2.2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-structures"><i class="fa fa-check"></i><b>2.2</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#vector"><i class="fa fa-check"></i><b>2.2.1</b> Vector</a></li>
+<li class="chapter" data-level="2.2.2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#matrix"><i class="fa fa-check"></i><b>2.2.2</b> Matrix</a></li>
+<li class="chapter" data-level="2.2.3" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-frame"><i class="fa fa-check"></i><b>2.2.3</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#hands-on-exercises"><i class="fa fa-check"></i><b>2.3</b> <span style="color: green;">Hands-on Exercises</span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html"><i class="fa fa-check"></i><b>3</b> Data Importing and Exporting</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-importing"><i class="fa fa-check"></i><b>3.1</b> Introduction to Data Importing</a></li>
+<li class="chapter" data-level="3.2" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#demonstration-of-data-importing"><i class="fa fa-check"></i><b>3.2</b> Demonstration of Data Importing</a></li>
+<li class="chapter" data-level="3.3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-exporting"><i class="fa fa-check"></i><b>3.3</b> Introduction to Data Exporting</a></li>
+<li class="chapter" data-level="3.4" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#practical-exercise"><i class="fa fa-check"></i><b>3.4</b> Practical Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation.html"><a href="data-manipulation.html#basic-data-manipulation"><i class="fa fa-check"></i><b>4.1</b> Basic Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="data-manipulation.html"><a href="data-manipulation.html#introduction-to-data-manipulation"><i class="fa fa-check"></i><b>4.1.1</b> Introduction to Data Manipulation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-manipulation.html"><a href="data-manipulation.html#subsetting-and-filtering-data"><i class="fa fa-check"></i><b>4.1.2</b> Subsetting and Filtering Data:</a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-manipulation.html"><a href="data-manipulation.html#sorting-data"><i class="fa fa-check"></i><b>4.1.3</b> Sorting Data</a></li>
+<li class="chapter" data-level="4.1.4" data-path="data-manipulation.html"><a href="data-manipulation.html#basic-data-cleaning"><i class="fa fa-check"></i><b>4.1.4</b> Basic Data Cleaning</a></li>
+<li class="chapter" data-level="4.1.5" data-path="data-manipulation.html"><a href="data-manipulation.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>4.1.5</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>4.2</b> Data Manipulation with Dplyr</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-manipulation.html"><a href="data-manipulation.html#introduction-to-dplyr-package"><i class="fa fa-check"></i><b>4.2.1</b> Introduction to Dplyr package</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-manipulation.html"><a href="data-manipulation.html#key-functions-in-dplyr"><i class="fa fa-check"></i><b>4.2.2</b> Key Functions in dplyr</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-manipulation.html"><a href="data-manipulation.html#select"><i class="fa fa-check"></i><b>4.2.3</b> select</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-manipulation.html"><a href="data-manipulation.html#filter"><i class="fa fa-check"></i><b>4.2.4</b> filter</a></li>
+<li class="chapter" data-level="4.2.5" data-path="data-manipulation.html"><a href="data-manipulation.html#arrange"><i class="fa fa-check"></i><b>4.2.5</b> arrange</a></li>
+<li class="chapter" data-level="4.2.6" data-path="data-manipulation.html"><a href="data-manipulation.html#mutate"><i class="fa fa-check"></i><b>4.2.6</b> mutate</a></li>
+<li class="chapter" data-level="4.2.7" data-path="data-manipulation.html"><a href="data-manipulation.html#summarise"><i class="fa fa-check"></i><b>4.2.7</b> Summarise</a></li>
+<li class="chapter" data-level="4.2.8" data-path="data-manipulation.html"><a href="data-manipulation.html#group_by"><i class="fa fa-check"></i><b>4.2.8</b> group_by</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation.html"><a href="data-manipulation.html#chaining"><i class="fa fa-check"></i><b>4.3</b> Chaining</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data-manipulation.html"><a href="data-manipulation.html#hands-on-exercises-2"><i class="fa fa-check"></i><b>4.3.1</b> Hands-on Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>5</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-visualization.html"><a href="data-visualization.html#basic-data-visualization"><i class="fa fa-check"></i><b>5.1</b> Basic Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data-visualization.html"><a href="data-visualization.html#introduction-to-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> Introduction to ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="data-visualization.html"><a href="data-visualization.html#advanced-data-visualization"><i class="fa fa-check"></i><b>5.2</b> Advanced Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="data-visualization.html"><a href="data-visualization.html#creating-complex-visualizations"><i class="fa fa-check"></i><b>5.2.1</b> Creating Complex Visualizations</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-visualization.html"><a href="data-visualization.html#combining-multiple-plots"><i class="fa fa-check"></i><b>5.2.2</b> Combining Multiple Plots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html"><i class="fa fa-check"></i><b>6</b> Explanatory Data Analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#introduction-to-eda"><i class="fa fa-check"></i><b>6.1</b> Introduction to EDA</a></li>
+<li class="chapter" data-level="6.2" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#choosing-a-data-set"><i class="fa fa-check"></i><b>6.2</b> Choosing a data set</a></li>
+<li class="chapter" data-level="6.3" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#conducting-eda"><i class="fa fa-check"></i><b>6.3</b> Conducting EDA</a></li>
+<li class="chapter" data-level="6.4" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#present-findings"><i class="fa fa-check"></i><b>6.4</b> Present Findings</a></li>
+<li class="chapter" data-level="6.5" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#eda---example"><i class="fa fa-check"></i><b>6.5</b> <span style="color: brown;">EDA - Example</span></a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#introduction"><i class="fa fa-check"></i><b>6.5.1</b> <span style="color: brown;">Introduction</span></a></li>
+<li class="chapter" data-level="6.5.2" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#data-assessment-and-cleaning"><i class="fa fa-check"></i><b>6.5.2</b> <span style="color: brown;">Data Assessment and Cleaning</span></a></li>
+<li class="chapter" data-level="6.5.3" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#data-visualization-1"><i class="fa fa-check"></i><b>6.5.3</b> <span style="color: brown;">Data Visualization</span></a></li>
+<li class="chapter" data-level="6.5.4" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#key-findings"><i class="fa fa-check"></i><b>6.5.4</b> <span style="color: brown;">Key Findings</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistical-analysis.html"><a href="statistical-analysis.html"><i class="fa fa-check"></i><b>7</b> Statistical Analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#basic-statistical-concepts"><i class="fa fa-check"></i><b>7.1</b> Basic Statistical Concepts</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-descriptive-statistics"><i class="fa fa-check"></i><b>7.1.1</b> Introduction to Descriptive Statistics</a></li>
+<li class="chapter" data-level="7.1.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#visualization-of-descriptive-statistics"><i class="fa fa-check"></i><b>7.1.2</b> Visualization of Descriptive Statistics</a></li>
+<li class="chapter" data-level="7.1.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercise-1"><i class="fa fa-check"></i><b>7.1.3</b> Hands On Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#correlation-and-regression-analysis"><i class="fa fa-check"></i><b>7.2</b> Correlation and Regression Analysis</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-correlation"><i class="fa fa-check"></i><b>7.2.1</b> Introduction to Correlation</a></li>
+<li class="chapter" data-level="7.2.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-regression-analysis"><i class="fa fa-check"></i><b>7.2.2</b> Introduction to Regression Analysis</a></li>
+<li class="chapter" data-level="7.2.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>7.2.3</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#advanced-statistical-methods"><i class="fa fa-check"></i><b>7.3</b> Advanced Statistical Methods</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-hypothesis-testing"><i class="fa fa-check"></i><b>7.3.1</b> Introduction to Hypothesis Testing</a></li>
+<li class="chapter" data-level="7.3.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercises-4"><i class="fa fa-check"></i><b>7.3.2</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="statistical-analysis.html"><a href="statistical-analysis.html#project-applying-statistical-analysis"><i class="fa fa-check"></i><b>7.4</b> Project: Applying Statistical Analysis</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#project-overview"><i class="fa fa-check"></i><b>7.4.1</b> Project Overview</a></li>
+<li class="chapter" data-level="7.4.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#conducting-statistical-analysis"><i class="fa fa-check"></i><b>7.4.2</b> Conducting Statistical Analysis</a></li>
+<li class="chapter" data-level="7.4.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#presenting-statistical-findings"><i class="fa fa-check"></i><b>7.4.3</b> Presenting Statistical Findings</a></li>
+<li class="chapter" data-level="7.4.4" data-path="statistical-analysis.html"><a href="statistical-analysis.html#example-ecommerce-statistical-analysis"><i class="fa fa-check"></i><b>7.4.4</b> <span style="color: brown;">Example: Ecommerce Statistical Analysis</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html"><i class="fa fa-check"></i><b>8</b> Working with Real-World Data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#handling-large-datasets"><i class="fa fa-check"></i><b>8.1</b> Handling Large Datasets</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#challenges-of-large-data-sets"><i class="fa fa-check"></i><b>8.1.1</b> Challenges of Large Data sets</a></li>
+<li class="chapter" data-level="8.1.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#efficient-data-handling-techniques"><i class="fa fa-check"></i><b>8.1.2</b> Efficient Data Handling Techniques</a></li>
+<li class="chapter" data-level="8.1.3" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#reading-and-writing-large-files"><i class="fa fa-check"></i><b>8.1.3</b> Reading and Writing Large Files</a></li>
+<li class="chapter" data-level="8.1.4" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#hands-on-exercises-5"><i class="fa fa-check"></i><b>8.1.4</b> Hands-On Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#data-cleaning-and-transformation"><i class="fa fa-check"></i><b>8.2</b> Data Cleaning and Transformation</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#introduction-to-data-cleaning"><i class="fa fa-check"></i><b>8.2.1</b> Introduction to Data Cleaning</a></li>
+<li class="chapter" data-level="8.2.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#hands-on-exercises-6"><i class="fa fa-check"></i><b>8.2.2</b> Hands-On Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="time-series-analysis.html"><a href="time-series-analysis.html"><i class="fa fa-check"></i><b>9</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#introduction-to-time-series-data"><i class="fa fa-check"></i><b>9.1</b> Introduction to Time Series Data</a></li>
+<li class="chapter" data-level="9.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#basic-time-series-concepts"><i class="fa fa-check"></i><b>9.2</b> Basic Time Series Concepts</a></li>
+<li class="chapter" data-level="9.3" data-path="time-series-analysis.html"><a href="time-series-analysis.html#basic-time-series-forecasting"><i class="fa fa-check"></i><b>9.3</b> Basic Time Series Forecasting</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#moving-averages"><i class="fa fa-check"></i><b>9.3.1</b> Moving Averages</a></li>
+<li class="chapter" data-level="9.3.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#arima-model"><i class="fa fa-check"></i><b>9.3.2</b> ARIMA model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="time-series-analysis.html"><a href="time-series-analysis.html#hands-on-exercises-7"><i class="fa fa-check"></i><b>9.4</b> Hands-On Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="capstone-project.html"><a href="capstone-project.html"><i class="fa fa-check"></i><b>10</b> Capstone Project</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="capstone-project.html"><a href="capstone-project.html#introduction-2"><i class="fa fa-check"></i><b>10.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="capstone-project.html"><a href="capstone-project.html#project-overview-and-objectives"><i class="fa fa-check"></i><b>10.1.1</b> Project Overview and Objectives</a></li>
+<li class="chapter" data-level="10.1.2" data-path="capstone-project.html"><a href="capstone-project.html#group-formation"><i class="fa fa-check"></i><b>10.1.2</b> Group Formation</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="capstone-project.html"><a href="capstone-project.html#project-planning"><i class="fa fa-check"></i><b>10.2</b> Project Planning</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="capstone-project.html"><a href="capstone-project.html#defining-the-problem-statement"><i class="fa fa-check"></i><b>10.2.1</b> Defining the problem statement</a></li>
+<li class="chapter" data-level="10.2.2" data-path="capstone-project.html"><a href="capstone-project.html#planning-the-analysis-workflow"><i class="fa fa-check"></i><b>10.2.2</b> Planning the Analysis WorkFlow</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="capstone-project.html"><a href="capstone-project.html#project-execution"><i class="fa fa-check"></i><b>10.3</b> Project Execution</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="capstone-project.html"><a href="capstone-project.html#part-1"><i class="fa fa-check"></i><b>10.3.1</b> Part 1</a></li>
+<li class="chapter" data-level="10.3.2" data-path="capstone-project.html"><a href="capstone-project.html#part-2"><i class="fa fa-check"></i><b>10.3.2</b> Part 2</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="capstone-project.html"><a href="capstone-project.html#project-presentations-and-feedback"><i class="fa fa-check"></i><b>10.4</b> Project Presentations and Feedback</a></li>
+<li class="chapter" data-level="10.5" data-path="capstone-project.html"><a href="capstone-project.html#example-ecommerce-project"><i class="fa fa-check"></i><b>10.5</b> <span style="color: brown;">Example: Ecommerce Project</span></a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="capstone-project.html"><a href="capstone-project.html#part-1-1"><i class="fa fa-check"></i><b>10.5.1</b> <span style="color: brown;">Part 1</span></a></li>
+<li class="chapter" data-level="10.5.2" data-path="capstone-project.html"><a href="capstone-project.html#part-2-1"><i class="fa fa-check"></i><b>10.5.2</b> <span style="color: brown;">Part 2</span></a></li>
+<li class="chapter" data-level="10.5.3" data-path="capstone-project.html"><a href="capstone-project.html#presentation-and-feedback"><i class="fa fa-check"></i><b>10.5.3</b> <span style="color: brown;">Presentation and Feedback</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>11</b> Datasets</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-manipulation" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Data Manipulation<a href="data-manipulation.html#data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="basic-data-manipulation" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Basic Data Manipulation<a href="data-manipulation.html#basic-data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-to-data-manipulation" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Introduction to Data Manipulation<a href="data-manipulation.html#introduction-to-data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Data Manipulation is the adjusting, organizing and transforming of the raw data is not a more useful and suitable format for data analysis. These are some of the reasons that make data manipulation mandatory in the data analysis process;</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Improves the data quality</strong><br />
+Raw data may be incomplete, messy, containing irrelevant information, errors ,or duplicates that need to be cleaned and rectified. This will ensure the data is reliable thereby preventing incorrect conclusions or decisions.</p></li>
+<li><p><strong>Making Data Usable</strong>
+Sometimes data is collected from different sources that is not ready for analysis. Data Manipulation will transform the data into a structured and consistent format for easy analysis.</p></li>
+<li><p><strong>Enhancing Data Exploration</strong><br />
+By cleaning the data, analysts explore the data thereby understanding different concepts of the data.</p></li>
+<li><p><strong>Enabling Complex Analysis</strong><br />
+Some types of analysis require data to be in specific format or structure, for instance the time series analysis require data to be sorted out by date.</p></li>
+<li><p><strong>Supporting Decision Making</strong><br />
+Data Manipulation ensures that the data that is fed into the system is timely, accurate and reliable for informed decision-making models and relevant reports
+<br></p></li>
+</ol>
+<p>These are the key tasks in the data manipulation;</p>
+<ul>
+<li><strong>Cleaning</strong>: by removing inaccurate and incomplete data entries.</li>
+<li><strong>Filtering</strong> the data by selecting certain rows or columns based on a certain criteria.</li>
+<li><strong>Reshaping</strong>: Changing the structure of the data for instance pivoting.</li>
+<li><strong>Merging</strong>: Combine multiple data sets into one.</li>
+<li><strong>Transforming</strong>: Modify existing data by mathematical or logical operations.</li>
+<li><strong>Aggregation</strong>: Summarizing the data by performing operations like sum,average and count.</li>
+</ul>
+</div>
+<div id="subsetting-and-filtering-data" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Subsetting and Filtering Data:<a href="data-manipulation.html#subsetting-and-filtering-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Subsetting</strong> is a data management strategy that involves creating a coherent slice data from different data set for specific use cases. This topic will better be explained practically, therefore we will use the titanic data set. The data set contains information about the passengers on the Titanic, including their age, gender, passenger class, whether they survived and other details. Since the titanic dataset is absent in baseR, the <code>titanic</code> library will be installed by;</p>
+<pre><code>install.packages(&quot;titanic&quot;)</code></pre>
+<p>load the library</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="data-manipulation.html#cb270-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;titanic&quot;</span>)</span></code></pre></div>
+<p>The data set will indexed using different indexing techniques such as indexing of a single element, row and column indexing.</p>
+<p>First we load the data set and view the first few records before indexing</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="data-manipulation.html#cb271-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;titanic_train&quot;</span>)</span>
+<span id="cb271-2"><a href="data-manipulation.html#cb271-2" tabindex="-1"></a></span>
+<span id="cb271-3"><a href="data-manipulation.html#cb271-3" tabindex="-1"></a>titanic <span class="ot">&lt;-</span> titanic_train </span>
+<span id="cb271-4"><a href="data-manipulation.html#cb271-4" tabindex="-1"></a><span class="fu">head</span>(titanic) <span class="co"># view the first few rows of the titanic data set</span></span></code></pre></div>
+<pre><code>##   PassengerId Survived Pclass
+## 1           1        0      3
+## 2           2        1      1
+## 3           3        1      3
+## 4           4        1      1
+## 5           5        0      3
+## 6           6        0      3
+##                                                  Name    Sex Age SibSp Parch
+## 1                             Braund, Mr. Owen Harris   male  22     1     0
+## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1     0
+## 3                              Heikkinen, Miss. Laina female  26     0     0
+## 4        Futrelle, Mrs. Jacques Heath (Lily May Peel) female  35     1     0
+## 5                            Allen, Mr. William Henry   male  35     0     0
+## 6                                    Moran, Mr. James   male  NA     0     0
+##             Ticket    Fare Cabin Embarked
+## 1        A/5 21171  7.2500              S
+## 2         PC 17599 71.2833   C85        C
+## 3 STON/O2. 3101282  7.9250              S
+## 4           113803 53.1000  C123        S
+## 5           373450  8.0500              S
+## 6           330877  8.4583              Q</code></pre>
+<p>Subsetting by indexing can be done in three different ways that include</p>
+<ol style="list-style-type: lower-roman">
+<li>Extracting a Row</li>
+<li>Extracting a column</li>
+<li>Extracting a Single Element</li>
+</ol>
+<ol style="list-style-type: decimal">
+<li><strong>Extract a row</strong></li>
+</ol>
+<p>When subsetting to extract data for a single row the square brackets <code>[ ]</code> will be used with the position of the index you want to extract. Lets extract all the information of the 10th passenger.</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="data-manipulation.html#cb273-1" tabindex="-1"></a>titanic[<span class="dv">10</span>, ] <span class="co"># note the comma after the index 10</span></span></code></pre></div>
+<pre><code>##    PassengerId Survived Pclass                                Name    Sex Age
+## 10          10        1      2 Nasser, Mrs. Nicholas (Adele Achem) female  14
+##    SibSp Parch Ticket    Fare Cabin Embarked
+## 10     1     0 237736 30.0708              C</code></pre>
+<p>Also, more indices can be subsetted in the format <code>[i:j, ]</code> where the <code>i</code> is the starting index while <code>j</code> is the ending index respectively. Lets extract the information by subsetting the titanic data from index 7 to 10.</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="data-manipulation.html#cb275-1" tabindex="-1"></a>titanic[<span class="dv">7</span><span class="sc">:</span><span class="dv">10</span>, ]</span></code></pre></div>
+<pre><code>##    PassengerId Survived Pclass
+## 7            7        0      1
+## 8            8        0      3
+## 9            9        1      3
+## 10          10        1      2
+##                                                 Name    Sex Age SibSp Parch
+## 7                            McCarthy, Mr. Timothy J   male  54     0     0
+## 8                     Palsson, Master. Gosta Leonard   male   2     3     1
+## 9  Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg) female  27     0     2
+## 10               Nasser, Mrs. Nicholas (Adele Achem) female  14     1     0
+##    Ticket    Fare Cabin Embarked
+## 7   17463 51.8625   E46        S
+## 8  349909 21.0750              S
+## 9  347742 11.1333              S
+## 10 237736 30.0708              C</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Extract a column</strong></li>
+</ol>
+<p>When subsetting to extract data for a single column the square brackets <code>[ ]</code> will be used as before, with the position of the index or column name you want to extract. Lets extract all the information of the column <code>Name</code>.</p>
+<pre><code>titanic[, &quot;Name&quot;] # note the comma before &quot;Name&quot;</code></pre>
+<p><img src="images/dataset_images/titanic_names.png" /></p>
+<p>An index of the column can be used in place of the column name. For instance, the column, “PassengerId” is the first column therefore its index will be <code>1</code>. Lets subset the column by calling the index.</p>
+<pre><code>titanic[, 1] # note the comma before the column index</code></pre>
+<p><img src="images/dataset_images/titanic_passengers_id.png" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Extracting a single element</strong></li>
+</ol>
+<p>A single element that has a defined position in a data frame, both the row index and the column name/index are called.</p>
+<pre><code>dataframe[row_index, column index/name]</code></pre>
+<p>Lets extract the age of the Name of the fifth passenger.</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="data-manipulation.html#cb280-1" tabindex="-1"></a>titanic[<span class="dv">5</span>, <span class="st">&quot;Name&quot;</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Allen, Mr. William Henry&quot;</code></pre>
+<p>Instead of using the column name. Lets use the column index. In the above context, the column “Name” appears at index(is the fourth column).</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="data-manipulation.html#cb282-1" tabindex="-1"></a>titanic[<span class="dv">5</span>, <span class="dv">4</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Allen, Mr. William Henry&quot;</code></pre>
+<p>Subsetting a data set can be done by <strong>filtering</strong> data based on logical conditions to extract rows that meet certain criteria. They involve comparisons operators such as <code>&gt;, &lt;, ==, !=</code> or logical operators like <code>&amp;</code>(and), <code>|</code>(or), <code>!</code> (not).</p>
+<p>In this titanic data set we:-</p>
+<ol style="list-style-type: decimal">
+<li><strong>Filter based on a single condition</strong></li>
+</ol>
+<p>Lets find the passengers who survived on the titanic.</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="data-manipulation.html#cb284-1" tabindex="-1"></a>survivors <span class="ot">&lt;-</span> titanic[titanic<span class="sc">$</span>Survived <span class="sc">==</span> <span class="dv">1</span>, ]</span>
+<span id="cb284-2"><a href="data-manipulation.html#cb284-2" tabindex="-1"></a><span class="fu">head</span>(survivors) <span class="co"># view the first few rows of survivors</span></span></code></pre></div>
+<pre><code>##    PassengerId Survived Pclass
+## 2            2        1      1
+## 3            3        1      3
+## 4            4        1      1
+## 9            9        1      3
+## 10          10        1      2
+## 11          11        1      3
+##                                                   Name    Sex Age SibSp Parch
+## 2  Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1     0
+## 3                               Heikkinen, Miss. Laina female  26     0     0
+## 4         Futrelle, Mrs. Jacques Heath (Lily May Peel) female  35     1     0
+## 9    Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg) female  27     0     2
+## 10                 Nasser, Mrs. Nicholas (Adele Achem) female  14     1     0
+## 11                     Sandstrom, Miss. Marguerite Rut female   4     1     1
+##              Ticket    Fare Cabin Embarked
+## 2          PC 17599 71.2833   C85        C
+## 3  STON/O2. 3101282  7.9250              S
+## 4            113803 53.1000  C123        S
+## 9            347742 11.1333              S
+## 10           237736 30.0708              C
+## 11          PP 9549 16.7000    G6        S</code></pre>
+<p>The above data set consists of titanic passengers who survived.</p>
+<p>Who were the passengers who boarded the first class on the Titan?</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="data-manipulation.html#cb286-1" tabindex="-1"></a>first_class_passengers <span class="ot">&lt;-</span> titanic[titanic<span class="sc">$</span>Pclass <span class="sc">==</span> <span class="dv">1</span>, ]</span>
+<span id="cb286-2"><a href="data-manipulation.html#cb286-2" tabindex="-1"></a><span class="fu">head</span>(first_class_passengers)</span></code></pre></div>
+<pre><code>##    PassengerId Survived Pclass
+## 2            2        1      1
+## 4            4        1      1
+## 7            7        0      1
+## 12          12        1      1
+## 24          24        1      1
+## 28          28        0      1
+##                                                   Name    Sex Age SibSp Parch
+## 2  Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1     0
+## 4         Futrelle, Mrs. Jacques Heath (Lily May Peel) female  35     1     0
+## 7                              McCarthy, Mr. Timothy J   male  54     0     0
+## 12                            Bonnell, Miss. Elizabeth female  58     0     0
+## 24                        Sloper, Mr. William Thompson   male  28     0     0
+## 28                      Fortune, Mr. Charles Alexander   male  19     3     2
+##      Ticket     Fare       Cabin Embarked
+## 2  PC 17599  71.2833         C85        C
+## 4    113803  53.1000        C123        S
+## 7     17463  51.8625         E46        S
+## 12   113783  26.5500        C103        S
+## 24   113788  35.5000          A6        S
+## 28    19950 263.0000 C23 C25 C27        S</code></pre>
+<p>The above examples, the extracted data set met a single condition.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Filtering based on Multiple Conditions</strong></li>
+</ol>
+<p>Data can be subsetted by filtering based on more than one condition. To demonstrate this, lets find the female passengers who survived. Here there are two conditions;-</p>
+<ul>
+<li>the passenger must be a female,</li>
+<li>the passenger must have survived.</li>
+</ul>
+<p>The resultant data set must meet the above conditions</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="data-manipulation.html#cb288-1" tabindex="-1"></a>female_survivors <span class="ot">&lt;-</span> titanic[titanic<span class="sc">$</span>Sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span> <span class="sc">&amp;</span> titanic<span class="sc">$</span>Survived <span class="sc">==</span> <span class="dv">1</span>, ]</span>
+<span id="cb288-2"><a href="data-manipulation.html#cb288-2" tabindex="-1"></a></span>
+<span id="cb288-3"><a href="data-manipulation.html#cb288-3" tabindex="-1"></a><span class="fu">head</span>(female_survivors) <span class="co">#view the first few rows </span></span></code></pre></div>
+<pre><code>##    PassengerId Survived Pclass
+## 2            2        1      1
+## 3            3        1      3
+## 4            4        1      1
+## 9            9        1      3
+## 10          10        1      2
+## 11          11        1      3
+##                                                   Name    Sex Age SibSp Parch
+## 2  Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1     0
+## 3                               Heikkinen, Miss. Laina female  26     0     0
+## 4         Futrelle, Mrs. Jacques Heath (Lily May Peel) female  35     1     0
+## 9    Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg) female  27     0     2
+## 10                 Nasser, Mrs. Nicholas (Adele Achem) female  14     1     0
+## 11                     Sandstrom, Miss. Marguerite Rut female   4     1     1
+##              Ticket    Fare Cabin Embarked
+## 2          PC 17599 71.2833   C85        C
+## 3  STON/O2. 3101282  7.9250              S
+## 4            113803 53.1000  C123        S
+## 9            347742 11.1333              S
+## 10           237736 30.0708              C
+## 11          PP 9549 16.7000    G6        S</code></pre>
+<p>Lets also add one more condition, the female survivor must be under 18.</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="data-manipulation.html#cb290-1" tabindex="-1"></a>minor_female_survivors <span class="ot">&lt;-</span> titanic[titanic<span class="sc">$</span>Sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span> <span class="sc">&amp;</span> </span>
+<span id="cb290-2"><a href="data-manipulation.html#cb290-2" tabindex="-1"></a>                                    titanic<span class="sc">$</span>Survived <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span></span>
+<span id="cb290-3"><a href="data-manipulation.html#cb290-3" tabindex="-1"></a>                                    titanic<span class="sc">$</span>Age <span class="sc">&lt;</span> <span class="dv">18</span>, ] <span class="co"># comma should be after the conditons</span></span>
+<span id="cb290-4"><a href="data-manipulation.html#cb290-4" tabindex="-1"></a></span>
+<span id="cb290-5"><a href="data-manipulation.html#cb290-5" tabindex="-1"></a><span class="fu">head</span>(minor_female_survivors)</span></code></pre></div>
+<pre><code>##      PassengerId Survived Pclass                                Name    Sex Age
+## 10            10        1      2 Nasser, Mrs. Nicholas (Adele Achem) female  14
+## 11            11        1      3     Sandstrom, Miss. Marguerite Rut female   4
+## NA            NA       NA     NA                                &lt;NA&gt;   &lt;NA&gt;  NA
+## 23            23        1      3         McGowan, Miss. Anna &quot;Annie&quot; female  15
+## NA.1          NA       NA     NA                                &lt;NA&gt;   &lt;NA&gt;  NA
+## NA.2          NA       NA     NA                                &lt;NA&gt;   &lt;NA&gt;  NA
+##      SibSp Parch  Ticket    Fare Cabin Embarked
+## 10       1     0  237736 30.0708              C
+## 11       1     1 PP 9549 16.7000    G6        S
+## NA      NA    NA    &lt;NA&gt;      NA  &lt;NA&gt;     &lt;NA&gt;
+## 23       0     0  330923  8.0292              Q
+## NA.1    NA    NA    &lt;NA&gt;      NA  &lt;NA&gt;     &lt;NA&gt;
+## NA.2    NA    NA    &lt;NA&gt;      NA  &lt;NA&gt;     &lt;NA&gt;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Filtering using Negation</strong></li>
+</ol>
+<p>The <code>!=</code> sign a logical operator that is used to negate a condition. Lets use it to find the passengers who did not survive.</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="data-manipulation.html#cb292-1" tabindex="-1"></a>non_survivors <span class="ot">&lt;-</span> titanic[titanic<span class="sc">$</span>Survived <span class="sc">!=</span> <span class="dv">1</span>, ]</span>
+<span id="cb292-2"><a href="data-manipulation.html#cb292-2" tabindex="-1"></a><span class="fu">tail</span>(non_survivors) <span class="co"># view the last few records </span></span></code></pre></div>
+<pre><code>##     PassengerId Survived Pclass                                     Name    Sex
+## 884         884        0      2            Banfield, Mr. Frederick James   male
+## 885         885        0      3                   Sutehall, Mr. Henry Jr   male
+## 886         886        0      3     Rice, Mrs. William (Margaret Norton) female
+## 887         887        0      2                    Montvila, Rev. Juozas   male
+## 889         889        0      3 Johnston, Miss. Catherine Helen &quot;Carrie&quot; female
+## 891         891        0      3                      Dooley, Mr. Patrick   male
+##     Age SibSp Parch           Ticket   Fare Cabin Embarked
+## 884  28     0     0 C.A./SOTON 34068 10.500              S
+## 885  25     0     0  SOTON/OQ 392076  7.050              S
+## 886  39     0     5           382652 29.125              Q
+## 887  27     0     0           211536 13.000              S
+## 889  NA     1     2       W./C. 6607 23.450              S
+## 891  32     0     0           370376  7.750              Q</code></pre>
+<p>Alternatively you can use</p>
+<pre><code>non_survivors &lt;- titanic[!titanic$Survived == 1, ]</code></pre>
+<p>Also, lets find the passengers who were not in the third class</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="data-manipulation.html#cb295-1" tabindex="-1"></a>not_third_class <span class="ot">&lt;-</span> titanic[titanic<span class="sc">$</span>Pclass <span class="sc">!=</span> <span class="dv">3</span>, ]</span>
+<span id="cb295-2"><a href="data-manipulation.html#cb295-2" tabindex="-1"></a><span class="fu">head</span>(not_third_class)</span></code></pre></div>
+<pre><code>##    PassengerId Survived Pclass
+## 2            2        1      1
+## 4            4        1      1
+## 7            7        0      1
+## 10          10        1      2
+## 12          12        1      1
+## 16          16        1      2
+##                                                   Name    Sex Age SibSp Parch
+## 2  Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1     0
+## 4         Futrelle, Mrs. Jacques Heath (Lily May Peel) female  35     1     0
+## 7                              McCarthy, Mr. Timothy J   male  54     0     0
+## 10                 Nasser, Mrs. Nicholas (Adele Achem) female  14     1     0
+## 12                            Bonnell, Miss. Elizabeth female  58     0     0
+## 16                    Hewlett, Mrs. (Mary D Kingcome)  female  55     0     0
+##      Ticket    Fare Cabin Embarked
+## 2  PC 17599 71.2833   C85        C
+## 4    113803 53.1000  C123        S
+## 7     17463 51.8625   E46        S
+## 10   237736 30.0708              C
+## 12   113783 26.5500  C103        S
+## 16   248706 16.0000              S</code></pre>
+<p>Alternatively</p>
+<pre><code>not_third_class &lt;- titanic[!titanic$Pclass == 3, ]</code></pre>
+</div>
+<div id="sorting-data" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Sorting Data<a href="data-manipulation.html#sorting-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sorting is the ordering of elements in a data set (vectors, lists, matrix and data frames) based on a particular criteria. This is a fundamental operation data analysis, as it enables data organization in a meaningful way for easier visualization and interpretation. These are the several functions in Base R that are used in sorting;-</p>
+<ol style="list-style-type: decimal">
+<li><code>sort()</code></li>
+</ol>
+<ul>
+<li>Lets create a vector v with five elements</li>
+<li>Sort the elements in a descending order</li>
+</ul>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="data-manipulation.html#cb298-1" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">43</span>, <span class="dv">82</span>, <span class="dv">11</span>, <span class="dv">73</span>, <span class="dv">34</span>) <span class="co"># Create a vector</span></span>
+<span id="cb298-2"><a href="data-manipulation.html#cb298-2" tabindex="-1"></a>v1 <span class="ot">=</span> <span class="fu">sort</span>(v, <span class="at">decreasing =</span> <span class="cn">TRUE</span>) <span class="co">#sort the elements in a descending order</span></span>
+<span id="cb298-3"><a href="data-manipulation.html#cb298-3" tabindex="-1"></a>v1</span></code></pre></div>
+<pre><code>## [1] 82 73 43 34 11</code></pre>
+<ul>
+<li>to order the same vector in an ascending order the <code>decreasing</code> argument is set to <code>FALSE</code>.</li>
+</ul>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="data-manipulation.html#cb300-1" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">43</span>, <span class="dv">82</span>, <span class="dv">11</span>, <span class="dv">73</span>, <span class="dv">34</span>) <span class="co"># Create a vector</span></span>
+<span id="cb300-2"><a href="data-manipulation.html#cb300-2" tabindex="-1"></a>v2 <span class="ot">=</span> <span class="fu">sort</span>(v, <span class="at">decreasing =</span> <span class="cn">FALSE</span>) <span class="co">#sort the elements in an ascending order</span></span>
+<span id="cb300-3"><a href="data-manipulation.html#cb300-3" tabindex="-1"></a>v2</span></code></pre></div>
+<pre><code>## [1] 11 34 43 73 82</code></pre>
+<ul>
+<li>Also character vectors can be sorted in alphabetical order for instance lets sort the the names, <code>"Alice", "Charlie", "Bob"</code> in the alphabetical order.</li>
+</ul>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="data-manipulation.html#cb302-1" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Charlie&quot;</span>, <span class="st">&quot;Bob&quot;</span>)</span>
+<span id="cb302-2"><a href="data-manipulation.html#cb302-2" tabindex="-1"></a>sorted_names <span class="ot">&lt;-</span> <span class="fu">sort</span>(names)</span>
+<span id="cb302-3"><a href="data-manipulation.html#cb302-3" tabindex="-1"></a>sorted_names</span></code></pre></div>
+<pre><code>## [1] &quot;Alice&quot;   &quot;Bob&quot;     &quot;Charlie&quot;</code></pre>
+<ul>
+<li>Alternatively, the names can be ordered in the reverse alphabetical order when the <code>decreasing</code> argument is set to <code>TRUE</code>.</li>
+</ul>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="data-manipulation.html#cb304-1" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Charlie&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Zach&quot;</span>)</span>
+<span id="cb304-2"><a href="data-manipulation.html#cb304-2" tabindex="-1"></a>names_1 <span class="ot">&lt;-</span> <span class="fu">sort</span>(names, <span class="at">decreasing =</span> <span class="cn">TRUE</span>) <span class="co"># order in reverse alphabetical order</span></span>
+<span id="cb304-3"><a href="data-manipulation.html#cb304-3" tabindex="-1"></a>names_1</span></code></pre></div>
+<pre><code>## [1] &quot;Zach&quot;    &quot;Charlie&quot; &quot;Bob&quot;     &quot;Alice&quot;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><code>order()</code></li>
+</ol>
+<p>This function returns the indices that would sort the vectors. For instance lets sort the vector <code>v = c(43, 82, 11, 73, 34)</code> in an ascending order(from smallest to the largest). The smallest number in this case is 11, therefore, the <code>order()</code> function will return 1 while 82 is the largest(5th smallest) number in this case, it will be returned as 5.</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="data-manipulation.html#cb306-1" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">43</span>, <span class="dv">82</span>, <span class="dv">11</span>, <span class="dv">73</span>, <span class="dv">34</span>)</span>
+<span id="cb306-2"><a href="data-manipulation.html#cb306-2" tabindex="-1"></a><span class="fu">order</span>(v, <span class="at">decreasing =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## [1] 3 5 1 4 2</code></pre>
+<p>Lets repeat the process but this time we order the indices of the vector <code>v</code> in a descending order</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="data-manipulation.html#cb308-1" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">43</span>, <span class="dv">82</span>, <span class="dv">11</span>, <span class="dv">73</span>, <span class="dv">34</span>)</span>
+<span id="cb308-2"><a href="data-manipulation.html#cb308-2" tabindex="-1"></a><span class="fu">order</span>(v, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 2 4 1 5 3</code></pre>
+<p>You can see that index <code>2</code> which has a value <code>82</code> on the original vector comes first while index <code>3</code> which has a value of <code>11</code> comes last</p>
+<p>The default value for the <code>decreasing</code> argument is <code>FALSE</code>.</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="data-manipulation.html#cb310-1" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">43</span>, <span class="dv">82</span>, <span class="dv">11</span>, <span class="dv">73</span>, <span class="dv">34</span>)</span>
+<span id="cb310-2"><a href="data-manipulation.html#cb310-2" tabindex="-1"></a><span class="fu">order</span>(v) <span class="co"># no `decreasing` argument</span></span></code></pre></div>
+<pre><code>## [1] 3 5 1 4 2</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><code>rank()</code></li>
+</ol>
+<p>Returns of the rank of the element in a vector, list. The smallest element is ranked as 1(in this case its 11) while largest element is ranked last(82 is ranked 5 here)</p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="data-manipulation.html#cb312-1" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">43</span>, <span class="dv">82</span>, <span class="dv">11</span>, <span class="dv">73</span>, <span class="dv">34</span>)</span>
+<span id="cb312-2"><a href="data-manipulation.html#cb312-2" tabindex="-1"></a><span class="fu">rank</span>(v, <span class="at">ties.method =</span> <span class="st">&quot;average&quot;</span>, <span class="at">na.last =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 3 5 1 4 2</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><code>rev()</code></li>
+</ol>
+<p>This function simply reverse the order of elements. The first element in a vector will be last while the last one will be first.</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="data-manipulation.html#cb314-1" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">43</span>, <span class="dv">82</span>, <span class="dv">11</span>, <span class="dv">73</span>, <span class="dv">34</span>)</span>
+<span id="cb314-2"><a href="data-manipulation.html#cb314-2" tabindex="-1"></a><span class="fu">rev</span>(v)</span></code></pre></div>
+<pre><code>## [1] 34 73 11 82 43</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li><strong>Sorting Data Frames</strong></li>
+</ol>
+<p>A data frame can be sorted in descending/ascending order of a certain column. For instance, we will sort the titanic data set in the order of age in ascending order.</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="data-manipulation.html#cb316-1" tabindex="-1"></a>titanic_by_age <span class="ot">&lt;-</span> titanic[<span class="fu">order</span>(titanic<span class="sc">$</span>Age), ]</span>
+<span id="cb316-2"><a href="data-manipulation.html#cb316-2" tabindex="-1"></a><span class="fu">head</span>(titanic_by_age)</span></code></pre></div>
+<pre><code>##     PassengerId Survived Pclass                            Name    Sex  Age
+## 804         804        1      3 Thomas, Master. Assad Alexander   male 0.42
+## 756         756        1      2       Hamalainen, Master. Viljo   male 0.67
+## 470         470        1      3   Baclini, Miss. Helene Barbara female 0.75
+## 645         645        1      3          Baclini, Miss. Eugenie female 0.75
+## 79           79        1      2   Caldwell, Master. Alden Gates   male 0.83
+## 832         832        1      2 Richards, Master. George Sibley   male 0.83
+##     SibSp Parch Ticket    Fare Cabin Embarked
+## 804     0     1   2625  8.5167              C
+## 756     1     1 250649 14.5000              S
+## 470     2     1   2666 19.2583              C
+## 645     2     1   2666 19.2583              C
+## 79      0     2 248738 29.0000              S
+## 832     1     1  29106 18.7500              S</code></pre>
+<p>Sorting the titanic data by age in descending order, <code>-</code> will be added infront of argument <code>titanic$Age</code> to be <code>-titanic$Age</code></p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="data-manipulation.html#cb318-1" tabindex="-1"></a>titanic_by_age <span class="ot">&lt;-</span> titanic[<span class="fu">order</span>(<span class="sc">-</span>titanic<span class="sc">$</span>Age), ] <span class="co"># note the - sign</span></span>
+<span id="cb318-2"><a href="data-manipulation.html#cb318-2" tabindex="-1"></a><span class="fu">head</span>(titanic_by_age)</span></code></pre></div>
+<pre><code>##     PassengerId Survived Pclass                                 Name  Sex  Age
+## 631         631        1      1 Barkworth, Mr. Algernon Henry Wilson male 80.0
+## 852         852        0      3                  Svensson, Mr. Johan male 74.0
+## 97           97        0      1            Goldschmidt, Mr. George B male 71.0
+## 494         494        0      1              Artagaveytia, Mr. Ramon male 71.0
+## 117         117        0      3                 Connors, Mr. Patrick male 70.5
+## 673         673        0      2          Mitchell, Mr. Henry Michael male 70.0
+##     SibSp Parch     Ticket    Fare Cabin Embarked
+## 631     0     0      27042 30.0000   A23        S
+## 852     0     0     347060  7.7750              S
+## 97      0     0   PC 17754 34.6542    A5        C
+## 494     0     0   PC 17609 49.5042              C
+## 117     0     0     370369  7.7500              Q
+## 673     0     0 C.A. 24580 10.5000              S</code></pre>
+<p>Also, dataframes can be sorted based by multiple columns. Lets sort the titanic data set by Passenger class (<code>Pclass</code>) in ascending order and by age in descending order at once.</p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="data-manipulation.html#cb320-1" tabindex="-1"></a><span class="co"># Pclass in ascending order, Age in descending order</span></span>
+<span id="cb320-2"><a href="data-manipulation.html#cb320-2" tabindex="-1"></a>titanic_sorted_by_class_and_age <span class="ot">&lt;-</span> titanic[<span class="fu">order</span>(titanic<span class="sc">$</span>Pclass, <span class="sc">-</span>titanic<span class="sc">$</span>Age), ]</span>
+<span id="cb320-3"><a href="data-manipulation.html#cb320-3" tabindex="-1"></a></span>
+<span id="cb320-4"><a href="data-manipulation.html#cb320-4" tabindex="-1"></a><span class="fu">head</span>(titanic_sorted_by_class_and_age)</span></code></pre></div>
+<pre><code>##     PassengerId Survived Pclass                                 Name  Sex Age
+## 631         631        1      1 Barkworth, Mr. Algernon Henry Wilson male  80
+## 97           97        0      1            Goldschmidt, Mr. George B male  71
+## 494         494        0      1              Artagaveytia, Mr. Ramon male  71
+## 746         746        0      1         Crosby, Capt. Edward Gifford male  70
+## 55           55        0      1       Ostby, Mr. Engelhart Cornelius male  65
+## 457         457        0      1            Millet, Mr. Francis Davis male  65
+##     SibSp Parch    Ticket    Fare Cabin Embarked
+## 631     0     0     27042 30.0000   A23        S
+## 97      0     0  PC 17754 34.6542    A5        C
+## 494     0     0  PC 17609 49.5042              C
+## 746     1     1 WE/P 5735 71.0000   B22        S
+## 55      0     1    113509 61.9792   B30        C
+## 457     0     0     13509 26.5500   E38        S</code></pre>
+</div>
+<div id="basic-data-cleaning" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Basic Data Cleaning<a href="data-manipulation.html#basic-data-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Data Cleaning</strong> is the process of fixing, removing incorrect, incomplete or otherwise problematic data from a data set. This is a crucial step in data analysis as it leads to more reliable analyses and insights.</p>
+<p>Here some data cleaning techniques used;</p>
+<ol style="list-style-type: decimal">
+<li><strong>Handling Missing Data</strong></li>
+</ol>
+<p>The null values are identified by <code>is.na()</code> function. If there exists null values, they are removed by <code>na.omit()</code> function. The null values can also be replaced by appropriate substitutes such as the mean, median, zero value or a placeholder, this is referred to as imputation.<br />
+Lets create a vector <code>myvector</code> will null values, identify the null values, remove/impute them.</p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="data-manipulation.html#cb322-1" tabindex="-1"></a><span class="co"># Create a vector that has missing values</span></span>
+<span id="cb322-2"><a href="data-manipulation.html#cb322-2" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">43</span>, <span class="cn">NA</span>, <span class="dv">32</span>, <span class="dv">65</span>, <span class="dv">11</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="dv">34</span>, <span class="dv">98</span>, <span class="dv">57</span>) <span class="co"># NA is the missing value</span></span>
+<span id="cb322-3"><a href="data-manipulation.html#cb322-3" tabindex="-1"></a></span>
+<span id="cb322-4"><a href="data-manipulation.html#cb322-4" tabindex="-1"></a><span class="co"># Identify existence of the null values</span></span>
+<span id="cb322-5"><a href="data-manipulation.html#cb322-5" tabindex="-1"></a><span class="fu">is.na</span>(my_vector)</span></code></pre></div>
+<pre><code>##  [1] FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="data-manipulation.html#cb324-1" tabindex="-1"></a><span class="co"># Count the null values </span></span>
+<span id="cb324-2"><a href="data-manipulation.html#cb324-2" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(my_vector))</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="data-manipulation.html#cb326-1" tabindex="-1"></a><span class="co"># remove null values </span></span>
+<span id="cb326-2"><a href="data-manipulation.html#cb326-2" tabindex="-1"></a>clean_vector <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(my_vector)</span>
+<span id="cb326-3"><a href="data-manipulation.html#cb326-3" tabindex="-1"></a>clean_vector</span></code></pre></div>
+<pre><code>## [1] 12 43 32 65 11 34 98 57
+## attr(,&quot;na.action&quot;)
+## [1] 3 7 8
+## attr(,&quot;class&quot;)
+## [1] &quot;omit&quot;</code></pre>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="data-manipulation.html#cb328-1" tabindex="-1"></a><span class="co"># impute missing values</span></span>
+<span id="cb328-2"><a href="data-manipulation.html#cb328-2" tabindex="-1"></a>my_vector[<span class="fu">is.na</span>(my_vector)] <span class="ot">&lt;-</span> <span class="fu">mean</span>(my_vector, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb328-3"><a href="data-manipulation.html#cb328-3" tabindex="-1"></a>my_vector</span></code></pre></div>
+<pre><code>##  [1] 12 43 44 32 65 11 44 44 34 98 57</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Removing Duplicates</strong></li>
+</ol>
+<p>In a raw data set there may exist some duplicated entries/records/rows that will give false results in data analysis thereby leading to poor insights and decision-making. The duplicates are identified by <code>duplicated()</code> function. If there exists any duplicates, they are removed by subsetting or calling <code>unique()</code> function.</p>
+<p>Lets create a data frame with duplicate values and remove them</p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="data-manipulation.html#cb330-1" tabindex="-1"></a><span class="co"># Creating a simple data frame</span></span>
+<span id="cb330-2"><a href="data-manipulation.html#cb330-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb330-3"><a href="data-manipulation.html#cb330-3" tabindex="-1"></a>  <span class="at">Position =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">3</span>),  <span class="co"># Notice the duplicate position</span></span>
+<span id="cb330-4"><a href="data-manipulation.html#cb330-4" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>, <span class="st">&quot;David&quot;</span>, <span class="st">&quot;Eva&quot;</span>, <span class="st">&quot;Charlie&quot;</span>),</span>
+<span id="cb330-5"><a href="data-manipulation.html#cb330-5" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="cn">NA</span>, <span class="dv">40</span>, <span class="dv">29</span>, <span class="cn">NA</span>),  <span class="co"># NA represents null values</span></span>
+<span id="cb330-6"><a href="data-manipulation.html#cb330-6" tabindex="-1"></a>  <span class="at">Score =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">88</span>, <span class="cn">NA</span>, <span class="dv">92</span>, <span class="dv">88</span>)  <span class="co"># NA represents null values</span></span>
+<span id="cb330-7"><a href="data-manipulation.html#cb330-7" tabindex="-1"></a>) <span class="co"># Position 3 is duplicated</span></span>
+<span id="cb330-8"><a href="data-manipulation.html#cb330-8" tabindex="-1"></a></span>
+<span id="cb330-9"><a href="data-manipulation.html#cb330-9" tabindex="-1"></a><span class="co"># Display the data frame</span></span>
+<span id="cb330-10"><a href="data-manipulation.html#cb330-10" tabindex="-1"></a><span class="fu">print</span>(data)</span></code></pre></div>
+<pre><code>##   Position    Name Age Score
+## 1        1   Alice  25    85
+## 2        2     Bob  30    90
+## 3        3 Charlie  NA    88
+## 4        4   David  40    NA
+## 5        5     Eva  29    92
+## 6        3 Charlie  NA    88</code></pre>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="data-manipulation.html#cb332-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;CLEAN DATA&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;CLEAN DATA&quot;</code></pre>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="data-manipulation.html#cb334-1" tabindex="-1"></a><span class="co"># Remove the duplicate row</span></span>
+<span id="cb334-2"><a href="data-manipulation.html#cb334-2" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span> <span class="fu">unique</span>(data)</span>
+<span id="cb334-3"><a href="data-manipulation.html#cb334-3" tabindex="-1"></a>clean_data</span></code></pre></div>
+<pre><code>##   Position    Name Age Score
+## 1        1   Alice  25    85
+## 2        2     Bob  30    90
+## 3        3 Charlie  NA    88
+## 4        4   David  40    NA
+## 5        5     Eva  29    92</code></pre>
+<p>Also the duplicated rows can be removed by</p>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="data-manipulation.html#cb336-1" tabindex="-1"></a>clean_data2 <span class="ot">&lt;-</span> data[<span class="sc">!</span><span class="fu">duplicated</span>(data), ]</span>
+<span id="cb336-2"><a href="data-manipulation.html#cb336-2" tabindex="-1"></a>clean_data2</span></code></pre></div>
+<pre><code>##   Position    Name Age Score
+## 1        1   Alice  25    85
+## 2        2     Bob  30    90
+## 3        3 Charlie  NA    88
+## 4        4   David  40    NA
+## 5        5     Eva  29    92</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Handling Outliers</strong></li>
+</ol>
+<p>Outliers are extreme values that differ from most other data points in a data set. hey can be detected by identifying the upper bound and lower bound using boxplots. They are removed by;</p>
+<pre><code>clean_data &lt;- raw_data[raw_data$column &lt; upper_bound &amp; raw_data$column &gt; lower_bound, ]</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Standardizing Data</strong></li>
+</ol>
+<p>There are numerous ways that data can be standardized such ensuring a consistent date format across the data set and correcting case.</p>
+<p>Lets create a vector with different date formats and make it consistent</p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="data-manipulation.html#cb339-1" tabindex="-1"></a><span class="co"># Creating a vector with different date formats</span></span>
+<span id="cb339-2"><a href="data-manipulation.html#cb339-2" tabindex="-1"></a>date_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2023-08-01&quot;</span>, <span class="st">&quot;01/08/2023&quot;</span>, <span class="st">&quot;August 1, 2023&quot;</span>, <span class="st">&quot;20230801&quot;</span>, <span class="st">&quot;08-01-2023&quot;</span>)</span>
+<span id="cb339-3"><a href="data-manipulation.html#cb339-3" tabindex="-1"></a></span>
+<span id="cb339-4"><a href="data-manipulation.html#cb339-4" tabindex="-1"></a><span class="co"># Converting the date_vector to a consistent format</span></span>
+<span id="cb339-5"><a href="data-manipulation.html#cb339-5" tabindex="-1"></a>clean_date_vector <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(date_vector, <span class="at">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
+<span id="cb339-6"><a href="data-manipulation.html#cb339-6" tabindex="-1"></a></span>
+<span id="cb339-7"><a href="data-manipulation.html#cb339-7" tabindex="-1"></a><span class="co"># Display the clean date vector</span></span>
+<span id="cb339-8"><a href="data-manipulation.html#cb339-8" tabindex="-1"></a><span class="fu">print</span>(clean_date_vector)</span></code></pre></div>
+<pre><code>## [1] &quot;2023-08-01&quot; NA           NA           NA           &quot;8-01-20&quot;</code></pre>
+<p>The <code>lubridate</code> package can do it better</p>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="data-manipulation.html#cb341-1" tabindex="-1"></a><span class="co"># Load necessary library</span></span>
+<span id="cb341-2"><a href="data-manipulation.html#cb341-2" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="data-manipulation.html#cb344-1" tabindex="-1"></a><span class="co"># Correcting each date format using lubridate functions</span></span>
+<span id="cb344-2"><a href="data-manipulation.html#cb344-2" tabindex="-1"></a>clean_date_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb344-3"><a href="data-manipulation.html#cb344-3" tabindex="-1"></a>  <span class="fu">as.Date</span>(date_vector[<span class="dv">1</span>], <span class="at">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>),       <span class="co"># &quot;2023-08-01&quot;</span></span>
+<span id="cb344-4"><a href="data-manipulation.html#cb344-4" tabindex="-1"></a>  <span class="fu">as.Date</span>(date_vector[<span class="dv">2</span>], <span class="at">format=</span><span class="st">&quot;%d/%m/%Y&quot;</span>),       <span class="co"># &quot;01/08/2023&quot;</span></span>
+<span id="cb344-5"><a href="data-manipulation.html#cb344-5" tabindex="-1"></a>  <span class="fu">as.Date</span>(date_vector[<span class="dv">3</span>], <span class="at">format=</span><span class="st">&quot;%B %d, %Y&quot;</span>),      <span class="co"># &quot;August 1, 2023&quot;</span></span>
+<span id="cb344-6"><a href="data-manipulation.html#cb344-6" tabindex="-1"></a>  <span class="fu">as.Date</span>(date_vector[<span class="dv">4</span>], <span class="at">format=</span><span class="st">&quot;%Y%m%d&quot;</span>),         <span class="co"># &quot;20230801&quot;</span></span>
+<span id="cb344-7"><a href="data-manipulation.html#cb344-7" tabindex="-1"></a>  <span class="fu">as.Date</span>(date_vector[<span class="dv">5</span>], <span class="at">format=</span><span class="st">&quot;%m-%d-%Y&quot;</span>)        <span class="co"># &quot;08-01-2023&quot;</span></span>
+<span id="cb344-8"><a href="data-manipulation.html#cb344-8" tabindex="-1"></a>)</span>
+<span id="cb344-9"><a href="data-manipulation.html#cb344-9" tabindex="-1"></a></span>
+<span id="cb344-10"><a href="data-manipulation.html#cb344-10" tabindex="-1"></a><span class="co"># Display the clean date vector</span></span>
+<span id="cb344-11"><a href="data-manipulation.html#cb344-11" tabindex="-1"></a><span class="fu">print</span>(clean_date_vector)</span></code></pre></div>
+<pre><code>## [1] &quot;2023-08-01&quot; &quot;2023-08-01&quot; NA           &quot;2023-08-01&quot; &quot;2023-08-01&quot;</code></pre>
+<p><span style="color: green"><strong>Practical exercise</strong></span></p>
+<p>You will use the car sales data set found <a href="https://github.com/balsaedi/R_programming/blob/main/data/car_sales.csv">here</a> to;</p>
+<ol style="list-style-type: lower-roman">
+<li>Delete all the records that have any null value</li>
+<li>Remove duplicated observations</li>
+</ol>
+</div>
+<div id="hands-on-exercises-1" class="section level3 hasAnchor" number="4.1.5">
+<h3><span class="header-section-number">4.1.5</span> Hands-on Exercises<a href="data-manipulation.html#hands-on-exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Download the Bengaluru Restaurants Dataset from <a href="https://www.kaggle.com/datasets/mrmars1010/restaurants-dataset-bengaluru">here</a> and use it to for the activities below.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Subsetting and Filtering</strong></li>
+</ol>
+<ul>
+<li>Subset the data set to include only restaurants with a rating of 4.0 and above.</li>
+<li>Filter out restaurants that have zero reviews or null ratings.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Sorting</strong></li>
+</ol>
+<ul>
+<li>Sort the data set by restaurant ratings in descending order.</li>
+<li>Sort the data set by the number of reviews a restaurant received, with the highest reviews appearing last</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Data Cleaning</strong></li>
+</ol>
+<ul>
+<li>Identify and remove rows with missing or null values in any key columns (e.g., ratings, cost, cuisine type).</li>
+</ul>
+</div>
+</div>
+<div id="data-manipulation-with-dplyr" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Data Manipulation with Dplyr<a href="data-manipulation.html#data-manipulation-with-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-to-dplyr-package" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Introduction to Dplyr package<a href="data-manipulation.html#introduction-to-dplyr-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dplyr is a package designed for data manipulation equipped with a set of intuitive functions to perform tasks like filtering rows, selecting columns, rearranging data and summarizing information. The package is part of a larger library, <code>tidyverse</code>. The <strong>tidyverse</strong> package is a package designed for data science that share an underlying design philosophy, grammar and data structures. The packages within the tidyverse are widely used for data manipulation, exploration, and visualization in R. Here are some of the core packages in tidyverse;</p>
+<ul>
+<li><code>ggplot2</code></li>
+<li><code>dplyr</code></li>
+<li><code>tidyr</code></li>
+<li><code>readr</code></li>
+<li><code>purrr</code></li>
+<li><code>tibble</code></li>
+</ul>
+<p>The tidyverse package is installed by</p>
+<pre><code>install.packages(&quot;tidyverse&quot;)</code></pre>
+<p>To invoke the package into the system, the below command is invoked</p>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="data-manipulation.html#cb347-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching core tidyverse packages ───────────────────
+## ✔ dplyr   1.1.4     ✔ stringr 1.5.1
+## ✔ forcats 1.0.0     ✔ tibble  3.2.1
+## ✔ ggplot2 3.5.1     ✔ tidyr   1.3.1
+## ✔ purrr   1.0.2     
+## ── Conflicts ────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<p>In this course, we will discuss on <code>dplyr</code> since it is an essential tool in data analysis. If you want to use dplyr alone then it can be installed by;</p>
+<pre><code>install.packages(&quot;dplyr&quot;)</code></pre>
+<p>To load the library into the system;</p>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="data-manipulation.html#cb350-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+</div>
+<div id="key-functions-in-dplyr" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Key Functions in dplyr<a href="data-manipulation.html#key-functions-in-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are some functions that are use by data scientist when working with <code>dplyr</code>, they are referred to as dplyr verbs. To explain these verbs better, we will use an example data set to explain. A good example is the famous iris data set, it is always used by beginners in data science. The data set contains measurements of various characteristics of iris flowers. These characteristics include sepal length, sepal width, petal length, and petal width. There are three species of iris flowers in the data set: setosa, versicolor, and virginica.
+The data will be invoked to R before assessment and wrangling;</p>
+<p>Lets load the iris data and explore the first few records.</p>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="data-manipulation.html#cb351-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;iris&quot;</span>)</span>
+<span id="cb351-2"><a href="data-manipulation.html#cb351-2" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+</div>
+<div id="select" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> select<a href="data-manipulation.html#select" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This dplyr verb is used when selecting or dropping specific columns. In this lesson we will find the iris column names and select two of them using <code>select</code>.</p>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="data-manipulation.html#cb353-1" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb353-2"><a href="data-manipulation.html#cb353-2" tabindex="-1"></a></span>
+<span id="cb353-3"><a href="data-manipulation.html#cb353-3" tabindex="-1"></a><span class="co"># Find the column names </span></span>
+<span id="cb353-4"><a href="data-manipulation.html#cb353-4" tabindex="-1"></a><span class="fu">colnames</span>(iris)</span></code></pre></div>
+<pre><code>## [1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot;  &quot;Species&quot;</code></pre>
+<p>Remember the data frame to work on need to be specified in the arguments such that</p>
+<pre><code>selected_data = select(data_frame, col1, col2, col3)</code></pre>
+<p>Therefore, we will select the columns; Species, Petal length and petal width.</p>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="data-manipulation.html#cb356-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb356-2"><a href="data-manipulation.html#cb356-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb356-3"><a href="data-manipulation.html#cb356-3" tabindex="-1"></a></span>
+<span id="cb356-4"><a href="data-manipulation.html#cb356-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb356-5"><a href="data-manipulation.html#cb356-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb356-6"><a href="data-manipulation.html#cb356-6" tabindex="-1"></a></span>
+<span id="cb356-7"><a href="data-manipulation.html#cb356-7" tabindex="-1"></a>selected_iris_data <span class="ot">=</span> <span class="fu">select</span>(iris,</span>
+<span id="cb356-8"><a href="data-manipulation.html#cb356-8" tabindex="-1"></a>                       Petal.Length, Petal.Width, Species)</span>
+<span id="cb356-9"><a href="data-manipulation.html#cb356-9" tabindex="-1"></a></span>
+<span id="cb356-10"><a href="data-manipulation.html#cb356-10" tabindex="-1"></a><span class="co"># view the first few rows of the selected data</span></span>
+<span id="cb356-11"><a href="data-manipulation.html#cb356-11" tabindex="-1"></a><span class="fu">head</span>(selected_iris_data)</span></code></pre></div>
+<pre><code>##   Petal.Length Petal.Width Species
+## 1          1.4         0.2  setosa
+## 2          1.4         0.2  setosa
+## 3          1.3         0.2  setosa
+## 4          1.5         0.2  setosa
+## 5          1.4         0.2  setosa
+## 6          1.7         0.4  setosa</code></pre>
+<p>The three selected columns are displayed in the data frame above.</p>
+<p>Specific columns can be dropped by putting <code>-</code> before the column name as</p>
+<pre><code># Drop specified columns 
+remaining_data = select(data_frame, -col1_to_drop, -col2_to_drop)</code></pre>
+<p>In this lesson, we will drop petal length, petal width and Species columns;</p>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="data-manipulation.html#cb359-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb359-2"><a href="data-manipulation.html#cb359-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb359-3"><a href="data-manipulation.html#cb359-3" tabindex="-1"></a></span>
+<span id="cb359-4"><a href="data-manipulation.html#cb359-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb359-5"><a href="data-manipulation.html#cb359-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb359-6"><a href="data-manipulation.html#cb359-6" tabindex="-1"></a></span>
+<span id="cb359-7"><a href="data-manipulation.html#cb359-7" tabindex="-1"></a><span class="co"># Drop some columns </span></span>
+<span id="cb359-8"><a href="data-manipulation.html#cb359-8" tabindex="-1"></a>remaining_iris_data <span class="ot">=</span> <span class="fu">select</span>(iris,</span>
+<span id="cb359-9"><a href="data-manipulation.html#cb359-9" tabindex="-1"></a>                       <span class="sc">-</span>Petal.Length, <span class="sc">-</span>Petal.Width, <span class="sc">-</span>Species)</span>
+<span id="cb359-10"><a href="data-manipulation.html#cb359-10" tabindex="-1"></a></span>
+<span id="cb359-11"><a href="data-manipulation.html#cb359-11" tabindex="-1"></a><span class="co"># view the first few rows of the selected data</span></span>
+<span id="cb359-12"><a href="data-manipulation.html#cb359-12" tabindex="-1"></a><span class="fu">head</span>(remaining_iris_data)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width
+## 1          5.1         3.5
+## 2          4.9         3.0
+## 3          4.7         3.2
+## 4          4.6         3.1
+## 5          5.0         3.6
+## 6          5.4         3.9</code></pre>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>You will be required to use the <code>car_sales</code> data set from <a href="https://raw.githubusercontent.com/insaid2018/Term-1/master/Data/Projects/car_sales.csv" class="uri">https://raw.githubusercontent.com/insaid2018/Term-1/master/Data/Projects/car_sales.csv</a>. Read the data using <code>read.csv</code> and select the <code>car, price, body, mileage, engV, engType, year, model</code>. Save the data frame from the selected columns as <code>selected_cars_df</code>. Show the first few rows of the <code>selected_cars_df</code>.</p>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="data-manipulation.html#cb361-1" tabindex="-1"></a><span class="co"># Load the dplyr library</span></span>
+<span id="cb361-2"><a href="data-manipulation.html#cb361-2" tabindex="-1"></a><span class="co"># CODE HERE</span></span>
+<span id="cb361-3"><a href="data-manipulation.html#cb361-3" tabindex="-1"></a></span>
+<span id="cb361-4"><a href="data-manipulation.html#cb361-4" tabindex="-1"></a><span class="co"># Read the data </span></span>
+<span id="cb361-5"><a href="data-manipulation.html#cb361-5" tabindex="-1"></a><span class="co"># CODE HERE</span></span>
+<span id="cb361-6"><a href="data-manipulation.html#cb361-6" tabindex="-1"></a></span>
+<span id="cb361-7"><a href="data-manipulation.html#cb361-7" tabindex="-1"></a><span class="co"># select the required columns </span></span>
+<span id="cb361-8"><a href="data-manipulation.html#cb361-8" tabindex="-1"></a><span class="co"># CODE HERE</span></span>
+<span id="cb361-9"><a href="data-manipulation.html#cb361-9" tabindex="-1"></a></span>
+<span id="cb361-10"><a href="data-manipulation.html#cb361-10" tabindex="-1"></a><span class="co"># Show the first few rows of the data frame</span></span>
+<span id="cb361-11"><a href="data-manipulation.html#cb361-11" tabindex="-1"></a><span class="co"># CODE HERE</span></span></code></pre></div>
+</div>
+<div id="filter" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> filter<a href="data-manipulation.html#filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Is a verb/function from <code>dplyr</code> used to filter records in a data frame based on a specific condition. It allows the analyst to retrieve the records he/she is interested in and work easier with the subset.
+With <code>filter()</code>, the data frame and the condion are passed as a arguments;</p>
+<pre><code># Filtering rows where a certain column meets a condition
+filtered_data = filter(data_frame, 
+column_name &gt; 5 # This is the condition)</code></pre>
+<p>Lets select the species ‘setosa’ from the iris data set</p>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="data-manipulation.html#cb363-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb363-2"><a href="data-manipulation.html#cb363-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb363-3"><a href="data-manipulation.html#cb363-3" tabindex="-1"></a></span>
+<span id="cb363-4"><a href="data-manipulation.html#cb363-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb363-5"><a href="data-manipulation.html#cb363-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb363-6"><a href="data-manipulation.html#cb363-6" tabindex="-1"></a></span>
+<span id="cb363-7"><a href="data-manipulation.html#cb363-7" tabindex="-1"></a><span class="co"># Filter to select Setosa </span></span>
+<span id="cb363-8"><a href="data-manipulation.html#cb363-8" tabindex="-1"></a>setosa_iris <span class="ot">=</span> <span class="fu">filter</span>(iris, <span class="co"># the data frame</span></span>
+<span id="cb363-9"><a href="data-manipulation.html#cb363-9" tabindex="-1"></a>                     Species <span class="sc">==</span> <span class="st">&quot;setosa&quot;</span> <span class="co"># the condition</span></span>
+<span id="cb363-10"><a href="data-manipulation.html#cb363-10" tabindex="-1"></a>                     )</span>
+<span id="cb363-11"><a href="data-manipulation.html#cb363-11" tabindex="-1"></a><span class="co"># First few records of setosa data</span></span>
+<span id="cb363-12"><a href="data-manipulation.html#cb363-12" tabindex="-1"></a><span class="fu">head</span>(setosa_iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Records with sepal width of more than 3.0 can be filtered. Here is how we achieve such a subset</p>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="data-manipulation.html#cb365-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb365-2"><a href="data-manipulation.html#cb365-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb365-3"><a href="data-manipulation.html#cb365-3" tabindex="-1"></a></span>
+<span id="cb365-4"><a href="data-manipulation.html#cb365-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb365-5"><a href="data-manipulation.html#cb365-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb365-6"><a href="data-manipulation.html#cb365-6" tabindex="-1"></a></span>
+<span id="cb365-7"><a href="data-manipulation.html#cb365-7" tabindex="-1"></a><span class="co"># Filtered to select records with more than 3.0 sepal width</span></span>
+<span id="cb365-8"><a href="data-manipulation.html#cb365-8" tabindex="-1"></a>wide_sepal_iris <span class="ot">=</span> <span class="fu">filter</span>(iris, <span class="co">#the data frame</span></span>
+<span id="cb365-9"><a href="data-manipulation.html#cb365-9" tabindex="-1"></a>                         Sepal.Width<span class="sc">&gt;</span><span class="fl">3.0</span> <span class="co"># the condition</span></span>
+<span id="cb365-10"><a href="data-manipulation.html#cb365-10" tabindex="-1"></a>                         )</span>
+<span id="cb365-11"><a href="data-manipulation.html#cb365-11" tabindex="-1"></a></span>
+<span id="cb365-12"><a href="data-manipulation.html#cb365-12" tabindex="-1"></a><span class="fu">head</span>(wide_sepal_iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.7         3.2          1.3         0.2  setosa
+## 3          4.6         3.1          1.5         0.2  setosa
+## 4          5.0         3.6          1.4         0.2  setosa
+## 5          5.4         3.9          1.7         0.4  setosa
+## 6          4.6         3.4          1.4         0.3  setosa</code></pre>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>With the <code>car_sales</code> data set that you used above, use <code>filter()</code> function to get the cars that were sold from the year 2008 to present and name them <code>latest_car_sales</code>. Count the number of observations made and show the first few rows.</p>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="data-manipulation.html#cb367-1" tabindex="-1"></a><span class="co"># Load the dplyr library</span></span>
+<span id="cb367-2"><a href="data-manipulation.html#cb367-2" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb367-3"><a href="data-manipulation.html#cb367-3" tabindex="-1"></a></span>
+<span id="cb367-4"><a href="data-manipulation.html#cb367-4" tabindex="-1"></a><span class="co"># Read the data </span></span>
+<span id="cb367-5"><a href="data-manipulation.html#cb367-5" tabindex="-1"></a><span class="co"># CODE HERE</span></span>
+<span id="cb367-6"><a href="data-manipulation.html#cb367-6" tabindex="-1"></a></span>
+<span id="cb367-7"><a href="data-manipulation.html#cb367-7" tabindex="-1"></a><span class="co"># Filter to find cars sold from 2008</span></span>
+<span id="cb367-8"><a href="data-manipulation.html#cb367-8" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb367-9"><a href="data-manipulation.html#cb367-9" tabindex="-1"></a></span>
+<span id="cb367-10"><a href="data-manipulation.html#cb367-10" tabindex="-1"></a><span class="co"># Count the observations made. Use nrows function</span></span>
+<span id="cb367-11"><a href="data-manipulation.html#cb367-11" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb367-12"><a href="data-manipulation.html#cb367-12" tabindex="-1"></a></span>
+<span id="cb367-13"><a href="data-manipulation.html#cb367-13" tabindex="-1"></a><span class="co"># Show the first few rows</span></span>
+<span id="cb367-14"><a href="data-manipulation.html#cb367-14" tabindex="-1"></a><span class="co"># CODE HERE </span></span></code></pre></div>
+</div>
+<div id="arrange" class="section level3 hasAnchor" number="4.2.5">
+<h3><span class="header-section-number">4.2.5</span> arrange<a href="data-manipulation.html#arrange" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is <code>dplyr</code> verb/function used for sorting rows by rearranging in a specific order. here is how to use <code>arrange()</code> function;</p>
+<pre><code>arranged_data = arrange(data_frame, column_name)</code></pre>
+<p>This allows the analyst to arrange the data in a default ascending order. To arrange in a descending order a <code>desc()</code> function is added as;</p>
+<pre><code># Note the additional desc function
+arranged_data = arrange(data_frame, desc(column_name))</code></pre>
+<p>Now lets order the iris data in an ascending order based on Petal length and view the first 6 records with the shortest petal.</p>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="data-manipulation.html#cb370-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb370-2"><a href="data-manipulation.html#cb370-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb370-3"><a href="data-manipulation.html#cb370-3" tabindex="-1"></a></span>
+<span id="cb370-4"><a href="data-manipulation.html#cb370-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb370-5"><a href="data-manipulation.html#cb370-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb370-6"><a href="data-manipulation.html#cb370-6" tabindex="-1"></a></span>
+<span id="cb370-7"><a href="data-manipulation.html#cb370-7" tabindex="-1"></a><span class="co"># Sort the data </span></span>
+<span id="cb370-8"><a href="data-manipulation.html#cb370-8" tabindex="-1"></a>by_petal_length <span class="ot">=</span> <span class="fu">arrange</span>(iris, <span class="co"># data frame </span></span>
+<span id="cb370-9"><a href="data-manipulation.html#cb370-9" tabindex="-1"></a>                          Petal.Length <span class="co"># order by column</span></span>
+<span id="cb370-10"><a href="data-manipulation.html#cb370-10" tabindex="-1"></a>                          )</span>
+<span id="cb370-11"><a href="data-manipulation.html#cb370-11" tabindex="-1"></a></span>
+<span id="cb370-12"><a href="data-manipulation.html#cb370-12" tabindex="-1"></a><span class="co"># View the data </span></span>
+<span id="cb370-13"><a href="data-manipulation.html#cb370-13" tabindex="-1"></a><span class="fu">head</span>(by_petal_length)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          4.6         3.6          1.0         0.2  setosa
+## 2          4.3         3.0          1.1         0.1  setosa
+## 3          5.8         4.0          1.2         0.2  setosa
+## 4          5.0         3.2          1.2         0.2  setosa
+## 5          4.7         3.2          1.3         0.2  setosa
+## 6          5.4         3.9          1.3         0.4  setosa</code></pre>
+<p>Lets repeat the same process but now we order the data in a descending order.</p>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="data-manipulation.html#cb372-1" tabindex="-1"></a><span class="co"># Sort the data </span></span>
+<span id="cb372-2"><a href="data-manipulation.html#cb372-2" tabindex="-1"></a>by_petal_length <span class="ot">=</span> <span class="fu">arrange</span>(iris, <span class="co"># data frame </span></span>
+<span id="cb372-3"><a href="data-manipulation.html#cb372-3" tabindex="-1"></a>                          <span class="fu">desc</span>(Petal.Length) <span class="co"># order by column</span></span>
+<span id="cb372-4"><a href="data-manipulation.html#cb372-4" tabindex="-1"></a>                          )</span>
+<span id="cb372-5"><a href="data-manipulation.html#cb372-5" tabindex="-1"></a></span>
+<span id="cb372-6"><a href="data-manipulation.html#cb372-6" tabindex="-1"></a><span class="co"># View the data </span></span>
+<span id="cb372-7"><a href="data-manipulation.html#cb372-7" tabindex="-1"></a><span class="fu">head</span>(by_petal_length)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 1          7.7         2.6          6.9         2.3 virginica
+## 2          7.7         3.8          6.7         2.2 virginica
+## 3          7.7         2.8          6.7         2.0 virginica
+## 4          7.6         3.0          6.6         2.1 virginica
+## 5          7.9         3.8          6.4         2.0 virginica
+## 6          7.3         2.9          6.3         1.8 virginica</code></pre>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Arrange the columns in the <code>car_sales</code> data set according to <code>mileage</code> in descending order. Show the last few rows</p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="data-manipulation.html#cb374-1" tabindex="-1"></a><span class="co"># Load the dplyr library</span></span>
+<span id="cb374-2"><a href="data-manipulation.html#cb374-2" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb374-3"><a href="data-manipulation.html#cb374-3" tabindex="-1"></a></span>
+<span id="cb374-4"><a href="data-manipulation.html#cb374-4" tabindex="-1"></a><span class="co"># Read the data into a data frame</span></span>
+<span id="cb374-5"><a href="data-manipulation.html#cb374-5" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb374-6"><a href="data-manipulation.html#cb374-6" tabindex="-1"></a></span>
+<span id="cb374-7"><a href="data-manipulation.html#cb374-7" tabindex="-1"></a><span class="co"># Order according to mileage in descending order</span></span>
+<span id="cb374-8"><a href="data-manipulation.html#cb374-8" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb374-9"><a href="data-manipulation.html#cb374-9" tabindex="-1"></a></span>
+<span id="cb374-10"><a href="data-manipulation.html#cb374-10" tabindex="-1"></a><span class="co"># Show the last few rows of the data set</span></span>
+<span id="cb374-11"><a href="data-manipulation.html#cb374-11" tabindex="-1"></a><span class="co"># CODE HERE</span></span></code></pre></div>
+</div>
+<div id="mutate" class="section level3 hasAnchor" number="4.2.6">
+<h3><span class="header-section-number">4.2.6</span> mutate<a href="data-manipulation.html#mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>mutate()</code> is a dplyr verb used to modifying the existing variables or creating new variables in a data set.
+In this case we can calculate the log off Sepal length in the iris data</p>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="data-manipulation.html#cb375-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb375-2"><a href="data-manipulation.html#cb375-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb375-3"><a href="data-manipulation.html#cb375-3" tabindex="-1"></a></span>
+<span id="cb375-4"><a href="data-manipulation.html#cb375-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb375-5"><a href="data-manipulation.html#cb375-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb375-6"><a href="data-manipulation.html#cb375-6" tabindex="-1"></a></span>
+<span id="cb375-7"><a href="data-manipulation.html#cb375-7" tabindex="-1"></a><span class="co"># modify Sepal.Length</span></span>
+<span id="cb375-8"><a href="data-manipulation.html#cb375-8" tabindex="-1"></a>new_iris <span class="ot">=</span> <span class="fu">mutate</span>(iris, <span class="at">Sepal.Length=</span><span class="fu">log</span>(Sepal.Length))</span>
+<span id="cb375-9"><a href="data-manipulation.html#cb375-9" tabindex="-1"></a></span>
+<span id="cb375-10"><a href="data-manipulation.html#cb375-10" tabindex="-1"></a><span class="fu">head</span>(new_iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1     1.629241         3.5          1.4         0.2  setosa
+## 2     1.589235         3.0          1.4         0.2  setosa
+## 3     1.547563         3.2          1.3         0.2  setosa
+## 4     1.526056         3.1          1.5         0.2  setosa
+## 5     1.609438         3.6          1.4         0.2  setosa
+## 6     1.686399         3.9          1.7         0.4  setosa</code></pre>
+<p>Additionally, we can create an entirely new variable by <code>mutate()</code>. In this case we will find the ratio between petal length and petal width. The new variable will be called “Petal.Length.Width.Ratio”</p>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="data-manipulation.html#cb377-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb377-2"><a href="data-manipulation.html#cb377-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb377-3"><a href="data-manipulation.html#cb377-3" tabindex="-1"></a></span>
+<span id="cb377-4"><a href="data-manipulation.html#cb377-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb377-5"><a href="data-manipulation.html#cb377-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb377-6"><a href="data-manipulation.html#cb377-6" tabindex="-1"></a></span>
+<span id="cb377-7"><a href="data-manipulation.html#cb377-7" tabindex="-1"></a><span class="co"># Create a new column in the data set </span></span>
+<span id="cb377-8"><a href="data-manipulation.html#cb377-8" tabindex="-1"></a>new_iris <span class="ot">=</span> <span class="fu">mutate</span>(iris,</span>
+<span id="cb377-9"><a href="data-manipulation.html#cb377-9" tabindex="-1"></a>                  <span class="at">Petal.Length.Width.Ratio =</span> Petal.Length<span class="sc">/</span>Petal.Width)</span>
+<span id="cb377-10"><a href="data-manipulation.html#cb377-10" tabindex="-1"></a></span>
+<span id="cb377-11"><a href="data-manipulation.html#cb377-11" tabindex="-1"></a><span class="fu">head</span>(new_iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+##   Petal.Length.Width.Ratio
+## 1                     7.00
+## 2                     7.00
+## 3                     6.50
+## 4                     7.50
+## 5                     7.00
+## 6                     4.25</code></pre>
+<p>The “Petal.Length.Width.Ratio” is found by dividing the Petal.Length and the Petal.Width variables.</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the <code>car_sales</code> data set, create a new column, <code>"distance_covered_km"</code>, calculated from the <code>mileage</code>. Just multiply <code>mileage</code> with <code>1.609</code>. Show the first few rows of the mutated data frame.</p>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="data-manipulation.html#cb379-1" tabindex="-1"></a><span class="co"># Load the dplyr library</span></span>
+<span id="cb379-2"><a href="data-manipulation.html#cb379-2" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb379-3"><a href="data-manipulation.html#cb379-3" tabindex="-1"></a></span>
+<span id="cb379-4"><a href="data-manipulation.html#cb379-4" tabindex="-1"></a><span class="co"># Read the data set </span></span>
+<span id="cb379-5"><a href="data-manipulation.html#cb379-5" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb379-6"><a href="data-manipulation.html#cb379-6" tabindex="-1"></a></span>
+<span id="cb379-7"><a href="data-manipulation.html#cb379-7" tabindex="-1"></a><span class="co"># Create new column &quot;distance_covered_km</span></span>
+<span id="cb379-8"><a href="data-manipulation.html#cb379-8" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb379-9"><a href="data-manipulation.html#cb379-9" tabindex="-1"></a></span>
+<span id="cb379-10"><a href="data-manipulation.html#cb379-10" tabindex="-1"></a><span class="co"># Show first few rows </span></span>
+<span id="cb379-11"><a href="data-manipulation.html#cb379-11" tabindex="-1"></a><span class="co"># CODE HERE </span></span></code></pre></div>
+</div>
+<div id="summarise" class="section level3 hasAnchor" number="4.2.7">
+<h3><span class="header-section-number">4.2.7</span> Summarise<a href="data-manipulation.html#summarise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To calculate summary statistics such as average, median and maximum the <code>summarise()</code> is used. This function collapses multiple rows into a summary row. For instance calculating the mean Petal width;</p>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="data-manipulation.html#cb380-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb380-2"><a href="data-manipulation.html#cb380-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb380-3"><a href="data-manipulation.html#cb380-3" tabindex="-1"></a></span>
+<span id="cb380-4"><a href="data-manipulation.html#cb380-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb380-5"><a href="data-manipulation.html#cb380-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb380-6"><a href="data-manipulation.html#cb380-6" tabindex="-1"></a></span>
+<span id="cb380-7"><a href="data-manipulation.html#cb380-7" tabindex="-1"></a><span class="co"># Calculate the mean petal width</span></span>
+<span id="cb380-8"><a href="data-manipulation.html#cb380-8" tabindex="-1"></a><span class="fu">summarise</span>(iris, </span>
+<span id="cb380-9"><a href="data-manipulation.html#cb380-9" tabindex="-1"></a>          <span class="at">mean_petal_width=</span><span class="fu">mean</span>(Petal.Width))</span></code></pre></div>
+<pre><code>##   mean_petal_width
+## 1         1.199333</code></pre>
+<p>To find the mean petal width for each iris species;
+- the iris data will be grouped by species
+- a mean value for each group will be calculated</p>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="data-manipulation.html#cb382-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb382-2"><a href="data-manipulation.html#cb382-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb382-3"><a href="data-manipulation.html#cb382-3" tabindex="-1"></a></span>
+<span id="cb382-4"><a href="data-manipulation.html#cb382-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb382-5"><a href="data-manipulation.html#cb382-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb382-6"><a href="data-manipulation.html#cb382-6" tabindex="-1"></a></span>
+<span id="cb382-7"><a href="data-manipulation.html#cb382-7" tabindex="-1"></a><span class="co"># To find the mean petal width for each iris species;</span></span>
+<span id="cb382-8"><a href="data-manipulation.html#cb382-8" tabindex="-1"></a><span class="co"># - the iris data will be grouped by species</span></span>
+<span id="cb382-9"><a href="data-manipulation.html#cb382-9" tabindex="-1"></a><span class="co"># - a mean value for each group will be calculated</span></span>
+<span id="cb382-10"><a href="data-manipulation.html#cb382-10" tabindex="-1"></a>grouped_iris <span class="ot">=</span> <span class="fu">group_by</span>(iris, Species)</span>
+<span id="cb382-11"><a href="data-manipulation.html#cb382-11" tabindex="-1"></a>mean_petal_widths <span class="ot">=</span> <span class="fu">summarise</span>(grouped_iris, <span class="at">mean_value=</span><span class="fu">mean</span>(Petal.Width))</span>
+<span id="cb382-12"><a href="data-manipulation.html#cb382-12" tabindex="-1"></a>mean_petal_widths</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   Species    mean_value
+##   &lt;fct&gt;           &lt;dbl&gt;
+## 1 setosa          0.246
+## 2 versicolor      1.33 
+## 3 virginica       2.03</code></pre>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>You will be required to use the <code>car_sales</code> data set once again. Calculate the descriptive statistics using <code>summarise()</code> command.</p>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="data-manipulation.html#cb384-1" tabindex="-1"></a><span class="co"># Load the dplyr library</span></span>
+<span id="cb384-2"><a href="data-manipulation.html#cb384-2" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb384-3"><a href="data-manipulation.html#cb384-3" tabindex="-1"></a></span>
+<span id="cb384-4"><a href="data-manipulation.html#cb384-4" tabindex="-1"></a><span class="co"># Load the car sales data </span></span>
+<span id="cb384-5"><a href="data-manipulation.html#cb384-5" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb384-6"><a href="data-manipulation.html#cb384-6" tabindex="-1"></a></span>
+<span id="cb384-7"><a href="data-manipulation.html#cb384-7" tabindex="-1"></a><span class="co"># Calculate the summary statistics</span></span>
+<span id="cb384-8"><a href="data-manipulation.html#cb384-8" tabindex="-1"></a><span class="co"># CODE HERE</span></span></code></pre></div>
+</div>
+<div id="group_by" class="section level3 hasAnchor" number="4.2.8">
+<h3><span class="header-section-number">4.2.8</span> group_by<a href="data-manipulation.html#group_by" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>group_by()</code> is a function used to group records in a data frame by one or more variables. It allows the analyst to create a group based on a certain criteria. It is always chained together with <code>summarise()</code>.</p>
+<p>Lets group the iris data based on the Species variable and find the mean of each variable;</p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="data-manipulation.html#cb385-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb385-2"><a href="data-manipulation.html#cb385-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb385-3"><a href="data-manipulation.html#cb385-3" tabindex="-1"></a></span>
+<span id="cb385-4"><a href="data-manipulation.html#cb385-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb385-5"><a href="data-manipulation.html#cb385-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb385-6"><a href="data-manipulation.html#cb385-6" tabindex="-1"></a></span>
+<span id="cb385-7"><a href="data-manipulation.html#cb385-7" tabindex="-1"></a><span class="co"># Group the iris based on their Species </span></span>
+<span id="cb385-8"><a href="data-manipulation.html#cb385-8" tabindex="-1"></a>iris_groups <span class="ot">=</span> <span class="fu">group_by</span>(iris, Species) <span class="sc">%&gt;%</span></span>
+<span id="cb385-9"><a href="data-manipulation.html#cb385-9" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## Warning: There was 1 warning in `summarise()`.
+## ℹ In argument: `across(everything(), mean, na.rm =
+##   TRUE)`.
+## ℹ In group 1: `Species = setosa`.
+## Caused by warning:
+## ! The `...` argument of `across()` is deprecated as of
+##   dplyr 1.1.0.
+## Supply arguments directly to `.fns` through an
+## anonymous function instead.
+## 
+##   # Previously
+##   across(a:b, mean, na.rm = TRUE)
+## 
+##   # Now
+##   across(a:b, \(x) mean(x, na.rm = TRUE))</code></pre>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="data-manipulation.html#cb387-1" tabindex="-1"></a><span class="fu">head</span>(iris_groups)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 5
+##   Species    Sepal.Length Sepal.Width Petal.Length Petal.Width
+##   &lt;fct&gt;             &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+## 1 setosa             5.01        3.43         1.46       0.246
+## 2 versicolor         5.94        2.77         4.26       1.33 
+## 3 virginica          6.59        2.97         5.55       2.03</code></pre>
+<p>This groupings allow the analyst to retrieve insights at more base level and uncover more insights that could not have been possible when analyzing the entire data set</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Use the <code>car_sales</code> data set provided before to work on this activity. Load the data and group the sales by <code>model</code> to get the sum of every quantitative feature/variable. Name the resultant data frame, <code>car_sales_by_model</code>. Display the resultant data frame. <strong>Hint</strong>: Use <code>across(where(is.numeric), sum)</code> as an argument to summarise instead of <code>across(everything(), mean, na.rm = TRUE)</code> to find the sum of quantitative variables.</p>
+</div>
+</div>
+<div id="chaining" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Chaining<a href="data-manipulation.html#chaining" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Chaining is the process of combining several operations together using the <code>%&gt;%</code> or forward pipe operator. The chained workflow succeeds each other until the whole process is done. To understand chaining, the mtcars(Motor Trend cars) data set will be used. Mtcars is also a well-known data set containing several attributes of 32 different cars from 1974. Here’s a brief explanation of the variables in the mtcars data set:</p>
+<ol style="list-style-type: decimal">
+<li><code>mpg</code>: Miles per gallon (fuel efficiency).</li>
+<li><code>cyl</code>: Number of cylinders.</li>
+<li><code>disp</code>: Displacement (cubic inches).</li>
+<li><code>hp</code>: Horsepower.</li>
+<li><code>drat</code>: Rear axle ratio.</li>
+<li><code>wt</code>: Weight (in 1000 lbs).</li>
+<li><code>qsec</code>: Quarter mile time (in seconds).</li>
+<li><code>vs</code>: Engine type (0 = V-shaped, 1 = Straight).</li>
+<li><code>am</code>: Transmission type (0 = Automatic, 1 = Manual).</li>
+<li><code>gear</code>: Number of forward gears.</li>
+<li><code>carb</code>: Number of carburetors.</li>
+</ol>
+<p>Lets start by loading the data into the program and view its first few records;</p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="data-manipulation.html#cb389-1" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb389-2"><a href="data-manipulation.html#cb389-2" tabindex="-1"></a><span class="fu">head</span>(mtcars)</span></code></pre></div>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p>Lets <code>select</code> 6 most important columns in this analysis</p>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="data-manipulation.html#cb391-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb391-2"><a href="data-manipulation.html#cb391-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb391-3"><a href="data-manipulation.html#cb391-3" tabindex="-1"></a></span>
+<span id="cb391-4"><a href="data-manipulation.html#cb391-4" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb391-5"><a href="data-manipulation.html#cb391-5" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb391-6"><a href="data-manipulation.html#cb391-6" tabindex="-1"></a></span>
+<span id="cb391-7"><a href="data-manipulation.html#cb391-7" tabindex="-1"></a><span class="co"># Lets `select` 6 most important columns in this analysis</span></span>
+<span id="cb391-8"><a href="data-manipulation.html#cb391-8" tabindex="-1"></a>cars1 <span class="ot">=</span> mtcars <span class="sc">%&gt;%</span> <span class="fu">select</span>(mpg, cyl, disp, hp, qsec, am)</span>
+<span id="cb391-9"><a href="data-manipulation.html#cb391-9" tabindex="-1"></a></span>
+<span id="cb391-10"><a href="data-manipulation.html#cb391-10" tabindex="-1"></a><span class="fu">head</span>(cars1)</span></code></pre></div>
+<pre><code>##                    mpg cyl disp  hp  qsec am
+## Mazda RX4         21.0   6  160 110 16.46  1
+## Mazda RX4 Wag     21.0   6  160 110 17.02  1
+## Datsun 710        22.8   4  108  93 18.61  1
+## Hornet 4 Drive    21.4   6  258 110 19.44  0
+## Hornet Sportabout 18.7   8  360 175 17.02  0
+## Valiant           18.1   6  225 105 20.22  0</code></pre>
+<p>Lets now <code>filter</code> to find vehicles with an automatic transmission type. The <code>filter</code> verb will be chained to <code>select</code> verb with <code>%&gt;%</code>.</p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="data-manipulation.html#cb393-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb393-2"><a href="data-manipulation.html#cb393-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb393-3"><a href="data-manipulation.html#cb393-3" tabindex="-1"></a></span>
+<span id="cb393-4"><a href="data-manipulation.html#cb393-4" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb393-5"><a href="data-manipulation.html#cb393-5" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb393-6"><a href="data-manipulation.html#cb393-6" tabindex="-1"></a></span>
+<span id="cb393-7"><a href="data-manipulation.html#cb393-7" tabindex="-1"></a><span class="co"># Selct and filter chained together</span></span>
+<span id="cb393-8"><a href="data-manipulation.html#cb393-8" tabindex="-1"></a>cars2 <span class="ot">=</span> mtcars <span class="sc">%&gt;%</span><span class="fu">select</span>(mpg, cyl, disp, hp, qsec, am) <span class="sc">%&gt;%</span></span>
+<span id="cb393-9"><a href="data-manipulation.html#cb393-9" tabindex="-1"></a>  <span class="fu">filter</span>(am<span class="sc">==</span><span class="dv">0</span>)</span>
+<span id="cb393-10"><a href="data-manipulation.html#cb393-10" tabindex="-1"></a><span class="fu">head</span>(cars2)</span></code></pre></div>
+<pre><code>##                    mpg cyl  disp  hp  qsec am
+## Hornet 4 Drive    21.4   6 258.0 110 19.44  0
+## Hornet Sportabout 18.7   8 360.0 175 17.02  0
+## Valiant           18.1   6 225.0 105 20.22  0
+## Duster 360        14.3   8 360.0 245 15.84  0
+## Merc 240D         24.4   4 146.7  62 20.00  0
+## Merc 230          22.8   4 140.8  95 22.90  0</code></pre>
+<p>All these vehicles are of automatic transmission type, lets rank them according to the horsepower in descending order.</p>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="data-manipulation.html#cb395-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb395-2"><a href="data-manipulation.html#cb395-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb395-3"><a href="data-manipulation.html#cb395-3" tabindex="-1"></a></span>
+<span id="cb395-4"><a href="data-manipulation.html#cb395-4" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb395-5"><a href="data-manipulation.html#cb395-5" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb395-6"><a href="data-manipulation.html#cb395-6" tabindex="-1"></a></span>
+<span id="cb395-7"><a href="data-manipulation.html#cb395-7" tabindex="-1"></a><span class="co"># Select, filter and arrange chained together</span></span>
+<span id="cb395-8"><a href="data-manipulation.html#cb395-8" tabindex="-1"></a>cars3<span class="ot">=</span> mtcars <span class="sc">%&gt;%</span><span class="fu">select</span>(mpg, cyl, disp, hp, qsec, am, wt) <span class="sc">%&gt;%</span></span>
+<span id="cb395-9"><a href="data-manipulation.html#cb395-9" tabindex="-1"></a>  <span class="fu">filter</span>(am<span class="sc">==</span><span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb395-10"><a href="data-manipulation.html#cb395-10" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(hp))</span>
+<span id="cb395-11"><a href="data-manipulation.html#cb395-11" tabindex="-1"></a></span>
+<span id="cb395-12"><a href="data-manipulation.html#cb395-12" tabindex="-1"></a><span class="fu">head</span>(cars3)</span></code></pre></div>
+<pre><code>##                      mpg cyl  disp  hp  qsec am    wt
+## Duster 360          14.3   8 360.0 245 15.84  0 3.570
+## Camaro Z28          13.3   8 350.0 245 15.41  0 3.840
+## Chrysler Imperial   14.7   8 440.0 230 17.42  0 5.345
+## Lincoln Continental 10.4   8 460.0 215 17.82  0 5.424
+## Cadillac Fleetwood  10.4   8 472.0 205 17.98  0 5.250
+## Merc 450SE          16.4   8 275.8 180 17.40  0 4.070</code></pre>
+<p>A new column of weight in 1000kgs (wt_1000kgs) can be created by diving weight in 1000lbs by 2.20462. <code>mutate</code> verb will be chained also.</p>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="data-manipulation.html#cb397-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb397-2"><a href="data-manipulation.html#cb397-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb397-3"><a href="data-manipulation.html#cb397-3" tabindex="-1"></a></span>
+<span id="cb397-4"><a href="data-manipulation.html#cb397-4" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb397-5"><a href="data-manipulation.html#cb397-5" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb397-6"><a href="data-manipulation.html#cb397-6" tabindex="-1"></a></span>
+<span id="cb397-7"><a href="data-manipulation.html#cb397-7" tabindex="-1"></a><span class="co"># Multiple chains </span></span>
+<span id="cb397-8"><a href="data-manipulation.html#cb397-8" tabindex="-1"></a>cars4<span class="ot">=</span> mtcars <span class="sc">%&gt;%</span><span class="fu">select</span>(mpg, cyl, disp, hp, qsec, am, wt) <span class="sc">%&gt;%</span></span>
+<span id="cb397-9"><a href="data-manipulation.html#cb397-9" tabindex="-1"></a>  <span class="fu">filter</span>(am<span class="sc">==</span><span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb397-10"><a href="data-manipulation.html#cb397-10" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(hp)) <span class="sc">%&gt;%</span></span>
+<span id="cb397-11"><a href="data-manipulation.html#cb397-11" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wt_1000kgs=</span>wt<span class="sc">/</span><span class="fl">2.20462</span>)</span>
+<span id="cb397-12"><a href="data-manipulation.html#cb397-12" tabindex="-1"></a></span>
+<span id="cb397-13"><a href="data-manipulation.html#cb397-13" tabindex="-1"></a><span class="fu">head</span>(cars4)</span></code></pre></div>
+<pre><code>##                      mpg cyl  disp  hp  qsec am    wt wt_1000kgs
+## Duster 360          14.3   8 360.0 245 15.84  0 3.570   1.619327
+## Camaro Z28          13.3   8 350.0 245 15.41  0 3.840   1.741797
+## Chrysler Imperial   14.7   8 440.0 230 17.42  0 5.345   2.424454
+## Lincoln Continental 10.4   8 460.0 215 17.82  0 5.424   2.460288
+## Cadillac Fleetwood  10.4   8 472.0 205 17.98  0 5.250   2.381363
+## Merc 450SE          16.4   8 275.8 180 17.40  0 4.070   1.846123</code></pre>
+<p>The above process has explained how chained works in <code>dplyr</code>. Many functions/processed can be chained together to manipulate data to the desired output. The next section will apply chaining to biology and be used to answer a few questions that will cement your understanding in R as a biologist.</p>
+<div id="hands-on-exercises-2" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Hands-on Exercises<a href="data-manipulation.html#hands-on-exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You will be required to download the Furniture Sales Dataset from <a href="https://www.kaggle.com/datasets/rajagrawal7089/furniture-sales-data">here</a>. Use the data set to answer the questions below;<br />
+1. Perform the following tasks using a combination of <code>select()</code>, <code>filter()</code>, <code>arrange()</code>, <code>mutate()</code>, and <code>group_by()</code>.</p>
+<ol style="list-style-type: lower-roman">
+<li>Select the columns <code>"category"</code>, <code>"sales"</code>, and <code>"profit_margin"</code>. Filter the data set to include only orders with a <code>"sales"</code> amount greater than 25, and arrange the data by <code>"profit_margin"</code> in descending order.</li>
+<li>Group the data by <code>"category"</code> and calculate the total <code>sales</code> and <code>profit_margin</code> for each category. Arrange the results by total sales in ascending order.<br />
+<br></li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Answer the following questions by chaining two or three <code>dplyr</code> verbs:</li>
+</ol>
+<ol style="list-style-type: lower-roman">
+<li>What store type had products made of fabric material sold?</li>
+<li>What is the average <code>"profit margin"</code> for each <code>"category"</code> of products?</li>
+</ol>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-importing-and-exporting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/balsaedi/RCourse/edit/main/04-data_manipulation.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/balsaedi/RCourse/blob/main/04-data_manipulation.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

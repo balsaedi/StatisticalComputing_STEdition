@@ -1,0 +1,238 @@
+# Simple Linear Regression
+
+Welcome to the world of Simple Linear Regression! 🎉 This statistical technique is super handy when you want to explore the relationship between two continuous variables. Essentially, it helps us predict the value of one variable based on the value of another.
+
+For example, imagine you want to predict a student's exam score based on the number of hours they studied. Here, the hours studied are the **independent variable** (or predictor), and the exam score is the **dependent variable** (or response).
+
+**What is Simple Linear Regression?**
+
+Simple linear regression is essentially about finding the line that best describes the relationship between two variables(independent and dependent variables) in your data. The line is called the **regression line**, and it helps us make predictions. 
+
+## Basics of Wilkinson-Rogers Notation (y ~ x), Linear Regression
+
+In simple linear regression, we fit a straight line (called the regression line) through the data points. This line is defined by the equation:
+
+$$y = mx + b$$
+
+Where:
+
+- $y$ is the predicted value (dependent variable).
+- $m$ is the slope of the line (how much $y$ changes for a unit change in $x$).
+- $x$ is the independent variable.
+- $b$ is the y-intercept (the value of $y$ when $x$ is 0).
+
+<span style="color: orange;">**Try it!**</span> 
+
+Lets say, we have a data set of age and height of youngsters as below here:
+```
+age = c(5, 10, 15, 20, 25)
+height = c(110, 130, 150, 160, 170)
+```
+
+We can use the age to predict the height where age is the independent variable and height is the dependent variable(depends on age). The equation is written like this in R;
+```
+height ~ age
+```
+
+in short `independent_variable ~ dependent_variable`. Now, lets work it out using the `lm()` function
+```{r}
+# Creating a sample data set
+age = c(5, 10, 15, 20, 25)
+height = c(110, 130, 150, 160, 170)
+
+# Fitting a linear regression data set
+model_1 <- lm(height ~ age)
+```
+
+The `lm()` function stands for 'linear model` and it finds the best line to describle the relationship between height and age. 
+```{r}
+summary(model_1)
+```
+
+<span style="color: orange;">**Real world challenge**</span> 
+
+Let's use the built-in `mtcars` data set in R to demonstrate how to perform simple linear regression.
+
+Load the data set
+```{r}
+# Load the mtcars dataset
+data(mtcars)
+# View the first few rows of the dataset
+head(mtcars)
+```
+
+Fit the simple linear regression model that will predict `mpg` (miles per gallon) based on `wt` (the weight of the car).
+```{r}
+# Fit the linear regression model
+model_2 <- lm(mpg ~ wt, data = mtcars)
+```
+
+- Get the model summary to get important information about the model we just fitted. 
+```{r}
+# Get the summary of the model
+summary(model_2)
+```
+
+## Scatterplots with Regression Lines, Reading lm() Output
+
+Now that we have a model in place lets plot the data and regression line to understand the relationship. You remember we have just worked on a case of where we use the age of youngsters to find their height? That's fine! Lets plot a scatter plot and regression line to visualize the relationship between age and height.
+```{r}
+# Scatter plot of age vs height 
+plot(age, height,
+     main = "Height vs Age", 
+     xlab = "Age",
+     ylab = "Height",pch=19,
+     col = "blue"
+       )
+```
+
+The scatter plot shows that the youngsters tend to be taller as they get older. Now lets add a regression line to the data to see how well it fits the data;
+```{r}
+# Scatter plot of age vs height 
+plot(age, height,
+     main = "Height vs Age", 
+     xlab = "Age",
+     ylab = "Height",pch=19,
+     col = "blue"
+       )
+
+# Adding a regression line 
+abline(model_1, col="red", lwd=2)
+```
+
+The regression line helps us visually understand the trend. In our case here, the regression line closely follows the data points, therefore, our model is a good fit!
+
+<span style="color: orange;">**Real World example**</span> 
+
+We will still consider the model that we created above for the `mtcars` data set. Lets plot a scatter plot and fit a regression line based on the model that we have just created. 
+
+```{r}
+# Plot the data points
+plot(mtcars$wt, mtcars$mpg, 
+     main = "Simple Linear Regression", 
+     xlab = "Weight of the Car (wt)", 
+     ylab = "Miles Per Gallon (mpg)", 
+     pch = 19, col = "blue")
+
+# Add the regression line
+abline(model_2, col = "red")
+```
+
+Predictions can be made based on the data. Lets predict the mpg for car that weighs 3.5 tons
+```{r}
+# Predict mpg for a car that weighs 3.5 tons
+new_data <- data.frame(wt = 3.5)
+predicted_mpg <- predict(model_2, new_data)
+print(paste("Predicted MPG for a car weighing 3.5 tons:", round(predicted_mpg, 2)))
+```
+
+## Confidence Intervals for Regression Coefficients, Testing Coefficients
+
+Lets revisit the model that we fitted age and height of youths.
+```{r}
+summary(model_1)
+```
+
+Here we will focus on the coefficients and the confidence intervals. The confidence interval for each regression coefficient helps us understand the range within which true value of the coeefficient is likely to fall. 
+
+The `confint()` function in R is used to obtain this information. 
+```{r}
+# Calculate the confidence interval 
+confint(model_1)
+```
+
+As stated earlier the simple linear regression model equation is $y = mx + b$; we will remodel this equation to fit the 2.5% and 97.5% confidence interval inform of $height(y)  =  Coefficient(m) * age(x) + Intercept(b)$. Therefore: 
+
+- At 2.5% confidence interval; the equation is $$height  = 2.028 * age + 82.877$$
+- At 97.5% confidence interval; the equations is $$height  = 3.972 * age + 115.123$$
+
+Using the quations above you can estimate the height of the youth based on age. 
+
+<span style="color: green;">**Practical Exercise**</span> 
+
+In this exercise, you will be required to use the built-in R `mtcars` data set. Use the weight(`wt`) to predict the fuel consumption(`mpg`). Find the equation with the confidence interval. 
+
+_______________________________________________________________________
+<span style="color: brown;">**Solution**</span> 
+
+
+
+
+<span style="color: brown;">**________________________________________________________________________________**</span>
+
+## Identifying Points in a Plot
+
+We made the scatter plot above static. Here, we will enable any researcher to identify specific points in the chart. I will now plot the chart using `ggplot2` library. 
+
+Lets do it
+```{r}
+library(ggplot2)
+
+# Create the data set
+height_data <- data.frame(
+  age = c(5, 10, 15, 20, 25),
+  height = c(110, 130, 150, 160, 170)
+)
+
+# Plot the and label the points 
+ggplot(height_data, 
+       aes(x = age, y = height)) + 
+  geom_point(color = "blue", size=3) + # for scatter plot 
+  geom_smooth(method = "lm", color="red", se = FALSE) + # regression line 
+  geom_text(
+    aes(label = paste("(", age, ",", height, ")", sep="")),
+    vjust = -1, color = "darkgreen") + # For interactiveness 
+  labs(
+    title = "Age vs Height with Identified points", 
+    x = "Age", 
+    y = "Height"
+    ) + 
+  theme_classic()
+```
+
+<span style="color: orange;">**Try it!**</span>
+
+Lets repeat the same with the mtcars data set, we will plot a weight vs fuel consumption (mpg) with identified points in the plots
+
+```{r}
+library(ggplot2)
+
+# Load the data
+data(mtcars)
+
+# Plotting
+ggplot(mtcars, 
+       aes(x = wt, y = mpg)) + 
+  geom_point(color = "blue", size=3) + # for scatter plot 
+  geom_smooth(method = "lm", color="red", se = FALSE) + # regression line 
+  geom_text(
+    aes(label = paste("(", wt, ",", mpg, ")", sep="")),
+    vjust = -1, color = "darkgreen") + # For interactiveness 
+  labs(
+    title = "Wight vs mpg with Identified points", 
+    x = "Weight", 
+    y = "mpg"
+    ) + 
+  theme_classic()
+```
+
+
+## <span style="color: green;">**Hands-On Exercise**</span>
+
+In this exercise, you are required to download the boston housing data set from [here](https://www.kaggle.com/datasets/fedesoriano/the-boston-houseprice-data) and answer the following questions. 
+
+i. Write the simple linear regression equation in form of $y=mx + b$.
+ii. Import the data and fit the linear regression model using the `lm` function to find the relationship between the average number of rooms(`RM`) and the housing price(`MEDV`). `MEDV` is the target variable while `RM` is the independent variable. Generate the summary of the model
+iii. Create a scatter plot; x = `RM` and y = `MEDV`. 
+iv. Add a regression line to the scatter plot. 
+v. Use the `confint()` function to find the coefficients at 2.5% and 97.5 confidence intervals. 
+
+_______________________________________________________________________
+<span style="color: brown;">**Solution**</span> 
+
+
+
+
+<span style="color: brown;">**________________________________________________________________________________**</span>
+
+

@@ -1,0 +1,458 @@
+--- 
+title: "Statistical Computing"
+author: "Dr. Basim Alsaedi"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+---
+
+# Reviews
+## Data Types and Structures 
+### Data Types 
+There are different kinds of values in R that can be manipulated in variables. They most commonly used are; strings, numerics(integers and floats) and boolean values. The function `class` can be used to find the data type.
+
+<span style="color: orange;">**Try it!**</span> 
+
+Before diving deep into data types, lets create a value with a random value for instance `age` and finds its data type. 
+```{r}
+age <- 27
+class(age)
+```
+
+The `age` is a `"numeric"` data type variable, interesting?
+
+Lets explore different data types and their examples; 
+
+1. **Integers: ** These are whole numbers without dev=cimal point(e.g., 10, -5). In R, it is specified with the `L` suffix like `10L`. 
+2. **Floats: ** These are numbers with decimal points(e.g. 3.14, -2.718). R refers them as numerics. 
+3. **Boolean(Logical): ** True or False values, represented as `TRUE` or `FALSE` in R. They are crucial in conditional statements. 
+4. **Strings(Character): ** These are text values enclosed in quotes(e.g. `"Hello world"` , names like `"John", "Mustafa", "Patel"`, variable names like `"age", "gender", "salary"`)
+
+You will often deal with mixed data types when analyzing real-world data sets therefore understanding these will help you handles any data set!
+
+<span style="color: orange;">**Examples**</span>
+
+Lets have some fun! We will create different variables and find their data types;
+
+i. `age <- 34L`
+```{r}
+age <- 34L
+class(age)
+```
+ii. `weight <- 68.2`
+```{r}
+weight <- 68.2
+class(weight)
+```
+iii. `name <- "Mustafa"`
+```{r}
+name <- "Mustafa"
+class(name)
+```
+iv. `is_winter <- FALSE`
+```{R}
+is_winter <- FALSE
+class(is_winter)
+```
+
+You see how simple it is to find the data type of different variables in R! Remember the `class` function returns any number whether with decimal or whole as `"numeric"`. It only returns `"integer"` when there is a suffix `L`. 
+
+<span style="color: green;">**Practical Exercise**</span>
+
+Try out the practical exercise below to test your understanding in data types 
+
+i. Find the data type of `98.03` using `class()` function.
+ii. Assign the value `98.03` to variable `height` and find data type of height.
+iii. There are 27 goats in a field, assign the quantity of goats to a variable `goats` and find the data type of the variable `goats`. Remember to add suffix `L` to  the value `27`.
+iv. Find the data type of the value `"school"` using the `class()` function.
+v. Assign your first name to a variable `firstname` and find its data type. **Remember to enclose it in quotation marks**
+vi. Create a variable `is_student` and assign it the value `TRUE`. Use the `class()` function to find its data type. 
+
+_______________________________________________________________________
+<span style="color: brown;">**Solution**</span> 
+
+
+
+<span style="color: brown;">**________________________________________________________________________________**</span>
+
+### Data Structures 
+This is the organization of data into or multiple data values in specific structures, they include vectors, matrix and data frames. Lets explore the mentioned data structures and their examples;
+
+1. **Vector: ** This is a sequence of elements of the same data types(e.g., ``c(1, 2, 3)` is a numeric vector)
+2. **Matrix: ** This is a two-dimensional data structure with rows and columns, where all elements are of the same type(e.g. numbers).
+3. **Data Frames: ** This is the most common R data structure for handling tabular data(like an excel sheet). A data frame can contain different data types in each column unlike matrices and vectors. 
+
+Data frames are central to real-world data analysis. You will work with them to analyze, transform, and visualize data sets, whether you are calculating averages or identifying trends. The `is.vector`, `is.matrix` and `is.data.frame` functions are used to confirm if the variable in question is a vector, matrix or data frame respectively. 
+
+<span style="color: orange;">**Examples**</span>
+
+Lets have some fun! We will create different data structures and find their data types: 
+
+- Create a vector, `marks` to store the values, `23, 67, 98, 34, 98, 21`. Print the vector to the console and use `is.vector` function to confirm if its a actually a vector. 
+```{r}
+marks = c(23, 67, 98, 34, 98, 21)
+print(marks) # print to the console
+is.vector(marks) # find its data structure
+```
+- Create a matrix with values from 1 to 9 and use the `is.matrix` function to find to confirm if its really a matrix.
+```{r}
+vector1 = seq(1, 9) 
+
+# Convert to matrix
+## create by column 
+m1=matrix(vector1, ncol=3)
+print(m1) # print the matrix to the console 
+
+is.matrix(m1) # confirms if its really a matrix 
+```
+- Create a `data.frame` from the above matrix. Add the column names as `"A", "B", "C"`. Confirm if its really a matrix. 
+```{r}
+var_names <- c("A", "B", "C") # vector to store variable names 
+
+m1_df <- data.frame(var_names, m1) # create the data frame
+print(m1_df) #print to the console 
+
+is.data.frame(m1_df) #confirms if its really a data.frame. 
+```
+
+<span style="color: green;">**Practical Exercise**</span> 
+
+Try out the exercise below to test your understanding in R data structures;
+
+i. Create a vector named `height` with the values `120.1, 118, 123.4, 130.8, 115.2`. Use the `is.vector` to confirm that the created variable is a vector.
+ii. Use `length()` function to count the number of elements in the vector. 
+iii. Create a matrix `m1` from the vector `v1` where `v1 <- seq(1, 12)` with three columns. Use the `is.matrix` function to confirm if the said variable is a matrix. 
+iv. Access the third column by running the command `m1[, 3]`.
+v. Access the second row by running the command `m1[2,]`. 
+vi. Create a data frame `students_df` with the columns `"Name"`, `"Age"`, and `"Marks"` for three students. Where `Name <- c("Pragya", "Thomas", "Ali")`, `Age <- c(21, 19, 23)` and `Marks <- c(68, 72, 67)`. 
+
+_______________________________________________________________________
+<span style="color: brown;">**Solution**</span> 
+
+
+
+
+<span style="color: brown;">**________________________________________________________________________________**</span>
+
+## Data Importing and Exporting 
+Importing and exporting data is the foundation of data analysis workflows. The main two types of data files used are CSV and excel files. 
+
+- **CSV Files: ** R can easily import CSV files using `read.csv("filename.csv")`. The CSV is one of the most common formats you will encounter.
+- **Excel Files: ** For excel files, you can use the `readxl` package with the function `read_excel`. 
+
+<span style="color: orange;">**Try it: **</span>
+
+Let's have some fun by importing;
+
+i. From CSV file 
+```{r}
+m1_imported <- read.csv("data/m1.csv") # import the csv data set
+m1_imported # Display the data
+```
+ii. From Excel file
+```{r}
+library(readxl)
+
+students_imported <- read_excel("data/students.xlsx") # Import the data
+students_imported # Display the data
+```
+
+After data wrangling, manipulation and processing, the end product(processed data) can be saved for further use. The data can also be shared to others. Lets explore how export the CSV and Excel files 
+
+- **To CSV: ** You can save your data to CSV format using `write.csv(data, "filepath.csv")`.
+- **To Excel** To write to Excel, you can use `write.xlsx(data, "filepath.xlsx")` from the `openxlsx` package. 
+
+<span style="color: orange;">**Try it: **</span>
+
+Lets export the previously imported data set locally 
+
+i. To CSV
+```{r}
+write.csv(m1_imported, "data/m1_exported.csv") # Write the data set locally
+```
+ii. Excel File 
+```{r}
+library(openxlsx)
+
+write.xlsx(students_imported, "data/students_exported.xlsx")
+```
+
+## Data Cleaning 
+
+Before you analyze data, it is crucial to ensure that it is clean. Here are some common issues in data cleaning;
+
+- **Null Values: ** Missing data can distort your analysis. Functions like `is.na()` and `na.omit()` are used to detect and remove null values respectively. Null values can also be imputed by filling the missing values with the most relevant value for instance mean, mode or median of the variable, zero, or any dedicated value. 
+- **Duplicated Records: ** Duplicates can cause bias in results and they can detected using the `duplicated()` function. This duplicated records can be removed by `unique()` function from R or `distinct()` from `dplyr` package. 
+- **Outliers: ** These are extreme values that don't follow the general trend. The use of summary statistics(specifically IQR) and boxplots can be used to cap these values based on the context. 
+
+Data cleaning is like polishing a diamond-it ensures the data is ready for analysis, free from distortions like missing values or outliers that can skew your insights. 
+
+<span style="color: orange;">**Try it: **</span> 
+
+Lets have some fan! We will create a random data set, identify all data issues and address them by cleaning. 
+
+- Create a sample data set 
+```{r}
+# Create a dataset
+set.seed(42)
+df <- data.frame(
+  Product = c('Shoes', 'Laptop', 'Watch', 'Phone', 'Shoes', 'Watch', 'Laptop', 'Shoes', 'Laptop', 'Phone'),
+  Sales = c(150, 500, NA, 300, 150, 1000, 500, 150, 500, 300), # Outlier in Sales (1000)
+  Category = c('Fashion', 'Tech', 'Fashion', 'Tech', 'Fashion', 'Fashion', 'Tech', 'Fashion', 'Tech', 'Tech'),
+  Discount = c(10, 0, 20, 5, 10, 20, 0, 10, 0, 5),
+  Returns = c(2, 0, 1, 0, 2, 1, 0, 2, 0, 0),
+  Profit = c(30, 100, NA, 70, 30, 500, 100, 30, 100, 70)  # Outlier in Profit (500)
+)
+
+# Add duplicated rows
+df <- rbind(df, df[2:3, ])
+
+# View the dataset
+head(df)
+```
+- Count the null values 
+```{r}
+sum(is.na(df))
+```
+
+- There are 4 null values in the data set. Let's handle the null values by filling them with mean of the respective variables.
+```{r}
+# Fill missing Sales and Profit with the mean of the respective columns
+df$Sales[is.na(df$Sales)] <- mean(df$Sales, na.rm = TRUE)
+df$Profit[is.na(df$Profit)] <- mean(df$Profit, na.rm = TRUE)
+
+# View the data set after handling null values
+head(df)
+
+# Count the null values in the data set to confirm the operation
+sum(is.na(df))
+```
+- The null values are now filled and the data set is complete. Let's find if there exists some duplicated records and how many are they? 
+```{r}
+# Count the duplicated rows
+sum(duplicated(df))
+
+# Shape of the data set 
+dim(df)
+```
+
+- There are 7 duplicated rows. We will remove the duplicated records and retain only one row of the same kind. This can be achieved using `unique()` from base R or `distinct()` from `dplyr` package. In this case we will be using the `distinct` command. 
+```{r}
+# Load the required libraries 
+library(dplyr)
+
+# Remove duplicated rows
+df_cleaned <- df %>% distinct()
+
+# Count the duplicated records
+sum(duplicated(df_cleaned))
+
+# Shape of the data set 
+dim(df_cleaned)
+```
+
+- The data has no duplicated records and it is evident that 7 records(duplicated) were deleted. They are only 5 rows remaining. The last step of data cleaning in this case is to identify outliers in the `Sales` and `Profit`, and remove them using the IQR method. 
+```{r}
+# Use the IQR method to detect outliers in Sales and Profit
+Q1_sales <- quantile(df_cleaned$Sales, 0.25)
+Q3_sales <- quantile(df_cleaned$Sales, 0.75)
+IQR_sales <- Q3_sales - Q1_sales
+
+Q1_profit <- quantile(df_cleaned$Profit, 0.25)
+Q3_profit <- quantile(df_cleaned$Profit, 0.75)
+IQR_profit <- Q3_profit - Q1_profit
+
+# Filter out outliers
+df_cleaned <- df_cleaned %>%
+  filter(!(Sales < (Q1_sales - 1.5 * IQR_sales) | Sales > (Q3_sales + 1.5 * IQR_sales))) %>%
+  filter(!(Profit < (Q1_profit - 1.5 * IQR_profit) | Profit > (Q3_profit + 1.5 * IQR_profit)))
+
+# Find out how many records were affected
+dim(df_cleaned)
+```
+
+- Only one row had outliers and was removed. The data is now clean and ready for further analysis. 
+
+## Data Visualization
+
+Data visualization is the representation of data through use of common graphics, such as charts, plots, infographics and even animations. In this course we will use the famous `ggplot2` library to create charts and graphs. `ggplot` is one of the most popular and flexible data visualization libraries in R. It follows the **grammar of graphics** philosophy, allowing you to build plots in layers. Here are some of the basic plots in data visualization;
+
+- **Scatter Plots: ** used to visualize the relationship between two variables in R.
+- **Bar Charts: ** used to compare categorical data. 
+- **Histograms: ** used to represent distribution of a single continuous variable. 
+
+Visualizations are powerful tools that help you see patterns and insights that raw data might hide. A well-made plot can communicate your findings more effectively than numbers alone. 
+
+<span style="color: orange;">**Try it: **</span>
+
+Lets use the above data set that we cleaned to plot simple charts in R using `ggplot` library. 
+
+- Install the package if not installed
+```
+install.packages("ggplot2")
+```
+
+- Load the library
+```{r}
+library(ggplot2)
+```
+
+There are 5 key steps in plotting in ggplot;
+
+1. **The Setup** - Read the data set, define x and y axis. `ggplot(data, aes(x, y))+...`
+2. **The Labels** - Title, X and Y axis labels. `... + labs(xlab=, ylab=, title=) + ...`
+3. **The Theme** - Default, Black and White, colored etc. `....+ <theme_type>..`
+4. **The Facets** - Individual Graphs for each group in data with exactly same range
+5. **The Layers or geoms** - The actual plot type - e.g Bar plot, Box plot, Violin plot etc. `...+ geom_bar() + ...` for bar chart, `...+ geom_point() + ...` for scatter plot etc. 
+
+Lets explore how to create a basic chart using `ggplot2` library in R. We will create a sample student data set that we will use to visualize data in R. 
+
+Create the data set
+```{r}
+library(dplyr)
+
+# Sample data for students 
+set.seed(27)
+
+students_df <- data.frame(
+  student_id = 1:100,
+  score = sample(50:100, 100, replace = TRUE),
+  study_hours = sample(5:30, 100, replace = TRUE),
+  gender = sample(c("Male", "Female"), 100, replace = TRUE),
+  grade = sample(c("Freshman", "Sophomore", "Junior", "Senior"), 100, replace = TRUE)
+)
+
+head(students_df)
+```
+
+Plot the charts;
+
+**Scatter plot**
+
+We will plot to show the relationship between study hours and scores where scores is assumed to depend on study hours. Therefore scores will be on the y-axis and the study hours will be at the x-axis. 
+```{r}
+# The set up
+ggplot(data = students_df, 
+       aes(x = study_hours, y = score)) + 
+  # The geoms - for scatter plot 
+  geom_point() +
+  
+  # Labels 
+  labs(
+    title = "Study hours vs scores",
+    x = "Weekly study hours",
+    y = "Scores"
+  ) + 
+  
+  # Theme
+  theme_classic()
+```
+
+From the chart, study hours per week does not have an effect of the score - remember this is randomly generated data set. 
+
+**Bar Chart** 
+
+We will find the count of students in each grade level 
+```{r}
+ggplot(data = students_df, 
+       aes(x=grade)) + 
+  geom_bar() + 
+  labs(
+    title = "Students by grade level",
+    x = "Grade level",
+    y = "Number of Students"
+  ) + 
+  theme_minimal()
+```
+
+The Senior grade has the fewest students while the Sophomore grade takes the lead in the student population. 
+
+**Pie Chart**
+
+We will plot the gender distribution of students on a pie chart to show the proportion of male and female students. 
+```{r}
+# Load required libraries
+library(ggplot2)
+library(dplyr)
+
+# Ensure `gender` column is recognized
+students_df$gender <- as.factor(students_df$gender)
+
+# Count gender distribution
+gender_count <- dplyr::count(students_df, gender)
+
+# Create Pie Chart
+ggplot(data = gender_count, aes(x = "", y = n, fill = gender)) + 
+  geom_bar(stat = "identity", width = 1) + 
+  coord_polar("y") + 
+  labs(
+    title = "Gender Distribution of Students",
+    fill = "Gender"
+  ) +
+  theme_classic() +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    axis.title = element_blank(),
+    axis.text = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+From the pie chart, most students in the school are females. 
+
+**Histogram** 
+
+Finally we will plot a histogram to plot the distribution of scores. 
+```{r}
+ggplot(data = students_df,
+       aes(x=score)) + 
+  geom_histogram() +
+  labs(
+    title = "Students' scores distribution",
+    x = "Score", 
+    y = "Count of students"
+  ) + 
+  theme_minimal()
+```
+
+## <span style="color: green;">**Hands-on Exercises**</span> 
+
+You will be required to work with a randomly generated patients data. Here are the steps to take to work on this exercise; 
+
+- You will run the code below to generate the data set. 
+```{r}
+# Set seed for reproducibility 
+set.seed(71)
+
+# Generate the data set 
+patients_data <- data.frame(
+  patient_id = 1:1000,
+  age = sample(20:80, 1000, replace = TRUE), 
+  height_cm = rnorm(1000, mean = 165, sd=10), 
+  weight_kg = runif(1000, min=50, max=135),
+  gender = sample(c("Male", "Female"), 1000, replace = TRUE),
+  condition = sample(c("Hypertension", "Malaria", "Pneumonia", "Diabetes", 
+                       "Asthma", "Healthy"), 1000, replace=TRUE)
+)
+
+head(patients_data)
+```
+
+You will use the `patients_data` to answer the questions below;
+
+1. Identify the data types for each column using the `str()` function. 
+2. Find the shape of the data set using the `dim` function. 
+3. Save the `patients_data` to CSV and name the file `patients_data.csv`. 
+4. Import the saved data set as `patients_df`. 
+5. Using the imported data set, `patients_df`, create the following charts. 
+
+  a. Plot a histogram to show the distribution of height. 
+  b. Create a bar chart to compare the number of male and female patients. 
+  c. Use a pie chart to show the composition of different health conditions. 
+  d. Plot a scatter plot to show the relationship between age and weight.
+
+_______________________________________________________________________
+<span style="color: brown;">**Solution**</span> 
+
+
+
+<span style="color: brown;">**________________________________________________________________________________**</span>

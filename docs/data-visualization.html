@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Data Visualization | R Course</title>
+  <meta name="description" content="Chapter 5 Data Visualization | R Course" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Data Visualization | R Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Data Visualization | R Course" />
+  
+  
+  
+
+<meta name="author" content="YOUR NAME HERE" />
+
+
+<meta name="date" content="2024-10-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-manipulation.html"/>
+<link rel="next" href="explanatory-data-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SHORT TITLE HERE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to R and Basic Programming Concepts</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#overview-of-r-programming"><i class="fa fa-check"></i><b>1.1</b> Overview of R Programming</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#introduction-to-r"><i class="fa fa-check"></i><b>1.1.1</b> Introduction to R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#importance-of-r-in-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Importance of R in Data Analysis</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#application-of-r-in-various-industries"><i class="fa fa-check"></i><b>1.1.3</b> Application of R in Various Industries</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#introduction-to-the-r-ecosystem"><i class="fa fa-check"></i><b>1.2</b> Introduction to the R ecosystem</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#r-studio"><i class="fa fa-check"></i><b>1.2.1</b> R Studio</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#cran"><i class="fa fa-check"></i><b>1.2.2</b> CRAN</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#setting-up-r-environment"><i class="fa fa-check"></i><b>1.3</b> Setting Up R Environment</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#installation-of-r-and-rstudio"><i class="fa fa-check"></i><b>1.3.1</b> Installation of R and RStudio</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#introduction-to-rstudio-interface"><i class="fa fa-check"></i><b>1.3.2</b> Introduction to RStudio Interface</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#basic-r-syntax-and-commands"><i class="fa fa-check"></i><b>1.3.3</b> Basic R Syntax and Commands</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hands-on-exercise"><i class="fa fa-check"></i><b>1.4</b> Hands-on Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html"><i class="fa fa-check"></i><b>2</b> Basic Data Types and Structures</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-types"><i class="fa fa-check"></i><b>2.1</b> Data types</a></li>
+<li class="chapter" data-level="2.2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-structures"><i class="fa fa-check"></i><b>2.2</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#vector"><i class="fa fa-check"></i><b>2.2.1</b> Vector</a></li>
+<li class="chapter" data-level="2.2.2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#matrix"><i class="fa fa-check"></i><b>2.2.2</b> Matrix</a></li>
+<li class="chapter" data-level="2.2.3" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-frame"><i class="fa fa-check"></i><b>2.2.3</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#hands-on-exercises"><i class="fa fa-check"></i><b>2.3</b> <span style="color: green;">Hands-on Exercises</span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html"><i class="fa fa-check"></i><b>3</b> Data Importing and Exporting</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-importing"><i class="fa fa-check"></i><b>3.1</b> Introduction to Data Importing</a></li>
+<li class="chapter" data-level="3.2" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#demonstration-of-data-importing"><i class="fa fa-check"></i><b>3.2</b> Demonstration of Data Importing</a></li>
+<li class="chapter" data-level="3.3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-exporting"><i class="fa fa-check"></i><b>3.3</b> Introduction to Data Exporting</a></li>
+<li class="chapter" data-level="3.4" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#practical-exercise"><i class="fa fa-check"></i><b>3.4</b> Practical Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation.html"><a href="data-manipulation.html#basic-data-manipulation"><i class="fa fa-check"></i><b>4.1</b> Basic Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="data-manipulation.html"><a href="data-manipulation.html#introduction-to-data-manipulation"><i class="fa fa-check"></i><b>4.1.1</b> Introduction to Data Manipulation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-manipulation.html"><a href="data-manipulation.html#subsetting-and-filtering-data"><i class="fa fa-check"></i><b>4.1.2</b> Subsetting and Filtering Data:</a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-manipulation.html"><a href="data-manipulation.html#sorting-data"><i class="fa fa-check"></i><b>4.1.3</b> Sorting Data</a></li>
+<li class="chapter" data-level="4.1.4" data-path="data-manipulation.html"><a href="data-manipulation.html#basic-data-cleaning"><i class="fa fa-check"></i><b>4.1.4</b> Basic Data Cleaning</a></li>
+<li class="chapter" data-level="4.1.5" data-path="data-manipulation.html"><a href="data-manipulation.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>4.1.5</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>4.2</b> Data Manipulation with Dplyr</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-manipulation.html"><a href="data-manipulation.html#introduction-to-dplyr-package"><i class="fa fa-check"></i><b>4.2.1</b> Introduction to Dplyr package</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-manipulation.html"><a href="data-manipulation.html#key-functions-in-dplyr"><i class="fa fa-check"></i><b>4.2.2</b> Key Functions in dplyr</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-manipulation.html"><a href="data-manipulation.html#select"><i class="fa fa-check"></i><b>4.2.3</b> select</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-manipulation.html"><a href="data-manipulation.html#filter"><i class="fa fa-check"></i><b>4.2.4</b> filter</a></li>
+<li class="chapter" data-level="4.2.5" data-path="data-manipulation.html"><a href="data-manipulation.html#arrange"><i class="fa fa-check"></i><b>4.2.5</b> arrange</a></li>
+<li class="chapter" data-level="4.2.6" data-path="data-manipulation.html"><a href="data-manipulation.html#mutate"><i class="fa fa-check"></i><b>4.2.6</b> mutate</a></li>
+<li class="chapter" data-level="4.2.7" data-path="data-manipulation.html"><a href="data-manipulation.html#summarise"><i class="fa fa-check"></i><b>4.2.7</b> Summarise</a></li>
+<li class="chapter" data-level="4.2.8" data-path="data-manipulation.html"><a href="data-manipulation.html#group_by"><i class="fa fa-check"></i><b>4.2.8</b> group_by</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation.html"><a href="data-manipulation.html#chaining"><i class="fa fa-check"></i><b>4.3</b> Chaining</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data-manipulation.html"><a href="data-manipulation.html#hands-on-exercises-2"><i class="fa fa-check"></i><b>4.3.1</b> Hands-on Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>5</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-visualization.html"><a href="data-visualization.html#basic-data-visualization"><i class="fa fa-check"></i><b>5.1</b> Basic Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data-visualization.html"><a href="data-visualization.html#introduction-to-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> Introduction to ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="data-visualization.html"><a href="data-visualization.html#advanced-data-visualization"><i class="fa fa-check"></i><b>5.2</b> Advanced Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="data-visualization.html"><a href="data-visualization.html#creating-complex-visualizations"><i class="fa fa-check"></i><b>5.2.1</b> Creating Complex Visualizations</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-visualization.html"><a href="data-visualization.html#combining-multiple-plots"><i class="fa fa-check"></i><b>5.2.2</b> Combining Multiple Plots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html"><i class="fa fa-check"></i><b>6</b> Explanatory Data Analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#introduction-to-eda"><i class="fa fa-check"></i><b>6.1</b> Introduction to EDA</a></li>
+<li class="chapter" data-level="6.2" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#choosing-a-data-set"><i class="fa fa-check"></i><b>6.2</b> Choosing a data set</a></li>
+<li class="chapter" data-level="6.3" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#conducting-eda"><i class="fa fa-check"></i><b>6.3</b> Conducting EDA</a></li>
+<li class="chapter" data-level="6.4" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#present-findings"><i class="fa fa-check"></i><b>6.4</b> Present Findings</a></li>
+<li class="chapter" data-level="6.5" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#eda---example"><i class="fa fa-check"></i><b>6.5</b> <span style="color: brown;">EDA - Example</span></a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#introduction"><i class="fa fa-check"></i><b>6.5.1</b> <span style="color: brown;">Introduction</span></a></li>
+<li class="chapter" data-level="6.5.2" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#data-assessment-and-cleaning"><i class="fa fa-check"></i><b>6.5.2</b> <span style="color: brown;">Data Assessment and Cleaning</span></a></li>
+<li class="chapter" data-level="6.5.3" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#data-visualization-1"><i class="fa fa-check"></i><b>6.5.3</b> <span style="color: brown;">Data Visualization</span></a></li>
+<li class="chapter" data-level="6.5.4" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#key-findings"><i class="fa fa-check"></i><b>6.5.4</b> <span style="color: brown;">Key Findings</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistical-analysis.html"><a href="statistical-analysis.html"><i class="fa fa-check"></i><b>7</b> Statistical Analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#basic-statistical-concepts"><i class="fa fa-check"></i><b>7.1</b> Basic Statistical Concepts</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-descriptive-statistics"><i class="fa fa-check"></i><b>7.1.1</b> Introduction to Descriptive Statistics</a></li>
+<li class="chapter" data-level="7.1.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#visualization-of-descriptive-statistics"><i class="fa fa-check"></i><b>7.1.2</b> Visualization of Descriptive Statistics</a></li>
+<li class="chapter" data-level="7.1.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercise-1"><i class="fa fa-check"></i><b>7.1.3</b> Hands On Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#correlation-and-regression-analysis"><i class="fa fa-check"></i><b>7.2</b> Correlation and Regression Analysis</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-correlation"><i class="fa fa-check"></i><b>7.2.1</b> Introduction to Correlation</a></li>
+<li class="chapter" data-level="7.2.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-regression-analysis"><i class="fa fa-check"></i><b>7.2.2</b> Introduction to Regression Analysis</a></li>
+<li class="chapter" data-level="7.2.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>7.2.3</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#advanced-statistical-methods"><i class="fa fa-check"></i><b>7.3</b> Advanced Statistical Methods</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-hypothesis-testing"><i class="fa fa-check"></i><b>7.3.1</b> Introduction to Hypothesis Testing</a></li>
+<li class="chapter" data-level="7.3.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercises-4"><i class="fa fa-check"></i><b>7.3.2</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="statistical-analysis.html"><a href="statistical-analysis.html#project-applying-statistical-analysis"><i class="fa fa-check"></i><b>7.4</b> Project: Applying Statistical Analysis</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#project-overview"><i class="fa fa-check"></i><b>7.4.1</b> Project Overview</a></li>
+<li class="chapter" data-level="7.4.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#conducting-statistical-analysis"><i class="fa fa-check"></i><b>7.4.2</b> Conducting Statistical Analysis</a></li>
+<li class="chapter" data-level="7.4.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#presenting-statistical-findings"><i class="fa fa-check"></i><b>7.4.3</b> Presenting Statistical Findings</a></li>
+<li class="chapter" data-level="7.4.4" data-path="statistical-analysis.html"><a href="statistical-analysis.html#example-ecommerce-statistical-analysis"><i class="fa fa-check"></i><b>7.4.4</b> <span style="color: brown;">Example: Ecommerce Statistical Analysis</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html"><i class="fa fa-check"></i><b>8</b> Working with Real-World Data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#handling-large-datasets"><i class="fa fa-check"></i><b>8.1</b> Handling Large Datasets</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#challenges-of-large-data-sets"><i class="fa fa-check"></i><b>8.1.1</b> Challenges of Large Data sets</a></li>
+<li class="chapter" data-level="8.1.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#efficient-data-handling-techniques"><i class="fa fa-check"></i><b>8.1.2</b> Efficient Data Handling Techniques</a></li>
+<li class="chapter" data-level="8.1.3" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#reading-and-writing-large-files"><i class="fa fa-check"></i><b>8.1.3</b> Reading and Writing Large Files</a></li>
+<li class="chapter" data-level="8.1.4" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#hands-on-exercises-5"><i class="fa fa-check"></i><b>8.1.4</b> Hands-On Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#data-cleaning-and-transformation"><i class="fa fa-check"></i><b>8.2</b> Data Cleaning and Transformation</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#introduction-to-data-cleaning"><i class="fa fa-check"></i><b>8.2.1</b> Introduction to Data Cleaning</a></li>
+<li class="chapter" data-level="8.2.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#hands-on-exercises-6"><i class="fa fa-check"></i><b>8.2.2</b> Hands-On Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="time-series-analysis.html"><a href="time-series-analysis.html"><i class="fa fa-check"></i><b>9</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#introduction-to-time-series-data"><i class="fa fa-check"></i><b>9.1</b> Introduction to Time Series Data</a></li>
+<li class="chapter" data-level="9.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#basic-time-series-concepts"><i class="fa fa-check"></i><b>9.2</b> Basic Time Series Concepts</a></li>
+<li class="chapter" data-level="9.3" data-path="time-series-analysis.html"><a href="time-series-analysis.html#basic-time-series-forecasting"><i class="fa fa-check"></i><b>9.3</b> Basic Time Series Forecasting</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#moving-averages"><i class="fa fa-check"></i><b>9.3.1</b> Moving Averages</a></li>
+<li class="chapter" data-level="9.3.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#arima-model"><i class="fa fa-check"></i><b>9.3.2</b> ARIMA model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="time-series-analysis.html"><a href="time-series-analysis.html#hands-on-exercises-7"><i class="fa fa-check"></i><b>9.4</b> Hands-On Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="capstone-project.html"><a href="capstone-project.html"><i class="fa fa-check"></i><b>10</b> Capstone Project</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="capstone-project.html"><a href="capstone-project.html#introduction-2"><i class="fa fa-check"></i><b>10.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="capstone-project.html"><a href="capstone-project.html#project-overview-and-objectives"><i class="fa fa-check"></i><b>10.1.1</b> Project Overview and Objectives</a></li>
+<li class="chapter" data-level="10.1.2" data-path="capstone-project.html"><a href="capstone-project.html#group-formation"><i class="fa fa-check"></i><b>10.1.2</b> Group Formation</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="capstone-project.html"><a href="capstone-project.html#project-planning"><i class="fa fa-check"></i><b>10.2</b> Project Planning</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="capstone-project.html"><a href="capstone-project.html#defining-the-problem-statement"><i class="fa fa-check"></i><b>10.2.1</b> Defining the problem statement</a></li>
+<li class="chapter" data-level="10.2.2" data-path="capstone-project.html"><a href="capstone-project.html#planning-the-analysis-workflow"><i class="fa fa-check"></i><b>10.2.2</b> Planning the Analysis WorkFlow</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="capstone-project.html"><a href="capstone-project.html#project-execution"><i class="fa fa-check"></i><b>10.3</b> Project Execution</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="capstone-project.html"><a href="capstone-project.html#part-1"><i class="fa fa-check"></i><b>10.3.1</b> Part 1</a></li>
+<li class="chapter" data-level="10.3.2" data-path="capstone-project.html"><a href="capstone-project.html#part-2"><i class="fa fa-check"></i><b>10.3.2</b> Part 2</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="capstone-project.html"><a href="capstone-project.html#project-presentations-and-feedback"><i class="fa fa-check"></i><b>10.4</b> Project Presentations and Feedback</a></li>
+<li class="chapter" data-level="10.5" data-path="capstone-project.html"><a href="capstone-project.html#example-ecommerce-project"><i class="fa fa-check"></i><b>10.5</b> <span style="color: brown;">Example: Ecommerce Project</span></a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="capstone-project.html"><a href="capstone-project.html#part-1-1"><i class="fa fa-check"></i><b>10.5.1</b> <span style="color: brown;">Part 1</span></a></li>
+<li class="chapter" data-level="10.5.2" data-path="capstone-project.html"><a href="capstone-project.html#part-2-1"><i class="fa fa-check"></i><b>10.5.2</b> <span style="color: brown;">Part 2</span></a></li>
+<li class="chapter" data-level="10.5.3" data-path="capstone-project.html"><a href="capstone-project.html#presentation-and-feedback"><i class="fa fa-check"></i><b>10.5.3</b> <span style="color: brown;">Presentation and Feedback</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>11</b> Datasets</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-visualization" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Data Visualization<a href="data-visualization.html#data-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="basic-data-visualization" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Basic Data Visualization<a href="data-visualization.html#basic-data-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-to-ggplot2" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Introduction to ggplot2<a href="data-visualization.html#introduction-to-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="images/ggplot.png" /></p>
+<p>This is package designed for data visualization. It provides a powerful and flexible framework for creating complex and aesthetically pleasing visualizations, allowing users to layer various components such as axes, scales, colors, and <code>geoms</code> to create detailed and customizable plots.</p>
+<p>The package is said that it implements the principle of “Grammar of Graphics”. The “Grammar of Graphics” is a conceptual framework for creating graphs by Leland Wilkinson. The process of creating graphs is broken into fundamental components. This allows structure and flexible approach in data visualization. The plots are constructed by a layered approach by implementing these concepts step by step; data, aesthetics(<code>aes</code>), geometrics(<code>geoms</code>), statistical transformations (<code>stats</code>), scales, cordinates and facets.</p>
+<p>The package is also under the <code>tidyverse</code> package but can be installed by</p>
+<pre><code>install.packages(&quot;ggplot2&quot;)</code></pre>
+<p>Once the package is installed, it can be loaded by</p>
+<pre><code>library(ggplot2)</code></pre>
+There are 5 key steps in plotting in ggplot;
+<p>
+<p>1.<strong>The Setup</strong> - Read the data set, define x and y axis</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p><strong>The Labels</strong> - Title, X and Y axis labels</p></li>
+<li><p><strong>The Theme</strong> - Default, Black and White, colored etc.</p></li>
+<li><p><strong>The Facets</strong> - Individual Graphs for each group in data with exactly same range</p></li>
+<li><p><strong>The Layers or geoms</strong> - The actual plot type - e.g Bar plot, Box plot, Violin plot etc.</p></li>
+</ol>
+</p>
+<p>Here is an example of a layered approach in creating charts by applying the “Grammar of Graphics”.</p>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="data-visualization.html#cb401-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb401-2"><a href="data-visualization.html#cb401-2" tabindex="-1"></a></span>
+<span id="cb401-3"><a href="data-visualization.html#cb401-3" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb401-4"><a href="data-visualization.html#cb401-4" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb401-5"><a href="data-visualization.html#cb401-5" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
+<span id="cb401-6"><a href="data-visualization.html#cb401-6" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
+<span id="cb401-7"><a href="data-visualization.html#cb401-7" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb401-8"><a href="data-visualization.html#cb401-8" tabindex="-1"></a>)</span>
+<span id="cb401-9"><a href="data-visualization.html#cb401-9" tabindex="-1"></a></span>
+<span id="cb401-10"><a href="data-visualization.html#cb401-10" tabindex="-1"></a><span class="co"># Creating a scatter plot</span></span>
+<span id="cb401-11"><a href="data-visualization.html#cb401-11" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="co"># data</span></span>
+<span id="cb401-12"><a href="data-visualization.html#cb401-12" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> category)) <span class="sc">+</span> <span class="co">#aesthetics</span></span>
+<span id="cb401-13"><a href="data-visualization.html#cb401-13" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co">#geometrics</span></span>
+<span id="cb401-14"><a href="data-visualization.html#cb401-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatter Plot Example&quot;</span>, <span class="at">x =</span> <span class="st">&quot;X-Axis&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Y-Axis&quot;</span>) <span class="sc">+</span></span>
+<span id="cb401-15"><a href="data-visualization.html#cb401-15" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
+<div id="creating-basic-plots" class="section level4 hasAnchor" number="5.1.1.1">
+<h4><span class="header-section-number">5.1.1.1</span> Creating Basic Plots<a href="data-visualization.html#creating-basic-plots" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><strong>Scatter Plots</strong></li>
+</ul>
+<p>Scatter plot is used to show a numerical relationship between two or more variables for instance height versus weight of footballers. It is also used to detect correlation, the increase in one variable can lead to increase/decrease of another variable. Furthermore scatter plots are used to detect outliers, values that appear out of the general patterns of other data points is said to be an outlier in this case. However, scatter plots is not suitable when working with categorical data especially when only two variables are to be analyzed.</p>
+<p>Lets create a basic scatter plot to compare height and weight;-</p>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="data-visualization.html#cb402-1" tabindex="-1"></a><span class="co">#Prepare a Sample data</span></span>
+<span id="cb402-2"><a href="data-visualization.html#cb402-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb402-3"><a href="data-visualization.html#cb402-3" tabindex="-1"></a>  <span class="at">height =</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>),</span>
+<span id="cb402-4"><a href="data-visualization.html#cb402-4" tabindex="-1"></a>  <span class="at">weight =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>)</span>
+<span id="cb402-5"><a href="data-visualization.html#cb402-5" tabindex="-1"></a>)</span>
+<span id="cb402-6"><a href="data-visualization.html#cb402-6" tabindex="-1"></a></span>
+<span id="cb402-7"><a href="data-visualization.html#cb402-7" tabindex="-1"></a><span class="co"># Creating a basic scatter plot</span></span>
+<span id="cb402-8"><a href="data-visualization.html#cb402-8" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="co"># data</span></span>
+<span id="cb402-9"><a href="data-visualization.html#cb402-9" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight)) <span class="sc">+</span> <span class="co"># aesthetics</span></span>
+<span id="cb402-10"><a href="data-visualization.html#cb402-10" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-157-1.png" width="672" />
+To make the chart more informative, titles and labels are added.</p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="data-visualization.html#cb403-1" tabindex="-1"></a><span class="co"># Creating a basic scatter plot</span></span>
+<span id="cb403-2"><a href="data-visualization.html#cb403-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="co"># data</span></span>
+<span id="cb403-3"><a href="data-visualization.html#cb403-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight)) <span class="sc">+</span> <span class="co"># aesthetics</span></span>
+<span id="cb403-4"><a href="data-visualization.html#cb403-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb403-5"><a href="data-visualization.html#cb403-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Height vs. Weight&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Height (cm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Weight (kg)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb403-6"><a href="data-visualization.html#cb403-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
+<p>Lets explain the chart step by step;-</p>
+<ul>
+<li><code>ggplot(df, aes(x = height, y = weight))</code>: Initializes the ggplot object, specifying the data frame (<code>df</code>) and mapping the <code>height</code> variable to the x-axis and the <code>weight</code> variable to the y-axis using the <code>aes()</code> function.</li>
+<li><code>geom_point()</code>: Creates the scatter plots by adding dots to the chart</li>
+<li><code>labs()</code>: Adds the title and the axis labels to the chart.</li>
+<li><code>theme_minimal()</code>: Applies a minimal theme to the plot for a minimalist and clean appearance.</li>
+</ul>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Solve the questions below;</p>
+<ol style="list-style-type: lower-roman">
+<li>Using the <code>"mtcars"</code> inbuilt data set, plot a scatter chart to visualize the relationship between <code>mpg</code> (miles per gallon) and <code>hp</code> (horsepower). Label the axes appropirately. <strong>Hint</strong>: the data set can be loaded by <code>data("mtcars")</code> command.</li>
+<li>Using the <code>airquality</code> data set, plot a scatter plot to show the relationship between <code>Wind</code> and <code>Temp</code>. <strong>Hint</strong>: the data set can be loaded by <code>data("airquality")</code> command.</li>
+</ol>
+<ul>
+<li><strong>Bar Charts</strong></li>
+</ul>
+<p>Bar charts are used to represent both categorical and numeric data in form of rectangular bars. The length/height of each category represents its numeric value. It may corresponds to either length, count, age or any other numerical value. Bar charts are used when;-</p>
+<ol style="list-style-type: lower-roman">
+<li>Comparing categorical data</li>
+<li>Visualizing summarized data for instance aggregated sum, average or any other summary statistics.</li>
+<li>Showing frequency or count for instance representing the number of products sold per each category.</li>
+<li>Ranking data. Bar charts can effectively represents ranks especially in descending/ascending order for instance ranking the life expectancy of different countries.</li>
+<li>Other type of complex bar charts like stacked bar charts can be used to compare part-to-whole relationships.</li>
+</ol>
+<p>There are many more uses of bar charts however there are some use cases where bar charts are not preferred like when working with continuous data, scatter and line charts are more befitting. Also, bar charts are not appropriate where data has too many categories, heatmaps will do better.</p>
+<p>To create a simple bar chart using ggplot2, we use <code>geom_bar</code> to define thats its a bar chart.</p>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="data-visualization.html#cb404-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb404-2"><a href="data-visualization.html#cb404-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb404-3"><a href="data-visualization.html#cb404-3" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>),</span>
+<span id="cb404-4"><a href="data-visualization.html#cb404-4" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">17</span>, <span class="dv">35</span>, <span class="dv">10</span>)</span>
+<span id="cb404-5"><a href="data-visualization.html#cb404-5" tabindex="-1"></a>)</span>
+<span id="cb404-6"><a href="data-visualization.html#cb404-6" tabindex="-1"></a></span>
+<span id="cb404-7"><a href="data-visualization.html#cb404-7" tabindex="-1"></a><span class="do">## The data set above will be used to create a bar chart</span></span>
+<span id="cb404-8"><a href="data-visualization.html#cb404-8" tabindex="-1"></a><span class="co"># Creating a bar chart</span></span>
+<span id="cb404-9"><a href="data-visualization.html#cb404-9" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb404-10"><a href="data-visualization.html#cb404-10" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb404-11"><a href="data-visualization.html#cb404-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Value by Category&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Category&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Value&quot;</span>) <span class="sc">+</span></span>
+<span id="cb404-12"><a href="data-visualization.html#cb404-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the <code>mtcars</code> data set, create a bar plot to visualize the number of cars for each unique number of cylinders (<code>cyl</code>) in the mtcars data set. Label the bars with the appropriate cylinder categories and provide axis labels for clarity.</p>
+<ul>
+<li><strong>Histograms</strong></li>
+</ul>
+<p>Histogram is visually similar to the bar chart however it is used show frequency and distribution across a list-like data set(vectors, lists, sets, arrays, etc) that stores continuous numeric values. The count of observation within a certain range of values are displayed.</p>
+<p>Lets create a vector of random 100 ages and plot the data to a histogram.</p>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="data-visualization.html#cb405-1" tabindex="-1"></a><span class="co"># Generate random 1000 ages between 0 and 100</span></span>
+<span id="cb405-2"><a href="data-visualization.html#cb405-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb405-3"><a href="data-visualization.html#cb405-3" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">1000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb405-4"><a href="data-visualization.html#cb405-4" tabindex="-1"></a></span>
+<span id="cb405-5"><a href="data-visualization.html#cb405-5" tabindex="-1"></a><span class="co"># Create a data frame to use with ggplot</span></span>
+<span id="cb405-6"><a href="data-visualization.html#cb405-6" tabindex="-1"></a>age_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Age =</span> ages)</span>
+<span id="cb405-7"><a href="data-visualization.html#cb405-7" tabindex="-1"></a></span>
+<span id="cb405-8"><a href="data-visualization.html#cb405-8" tabindex="-1"></a><span class="co"># PLOTTING</span></span>
+<span id="cb405-9"><a href="data-visualization.html#cb405-9" tabindex="-1"></a><span class="co"># Create the histogram using ggplot</span></span>
+<span id="cb405-10"><a href="data-visualization.html#cb405-10" tabindex="-1"></a><span class="fu">ggplot</span>(age_data, <span class="fu">aes</span>(<span class="at">x =</span> Age)) <span class="sc">+</span></span>
+<span id="cb405-11"><a href="data-visualization.html#cb405-11" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb405-12"><a href="data-visualization.html#cb405-12" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Histogram of Randomly Generated Ages&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb405-13"><a href="data-visualization.html#cb405-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
+<p>The bins are groups of ages ranging 5 years.</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the <code>rivers</code> in built R data set, plot a histogram to visualize the distribution of rovers length. <strong>Hint</strong>: The data set is loaded by the command <code>data("rivers")</code>.</p>
+</div>
+<div id="customizing-plots" class="section level4 hasAnchor" number="5.1.1.2">
+<h4><span class="header-section-number">5.1.1.2</span> Customizing plots<a href="data-visualization.html#customizing-plots" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><strong>Themes</strong></li>
+</ul>
+<p>Themes in <code>ggplot2</code> control the overall appearance of the plot for instance the grid line, font style, background color etc. To clearly explain the <code>theme</code> concept we will create a sample data set and plot it. The theme will be altered to show the changes in the appearance.</p>
+<p>Create a data set and plot a basic bar plot from <code>ggplot2</code></p>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="data-visualization.html#cb406-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb406-2"><a href="data-visualization.html#cb406-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb406-3"><a href="data-visualization.html#cb406-3" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>),</span>
+<span id="cb406-4"><a href="data-visualization.html#cb406-4" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">17</span>, <span class="dv">35</span>, <span class="dv">10</span>)</span>
+<span id="cb406-5"><a href="data-visualization.html#cb406-5" tabindex="-1"></a>)</span>
+<span id="cb406-6"><a href="data-visualization.html#cb406-6" tabindex="-1"></a></span>
+<span id="cb406-7"><a href="data-visualization.html#cb406-7" tabindex="-1"></a><span class="co"># Plot a basic bar chart</span></span>
+<span id="cb406-8"><a href="data-visualization.html#cb406-8" tabindex="-1"></a><span class="co"># Create a basic bar plot</span></span>
+<span id="cb406-9"><a href="data-visualization.html#cb406-9" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb406-10"><a href="data-visualization.html#cb406-10" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
+<p>Lets apply some built-in themes from <code>ggplot</code>. In this case, we will use the <code>theme_minimal()</code>.</p>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="data-visualization.html#cb407-1" tabindex="-1"></a><span class="co"># Bar plot with theme_minimal</span></span>
+<span id="cb407-2"><a href="data-visualization.html#cb407-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb407-3"><a href="data-visualization.html#cb407-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb407-4"><a href="data-visualization.html#cb407-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-162-1.png" width="672" />
+The <code>theme_minimal()</code> removes background colors, extra gridlines and axes’ tickers to give the a chart a clean look.</p>
+<p>Now, lets try with the <code>theme_classic()</code></p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="data-visualization.html#cb408-1" tabindex="-1"></a><span class="co"># Bar plot with theme_classic</span></span>
+<span id="cb408-2"><a href="data-visualization.html#cb408-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb408-3"><a href="data-visualization.html#cb408-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb408-4"><a href="data-visualization.html#cb408-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
+<p>The <code>theme_classic()</code> gives the bar plot a clear white background, black borderline with raised 0 point on the axes and bars.</p>
+<p>The third theme in this course is the <code>theme_light()</code>. Lets try it with the same data set.</p>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="data-visualization.html#cb409-1" tabindex="-1"></a><span class="co"># Bar plot with theme_light</span></span>
+<span id="cb409-2"><a href="data-visualization.html#cb409-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb409-3"><a href="data-visualization.html#cb409-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb409-4"><a href="data-visualization.html#cb409-4" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
+<p>The <code>theme_light()</code> is gives grey gridlines, grey borderline and raised bars(not touching the axes).</p>
+<p>The last theme in this list is the <code>theme_dark()</code>. Lets try it below here;</p>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="data-visualization.html#cb410-1" tabindex="-1"></a><span class="co"># Bar plot with theme_dark</span></span>
+<span id="cb410-2"><a href="data-visualization.html#cb410-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb410-3"><a href="data-visualization.html#cb410-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb410-4"><a href="data-visualization.html#cb410-4" tabindex="-1"></a>  <span class="fu">theme_dark</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-165-1.png" width="672" />
+The <code>theme_dark()</code> is a clear opposite of <code>theme_light</code> as it produces a plot with a dark grid lines.</p>
+<p>There are more themes provided in <code>ggplot2</code> like <code>theme_bw()</code></p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the <code>mtcars</code> data set, create a bar plot to visualize the number of cars for each unique number of cylinders (<code>cyl</code>) in the mtcars data set. Apply different themes to the bar plot.</p>
+<ul>
+<li><strong>Labels and Titles</strong></li>
+</ul>
+<p>The appearance of the charts can be made more appealing and informative by adding labels and titles. This can be achieved adding the function <code>labs</code> to a ready plot.</p>
+<p>Lets plot the same bar chart as above and add more information with labels;</p>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="data-visualization.html#cb411-1" tabindex="-1"></a><span class="co"># Create a basic bar plot</span></span>
+<span id="cb411-2"><a href="data-visualization.html#cb411-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb411-3"><a href="data-visualization.html#cb411-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span>
+<span id="cb411-4"><a href="data-visualization.html#cb411-4" tabindex="-1"></a></span>
+<span id="cb411-5"><a href="data-visualization.html#cb411-5" tabindex="-1"></a>p <span class="co"># Show the plot</span></span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
+<p>The above chart is stored in a variable <code>p</code>. Lets add/modify the labels and titles using the <code>labs()</code> function.</p>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="data-visualization.html#cb412-1" tabindex="-1"></a><span class="co"># Bar plot with title, axis labels, and caption</span></span>
+<span id="cb412-2"><a href="data-visualization.html#cb412-2" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">labs</span>(</span>
+<span id="cb412-3"><a href="data-visualization.html#cb412-3" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Bar Plot of Categories&quot;</span>,</span>
+<span id="cb412-4"><a href="data-visualization.html#cb412-4" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="st">&quot;Values by Category&quot;</span>,</span>
+<span id="cb412-5"><a href="data-visualization.html#cb412-5" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">&quot;Category&quot;</span>,</span>
+<span id="cb412-6"><a href="data-visualization.html#cb412-6" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">&quot;Value&quot;</span>,</span>
+<span id="cb412-7"><a href="data-visualization.html#cb412-7" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Source: Sample Data&quot;</span></span>
+<span id="cb412-8"><a href="data-visualization.html#cb412-8" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="data-visualization.html#cb413-1" tabindex="-1"></a><span class="co"># Remember `p` is the bar plot</span></span></code></pre></div>
+<p>The bar plot is more informative now. Lets make the chart more appealing by modifying the appearance of the labels using the <code>theme()</code> function along with the <code>element_text()</code> function.</p>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="data-visualization.html#cb414-1" tabindex="-1"></a><span class="co"># Bar plot with customized title and labels</span></span>
+<span id="cb414-2"><a href="data-visualization.html#cb414-2" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">labs</span>(</span>
+<span id="cb414-3"><a href="data-visualization.html#cb414-3" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Bar Plot of Categories&quot;</span>,</span>
+<span id="cb414-4"><a href="data-visualization.html#cb414-4" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="st">&quot;Values by Category&quot;</span>,</span>
+<span id="cb414-5"><a href="data-visualization.html#cb414-5" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">&quot;Category&quot;</span>,</span>
+<span id="cb414-6"><a href="data-visualization.html#cb414-6" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">&quot;Value&quot;</span>,</span>
+<span id="cb414-7"><a href="data-visualization.html#cb414-7" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Source: Sample Data&quot;</span></span>
+<span id="cb414-8"><a href="data-visualization.html#cb414-8" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb414-9"><a href="data-visualization.html#cb414-9" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb414-10"><a href="data-visualization.html#cb414-10" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb414-11"><a href="data-visualization.html#cb414-11" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb414-12"><a href="data-visualization.html#cb414-12" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb414-13"><a href="data-visualization.html#cb414-13" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb414-14"><a href="data-visualization.html#cb414-14" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="dv">10</span>)</span>
+<span id="cb414-15"><a href="data-visualization.html#cb414-15" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the <code>mtcars</code> data set, create a bar plot to visualize the number of cars for each unique number of cylinders (<code>cyl</code>) in the mtcars data set. Add <code>x</code>, <code>y</code> axes labels and titles to the plot.</p>
+<ul>
+<li><strong>Color and aesthetics</strong></li>
+</ul>
+<p>The general aesthetics are essential when presenting the analysis results. They enhance the visual appearance of the charts. It also allows the users/analyst to distinguish different properties/categories in a variable. They include; color, size and shape.</p>
+<p>Lets plot a simple bar chart and add a flavor of aesthetics.</p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="data-visualization.html#cb415-1" tabindex="-1"></a><span class="co"># Sample data with an additional variable. Modified the original one</span></span>
+<span id="cb415-2"><a href="data-visualization.html#cb415-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb415-3"><a href="data-visualization.html#cb415-3" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>),</span>
+<span id="cb415-4"><a href="data-visualization.html#cb415-4" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">17</span>, <span class="dv">35</span>, <span class="dv">10</span>),</span>
+<span id="cb415-5"><a href="data-visualization.html#cb415-5" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">c</span>(<span class="st">&quot;G1&quot;</span>, <span class="st">&quot;G2&quot;</span>, <span class="st">&quot;G1&quot;</span>, <span class="st">&quot;G2&quot;</span>)</span>
+<span id="cb415-6"><a href="data-visualization.html#cb415-6" tabindex="-1"></a>)</span>
+<span id="cb415-7"><a href="data-visualization.html#cb415-7" tabindex="-1"></a></span>
+<span id="cb415-8"><a href="data-visualization.html#cb415-8" tabindex="-1"></a></span>
+<span id="cb415-9"><a href="data-visualization.html#cb415-9" tabindex="-1"></a><span class="co"># Bar plot with mapped color, size, and shape</span></span>
+<span id="cb415-10"><a href="data-visualization.html#cb415-10" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value, <span class="at">color =</span> group, <span class="at">size =</span> value, <span class="at">shape =</span> group)) <span class="sc">+</span></span>
+<span id="cb415-11"><a href="data-visualization.html#cb415-11" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
+<p>Lets break down the scatter plot on how aesthetics are applied.</p>
+<ol style="list-style-type: lower-roman">
+<li><code>color = group</code>: Maps the group variable to the color of the points. Each group will have a different color.</li>
+<li><code>size = value</code>: Maps the value variable to the size of the points. Points with higher values will be larger.</li>
+<li><code>shape = group</code>: Maps the group variable to the shape of the points. Different groups will have different shapes.</li>
+</ol>
+<p>Above there, the color was selected automatically by R. It can also be customized to fit our taste. Lets do a bit of color customization.</p>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="data-visualization.html#cb416-1" tabindex="-1"></a><span class="co"># Customizing colors manually</span></span>
+<span id="cb416-2"><a href="data-visualization.html#cb416-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value, <span class="at">color =</span> group)) <span class="sc">+</span></span>
+<span id="cb416-3"><a href="data-visualization.html#cb416-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb416-4"><a href="data-visualization.html#cb416-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;G1&quot;</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;G2&quot;</span> <span class="ot">=</span> <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
+<p>The <code>scale_color_manual()</code> function allows you to manually set the colors for each level of the group variable. In this case, G1 is set to blue and G2 to red.</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the <code>mtcars</code> data set, create a bar plot to visualize the number of cars for each unique number of cylinders (<code>cyl</code>) in the mtcars data set. Play with different foreground and background colors to come up with the best looking plot.</p>
+</div>
+</div>
+</div>
+<div id="advanced-data-visualization" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Advanced Data Visualization<a href="data-visualization.html#advanced-data-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="creating-complex-visualizations" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Creating Complex Visualizations<a href="data-visualization.html#creating-complex-visualizations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Boxplots</strong></li>
+</ul>
+<p>Box plot is a type of chart that uses boxes and lines to show distributions of one or more groups of a continuous numeric data. They provide a high-level information at a glance for instance the data symmetry, skew and variance. They can also be used to show outliers within a data set. This is the only chart that can effectively give the measure of spread and central tendency(median, quartiles and range).</p>
+<p>Lets plot a simple boxplot for the age of employees from the IBM Human Resource Analytics data; The data can be downloaded from <a href="https://www.kaggle.com/code/faressayah/ibm-hr-analytics-employee-attrition-performance/input">here</a></p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="data-visualization.html#cb417-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/HR-Employee-Attrition.csv&quot;</span>)</span>
+<span id="cb417-2"><a href="data-visualization.html#cb417-2" tabindex="-1"></a></span>
+<span id="cb417-3"><a href="data-visualization.html#cb417-3" tabindex="-1"></a><span class="co"># Plot a boxplot</span></span>
+<span id="cb417-4"><a href="data-visualization.html#cb417-4" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">y=</span>Age))<span class="sc">+</span></span>
+<span id="cb417-5"><a href="data-visualization.html#cb417-5" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
+<p>The upper quartile for the employees’ age is 43(Q3) while the lower quartile(Q1) is 30.The median age is approximately 36. There are no outliers in the dataset. Lets compare the distribution of ages between male and female employees; (The <code>x</code> argument will be introduced in <code>aes()</code> function)</p>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="data-visualization.html#cb418-1" tabindex="-1"></a><span class="co"># Plot a boxplot</span></span>
+<span id="cb418-2"><a href="data-visualization.html#cb418-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">y=</span>Age, <span class="at">x=</span>Gender))<span class="sc">+</span></span>
+<span id="cb418-3"><a href="data-visualization.html#cb418-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="fu">c</span>(<span class="st">&quot;pink&quot;</span>, <span class="st">&quot;lightblue&quot;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-172-1.png" width="672" />
+The female employee have an older working population than the male counterparts with a median age of approximately 36 and 35 respectively.</p>
+<p>The distance between Q3 and Q1 (in this case the height of the box) is know as the Interquartile Range(IQR).</p>
+<p>The above boxplots are vertical, they can be shifted to horizontal by interchanging the <code>y</code> and <code>x</code> argument in the function <code>aes()</code>. Lets do it;</p>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="data-visualization.html#cb419-1" tabindex="-1"></a><span class="co"># Plot a horizontal boxplot </span></span>
+<span id="cb419-2"><a href="data-visualization.html#cb419-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>Age, <span class="at">y=</span>Gender))<span class="sc">+</span></span>
+<span id="cb419-3"><a href="data-visualization.html#cb419-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="fu">c</span>(<span class="st">&quot;pink&quot;</span>, <span class="st">&quot;lightblue&quot;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
+<p>Lets add a few customization to make the graph more informative and visually appealing</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="data-visualization.html#cb420-1" tabindex="-1"></a><span class="co"># BOXPLOT </span></span>
+<span id="cb420-2"><a href="data-visualization.html#cb420-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>Age, <span class="at">y=</span>Gender))<span class="sc">+</span></span>
+<span id="cb420-3"><a href="data-visualization.html#cb420-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="fu">c</span>(<span class="st">&quot;pink&quot;</span>, <span class="st">&quot;lightblue&quot;</span>))<span class="sc">+</span></span>
+<span id="cb420-4"><a href="data-visualization.html#cb420-4" tabindex="-1"></a>  <span class="fu">theme_dark</span>() <span class="sc">+</span> </span>
+<span id="cb420-5"><a href="data-visualization.html#cb420-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb420-6"><a href="data-visualization.html#cb420-6" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;IBM HR Analytics&quot;</span>,</span>
+<span id="cb420-7"><a href="data-visualization.html#cb420-7" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="st">&quot;Boxplots of Employees&#39; age by Gender&quot;</span>,</span>
+<span id="cb420-8"><a href="data-visualization.html#cb420-8" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>,</span>
+<span id="cb420-9"><a href="data-visualization.html#cb420-9" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">&quot;Gender&quot;</span>,</span>
+<span id="cb420-10"><a href="data-visualization.html#cb420-10" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Source: Kaggle&quot;</span></span>
+<span id="cb420-11"><a href="data-visualization.html#cb420-11" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb420-12"><a href="data-visualization.html#cb420-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb420-13"><a href="data-visualization.html#cb420-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb420-14"><a href="data-visualization.html#cb420-14" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb420-15"><a href="data-visualization.html#cb420-15" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb420-16"><a href="data-visualization.html#cb420-16" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb420-17"><a href="data-visualization.html#cb420-17" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="dv">10</span>)</span>
+<span id="cb420-18"><a href="data-visualization.html#cb420-18" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Load the inbuilt <code>ToothGrowth</code> data set and create a boxplot to compare the distribution of tooth length (<code>len</code>) across the different dose levels (<code>dose</code>) of Vitamin C in the <code>ToothGrowth</code> data set. Make sure to label the axes and title the plot appropriately.</p>
+<ul>
+<li><strong>Violin Plots</strong></li>
+</ul>
+<p>An alternative to the boxplot is the violin plot. The violin plot addresses the issue of distribution. It shows the distribution curve unlike the boxplot and histogram.</p>
+<p>To demonstrate this, lets visualize the distribution of employees age using a violin plot.</p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="data-visualization.html#cb421-1" tabindex="-1"></a><span class="co"># VIOLINE PLOT </span></span>
+<span id="cb421-2"><a href="data-visualization.html#cb421-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>Age, <span class="at">y=</span><span class="st">&quot;&quot;</span>))<span class="sc">+</span></span>
+<span id="cb421-3"><a href="data-visualization.html#cb421-3" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the same <code>ToothGrowth</code> data set and create a violin plot to compare the distribution of tooth length (<code>len</code>) across the different dose levels (<code>dose</code>) of Vitamin C in the <code>ToothGrowth</code> data set. Make sure to label the axes and title the plot appropriately.</p>
+<ul>
+<li><strong>Facet Grids</strong></li>
+</ul>
+<p><code>ggplot2</code> has a functionality that enables creating multiple plots at once on the same chart. This concept is referred to as faceting. This use full especially when comparing two populations characteristics like distributions. There are two main functions that are used by statisticians; <code>facet_wrap()</code> and <code>facet_grid()</code>.</p>
+<ol style="list-style-type: lower-roman">
+<li><code>facet_wrap()</code>: Is used to design multiple plots under a single dimension(facet by one variable). Wraps plots in a grid</li>
+<li><code>facet_grid()</code>: It creates grid of plots based on two variables(rows and columns). It’s particularly useful when comparing data across multiple dimensions.</li>
+</ol>
+<p>Lets create a box plot to demonstrate <code>facet_wrap()</code> and <code>facet_grid()</code>.</p>
+<p>Create a sample data for demonstrations</p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="data-visualization.html#cb422-1" tabindex="-1"></a><span class="co"># Create sample data</span></span>
+<span id="cb422-2"><a href="data-visualization.html#cb422-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb422-3"><a href="data-visualization.html#cb422-3" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="at">each =</span> <span class="dv">100</span>),</span>
+<span id="cb422-4"><a href="data-visualization.html#cb422-4" tabindex="-1"></a>  <span class="at">sub_category =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;Y&quot;</span>), <span class="at">each =</span> <span class="dv">50</span>, <span class="at">times =</span> <span class="dv">3</span>),</span>
+<span id="cb422-5"><a href="data-visualization.html#cb422-5" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">2</span>),</span>
+<span id="cb422-6"><a href="data-visualization.html#cb422-6" tabindex="-1"></a>            <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="fl">2.5</span>),</span>
+<span id="cb422-7"><a href="data-visualization.html#cb422-7" tabindex="-1"></a>            <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">20</span>, <span class="at">sd =</span> <span class="dv">3</span>))</span>
+<span id="cb422-8"><a href="data-visualization.html#cb422-8" tabindex="-1"></a>)</span>
+<span id="cb422-9"><a href="data-visualization.html#cb422-9" tabindex="-1"></a></span>
+<span id="cb422-10"><a href="data-visualization.html#cb422-10" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>##   category sub_category     value
+## 1        A            X  8.853046
+## 2        A            X  6.143750
+## 3        A            X 11.328782
+## 4        A            X  6.794920
+## 5        A            X  7.290799
+## 6        A            X  3.964135</code></pre>
+<p>A basic box plot to show the distribution of <code>"value"</code>.</p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="data-visualization.html#cb424-1" tabindex="-1"></a><span class="co"># Basic boxplot</span></span>
+<span id="cb424-2"><a href="data-visualization.html#cb424-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> sub_category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb424-3"><a href="data-visualization.html#cb424-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb424-4"><a href="data-visualization.html#cb424-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb424-5"><a href="data-visualization.html#cb424-5" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Boxplot of Values by Sub-Category&quot;</span>,</span>
+<span id="cb424-6"><a href="data-visualization.html#cb424-6" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Sub-Category&quot;</span>,</span>
+<span id="cb424-7"><a href="data-visualization.html#cb424-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Value&quot;</span></span>
+<span id="cb424-8"><a href="data-visualization.html#cb424-8" tabindex="-1"></a>  )</span>
+<span id="cb424-9"><a href="data-visualization.html#cb424-9" tabindex="-1"></a></span>
+<span id="cb424-10"><a href="data-visualization.html#cb424-10" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
+<p>Facet with <code>facet_wrap()</code>. This will divide <code>"value"</code> into categories based on the <code>category</code> column and create a separate boxplot for each category.</p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="data-visualization.html#cb425-1" tabindex="-1"></a><span class="co"># Facet the plot by &#39;category&#39; using facet_wrap</span></span>
+<span id="cb425-2"><a href="data-visualization.html#cb425-2" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> category)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
+<p>Facet with the <code>facet_grid()</code> to create a grid of plots based on each <code>category</code> and <code>sub_category</code></p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="data-visualization.html#cb426-1" tabindex="-1"></a><span class="co"># Facet the plot by &#39;category&#39; and &#39;sub_category&#39; using facet_grid</span></span>
+<span id="cb426-2"><a href="data-visualization.html#cb426-2" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_grid</span>(category <span class="sc">~</span> sub_category)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-179-1.png" width="672" />
+As seen above, there is a boxplot to represent the distribution for each <code>sub_category</code> in a <code>category</code>.</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the same <code>ToothGrowth</code> data set, create a violin plot to visualize the distribution of tooth length (<code>le</code>n<code>) across the different dose levels (</code>dose<code>). Use</code>facet_wrap()<code>or</code>facet_grid()<code>to split the plot by the supplement type (</code>supp`). Make sure to label the axes and add an appropriate title</p>
+</div>
+<div id="combining-multiple-plots" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Combining Multiple Plots<a href="data-visualization.html#combining-multiple-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Different plots can be combined into a single visualization. This provides a comprehensive view and different aspects of the data. The interrelationships between the variables can also be analyzed. There are multiple ways to combine plots in R(<code>ggplot</code>);</p>
+<ol style="list-style-type: lower-roman">
+<li><p>Using <code>patchwork</code></p></li>
+<li><p>Using <code>gridExtra</code></p></li>
+<li><p><strong>patchwork</strong></p></li>
+</ol>
+<p>The <code>patchwork</code> library provides a straightforward way to combine plots.</p>
+<p>Install the library</p>
+<pre><code>install.packages(&quot;patchwork&quot;)</code></pre>
+<p>Lets then make some plots from the <code>mtcars</code> data set and combine them</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="data-visualization.html#cb428-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb428-2"><a href="data-visualization.html#cb428-2" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb428-3"><a href="data-visualization.html#cb428-3" tabindex="-1"></a></span>
+<span id="cb428-4"><a href="data-visualization.html#cb428-4" tabindex="-1"></a><span class="co"># Load the data </span></span>
+<span id="cb428-5"><a href="data-visualization.html#cb428-5" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;mtcars&quot;</span>)</span>
+<span id="cb428-6"><a href="data-visualization.html#cb428-6" tabindex="-1"></a></span>
+<span id="cb428-7"><a href="data-visualization.html#cb428-7" tabindex="-1"></a><span class="co"># Make three plots </span></span>
+<span id="cb428-8"><a href="data-visualization.html#cb428-8" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> disp)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Scatter Plot&quot;</span>)</span>
+<span id="cb428-9"><a href="data-visualization.html#cb428-9" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(cyl), <span class="at">y =</span> mpg)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Boxplot&quot;</span>)</span>
+<span id="cb428-10"><a href="data-visualization.html#cb428-10" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span> <span class="fu">geom_bar</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Bar Chart&quot;</span>)</span></code></pre></div>
+<p>Combine the plots side by side</p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="data-visualization.html#cb429-1" tabindex="-1"></a><span class="co"># Combine plots side by side</span></span>
+<span id="cb429-2"><a href="data-visualization.html#cb429-2" tabindex="-1"></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+<p>The plots can also be combined by stacking them together</p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="data-visualization.html#cb430-1" tabindex="-1"></a><span class="co"># Stack plots vertically</span></span>
+<span id="cb430-2"><a href="data-visualization.html#cb430-2" tabindex="-1"></a>p1 <span class="sc">/</span> p2 <span class="sc">/</span> p3</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
+<p><code>+</code> is used to combine the plots side by side while <code>/</code> is used to stack the plots vertically. Brackets <code>()</code> are used to group two or more plots together.</p>
+<p>Lets create a complex layout where two plots are grouped to the right and one plot is one the left side.</p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="data-visualization.html#cb431-1" tabindex="-1"></a>(p1<span class="sc">+</span>(p2<span class="sc">/</span>p3))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
+<p>Alternatively the plots can be plotted by using <code>|</code> instead of <code>+</code>.</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="data-visualization.html#cb432-1" tabindex="-1"></a>(p1<span class="sc">|</span>(p2<span class="sc">/</span>p3)) <span class="co"># Note the &#39;|&#39; instead of &#39;+&#39;</span></span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: lower-roman">
+<li><strong>gridExtra</strong></li>
+</ol>
+<p>The <code>gridExtra</code> package allows the plots to be combined with a pre-determined number of rows and columns.</p>
+<p>Install the <code>gridExtra</code> package</p>
+<pre><code>install.packages(&quot;gridExtra&quot;)</code></pre>
+<p>Load the package and combine the three plots</p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="data-visualization.html#cb434-1" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;gridExtra&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     combine</code></pre>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="data-visualization.html#cb437-1" tabindex="-1"></a><span class="co"># Combine plots using gridExtra</span></span>
+<span id="cb437-2"><a href="data-visualization.html#cb437-2" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+<p>Lets stack the plots</p>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="data-visualization.html#cb438-1" tabindex="-1"></a><span class="co"># Stack the plots </span></span>
+<span id="cb438-2"><a href="data-visualization.html#cb438-2" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
+<p>Now combine the three plots side by side</p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="data-visualization.html#cb439-1" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Down load the E-commerce Customer Behavior Data set from <a href="https://www.kaggle.com/datasets/samps74/e-commerce-customer-behavior-dataset/data">here</a>. Create multiple plots that will combine;</p>
+<ul>
+<li>A histogram to show annual income distribution</li>
+<li>A box plot that will show Time on Site distribution</li>
+<li>A bar chart that compare different genders count for the customers</li>
+<li>A scatter plot to compare age vs annual income</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-manipulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="explanatory-data-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/balsaedi/RCourse/edit/main/05-data_visualization.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/balsaedi/RCourse/blob/main/05-data_visualization.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

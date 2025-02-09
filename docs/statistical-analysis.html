@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Statistical Analysis | R Course</title>
+  <meta name="description" content="Chapter 7 Statistical Analysis | R Course" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Statistical Analysis | R Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Statistical Analysis | R Course" />
+  
+  
+  
+
+<meta name="author" content="YOUR NAME HERE" />
+
+
+<meta name="date" content="2024-10-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="explanatory-data-analysis.html"/>
+<link rel="next" href="working-with-real-world-data.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SHORT TITLE HERE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to R and Basic Programming Concepts</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#overview-of-r-programming"><i class="fa fa-check"></i><b>1.1</b> Overview of R Programming</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#introduction-to-r"><i class="fa fa-check"></i><b>1.1.1</b> Introduction to R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#importance-of-r-in-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Importance of R in Data Analysis</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#application-of-r-in-various-industries"><i class="fa fa-check"></i><b>1.1.3</b> Application of R in Various Industries</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#introduction-to-the-r-ecosystem"><i class="fa fa-check"></i><b>1.2</b> Introduction to the R ecosystem</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#r-studio"><i class="fa fa-check"></i><b>1.2.1</b> R Studio</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#cran"><i class="fa fa-check"></i><b>1.2.2</b> CRAN</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#setting-up-r-environment"><i class="fa fa-check"></i><b>1.3</b> Setting Up R Environment</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#installation-of-r-and-rstudio"><i class="fa fa-check"></i><b>1.3.1</b> Installation of R and RStudio</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#introduction-to-rstudio-interface"><i class="fa fa-check"></i><b>1.3.2</b> Introduction to RStudio Interface</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#basic-r-syntax-and-commands"><i class="fa fa-check"></i><b>1.3.3</b> Basic R Syntax and Commands</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hands-on-exercise"><i class="fa fa-check"></i><b>1.4</b> Hands-on Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html"><i class="fa fa-check"></i><b>2</b> Basic Data Types and Structures</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-types"><i class="fa fa-check"></i><b>2.1</b> Data types</a></li>
+<li class="chapter" data-level="2.2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-structures"><i class="fa fa-check"></i><b>2.2</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#vector"><i class="fa fa-check"></i><b>2.2.1</b> Vector</a></li>
+<li class="chapter" data-level="2.2.2" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#matrix"><i class="fa fa-check"></i><b>2.2.2</b> Matrix</a></li>
+<li class="chapter" data-level="2.2.3" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#data-frame"><i class="fa fa-check"></i><b>2.2.3</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="basic-data-types-and-structures.html"><a href="basic-data-types-and-structures.html#hands-on-exercises"><i class="fa fa-check"></i><b>2.3</b> <span style="color: green;">Hands-on Exercises</span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html"><i class="fa fa-check"></i><b>3</b> Data Importing and Exporting</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-importing"><i class="fa fa-check"></i><b>3.1</b> Introduction to Data Importing</a></li>
+<li class="chapter" data-level="3.2" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#demonstration-of-data-importing"><i class="fa fa-check"></i><b>3.2</b> Demonstration of Data Importing</a></li>
+<li class="chapter" data-level="3.3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-exporting"><i class="fa fa-check"></i><b>3.3</b> Introduction to Data Exporting</a></li>
+<li class="chapter" data-level="3.4" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#practical-exercise"><i class="fa fa-check"></i><b>3.4</b> Practical Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation.html"><a href="data-manipulation.html#basic-data-manipulation"><i class="fa fa-check"></i><b>4.1</b> Basic Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="data-manipulation.html"><a href="data-manipulation.html#introduction-to-data-manipulation"><i class="fa fa-check"></i><b>4.1.1</b> Introduction to Data Manipulation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-manipulation.html"><a href="data-manipulation.html#subsetting-and-filtering-data"><i class="fa fa-check"></i><b>4.1.2</b> Subsetting and Filtering Data:</a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-manipulation.html"><a href="data-manipulation.html#sorting-data"><i class="fa fa-check"></i><b>4.1.3</b> Sorting Data</a></li>
+<li class="chapter" data-level="4.1.4" data-path="data-manipulation.html"><a href="data-manipulation.html#basic-data-cleaning"><i class="fa fa-check"></i><b>4.1.4</b> Basic Data Cleaning</a></li>
+<li class="chapter" data-level="4.1.5" data-path="data-manipulation.html"><a href="data-manipulation.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>4.1.5</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>4.2</b> Data Manipulation with Dplyr</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-manipulation.html"><a href="data-manipulation.html#introduction-to-dplyr-package"><i class="fa fa-check"></i><b>4.2.1</b> Introduction to Dplyr package</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-manipulation.html"><a href="data-manipulation.html#key-functions-in-dplyr"><i class="fa fa-check"></i><b>4.2.2</b> Key Functions in dplyr</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-manipulation.html"><a href="data-manipulation.html#select"><i class="fa fa-check"></i><b>4.2.3</b> select</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-manipulation.html"><a href="data-manipulation.html#filter"><i class="fa fa-check"></i><b>4.2.4</b> filter</a></li>
+<li class="chapter" data-level="4.2.5" data-path="data-manipulation.html"><a href="data-manipulation.html#arrange"><i class="fa fa-check"></i><b>4.2.5</b> arrange</a></li>
+<li class="chapter" data-level="4.2.6" data-path="data-manipulation.html"><a href="data-manipulation.html#mutate"><i class="fa fa-check"></i><b>4.2.6</b> mutate</a></li>
+<li class="chapter" data-level="4.2.7" data-path="data-manipulation.html"><a href="data-manipulation.html#summarise"><i class="fa fa-check"></i><b>4.2.7</b> Summarise</a></li>
+<li class="chapter" data-level="4.2.8" data-path="data-manipulation.html"><a href="data-manipulation.html#group_by"><i class="fa fa-check"></i><b>4.2.8</b> group_by</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation.html"><a href="data-manipulation.html#chaining"><i class="fa fa-check"></i><b>4.3</b> Chaining</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data-manipulation.html"><a href="data-manipulation.html#hands-on-exercises-2"><i class="fa fa-check"></i><b>4.3.1</b> Hands-on Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>5</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-visualization.html"><a href="data-visualization.html#basic-data-visualization"><i class="fa fa-check"></i><b>5.1</b> Basic Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data-visualization.html"><a href="data-visualization.html#introduction-to-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> Introduction to ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="data-visualization.html"><a href="data-visualization.html#advanced-data-visualization"><i class="fa fa-check"></i><b>5.2</b> Advanced Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="data-visualization.html"><a href="data-visualization.html#creating-complex-visualizations"><i class="fa fa-check"></i><b>5.2.1</b> Creating Complex Visualizations</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-visualization.html"><a href="data-visualization.html#combining-multiple-plots"><i class="fa fa-check"></i><b>5.2.2</b> Combining Multiple Plots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html"><i class="fa fa-check"></i><b>6</b> Explanatory Data Analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#introduction-to-eda"><i class="fa fa-check"></i><b>6.1</b> Introduction to EDA</a></li>
+<li class="chapter" data-level="6.2" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#choosing-a-data-set"><i class="fa fa-check"></i><b>6.2</b> Choosing a data set</a></li>
+<li class="chapter" data-level="6.3" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#conducting-eda"><i class="fa fa-check"></i><b>6.3</b> Conducting EDA</a></li>
+<li class="chapter" data-level="6.4" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#present-findings"><i class="fa fa-check"></i><b>6.4</b> Present Findings</a></li>
+<li class="chapter" data-level="6.5" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#eda---example"><i class="fa fa-check"></i><b>6.5</b> <span style="color: brown;">EDA - Example</span></a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#introduction"><i class="fa fa-check"></i><b>6.5.1</b> <span style="color: brown;">Introduction</span></a></li>
+<li class="chapter" data-level="6.5.2" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#data-assessment-and-cleaning"><i class="fa fa-check"></i><b>6.5.2</b> <span style="color: brown;">Data Assessment and Cleaning</span></a></li>
+<li class="chapter" data-level="6.5.3" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#data-visualization-1"><i class="fa fa-check"></i><b>6.5.3</b> <span style="color: brown;">Data Visualization</span></a></li>
+<li class="chapter" data-level="6.5.4" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html#key-findings"><i class="fa fa-check"></i><b>6.5.4</b> <span style="color: brown;">Key Findings</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistical-analysis.html"><a href="statistical-analysis.html"><i class="fa fa-check"></i><b>7</b> Statistical Analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#basic-statistical-concepts"><i class="fa fa-check"></i><b>7.1</b> Basic Statistical Concepts</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-descriptive-statistics"><i class="fa fa-check"></i><b>7.1.1</b> Introduction to Descriptive Statistics</a></li>
+<li class="chapter" data-level="7.1.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#visualization-of-descriptive-statistics"><i class="fa fa-check"></i><b>7.1.2</b> Visualization of Descriptive Statistics</a></li>
+<li class="chapter" data-level="7.1.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercise-1"><i class="fa fa-check"></i><b>7.1.3</b> Hands On Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#correlation-and-regression-analysis"><i class="fa fa-check"></i><b>7.2</b> Correlation and Regression Analysis</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-correlation"><i class="fa fa-check"></i><b>7.2.1</b> Introduction to Correlation</a></li>
+<li class="chapter" data-level="7.2.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-regression-analysis"><i class="fa fa-check"></i><b>7.2.2</b> Introduction to Regression Analysis</a></li>
+<li class="chapter" data-level="7.2.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>7.2.3</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#advanced-statistical-methods"><i class="fa fa-check"></i><b>7.3</b> Advanced Statistical Methods</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-hypothesis-testing"><i class="fa fa-check"></i><b>7.3.1</b> Introduction to Hypothesis Testing</a></li>
+<li class="chapter" data-level="7.3.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercises-4"><i class="fa fa-check"></i><b>7.3.2</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="statistical-analysis.html"><a href="statistical-analysis.html#project-applying-statistical-analysis"><i class="fa fa-check"></i><b>7.4</b> Project: Applying Statistical Analysis</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#project-overview"><i class="fa fa-check"></i><b>7.4.1</b> Project Overview</a></li>
+<li class="chapter" data-level="7.4.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#conducting-statistical-analysis"><i class="fa fa-check"></i><b>7.4.2</b> Conducting Statistical Analysis</a></li>
+<li class="chapter" data-level="7.4.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#presenting-statistical-findings"><i class="fa fa-check"></i><b>7.4.3</b> Presenting Statistical Findings</a></li>
+<li class="chapter" data-level="7.4.4" data-path="statistical-analysis.html"><a href="statistical-analysis.html#example-ecommerce-statistical-analysis"><i class="fa fa-check"></i><b>7.4.4</b> <span style="color: brown;">Example: Ecommerce Statistical Analysis</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html"><i class="fa fa-check"></i><b>8</b> Working with Real-World Data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#handling-large-datasets"><i class="fa fa-check"></i><b>8.1</b> Handling Large Datasets</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#challenges-of-large-data-sets"><i class="fa fa-check"></i><b>8.1.1</b> Challenges of Large Data sets</a></li>
+<li class="chapter" data-level="8.1.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#efficient-data-handling-techniques"><i class="fa fa-check"></i><b>8.1.2</b> Efficient Data Handling Techniques</a></li>
+<li class="chapter" data-level="8.1.3" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#reading-and-writing-large-files"><i class="fa fa-check"></i><b>8.1.3</b> Reading and Writing Large Files</a></li>
+<li class="chapter" data-level="8.1.4" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#hands-on-exercises-5"><i class="fa fa-check"></i><b>8.1.4</b> Hands-On Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#data-cleaning-and-transformation"><i class="fa fa-check"></i><b>8.2</b> Data Cleaning and Transformation</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#introduction-to-data-cleaning"><i class="fa fa-check"></i><b>8.2.1</b> Introduction to Data Cleaning</a></li>
+<li class="chapter" data-level="8.2.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#hands-on-exercises-6"><i class="fa fa-check"></i><b>8.2.2</b> Hands-On Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="time-series-analysis.html"><a href="time-series-analysis.html"><i class="fa fa-check"></i><b>9</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#introduction-to-time-series-data"><i class="fa fa-check"></i><b>9.1</b> Introduction to Time Series Data</a></li>
+<li class="chapter" data-level="9.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#basic-time-series-concepts"><i class="fa fa-check"></i><b>9.2</b> Basic Time Series Concepts</a></li>
+<li class="chapter" data-level="9.3" data-path="time-series-analysis.html"><a href="time-series-analysis.html#basic-time-series-forecasting"><i class="fa fa-check"></i><b>9.3</b> Basic Time Series Forecasting</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#moving-averages"><i class="fa fa-check"></i><b>9.3.1</b> Moving Averages</a></li>
+<li class="chapter" data-level="9.3.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#arima-model"><i class="fa fa-check"></i><b>9.3.2</b> ARIMA model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="time-series-analysis.html"><a href="time-series-analysis.html#hands-on-exercises-7"><i class="fa fa-check"></i><b>9.4</b> Hands-On Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="capstone-project.html"><a href="capstone-project.html"><i class="fa fa-check"></i><b>10</b> Capstone Project</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="capstone-project.html"><a href="capstone-project.html#introduction-2"><i class="fa fa-check"></i><b>10.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="capstone-project.html"><a href="capstone-project.html#project-overview-and-objectives"><i class="fa fa-check"></i><b>10.1.1</b> Project Overview and Objectives</a></li>
+<li class="chapter" data-level="10.1.2" data-path="capstone-project.html"><a href="capstone-project.html#group-formation"><i class="fa fa-check"></i><b>10.1.2</b> Group Formation</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="capstone-project.html"><a href="capstone-project.html#project-planning"><i class="fa fa-check"></i><b>10.2</b> Project Planning</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="capstone-project.html"><a href="capstone-project.html#defining-the-problem-statement"><i class="fa fa-check"></i><b>10.2.1</b> Defining the problem statement</a></li>
+<li class="chapter" data-level="10.2.2" data-path="capstone-project.html"><a href="capstone-project.html#planning-the-analysis-workflow"><i class="fa fa-check"></i><b>10.2.2</b> Planning the Analysis WorkFlow</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="capstone-project.html"><a href="capstone-project.html#project-execution"><i class="fa fa-check"></i><b>10.3</b> Project Execution</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="capstone-project.html"><a href="capstone-project.html#part-1"><i class="fa fa-check"></i><b>10.3.1</b> Part 1</a></li>
+<li class="chapter" data-level="10.3.2" data-path="capstone-project.html"><a href="capstone-project.html#part-2"><i class="fa fa-check"></i><b>10.3.2</b> Part 2</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="capstone-project.html"><a href="capstone-project.html#project-presentations-and-feedback"><i class="fa fa-check"></i><b>10.4</b> Project Presentations and Feedback</a></li>
+<li class="chapter" data-level="10.5" data-path="capstone-project.html"><a href="capstone-project.html#example-ecommerce-project"><i class="fa fa-check"></i><b>10.5</b> <span style="color: brown;">Example: Ecommerce Project</span></a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="capstone-project.html"><a href="capstone-project.html#part-1-1"><i class="fa fa-check"></i><b>10.5.1</b> <span style="color: brown;">Part 1</span></a></li>
+<li class="chapter" data-level="10.5.2" data-path="capstone-project.html"><a href="capstone-project.html#part-2-1"><i class="fa fa-check"></i><b>10.5.2</b> <span style="color: brown;">Part 2</span></a></li>
+<li class="chapter" data-level="10.5.3" data-path="capstone-project.html"><a href="capstone-project.html#presentation-and-feedback"><i class="fa fa-check"></i><b>10.5.3</b> <span style="color: brown;">Presentation and Feedback</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>11</b> Datasets</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="statistical-analysis" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Statistical Analysis<a href="statistical-analysis.html#statistical-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="basic-statistical-concepts" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Basic Statistical Concepts<a href="statistical-analysis.html#basic-statistical-concepts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-to-descriptive-statistics" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Introduction to Descriptive Statistics<a href="statistical-analysis.html#introduction-to-descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Mean, Median and Mode</strong></li>
+</ul>
+<p><strong>Mean</strong> is the sum of all values divided by the number of values in the set. It also referred to as average.
+<br>
+<strong>Median</strong> is the middle value when values in a data set is ordered/lined up in ascending/descending order.
+<br>
+<strong>Mode</strong> is the number that occurs most in the data set. Simply, the most frequent value in the data set.</p>
+<p>All these, are measures of central tendency. Central tendency identifies the center or typical value of a data set. Measuring central tendency summarizes the data by identifying skewness, distribution and how the data is robust to outliers. Business calculate the central tendencies like average sales, median customer age to make informed decision-making.</p>
+<p>Below is the formula to calculate mean.</p>
+<p><img src="images/mean_formula.png" /></p>
+<p>where <em>xi</em> represents each value in the data set, and <em>n</em> is the number of values. Lets calculate mean of the vector <code>ages</code> with the values <code>12, 58, 27, 33, 31, 27, 37</code> manually with the steps below;</p>
+<pre><code># Add the values together
+total_age = 12 + 58 + 27 + 33 + 31 + 27 + 37
+total_age # is 225
+
+number_of_values = 7 # there are 7 values 
+
+mean age = total_age/number_of_values
+mean_age # is 32.14</code></pre>
+<p>The average age is 32.14.</p>
+<p>To calculate the median of the vector <code>ages</code>, the ages are arranged in descending/ascending order and the middle one is selected. In this case we will line them up in ascending order</p>
+<pre><code># Line the ages up in ascending order 
+12, 27, 27, 31, 33, 37, 58
+
+# There are 7 ages, the fourth one from either side is the median value
+# The median age is 31</code></pre>
+<p>To find mode, you just find the value that appears the most, for the values <code>12, 27, 27 , 31, 33, 37, 58</code>, age 27 appears twice while these other ages appear once. The value 27 is therefore the mode.</p>
+<p>Mean, median and mode can also be calculated using Base R using the functions <code>mean()</code>, <code>median()</code> and <code>mode()</code> where the vector ages is the argument.</p>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="statistical-analysis.html#cb468-1" tabindex="-1"></a><span class="co"># Create vector ages</span></span>
+<span id="cb468-2"><a href="statistical-analysis.html#cb468-2" tabindex="-1"></a>ages <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">58</span>, <span class="dv">27</span>, <span class="dv">33</span>, <span class="dv">31</span>, <span class="dv">27</span>, <span class="dv">37</span>)</span>
+<span id="cb468-3"><a href="statistical-analysis.html#cb468-3" tabindex="-1"></a><span class="co"># Average/mean</span></span>
+<span id="cb468-4"><a href="statistical-analysis.html#cb468-4" tabindex="-1"></a><span class="fu">mean</span>(ages)</span></code></pre></div>
+<pre><code>## [1] 32.14286</code></pre>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="statistical-analysis.html#cb470-1" tabindex="-1"></a><span class="co"># Median</span></span>
+<span id="cb470-2"><a href="statistical-analysis.html#cb470-2" tabindex="-1"></a><span class="fu">median</span>(ages)</span></code></pre></div>
+<pre><code>## [1] 31</code></pre>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="statistical-analysis.html#cb472-1" tabindex="-1"></a><span class="co"># Mode</span></span>
+<span id="cb472-2"><a href="statistical-analysis.html#cb472-2" tabindex="-1"></a><span class="fu">mode</span>(ages)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Load the inbuilt <code>iris</code> R data set, retrieve the sepal width(<code>Sepal.Width</code>) and sepal length(<code>Sepal.length</code>) of the each Iris species and store in separate vectors. For instance, the sepal width for <em>setosa</em> should be in a variable <code>setosa.sepal.width</code>. Finally calculate and interpret the mean, median and mode for each vector</p>
+<ul>
+<li><strong>Variance and Standard deviation</strong></li>
+</ul>
+<p>Variance is statistical measure of dispersion that defines how spread the data points are in a data set in relation to the mean of the data set. Standard deviation is the measure of how data is clustered around the mean. It is simply defined to as the square root of variance.</p>
+<p>Variance and standard deviation can be calculated in R environment using <code>var()</code> and <code>sd()</code> functions respectively.</p>
+<p>Lets create a vector of weights of the athletes in kilograms and calculate the variance and standard deviation.</p>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="statistical-analysis.html#cb474-1" tabindex="-1"></a><span class="co"># Sample vector </span></span>
+<span id="cb474-2"><a href="statistical-analysis.html#cb474-2" tabindex="-1"></a>athlete_weights <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">76</span>, <span class="dv">52</span>, <span class="dv">68</span>, <span class="dv">71</span>, <span class="dv">63</span>, <span class="dv">58</span>, <span class="dv">52</span>, <span class="dv">85</span>, <span class="dv">96</span>)</span>
+<span id="cb474-3"><a href="statistical-analysis.html#cb474-3" tabindex="-1"></a></span>
+<span id="cb474-4"><a href="statistical-analysis.html#cb474-4" tabindex="-1"></a><span class="co"># Calculate variance</span></span>
+<span id="cb474-5"><a href="statistical-analysis.html#cb474-5" tabindex="-1"></a><span class="fu">var</span>(athlete_weights)</span></code></pre></div>
+<pre><code>## [1] 216.7111</code></pre>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="statistical-analysis.html#cb476-1" tabindex="-1"></a><span class="co"># Calculate standard deviation</span></span>
+<span id="cb476-2"><a href="statistical-analysis.html#cb476-2" tabindex="-1"></a><span class="fu">sd</span>(athlete_weights)</span></code></pre></div>
+<pre><code>## [1] 14.72111</code></pre>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the same iris data set, calculate the variance and standard deviation for the <code>versicolor</code> species petal width(<code>Petal.Width</code>).</p>
+<ul>
+<li><strong>Range and Interquartile Range</strong></li>
+</ul>
+<p><strong>Range</strong> is the difference between the maximum and minimum values in the data set. This defines the spread and dispersion of a data set.</p>
+<p>Below is the formula for Range:</p>
+<p><strong>Range</strong> <em>=</em> <strong>Maximum Value</strong> <em>-</em> <strong>Minimum Value</strong></p>
+<p>Lets use the weights vector above to calculate the range;</p>
+<p><code>weights</code> = <code>55, 76, 52, 68, 71, 63, 58, 52, 85, 96</code></p>
+<p><code>maximum_weight</code> = <code>96</code></p>
+<p><code>minimum_weight</code> = <code>52</code></p>
+<p><code>Range = maximum_weight - minimum_weight = 44</code></p>
+<p>Range is essential in data analysis as it gives a quick sense of variability in the data set, however it vulnerable to outliers since it gives importance to the maximum and minimum values even if they are extreme.</p>
+<p><strong>Interquartile Range(IQR)</strong> is the difference between the first quartile (Q1) and third quartile(Q3) value. First Quartile is the median of the lower half of the data while Thrid quartile is the median of the upper of the data set. Therefore</p>
+<p><strong>IQR</strong> <em>=</em> <strong>Q3</strong> <em>-</em> <strong>Q1</strong></p>
+<p>Lets calculate the IQR of the vector weights step by step;-</p>
+<ol style="list-style-type: lower-roman">
+<li>Define the data weights and arrange the data in ascending order.
+<code>weights = 52, 52, 55, 58, 63, 68, 71, 76, 85, 96</code>.</li>
+<li>Determine the first quartile (Q1). Select the lower half(first five values) of the data and find their median which is the first quartile (Q1)</li>
+</ol>
+<p><code>lower_half = 52, 52, 55, 58, 63</code></p>
+<p><code>Q1 = 55</code></p>
+<ol start="3" style="list-style-type: lower-roman">
+<li>Determine the third quartile (Q3). Select the upper half(last five values) and find their median which is the third quartile.</li>
+</ol>
+<p><code>upper_half = 68, 71, 76, 85, 96</code></p>
+<p><code>Q3 = 76</code></p>
+<ol start="4" style="list-style-type: lower-roman">
+<li>Calculate the Interquartile Range (IQR) by finding the difference between Q1 and Q3.</li>
+</ol>
+<p><code>IQR = Q3 - Q1 = 76 - 55 = 21</code></p>
+<p>The IQR for the weights data set is 21.</p>
+<p>Range and IQR can be calculated in R environment using the <code>range()</code> and <code>IQR()</code> function respectively. However function range returns the maximum and the minmum values in the dataset.</p>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="statistical-analysis.html#cb478-1" tabindex="-1"></a><span class="co"># Sample vector </span></span>
+<span id="cb478-2"><a href="statistical-analysis.html#cb478-2" tabindex="-1"></a>athlete_weights <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">76</span>, <span class="dv">52</span>, <span class="dv">68</span>, <span class="dv">71</span>, <span class="dv">63</span>, <span class="dv">58</span>, <span class="dv">52</span>, <span class="dv">85</span>, <span class="dv">96</span>)</span>
+<span id="cb478-3"><a href="statistical-analysis.html#cb478-3" tabindex="-1"></a>                    </span>
+<span id="cb478-4"><a href="statistical-analysis.html#cb478-4" tabindex="-1"></a><span class="co"># RANGE </span></span>
+<span id="cb478-5"><a href="statistical-analysis.html#cb478-5" tabindex="-1"></a><span class="fu">range</span>(athlete_weights) <span class="co"># returns maximum and minimum values</span></span></code></pre></div>
+<pre><code>## [1] 52 96</code></pre>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="statistical-analysis.html#cb480-1" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">range</span>(athlete_weights)) <span class="co"># calculate the range value</span></span></code></pre></div>
+<pre><code>## [1] 44</code></pre>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="statistical-analysis.html#cb482-1" tabindex="-1"></a><span class="co"># INTER QUARTILE RANGE (IQR)http://127.0.0.1:38237/rmd_output/1/basic-data-types-and-structures.html</span></span>
+<span id="cb482-2"><a href="statistical-analysis.html#cb482-2" tabindex="-1"></a><span class="fu">IQR</span>(athlete_weights)</span></code></pre></div>
+<pre><code>## [1] 19</code></pre>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Load the <code>iris</code> data set and calculate the range and the Interquartile Range for the Petal Length and petal width for each iris species</p>
+</div>
+<div id="visualization-of-descriptive-statistics" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Visualization of Descriptive Statistics<a href="statistical-analysis.html#visualization-of-descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Boxplots</strong></li>
+</ul>
+<p>Boxplots provide a visual summary of data distribution. It helps the analyst understand the spread, skewness and outliers in the data set.</p>
+<p><img src="images/labelled_boxplot.png" /></p>
+<p>The diagram above shows a labelled boxplot. Lets breakdown each part;</p>
+<ol style="list-style-type: lower-roman">
+<li><strong>Minimum(Lower Whisker)</strong>: is the smallest data point that appear between the first quartile(Q1) and 1.5x Interquartile Range(IQR) towards the lower limit(left side here.</li>
+<li><strong>Maximum(Upper Whisker</strong>: is the largest data point that appear between the third quartile(Q3) and 1.5x IQR towards the upper limit(right side here)</li>
+<li><strong>First Quartile(Q1)</strong>: is the 25<span class="math inline">\(^{th}\)</span> percentile depicting that 25% of the data points are below here.</li>
+<li><strong>Third Quartile(Q3)</strong>: is the 75<span class="math inline">\(^{th}\)</span> percentile, depicting that 75% of the data points are above here.</li>
+<li><strong>Median(Q2)</strong>: is the 50<span class="math inline">\(^{th}\)</span> percentile that divides the data into two equal halves, 50% of the data points are above and below here.</li>
+<li><strong>Interquartile Range</strong>: The difference between the third quartile(Q3) and the first quartile(Q1).</li>
+<li><strong>Outliers</strong>: Data points that fall outside the whiskers are considered as outliers and are plotted as dot alone.</li>
+</ol>
+<p>Lets engage in a practical session and plot a boxplot from the <code>ggplot</code>.</p>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="statistical-analysis.html#cb484-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb484-2"><a href="statistical-analysis.html#cb484-2" tabindex="-1"></a></span>
+<span id="cb484-3"><a href="statistical-analysis.html#cb484-3" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb484-4"><a href="statistical-analysis.html#cb484-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># for reproducibility</span></span>
+<span id="cb484-5"><a href="statistical-analysis.html#cb484-5" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb484-6"><a href="statistical-analysis.html#cb484-6" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="at">each =</span> <span class="dv">50</span>),</span>
+<span id="cb484-7"><a href="statistical-analysis.html#cb484-7" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">2</span>),</span>
+<span id="cb484-8"><a href="statistical-analysis.html#cb484-8" tabindex="-1"></a>            <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="fl">2.5</span>),</span>
+<span id="cb484-9"><a href="statistical-analysis.html#cb484-9" tabindex="-1"></a>            <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="at">mean =</span> <span class="dv">20</span>, <span class="at">sd =</span> <span class="dv">3</span>))</span>
+<span id="cb484-10"><a href="statistical-analysis.html#cb484-10" tabindex="-1"></a>)</span>
+<span id="cb484-11"><a href="statistical-analysis.html#cb484-11" tabindex="-1"></a></span>
+<span id="cb484-12"><a href="statistical-analysis.html#cb484-12" tabindex="-1"></a><span class="co"># Create some outliers</span></span>
+<span id="cb484-13"><a href="statistical-analysis.html#cb484-13" tabindex="-1"></a>outliers <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb484-14"><a href="statistical-analysis.html#cb484-14" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;A&quot;</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="st">&quot;B&quot;</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="st">&quot;C&quot;</span>, <span class="dv">4</span>)),</span>
+<span id="cb484-15"><a href="statistical-analysis.html#cb484-15" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">3</span>, <span class="sc">-</span><span class="dv">30</span>, <span class="sc">-</span><span class="dv">35</span>, <span class="dv">50</span>, <span class="dv">6</span>, <span class="dv">45</span>, <span class="dv">50</span>, <span class="sc">-</span><span class="dv">17</span>, <span class="dv">8</span>, <span class="dv">60</span>, <span class="dv">65</span>)  <span class="co"># Low and high outliers</span></span>
+<span id="cb484-16"><a href="statistical-analysis.html#cb484-16" tabindex="-1"></a>)</span>
+<span id="cb484-17"><a href="statistical-analysis.html#cb484-17" tabindex="-1"></a></span>
+<span id="cb484-18"><a href="statistical-analysis.html#cb484-18" tabindex="-1"></a><span class="co"># Introduce the outliers into the data set </span></span>
+<span id="cb484-19"><a href="statistical-analysis.html#cb484-19" tabindex="-1"></a>df_with_outliers <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df, outliers)</span>
+<span id="cb484-20"><a href="statistical-analysis.html#cb484-20" tabindex="-1"></a></span>
+<span id="cb484-21"><a href="statistical-analysis.html#cb484-21" tabindex="-1"></a></span>
+<span id="cb484-22"><a href="statistical-analysis.html#cb484-22" tabindex="-1"></a><span class="co"># Plot a simple boxplot </span></span>
+<span id="cb484-23"><a href="statistical-analysis.html#cb484-23" tabindex="-1"></a><span class="fu">ggplot</span>(df_with_outliers, <span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
+<span id="cb484-24"><a href="statistical-analysis.html#cb484-24" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.colour =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb484-25"><a href="statistical-analysis.html#cb484-25" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb484-26"><a href="statistical-analysis.html#cb484-26" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Boxplot of Values&quot;</span>,</span>
+<span id="cb484-27"><a href="statistical-analysis.html#cb484-27" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Value&quot;</span></span>
+<span id="cb484-28"><a href="statistical-analysis.html#cb484-28" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb484-29"><a href="statistical-analysis.html#cb484-29" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
+<p>The red dots are the outliers</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Use the <code>iris</code> data set to plot boxplots that represent the petal length for each species. Analyze the boxplots and compare them.</p>
+<ul>
+<li><strong>Histograms and Density Plots</strong></li>
+</ul>
+<p>These two types of plots are used to visualize the distribution of data.</p>
+<p>A <strong>histogram</strong> is a graphical representation of the distribution of a data set. It divides the data into bins (intervals) and displays the frequency (or count) of data points that fall within each bin. Histograms are particularly useful for:</p>
+<ol style="list-style-type: lower-roman">
+<li>Visualizing the shape of the data distribution: Whether the data is skewed, symmetric, or multimodal.</li>
+<li>Identifying outliers: Extreme values that fall far outside the range of most data points.</li>
+<li>Understanding the spread: How data points are distributed across the range of values.</li>
+</ol>
+<p>Lets plot a simple histogram for this;</p>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="statistical-analysis.html#cb485-1" tabindex="-1"></a><span class="co"># Simple Histogram </span></span>
+<span id="cb485-2"><a href="statistical-analysis.html#cb485-2" tabindex="-1"></a><span class="fu">ggplot</span>(df_with_outliers, <span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
+<span id="cb485-3"><a href="statistical-analysis.html#cb485-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb485-4"><a href="statistical-analysis.html#cb485-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb485-5"><a href="statistical-analysis.html#cb485-5" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Histogram of Values with Outliers&quot;</span>,</span>
+<span id="cb485-6"><a href="statistical-analysis.html#cb485-6" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Value&quot;</span>,</span>
+<span id="cb485-7"><a href="statistical-analysis.html#cb485-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span></span>
+<span id="cb485-8"><a href="statistical-analysis.html#cb485-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb485-9"><a href="statistical-analysis.html#cb485-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-207-1.png" width="672" />
+Most values in the data set range between 10 and 20. Let,s also plot the data for a nomal distribution.</p>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="statistical-analysis.html#cb486-1" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
+<span id="cb486-2"><a href="statistical-analysis.html#cb486-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb486-3"><a href="statistical-analysis.html#cb486-3" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb486-4"><a href="statistical-analysis.html#cb486-4" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Histogram of Values&quot;</span>,</span>
+<span id="cb486-5"><a href="statistical-analysis.html#cb486-5" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Value&quot;</span>,</span>
+<span id="cb486-6"><a href="statistical-analysis.html#cb486-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span></span>
+<span id="cb486-7"><a href="statistical-analysis.html#cb486-7" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb486-8"><a href="statistical-analysis.html#cb486-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-208-1.png" width="672" /></p>
+<p>Most of the values are at the center and make a bell-curve.</p>
+<p>On the other hand, a <strong>density plot</strong> is a smoothed version of a histogram. It estimates the probability density function of a continuous variable, allowing for a smoother visualization of the distribution. Density plots are particularly useful for:</p>
+<ol style="list-style-type: lower-roman">
+<li>Comparing distributions: Since density plots can overlay multiple distributions, they are helpful in comparing different data sets or groups within a data set.</li>
+<li>Visualizing the shape of the data: The smooth curve makes it easier to identify peaks (modes), skewness, and the overall spread.</li>
+<li>Understanding the relative likelihood of data: The area under the density curve represents the probability of data falling within a particular range.</li>
+</ol>
+<p>Lets plot a density plot and find the visual difference;</p>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="statistical-analysis.html#cb487-1" tabindex="-1"></a><span class="co"># Create a density plot</span></span>
+<span id="cb487-2"><a href="statistical-analysis.html#cb487-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
+<span id="cb487-3"><a href="statistical-analysis.html#cb487-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">&quot;lightgreen&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb487-4"><a href="statistical-analysis.html#cb487-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb487-5"><a href="statistical-analysis.html#cb487-5" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Density Plot of Values&quot;</span>,</span>
+<span id="cb487-6"><a href="statistical-analysis.html#cb487-6" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Value&quot;</span>,</span>
+<span id="cb487-7"><a href="statistical-analysis.html#cb487-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
+<span id="cb487-8"><a href="statistical-analysis.html#cb487-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb487-9"><a href="statistical-analysis.html#cb487-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
+<p>From the graphs above, histograms provide a bar-chart-like representation of the data distribution while density plots proved a smoother view of the data distribution.</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Load the <code>airquality</code>, an inbuilt R data set. Plot a density plot and histogram separately to visualize the distribution of the speed of wind in mph(<code>Wind</code>)</p>
+</div>
+<div id="hands-on-exercise-1" class="section level3 hasAnchor" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> Hands On Exercise<a href="statistical-analysis.html#hands-on-exercise-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this exercise you will use the <code>"Pima.te"</code> data set from the MASS package. Follow the steps below to get the data ready and started;</p>
+<ol style="list-style-type: lower-roman">
+<li>Install the <code>MASS</code> package by;</li>
+</ol>
+<pre><code>install.packages(&quot;MASS&quot;)</code></pre>
+<ol start="2" style="list-style-type: lower-roman">
+<li>Import the library</li>
+</ol>
+<pre><code>library(MASS)</code></pre>
+<ol start="3" style="list-style-type: lower-roman">
+<li>Load the pima dataset</li>
+</ol>
+<pre><code># Load the data set 
+data(&quot;Pima.te&quot;)
+
+# Show the first few rows of the data 
+head(Pima.te)</code></pre>
+<p>After getting the data ready, apply the skills learnt to;</p>
+<ol style="list-style-type: decimal">
+<li>Calculate the destcriptive statistics (mean, mode and median etc)</li>
+<li>Find the relationship between the plasma glucose concentration in an oral glucose tolerance test(<code>glu</code>) and the diastolic blood pressure(<code>bp</code>) using a scatter plot</li>
+<li>Compare the average age of the patients that had diabetes(’type`) using a bar chart</li>
+<li>Find the distribution of age of the patients using a histogram. Explain the distribution.</li>
+</ol>
+</div>
+</div>
+<div id="correlation-and-regression-analysis" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Correlation and Regression Analysis<a href="statistical-analysis.html#correlation-and-regression-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-to-correlation" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Introduction to Correlation<a href="statistical-analysis.html#introduction-to-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Pearson and Spearman Correlation</strong></li>
+</ul>
+<p>Correlation is the relationship between two variables. It can also defined to as the statistic measure to the degree to which two variables move in relation to each other.</p>
+<p>There are two types of correlation in statistics;- pearson and spearman correlations. They differ in their calculation methods, assumptions and type of relationships they are suited for.</p>
+<p>Pearson correlation measures the linear relationship between two variables with the assumptions that there is a linear relationship between the variables and the data is normally distributed. Contrarily, Spearman correlation measures the monotonic relationship(whether there is a consistent positive or negative change ) between two variables. The data to be analyzed, don’t need to be normally distributed, it can be ordinal with the variables having a non-linear relationship.</p>
+<p>Lets take two variables, <code>X</code> and <code>Y</code>, Pearson correlation is calculated by dividing the covariance of <code>X</code> and <code>Y</code> with their product of standard deviation. Below is its formula;</p>
+<p><img src="images/pearson_formula.png" /></p>
+<p><code>r</code> is the pearson correlation and it can range from -1 to +1.</p>
+<p>Spearman correlation is calculated by ranking data points, then applying Pearson correlation formula. Below is the formula of spearman correlation;</p>
+<p><img src="images/spearman_formula.png" /></p>
+<p>where;</p>
+<ul>
+<li><code>d</code> is the difference between the ranks of corresponding variables</li>
+<li><code>n</code> is the number of observations</li>
+<li><code>r</code> is the pearson correlation</li>
+</ul>
+<p>Spearman correlation is insensitive with outliers because it uses ranks other than outliers.</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Load the <code>airquality</code> data set. Calculate the correlation of <code>Wind</code> and temperature <code>Wind</code>. Interpret the coefficients for various data sets.</p>
+<ul>
+<li><strong>Visualizing Correlation</strong></li>
+</ul>
+<p>The relationship of exactly two numeric continuous variables can be viewed using scatter plots while the relationship between multiple(two or more) can be analyzed using a correlation plot(heatmap)</p>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="statistical-analysis.html#cb491-1" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb491-2"><a href="statistical-analysis.html#cb491-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb491-3"><a href="statistical-analysis.html#cb491-3" tabindex="-1"></a></span>
+<span id="cb491-4"><a href="statistical-analysis.html#cb491-4" tabindex="-1"></a><span class="co"># Create a linear relationship with some noise</span></span>
+<span id="cb491-5"><a href="statistical-analysis.html#cb491-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb491-6"><a href="statistical-analysis.html#cb491-6" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="dv">5</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">5</span>)  <span class="co"># Linear relationship with noise</span></span>
+<span id="cb491-7"><a href="statistical-analysis.html#cb491-7" tabindex="-1"></a></span>
+<span id="cb491-8"><a href="statistical-analysis.html#cb491-8" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
+<span id="cb491-9"><a href="statistical-analysis.html#cb491-9" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span>
+<span id="cb491-10"><a href="statistical-analysis.html#cb491-10" tabindex="-1"></a></span>
+<span id="cb491-11"><a href="statistical-analysis.html#cb491-11" tabindex="-1"></a></span>
+<span id="cb491-12"><a href="statistical-analysis.html#cb491-12" tabindex="-1"></a><span class="co"># Create a scatter plot</span></span>
+<span id="cb491-13"><a href="statistical-analysis.html#cb491-13" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb491-14"><a href="statistical-analysis.html#cb491-14" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb491-15"><a href="statistical-analysis.html#cb491-15" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb491-16"><a href="statistical-analysis.html#cb491-16" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Scatter Plot of X vs Y&quot;</span>,</span>
+<span id="cb491-17"><a href="statistical-analysis.html#cb491-17" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;X Variable&quot;</span>,</span>
+<span id="cb491-18"><a href="statistical-analysis.html#cb491-18" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Y Variable&quot;</span></span>
+<span id="cb491-19"><a href="statistical-analysis.html#cb491-19" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb491-20"><a href="statistical-analysis.html#cb491-20" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-210-1.png" width="672" /></p>
+<p>In the scatter plot above;</p>
+<ol style="list-style-type: lower-roman">
+<li>The <code>X</code> and <code>y</code> variables have a positive correlation. The increase in <code>X</code> leads to an increase in <code>Y</code>.</li>
+<li>There are no outliers in the data set. There are no data points that are out of the general pattern.</li>
+<li>The relationship between <code>X</code> and <code>Y</code> is linear.</li>
+</ol>
+<p>On the other hand, the heatmap is a visual representation of the correlation matrix where each cell represents the relationship between two variables. The color of the cell indicates the strength of the relationship between the concerned variables.</p>
+<p>Lets create a data frame with multiple variables, and plot a heatmap.</p>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="statistical-analysis.html#cb492-1" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb492-2"><a href="statistical-analysis.html#cb492-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb492-3"><a href="statistical-analysis.html#cb492-3" tabindex="-1"></a></span>
+<span id="cb492-4"><a href="statistical-analysis.html#cb492-4" tabindex="-1"></a><span class="co"># Create 6 variables</span></span>
+<span id="cb492-5"><a href="statistical-analysis.html#cb492-5" tabindex="-1"></a>var1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb492-6"><a href="statistical-analysis.html#cb492-6" tabindex="-1"></a>var2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">60</span>, <span class="at">sd =</span> <span class="dv">15</span>)</span>
+<span id="cb492-7"><a href="statistical-analysis.html#cb492-7" tabindex="-1"></a>var3 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">70</span>, <span class="at">sd =</span> <span class="dv">20</span>)</span>
+<span id="cb492-8"><a href="statistical-analysis.html#cb492-8" tabindex="-1"></a>var4 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">80</span>, <span class="at">sd =</span> <span class="dv">25</span>)</span>
+<span id="cb492-9"><a href="statistical-analysis.html#cb492-9" tabindex="-1"></a>var5 <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">*</span> var1 <span class="sc">+</span> <span class="dv">7</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">5</span>)  <span class="co"># Linear relationship with var1</span></span>
+<span id="cb492-10"><a href="statistical-analysis.html#cb492-10" tabindex="-1"></a>var6 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">90</span>, <span class="at">sd =</span> <span class="dv">30</span>)</span>
+<span id="cb492-11"><a href="statistical-analysis.html#cb492-11" tabindex="-1"></a></span>
+<span id="cb492-12"><a href="statistical-analysis.html#cb492-12" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
+<span id="cb492-13"><a href="statistical-analysis.html#cb492-13" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">var1 =</span> var1, <span class="at">var2 =</span> var2, <span class="at">var3 =</span> var3, <span class="at">var4 =</span> var4, <span class="at">var5 =</span> var5, <span class="at">var6 =</span> var6)</span>
+<span id="cb492-14"><a href="statistical-analysis.html#cb492-14" tabindex="-1"></a></span>
+<span id="cb492-15"><a href="statistical-analysis.html#cb492-15" tabindex="-1"></a><span class="co"># Display the first few rows of the data set</span></span>
+<span id="cb492-16"><a href="statistical-analysis.html#cb492-16" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>##       var1     var2      var3     var4     var5      var6
+## 1 44.39524 49.34390 113.97621 62.11895 139.8180  71.94321
+## 2 47.69823 63.85326  96.24826 61.18278 144.2514  60.18904
+## 3 65.58708 56.29962  64.69710 56.53653 200.5875 120.80355
+## 4 50.70508 54.78686  80.86388 53.68717 158.9710 112.53184
+## 5 51.29288 45.72572  61.71320 69.07101 164.2321  44.72500
+## 6 67.15065 59.32458  60.47506 88.27948 200.1992  87.14558</code></pre>
+<p><code>var5</code> has a linear relationship with <code>var1</code>. Lets plot a heatmap of the data frame <code>df</code>. However, lets install the <code>ggcorrplot</code> and the <code>corrplot</code> packages</p>
+<pre><code>install.packages(c(&quot;ggcorrplot&quot;, &quot;corrplot&quot;))</code></pre>
+<p>Create a correlation heatmap using the <code>ggcorrplot</code> package</p>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="statistical-analysis.html#cb495-1" tabindex="-1"></a><span class="fu">library</span>(ggcorrplot)</span>
+<span id="cb495-2"><a href="statistical-analysis.html#cb495-2" tabindex="-1"></a></span>
+<span id="cb495-3"><a href="statistical-analysis.html#cb495-3" tabindex="-1"></a><span class="co"># Calculate the correlation matrix</span></span>
+<span id="cb495-4"><a href="statistical-analysis.html#cb495-4" tabindex="-1"></a>cor_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(df)</span>
+<span id="cb495-5"><a href="statistical-analysis.html#cb495-5" tabindex="-1"></a></span>
+<span id="cb495-6"><a href="statistical-analysis.html#cb495-6" tabindex="-1"></a><span class="co"># Create a correlation heatmap</span></span>
+<span id="cb495-7"><a href="statistical-analysis.html#cb495-7" tabindex="-1"></a><span class="fu">ggcorrplot</span>(cor_matrix, <span class="at">method =</span> <span class="st">&quot;circle&quot;</span>, <span class="at">lab =</span> <span class="cn">TRUE</span>, <span class="at">lab_size =</span> <span class="dv">3</span>, <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;blue&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb495-8"><a href="statistical-analysis.html#cb495-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Heatmap 1&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
+<p>Lets repeat the same using the <code>corrplot</code> package</p>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="statistical-analysis.html#cb496-1" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code></pre></div>
+<pre><code>## corrplot 0.94 loaded</code></pre>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="statistical-analysis.html#cb498-1" tabindex="-1"></a><span class="co"># Create a correlation heatmap using corrplot</span></span>
+<span id="cb498-2"><a href="statistical-analysis.html#cb498-2" tabindex="-1"></a><span class="fu">corrplot</span>(cor_matrix, <span class="at">method =</span> <span class="st">&quot;color&quot;</span>, <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>, <span class="at">tl.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">tl.srt =</span> <span class="dv">45</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
+<p>The two plots visualizes the correlation between the variables in the data set. <code>Var5</code> and <code>Var1</code> have a high correlation(0.98) while <code>Var5</code> and <code>Var2</code> have a very low correlation value(-0.07)</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Load the same <code>airquality</code> inbuilt R data set. Create a scatter plot to show the relationship between <code>Wind</code> and <code>Temp</code> variable. Also plot a correlation heatmap for numeric data set(<code>Ozone</code>, <code>Solar.R</code>, <code>Wind</code> and <code>Temp</code>)</p>
+</div>
+<div id="introduction-to-regression-analysis" class="section level3 hasAnchor" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Introduction to Regression Analysis<a href="statistical-analysis.html#introduction-to-regression-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Regression is a statistical method used to measure the strength and relationship of a target(dependent) with one or more independent variables. Correlation is very vital in determining regression. Linear regression is the most technique of regression, there are some more advanced forms of regression.</p>
+<ul>
+<li><strong>Simple Linear Regression</strong></li>
+</ul>
+<p>This type of regression is used to estimate the relation of one independent variable with the target variable. For instance the relationship between age and height of children. relationship between weight and BMI of athletes, relationship between rainfall and soil erosion.</p>
+<p>When creating a simple linear regression model, a line is fitted a line to the observed data.</p>
+<p>Simple linear regression is modeled by this equation;</p>
+<pre><code>y = c + BX + e</code></pre>
+<p>Where;-</p>
+<ol style="list-style-type: lower-roman">
+<li><code>y</code> is the target variable</li>
+<li><code>X</code> is the independent variable</li>
+<li><code>B</code> is the slope.gradient(change in <code>y</code> for one-unit change in <code>X</code>)</li>
+<li><code>c</code> is the y-intercept(Value of target variable when independent variable is zero)</li>
+<li><code>e</code> is the error/noise. variation in <code>y</code> but not as a resultant explained by <code>X</code></li>
+</ol>
+<p>The goal of simple of linear regression it to have the best fitting line that with the equation <code>y = BX + c</code>. Base R has a method of fitting a linear regression and finding the best fit line using <code>lm()</code> function. <code>lm()</code> stands for “linear model”.</p>
+<p>Lets create a simple linear regression model to a hypothetical data set where height of athletes is predicted based on weight.</p>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="statistical-analysis.html#cb500-1" tabindex="-1"></a><span class="co"># Create a sample dataset</span></span>
+<span id="cb500-2"><a href="statistical-analysis.html#cb500-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)  <span class="co"># Independent variable (x)</span></span>
+<span id="cb500-3"><a href="statistical-analysis.html#cb500-3" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>)       <span class="co"># Dependent variable (y)</span></span>
+<span id="cb500-4"><a href="statistical-analysis.html#cb500-4" tabindex="-1"></a></span>
+<span id="cb500-5"><a href="statistical-analysis.html#cb500-5" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
+<span id="cb500-6"><a href="statistical-analysis.html#cb500-6" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(height, weight)</span>
+<span id="cb500-7"><a href="statistical-analysis.html#cb500-7" tabindex="-1"></a><span class="fu">print</span>(data)</span></code></pre></div>
+<pre><code>##   height weight
+## 1    150     65
+## 2    160     70
+## 3    170     75
+## 4    180     80
+## 5    190     85</code></pre>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="statistical-analysis.html#cb502-1" tabindex="-1"></a><span class="co"># Fit the linear model</span></span>
+<span id="cb502-2"><a href="statistical-analysis.html#cb502-2" tabindex="-1"></a>lin_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height, <span class="at">data =</span> data)</span>
+<span id="cb502-3"><a href="statistical-analysis.html#cb502-3" tabindex="-1"></a></span>
+<span id="cb502-4"><a href="statistical-analysis.html#cb502-4" tabindex="-1"></a><span class="co"># View the summary of the model</span></span>
+<span id="cb502-5"><a href="statistical-analysis.html#cb502-5" tabindex="-1"></a><span class="fu">summary</span>(lin_reg)</span></code></pre></div>
+<pre><code>## Warning in summary.lm(lin_reg): essentially perfect fit: summary may be
+## unreliable</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = weight ~ height, data = data)
+## 
+## Residuals:
+##          1          2          3          4          5 
+##  1.335e-14 -1.367e-14 -6.097e-15 -1.891e-16  6.607e-15 
+## 
+## Coefficients:
+##               Estimate Std. Error    t value Pr(&gt;|t|)    
+## (Intercept) -1.000e+01  6.575e-14 -1.521e+14   &lt;2e-16 ***
+## height       5.000e-01  3.854e-16  1.297e+15   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.219e-14 on 3 degrees of freedom
+## Multiple R-squared:      1,  Adjusted R-squared:      1 
+## F-statistic: 1.683e+30 on 1 and 3 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Coefficients, the value <code>B</code> and <code>c</code> represent the intercept and the <strong>gradient(slope)</strong> in the equation. The <strong>R- Squared</strong> value indicates how well the independent variable explains the dependent variable. The closer the R-square value to 1 the better the fit. Finally, the <strong>p-value</strong> is associated with the gradient and tells the statistician whether the relationship between the variables is statistically significant.</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the <code>airquality</code> data set fit a linear regression model to find the relationship between <code>Wind</code> (independent variable) and <code>Temp</code> (dependent/target variable)</p>
+<ul>
+<li><strong>Multiple Linear Regression</strong></li>
+</ul>
+<p>Unlike simple linear regression, multiple linear regression describes the linear relationship between two or more independent variables with one target(dependent) variable. The objective of multiple linear regression is to;-</p>
+<ol style="list-style-type: lower-roman">
+<li>Find the strength of the relationship between two or more independent variables with the target variables.</li>
+<li>Find the value of the target variable at a certain value of the independent variable.</li>
+</ol>
+<p>When working on a multiple linear regression it is assumed that; the <strong>variance is homogeneous</strong> such that the prediction error does not change significantly across the predictor(independent) variables. It is also assumed, <strong>observations were independent</strong> and there was no hidden relationships among the variables when collecting the data. Additionally, the collected data follows <strong>a normal distribution</strong> and the independent variables have <strong>a linear relationship(linearity)</strong> with the dependent variable, therefore, the line of best fit through the data points is straight and not curved.</p>
+<p>Multiple linear regression is modeled by;-</p>
+<p><img src="images/multiple_linear_regression.png" /></p>
+<p>where;-</p>
+<ol style="list-style-type: lower-roman">
+<li><span class="math inline">\(y\)</span> is the predicted value of the target variable.</li>
+<li><span class="math inline">\(\beta_0\)</span> is the y-intercept. Value of y when all other parameters are zero.</li>
+<li><span class="math inline">\(\beta_1X_1\)</span>: <span class="math inline">\(\beta_1\)</span> is the regression coefficient of the first independent variable while <span class="math inline">\(X_1\)</span> is the independent variable value.
+<span class="math inline">\(\cdots\)</span> do the same for however the number of independent variables are present.</li>
+<li><span class="math inline">\(\beta_nX_n\)</span>: the regression coefficient of the last independent variable.</li>
+<li><span class="math inline">\(\epsilon\)</span> is the model error(variation not explained by the independent variables)</li>
+</ol>
+<p>The Multiple linear regression model calculates three things to find the best fit line for each independent variable;-</p>
+<ol style="list-style-type: lower-roman">
+<li>The regression coefficient <span class="math inline">\(\beta_iX_i\)</span> that will minimize the overall error rate(model error).</li>
+<li>The associated p-value. If the relationship between the independent variable is statistically significant.</li>
+<li>The t-statistic of the model. T-statistic is the ratio of the difference in a number’s estimated value from its assumed value to its standard error.</li>
+</ol>
+<p>Lets create a multiple linear regression from a hypothetical data using base R.</p>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="statistical-analysis.html#cb505-1" tabindex="-1"></a><span class="co"># Create a sample dataset</span></span>
+<span id="cb505-2"><a href="statistical-analysis.html#cb505-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)  <span class="co"># Independent variable 1 (x1)</span></span>
+<span id="cb505-3"><a href="statistical-analysis.html#cb505-3" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">45</span>)          <span class="co"># Independent variable 2 (x2)</span></span>
+<span id="cb505-4"><a href="statistical-analysis.html#cb505-4" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>)       <span class="co"># Dependent variable (y)</span></span>
+<span id="cb505-5"><a href="statistical-analysis.html#cb505-5" tabindex="-1"></a></span>
+<span id="cb505-6"><a href="statistical-analysis.html#cb505-6" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
+<span id="cb505-7"><a href="statistical-analysis.html#cb505-7" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(height, age, weight)</span>
+<span id="cb505-8"><a href="statistical-analysis.html#cb505-8" tabindex="-1"></a>data</span></code></pre></div>
+<pre><code>##   height age weight
+## 1    150  25     65
+## 2    160  30     70
+## 3    170  35     75
+## 4    180  40     80
+## 5    190  45     85</code></pre>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="statistical-analysis.html#cb507-1" tabindex="-1"></a><span class="co"># Fit the linear model with multiple predictors</span></span>
+<span id="cb507-2"><a href="statistical-analysis.html#cb507-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height <span class="sc">+</span> age, <span class="at">data =</span> data)</span>
+<span id="cb507-3"><a href="statistical-analysis.html#cb507-3" tabindex="-1"></a></span>
+<span id="cb507-4"><a href="statistical-analysis.html#cb507-4" tabindex="-1"></a><span class="co"># View the summary of the model</span></span>
+<span id="cb507-5"><a href="statistical-analysis.html#cb507-5" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## Warning in summary.lm(model): essentially perfect fit: summary may be
+## unreliable</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = weight ~ height + age, data = data)
+## 
+## Residuals:
+##          1          2          3          4          5 
+##  1.335e-14 -1.367e-14 -6.097e-15 -1.891e-16  6.607e-15 
+## 
+## Coefficients: (1 not defined because of singularities)
+##               Estimate Std. Error    t value Pr(&gt;|t|)    
+## (Intercept) -1.000e+01  6.575e-14 -1.521e+14   &lt;2e-16 ***
+## height       5.000e-01  3.854e-16  1.297e+15   &lt;2e-16 ***
+## age                 NA         NA         NA       NA    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.219e-14 on 3 degrees of freedom
+## Multiple R-squared:      1,  Adjusted R-squared:      1 
+## F-statistic: 1.683e+30 on 1 and 3 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the <code>airquality</code> data set, fit a multiple linear regression model whereby the Solar radiation(<code>Solar.R</code>), <code>Ozone</code> and <code>Wind</code> are the independent variables while the Temperature (<code>Temp</code>) is the dependent variable. Interpret and analyze the results</p>
+</div>
+<div id="hands-on-exercises-3" class="section level3 hasAnchor" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> Hands-on Exercises<a href="statistical-analysis.html#hands-on-exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this course, you will be required to download the Boston Housing data set from <a href="https://www.kaggle.com/datasets/fedesoriano/the-boston-houseprice-data">here</a>. Fit a multiple regression model to the data set. The goal is to predict the price of the houses in Boston, the <code>MEDV</code> variable. Interpret and discuss the multiple linear regression model and its implication</p>
+</div>
+</div>
+<div id="advanced-statistical-methods" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Advanced Statistical Methods<a href="statistical-analysis.html#advanced-statistical-methods" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-to-hypothesis-testing" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Introduction to Hypothesis Testing<a href="statistical-analysis.html#introduction-to-hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="concept-of-hypothesis-testing" class="section level4 hasAnchor" number="7.3.1.1">
+<h4><span class="header-section-number">7.3.1.1</span> Concept of Hypothesis Testing<a href="statistical-analysis.html#concept-of-hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Hypothesis testing is a type of statistical analysis that is used to make assumptions of a population based on a sample of data. It is particularly used to find the relationship between two variables(populations). A real life example of hypothesis testing is that a teacher may assume that 60% of the students come from a middle-class family. There are two types of hypothesis;</p>
+<ul>
+<li>Null hypothesis(<span class="math inline">\(H_0\)</span>)</li>
+<li>Alternate hypothesis (<span class="math inline">\(H_1\)</span> or <span class="math inline">\(H_a\)</span>)</li>
+</ul>
+<p><strong>Null hypothesis</strong> is states that there is no effect or no difference(<span class="math inline">\(\mu = 0\)</span>). For instance there is no effect of standards of living to college admissions. <strong>Alternate hypothesis</strong> is the opposite and contradicts the null hypothesis. It provide evidence for what the statistician is trying to find(<span class="math inline">\(\mu \neq 0\)</span>). In this case, the standards of living have an effect on college admissions.</p>
+<p>The important aspects before conducting hypothesis testing are;-</p>
+<ul>
+<li><em>Significance level.</em> It is the probability of rejecting the null hypothesis when it is actually true.</li>
+<li><em>P-Value</em> is the probability of obtaining a test statistic at least as extreme as the one observed, given the null hypothesis is true. Most hypothesis testing projects are set at 0.05. Less than 0.05(or the set value) indicates the null the test is statistically significant and the null hypothesis should be rejected. Otherwise, the test is statistically insignificant and the null hypothesis is not rejected.</li>
+<li><em>Test statistic</em> also called T-statistic is a standardized value calcluated during a hypothesis test. It cab z-test or a t-test.
+-<em>Decision rule</em> is based on the calculated p-value and the significant level. In a hypothesis test where the significant and the p-value is 0.03444 the null hypothesis is not rejected.</li>
+</ul>
+<p>Now that you are familiar with the hypothesis testing aspects, take the following steps to perform hypothesis testing;-</p>
+<ol style="list-style-type: lower-roman">
+<li>Formulating the hypothesis by defining the null and alternate hypothesis.</li>
+<li>Collect and analyze the data.</li>
+<li>Choose a significant level(<span class="math inline">\(a\)</span>) and calculate the p-value.</li>
+<li>Make a decision by comparing the p-value to the significant level.</li>
+<li>Conclude your analysis results.</li>
+</ol>
+</div>
+<div id="t-tests" class="section level4 hasAnchor" number="7.3.1.2">
+<h4><span class="header-section-number">7.3.1.2</span> T-tests<a href="statistical-analysis.html#t-tests" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><em>One-Sample t-test</em></li>
+</ul>
+<p>One sample t-test is a statistical method used to find if the mean of a sample is different from the population(or preassumed) mean.</p>
+<p>It is based on the t-distribution(most observations fall close to the mean, and the rest of the observations make up the tails on either side) and is commonly used when dealing with small sample sizes. One sample t-test is especially performed where the population standard deviation is unknown.</p>
+<p>Below is the formula for one sample t-test
+<span class="math display">\[t={{\overline{X}-\mu}\over s / \sqrt{n}}\]</span></p>
+<p>where;</p>
+<ol style="list-style-type: lower-roman">
+<li><span class="math inline">\(t\)</span>: the one sample t-test value. t-test statistic</li>
+<li><span class="math inline">\(n\)</span>: the number of the observations in the sample</li>
+<li><span class="math inline">\(\overline{X}\)</span>: is the sample mean</li>
+<li><span class="math inline">\(s\)</span>: standard deviation of the sample</li>
+<li><span class="math inline">\(\mu\)</span>: Hypothesized population mean</li>
+</ol>
+<p>The result <span class="math inline">\(t\)</span>, simply measures how many standard errors the sample mean is away from the hypothesized population mean.</p>
+<p>Before conducting t-test, there is a need to establish the null(H0) and alternate hypothesis(Ha) where;</p>
+<ul>
+<li><em>Null Hypothesis(H0)</em>: There is no significant difference between the sample mean and the population(hypothesized) mean.</li>
+<li><em>ALternate Hypothesis(Ha)</em>: There is a significant difference between the sample mean and the population mean.</li>
+</ul>
+<p>P-value is the probability value that tells you how likely is that your data could have occurred under null hypothesis. In our case a p-value of below 0.05 is considered to be statistically significant and the null value is rejected. The vice versa is true</p>
+<p>Lets perform a t-test using R;</p>
+<p>We will generate sample data</p>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="statistical-analysis.html#cb510-1" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb510-2"><a href="statistical-analysis.html#cb510-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb510-3"><a href="statistical-analysis.html#cb510-3" tabindex="-1"></a></span>
+<span id="cb510-4"><a href="statistical-analysis.html#cb510-4" tabindex="-1"></a><span class="co"># Generate random student marks (out of 100)</span></span>
+<span id="cb510-5"><a href="statistical-analysis.html#cb510-5" tabindex="-1"></a>student_marks <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">65</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb510-6"><a href="statistical-analysis.html#cb510-6" tabindex="-1"></a></span>
+<span id="cb510-7"><a href="statistical-analysis.html#cb510-7" tabindex="-1"></a><span class="co"># Display the first few marks</span></span>
+<span id="cb510-8"><a href="statistical-analysis.html#cb510-8" tabindex="-1"></a><span class="fu">head</span>(student_marks)</span></code></pre></div>
+<pre><code>## [1] 59.39524 62.69823 80.58708 65.70508 66.29288 82.15065</code></pre>
+<p>Perform the t-test</p>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="statistical-analysis.html#cb512-1" tabindex="-1"></a><span class="co"># Conduct one-sample t-test</span></span>
+<span id="cb512-2"><a href="statistical-analysis.html#cb512-2" tabindex="-1"></a>t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(student_marks, <span class="at">mu =</span> <span class="dv">70</span>)</span>
+<span id="cb512-3"><a href="statistical-analysis.html#cb512-3" tabindex="-1"></a></span>
+<span id="cb512-4"><a href="statistical-analysis.html#cb512-4" tabindex="-1"></a><span class="co"># Display the t-test result</span></span>
+<span id="cb512-5"><a href="statistical-analysis.html#cb512-5" tabindex="-1"></a><span class="fu">print</span>(t_test_result)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  student_marks
+## t = -3.0546, df = 29, p-value = 0.004797
+## alternative hypothesis: true mean is not equal to 70
+## 95 percent confidence interval:
+##  60.86573 68.19219
+## sample estimates:
+## mean of x 
+##  64.52896</code></pre>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Conduct one sample t-test on the sepal length of the setosa iris. The pre-assumed mean is 5.84 units.</p>
+<ul>
+<li><em>Two-Sample t-test</em></li>
+</ul>
+<p>Unlike one sample t-test where a sample population is tested against a pre-assumed mean, the Tow-sample t-test determines if there is a significant difference between the means of two independent populations.</p>
+<p>The practical application of two-sample t-test can be when comparing the test scores of two classes. This helps the statistician to understand if one class did better than the other one or it’s just a matter of luck.</p>
+<p>These are the prerequisites before conducting a two-sample t-test;</p>
+<ol style="list-style-type: lower-roman">
+<li>The groups contain separate data with a similar distribution.</li>
+<li>The two populations have a normal(typical bell-curve) distribution.</li>
+<li>The two sample populations have a similar variations</li>
+</ol>
+<p>The two sample t-test is calculated by;
+<img src="images/two-sample-ttest.jpg" /></p>
+<p>Where;</p>
+<ul>
+<li><span class="math inline">\(\overline{x}_1\)</span> and <span class="math inline">\(\overline{x}_2\)</span> are the mean of the first sample and the second sample respectively</li>
+<li><span class="math inline">\(s_{1}\)</span> and <span class="math inline">\(s_{2}\)</span> are the standard deviation of sample 1 and sample 2 respectively</li>
+<li><span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> are the sample sizes of the first and second sample respectively.</li>
+</ul>
+<p>Let create a random population of student scores for two classes and perform two-sample t-test in R;</p>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="statistical-analysis.html#cb514-1" tabindex="-1"></a><span class="co"># Generate the population sample</span></span>
+<span id="cb514-2"><a href="statistical-analysis.html#cb514-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb514-3"><a href="statistical-analysis.html#cb514-3" tabindex="-1"></a>group_A_scores <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="at">mean =</span> <span class="dv">75</span>, <span class="at">sd =</span> <span class="dv">8</span>)  <span class="co"># Group A</span></span>
+<span id="cb514-4"><a href="statistical-analysis.html#cb514-4" tabindex="-1"></a>group_B_scores <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="at">mean =</span> <span class="dv">80</span>, <span class="at">sd =</span> <span class="dv">10</span>)  <span class="co"># Group B</span></span>
+<span id="cb514-5"><a href="statistical-analysis.html#cb514-5" tabindex="-1"></a></span>
+<span id="cb514-6"><a href="statistical-analysis.html#cb514-6" tabindex="-1"></a><span class="co"># Display the first few scores of each group</span></span>
+<span id="cb514-7"><a href="statistical-analysis.html#cb514-7" tabindex="-1"></a><span class="fu">head</span>(group_A_scores)</span></code></pre></div>
+<pre><code>## [1] 70.51619 73.15858 87.46967 75.56407 76.03430 88.72052</code></pre>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="statistical-analysis.html#cb516-1" tabindex="-1"></a><span class="fu">head</span>(group_B_scores)</span></code></pre></div>
+<pre><code>## [1] 63.13307 88.37787 81.53373 68.61863 92.53815 84.26464</code></pre>
+<p>Performing the two sample t-test. Lets set the confidence level to 95%(0.95)</p>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="statistical-analysis.html#cb518-1" tabindex="-1"></a>ttest_result <span class="ot">=</span> <span class="fu">t.test</span>(group_A_scores, group_B_scores, </span>
+<span id="cb518-2"><a href="statistical-analysis.html#cb518-2" tabindex="-1"></a>                      <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">paired =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb518-3"><a href="statistical-analysis.html#cb518-3" tabindex="-1"></a>                      <span class="at">var.equal =</span> <span class="cn">FALSE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb518-4"><a href="statistical-analysis.html#cb518-4" tabindex="-1"></a></span>
+<span id="cb518-5"><a href="statistical-analysis.html#cb518-5" tabindex="-1"></a>ttest_result</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  group_A_scores and group_B_scores
+## t = -2.6403, df = 46.312, p-value = 0.01125
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -11.080984  -1.495049
+## sample estimates:
+## mean of x mean of y 
+##  74.73336  81.02137</code></pre>
+<ul>
+<li><strong>t-value = -2.6403</strong>: This indicates the difference between the means of the two groups, in terms of standard errors. A higher absolute value suggests a larger difference.</li>
+<li><strong>Degrees of freedom (df) = 46.312</strong>: This reflects the sample size and variability in the data.</li>
+<li><strong>p-value = 0.01125</strong>: Since the p-value is less than 0.05, we reject the null hypothesis. This suggests that the difference in means between Group A and Group B is statistically significant.</li>
+<li><strong>95% confidence interval: (-11.08, -1.50)</strong>: This indicates that we are 95% confident that the true difference in means lies between -11.08 and -1.50.</li>
+<li><strong>Mean of x (Group A) = 74.73, Mean of y (Group B) = 81.02</strong>: The average score of Group B is higher than Group A.</li>
+</ul>
+<p>In summary, the test shows a significant difference between the means of the two groups, with Group B having higher scores</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the iris data set, compare the petal length of the <em>versicolor</em> and <em>virginica</em> species using two-sample t-test. Interpret the results</p>
+</div>
+<div id="anova-analysis-of-variance" class="section level4 hasAnchor" number="7.3.1.3">
+<h4><span class="header-section-number">7.3.1.3</span> ANOVA (Analysis of Variance)<a href="statistical-analysis.html#anova-analysis-of-variance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>ANOVA is a statistical test used to analyze the difference between the means of more than two groups. This is different from the ttest that analyzes one or two groups, it uses F test to find the statistical significance. Multiple means are compared at once and if one mean is different the hypothesis is rejected.</p>
+<p>The F test compares the variance in each group from the overal group variance.</p>
+<p>An practical example of ANOVA is where a farmer wants to test the effect of three different fertilizers on the crop yield. The difference in the crop yield will be calculated.</p>
+<p>Before conducting ANOVA, the following assumptions are made;</p>
+<ol style="list-style-type: lower-roman">
+<li><strong>Independence of observations</strong>: the data was collected using statistically valid sampling methods and there are no hidden relationships among the observations.</li>
+<li><strong>Normal distribution</strong>: the dependent variable should follow a normal distribution.</li>
+<li><strong>Homogeinity of variance</strong>: All the groups being tested should have similar variations.</li>
+</ol>
+<p>Lets calculate the ANOVA using the the crop yield data set. The fertilizer are in three categories; 1, 2 and 3</p>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="statistical-analysis.html#cb520-1" tabindex="-1"></a><span class="co"># Load the data set </span></span>
+<span id="cb520-2"><a href="statistical-analysis.html#cb520-2" tabindex="-1"></a>crop_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/cropdata.csv&quot;</span>)</span>
+<span id="cb520-3"><a href="statistical-analysis.html#cb520-3" tabindex="-1"></a><span class="fu">head</span>(crop_df) <span class="co"># view the first few rows of the data set</span></span></code></pre></div>
+<pre><code>##   density block fertilizer    yield
+## 1       1     1          1 177.2287
+## 2       2     2          1 177.5500
+## 3       1     3          1 176.4085
+## 4       2     4          1 177.7036
+## 5       1     1          1 177.1255
+## 6       2     2          1 176.7783</code></pre>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="statistical-analysis.html#cb522-1" tabindex="-1"></a><span class="co"># Calculate one way ANOVA </span></span>
+<span id="cb522-2"><a href="statistical-analysis.html#cb522-2" tabindex="-1"></a>anova <span class="ot">&lt;-</span> <span class="fu">aov</span>(yield <span class="sc">~</span> fertilizer, <span class="at">data =</span> crop_df)</span>
+<span id="cb522-3"><a href="statistical-analysis.html#cb522-3" tabindex="-1"></a>anova</span></code></pre></div>
+<pre><code>## Call:
+##    aov(formula = yield ~ fertilizer, data = crop_df)
+## 
+## Terms:
+##                 fertilizer Residuals
+## Sum of Squares     5.74322  36.21101
+## Deg. of Freedom          1        94
+## 
+## Residual standard error: 0.6206638
+## Estimated effects may be unbalanced</code></pre>
+<p>The ANOVA output provides insights into the variation in crop yield explained by the fertilizer type. Here’s a detailed breakdown of the results:</p>
+<ul>
+<li><p><strong>Sum of Squares (fertilizer) = 5.74322</strong>: This value represents the variation in crop yield that can be attributed to the different types of fertilizers used in the experiment. In this case, 5.74322 units of the total variation are explained by fertilizer differences.</p></li>
+<li><p><strong>Sum of Squares (Residuals) = 36.21101</strong>: This is the unexplained variation in crop yield, also known as the error term. This shows how much of the variation is due to factors not accounted for in the model, such as environmental factors or random error.</p></li>
+<li><p><strong>Degrees of Freedom (fertilizer) = 1</strong>: There is only 1 degree of freedom for the fertilizer factor, which means there was a comparison between two groups (likely two fertilizer types or one fertilizer versus a control).</p></li>
+<li><p><strong>Degrees of Freedom (Residuals) = 94</strong>: There are 94 degrees of freedom associated with the residuals. This is related to the total number of observations minus the number of groups being compared. In this case, the large degrees of freedom indicate a sizable data set.</p></li>
+<li><p><strong>Residual Standard Error = 0.6206638</strong>: This value represents the typical deviation of the observed yield values from the predicted values, given the current model. A lower residual standard error suggests a better fit of the model to the data, though this value needs to be interpreted in context.</p></li>
+</ul>
+<p>The results show that the fertilizer type explains some of the variation in crop yield (Sum of Squares = 5.74322), while a larger portion remains unexplained (Sum of Squares of Residuals = 36.21101). To fully interpret the significance of this effect, a p-value and F-statistic would typically be calculated, but these are not provided here. Additionally, the residual standard error (0.6206638) gives an indication of the spread of the data around the predicted values, but more information would be needed to assess the strength of the model’s fit.</p>
+<p>In conclusion, while the fertilizer has some effect on crop yield, the overall variability and potential unbalanced data need further exploration for a complete understanding.</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Perform ANOVA on the sepal width of the three species in the iris data set and interpret the results.</p>
+</div>
+<div id="chi-square-test" class="section level4 hasAnchor" number="7.3.1.4">
+<h4><span class="header-section-number">7.3.1.4</span> Chi-Square Test<a href="statistical-analysis.html#chi-square-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This is a statistical test that determines the difference between the observed and the expected data. It determines if the relationship between two categorical variables is due to chance or a relationship between them.</p>
+<p>It is calculated by;
+<span class="math display">\[x_{c}^{2} = \frac{\sum(O_{i}-E_{i})}{E_i}\]</span></p>
+<p>Where;</p>
+<ol style="list-style-type: lower-roman">
+<li><span class="math inline">\(c\)</span> is the degree of freedom. This is a statistical calculation that represents the number of variables that can carry and is calculated to ensure the chi-square tests are statistically valid</li>
+<li><span class="math inline">\(O\)</span> is the observed value</li>
+<li><span class="math inline">\(E\)</span> is the expected value</li>
+</ol>
+<p>Lets perform Chi-square on a survey data from the <code>MASS</code> library. The survey data represents data from a survey conducted on students.</p>
+<ul>
+<li>Null Hypothesis (<span class="math inline">\(H_0\)</span>): The smoking habit is independent of the student’s exercise level</li>
+<li>ALternate Hypothesis (<span class="math inline">\(H_a\)</span>): The smoking habit is dependent on the exercise level.</li>
+</ul>
+<p>Load the data</p>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="statistical-analysis.html#cb524-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb524-2"><a href="statistical-analysis.html#cb524-2" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:patchwork&#39;:
+## 
+##     area</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="statistical-analysis.html#cb528-1" tabindex="-1"></a><span class="fu">head</span>(survey) <span class="co"># view the data</span></span></code></pre></div>
+<pre><code>##      Sex Wr.Hnd NW.Hnd W.Hnd    Fold Pulse    Clap Exer Smoke Height      M.I
+## 1 Female   18.5   18.0 Right  R on L    92    Left Some Never 173.00   Metric
+## 2   Male   19.5   20.5  Left  R on L   104    Left None Regul 177.80 Imperial
+## 3   Male   18.0   13.3 Right  L on R    87 Neither None Occas     NA     &lt;NA&gt;
+## 4   Male   18.8   18.9 Right  R on L    NA Neither None Never 160.00   Metric
+## 5   Male   20.0   20.0 Right Neither    35   Right Some Never 165.00   Metric
+## 6 Female   18.0   17.7 Right  L on R    64   Right Some Never 172.72 Imperial
+##      Age
+## 1 18.250
+## 2 17.583
+## 3 16.917
+## 4 20.333
+## 5 23.667
+## 6 21.000</code></pre>
+<p>Create a contigency table between the Smoke and the Exercise leel.</p>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="statistical-analysis.html#cb530-1" tabindex="-1"></a><span class="co"># Create a contingency table with the needed variables.       </span></span>
+<span id="cb530-2"><a href="statistical-analysis.html#cb530-2" tabindex="-1"></a>stu_data <span class="ot">=</span> <span class="fu">table</span>(survey<span class="sc">$</span>Smoke,survey<span class="sc">$</span>Exer) </span>
+<span id="cb530-3"><a href="statistical-analysis.html#cb530-3" tabindex="-1"></a>                 </span>
+<span id="cb530-4"><a href="statistical-analysis.html#cb530-4" tabindex="-1"></a><span class="fu">print</span>(stu_data)</span></code></pre></div>
+<pre><code>##        
+##         Freq None Some
+##   Heavy    7    1    3
+##   Never   87   18   84
+##   Occas   12    3    4
+##   Regul    9    1    7</code></pre>
+<p>Perform the chi-square test on the <code>stu_data</code>, the contigency table.</p>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="statistical-analysis.html#cb532-1" tabindex="-1"></a><span class="co"># applying chisq.test() function</span></span>
+<span id="cb532-2"><a href="statistical-analysis.html#cb532-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">chisq.test</span>(stu_data))</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  stu_data
+## X-squared = 5.4885, df = 6, p-value = 0.4828</code></pre>
+<p>From the results, the p-value is 0.4828 which is greater than 0.05 therefore the null hypothesis is not rejected. It’c concluded that the smoking habit is independent of the exercise level since there is weak to now correlation between the <code>Smoke</code> and <code>Exer</code> variables.</p>
+<p>Finally, lets visualize the results from the contigency table;</p>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="statistical-analysis.html#cb534-1" tabindex="-1"></a><span class="co"># Visualize the data with a bar plot</span></span>
+<span id="cb534-2"><a href="statistical-analysis.html#cb534-2" tabindex="-1"></a><span class="fu">barplot</span>(stu_data, <span class="at">beside =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>),</span>
+<span id="cb534-3"><a href="statistical-analysis.html#cb534-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Smoking Habits vs Exercise Levels&quot;</span>,</span>
+<span id="cb534-4"><a href="statistical-analysis.html#cb534-4" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Exercise Level&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Number of Students&quot;</span>)</span>
+<span id="cb534-5"><a href="statistical-analysis.html#cb534-5" tabindex="-1"></a> </span>
+<span id="cb534-6"><a href="statistical-analysis.html#cb534-6" tabindex="-1"></a><span class="co"># Add legend separately</span></span>
+<span id="cb534-7"><a href="statistical-analysis.html#cb534-7" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;center&quot;</span>, <span class="at">legend =</span> <span class="fu">rownames</span>(stu_data), <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-224-1.png" width="672" /></p>
+<p>You can see from the table, those students who never smoke lead in every exercise level while the heavy smokers are the least in every group.</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the Iris dataset, perform a Chi-square test to determine if there is a relationship between two categorical variables: the species (Species) and a new categorical variable that classifies sepal width (Sepal.Width) into categories (e.g., “Short”, “Medium”, “Long”).</p>
+<ul>
+<li>“Short”: below 3.0</li>
+<li>“Medium”: above 3.0 to 3.8</li>
+<li>“Long”: above 3.8</li>
+</ul>
+<p>Follow the steps below;</p>
+<ol style="list-style-type: decimal">
+<li>Create a new variable <code>sepal.Width.Category</code> in the data set by categorizing the <code>Sepal.Width</code> variable into 3 categories: <code>"Short"</code>, <code>"Medium"</code>, and <code>"Long"</code> (as per the defined ranges).</li>
+<li>Perform a Chi-square test to see if there’s an association between the new <code>sepal.Width.Category</code> categories and the <code>Species</code> column.</li>
+<li>Interpret the results of the Chi-square test</li>
+</ol>
+</div>
+</div>
+<div id="hands-on-exercises-4" class="section level3 hasAnchor" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Hands-on Exercises<a href="statistical-analysis.html#hands-on-exercises-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You are required to download the Groundhog Day Forecasts and Temperatures data set from <a href="https://www.kaggle.com/datasets/groundhogclub/groundhog-day">here</a>.</p>
+<ul>
+<li>Perform one sample t-test on February Average temperature. The pre-assumed mean is 35</li>
+<li>Conduct two sample t-test between the North East average temperature for March and the overall March daily temperature</li>
+<li>Perform ANOVA between the presence of Punxsutawney Phil and the February average temperature</li>
+</ul>
+<p>Interpret the results</p>
+</div>
+</div>
+<div id="project-applying-statistical-analysis" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Project: Applying Statistical Analysis<a href="statistical-analysis.html#project-applying-statistical-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="project-overview" class="section level3 hasAnchor" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Project Overview<a href="statistical-analysis.html#project-overview" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The primary goal of this project is to give you an opportunity to apply and integrate all the statistical concepts techniques learned so far using R. The project will guide you through the complete statistical modeling workflow.</p>
+<p>You are therefore required to choose a data set from the list below;</p>
+<ul>
+<li>MBA Admission dataset, Class 2025 - <a href="https://www.kaggle.com/datasets/taweilo/mba-admission-dataset">download here</a></li>
+<li>Global Black Money Transactions Dataset - <a href="https://www.kaggle.com/datasets/waqi786/global-black-money-transactions-dataset">download here</a></li>
+<li>Crop Yield Prediction Dataset - <a href="https://www.kaggle.com/datasets/mrigaankjaswal/crop-yield-prediction-dataset">download here</a></li>
+<li>ChickWeight inbuilt R dataset - load from the command <code>data("ChickWeight")</code></li>
+<li>Seatbelts data set - load from the command <code>data("Seatbelts")</code></li>
+<li>The “Groceries” from the R package comes <code>arules</code>- Load the data by first importing arules(<code>library(arules)</code>) then the data by <code>data("Groceries")</code></li>
+<li><code>"CreditCard"</code> data from package <code>AER</code>- Load the data by first importing AER (<code>library(AER)</code>) then the data by <code>data("CreditCard")</code></li>
+</ul>
+<p>You will use the selected data set to;</p>
+<ul>
+<li>Identify the research questions that will help focus on what you want to investigate.</li>
+<li>Determine the key variables in your research questions like the independent and dependent variables.</li>
+<li>Formulate the null and alternate hypothesis</li>
+</ul>
+</div>
+<div id="conducting-statistical-analysis" class="section level3 hasAnchor" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Conducting Statistical Analysis<a href="statistical-analysis.html#conducting-statistical-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You will use the statistical techniques learned for instance descriptive statistics, correlation, regression and hypothesis testing to analyze this data set</p>
+<p><strong>Note:</strong> Emphasize on interpreting the results and understanding their implications</p>
+</div>
+<div id="presenting-statistical-findings" class="section level3 hasAnchor" number="7.4.3">
+<h3><span class="header-section-number">7.4.3</span> Presenting Statistical Findings<a href="statistical-analysis.html#presenting-statistical-findings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You will finally prepare a brief presentation that will summarize the statistical analysis and research</p>
+<p>Discuss in groups the insights obtained, challenges faced and any potential improvements</p>
+<hr />
+</div>
+<div id="example-ecommerce-statistical-analysis" class="section level3 hasAnchor" number="7.4.4">
+<h3><span class="header-section-number">7.4.4</span> <span style="color: brown;">Example: Ecommerce Statistical Analysis</span><a href="statistical-analysis.html#example-ecommerce-statistical-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Load the data set</p>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="statistical-analysis.html#cb535-1" tabindex="-1"></a>ecommerce <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/ecommerce.csv&quot;</span>)</span>
+<span id="cb535-2"><a href="statistical-analysis.html#cb535-2" tabindex="-1"></a><span class="fu">head</span>(ecommerce)</span></code></pre></div>
+<pre><code>##      CID        TID Gender    Age.Group       Purchase.Date Product.Category
+## 1 943146 5876328741 Female        25-45 30/08/2023 20:27:08      Electronics
+## 2 180079 1018503182   Male        25-45 23/02/2024 09:33:46      Electronics
+## 3 337580 3814082218  Other 60 and above 06/03/2022 09:09:50         Clothing
+## 4 180333 1395204173  Other 60 and above 04/11/2020 04:41:57 Sports &amp; Fitness
+## 5 447553 8009390577   Male        18-25 31/05/2022 17:00:32 Sports &amp; Fitness
+## 6 200614 3994452858   Male        18-25 12/07/2021 15:10:27         Clothing
+##   Discount.Availed   Discount.Name Discount.Amount..INR. Gross.Amount
+## 1              Yes       FESTIVE50                 64.30      725.304
+## 2              Yes SEASONALOFFER21                175.19     4638.992
+## 3              Yes SEASONALOFFER21                211.54     1986.373
+## 4               No                                  0.00     5695.613
+## 5              Yes        WELCOME5                439.92     2292.651
+## 6              Yes       FESTIVE50                127.01     3649.397
+##   Net.Amount Purchase.Method  Location
+## 1    661.004     Credit Card Ahmedabad
+## 2   4463.802     Credit Card Bangalore
+## 3   1774.833     Credit Card     Delhi
+## 4   5695.613      Debit Card     Delhi
+## 5   1852.731     Credit Card     Delhi
+## 6   3522.387     Credit Card     Delhi</code></pre>
+<div id="introduction-1" class="section level4 hasAnchor" number="7.4.4.1">
+<h4><span class="header-section-number">7.4.4.1</span> <span style="color: brown;"><strong>Introduction</strong></span><a href="statistical-analysis.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In this analysis, we aim to explore the Ecommerce data set and answer the following research questions:</p>
+<ul>
+<li>Are there significant differences in customer spending (Net Amount) based on gender or age group?</li>
+<li>Are discounts a significant factor in influencing purchasing decisions?</li>
+</ul>
+<p>To address these questions, we formulate the following hypotheses:</p>
+<ul>
+<li><strong>Hypothesis 1</strong>: There is no significant difference between the Net Amount spent by male and female customers.</li>
+<li><strong>Hypothesis 2</strong>: The age group of customers does not affect the Net Amount spent.</li>
+<li><strong>Hypothesis 3</strong>: There is no association between discount availed and the purchase method used.</li>
+</ul>
+</div>
+<div id="t-tests-1" class="section level4 hasAnchor" number="7.4.4.2">
+<h4><span class="header-section-number">7.4.4.2</span> <span style="color: brown;"><strong>T-Tests</strong></span><a href="statistical-analysis.html#t-tests-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="one-sample-t-test" class="section level5 hasAnchor" number="7.4.4.2.1">
+<h5><span class="header-section-number">7.4.4.2.1</span> <span style="color: brown;"><strong>One-Sample T-test</strong></span><a href="statistical-analysis.html#one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>We conduct a one-sample t-test to determine if the average Gross Amount spent by customers differs significantly from a pre-defined industry standard of INR 5000.</p>
+<ul>
+<li><strong>Null Hypothesis (<span class="math inline">\(H_0\)</span>)</strong>: The average Gross Amount is equal to INR 5000.</li>
+<li><strong>Alternative Hypothesis (<span class="math inline">\(H_1\)</span>)</strong>: The average Gross Amount is not equal to INR 5000.</li>
+</ul>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="statistical-analysis.html#cb537-1" tabindex="-1"></a><span class="fu">t.test</span>(ecommerce<span class="sc">$</span>Gross.Amount, <span class="at">mu=</span><span class="dv">5000</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  ecommerce$Gross.Amount
+## t = -271.18, df = 54999, p-value &lt; 2.2e-16
+## alternative hypothesis: true mean is not equal to 5000
+## 95 percent confidence interval:
+##  2998.575 3027.298
+## sample estimates:
+## mean of x 
+##  3012.937</code></pre>
+<p>The p-value is less than 0.05 therefore, there is enough evidence to reject the null hypothesis. The average gross amount is not equal to INR 5000</p>
+<p>The average gross amount spent in a transaction is 3012.937, which is significantly different from the hypothesized value of 5000.</p>
+</div>
+<div id="two-sample-t-test" class="section level5 hasAnchor" number="7.4.4.2.2">
+<h5><span class="header-section-number">7.4.4.2.2</span> <span style="color: brown;"><strong>Two-sample T-Test</strong></span><a href="statistical-analysis.html#two-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>We use a two-sample t-test to assess whether there is a significant difference in the Net Amount spent between male and female customers.</p>
+<ul>
+<li><strong>Null Hypothesis (<span class="math inline">\(H_0\)</span>)</strong>: There is no significant difference between male and female spending.</li>
+<li><strong>Alternative Hypothesis (<span class="math inline">\(H_1\)</span>)</strong>: There is a significant difference between male and female spending.</li>
+</ul>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="statistical-analysis.html#cb539-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb539-2"><a href="statistical-analysis.html#cb539-2" tabindex="-1"></a></span>
+<span id="cb539-3"><a href="statistical-analysis.html#cb539-3" tabindex="-1"></a><span class="co"># Gather male net amount </span></span>
+<span id="cb539-4"><a href="statistical-analysis.html#cb539-4" tabindex="-1"></a>male_net_amount <span class="ot">&lt;-</span> ecommerce <span class="sc">%&gt;%</span></span>
+<span id="cb539-5"><a href="statistical-analysis.html#cb539-5" tabindex="-1"></a>  <span class="fu">filter</span>(Gender<span class="sc">==</span><span class="st">&quot;Male&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb539-6"><a href="statistical-analysis.html#cb539-6" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Net.Amount)</span>
+<span id="cb539-7"><a href="statistical-analysis.html#cb539-7" tabindex="-1"></a></span>
+<span id="cb539-8"><a href="statistical-analysis.html#cb539-8" tabindex="-1"></a><span class="co"># Gather female net amount </span></span>
+<span id="cb539-9"><a href="statistical-analysis.html#cb539-9" tabindex="-1"></a>female_net_amount <span class="ot">&lt;-</span> ecommerce <span class="sc">%&gt;%</span></span>
+<span id="cb539-10"><a href="statistical-analysis.html#cb539-10" tabindex="-1"></a>  <span class="fu">filter</span>(Gender<span class="sc">==</span><span class="st">&quot;Female&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb539-11"><a href="statistical-analysis.html#cb539-11" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Net.Amount)</span>
+<span id="cb539-12"><a href="statistical-analysis.html#cb539-12" tabindex="-1"></a></span>
+<span id="cb539-13"><a href="statistical-analysis.html#cb539-13" tabindex="-1"></a><span class="co"># Perform ttest</span></span>
+<span id="cb539-14"><a href="statistical-analysis.html#cb539-14" tabindex="-1"></a><span class="fu">t.test</span>(male_net_amount, female_net_amount, </span>
+<span id="cb539-15"><a href="statistical-analysis.html#cb539-15" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">paired =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb539-16"><a href="statistical-analysis.html#cb539-16" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">FALSE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  male_net_amount and female_net_amount
+## t = 0.64203, df = 36542, p-value = 0.5209
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -23.82403  47.03452
+## sample estimates:
+## mean of x mean of y 
+##  2868.076  2856.471</code></pre>
+<p>The value is more than 0.05 therefore the alternate hypothesis is rejected. There is no significant difference between the net amount spent by male and female customers. The mean net amount for males is 2868.076, and for females, it is 2856.471</p>
+</div>
+</div>
+<div id="anovaanalysis-of-variance" class="section level4 hasAnchor" number="7.4.4.3">
+<h4><span class="header-section-number">7.4.4.3</span> <span style="color: brown;"><strong>ANOVA(Analysis of Variance)</strong></span><a href="statistical-analysis.html#anovaanalysis-of-variance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We conduct a one-way ANOVA to test whether the average Net Amount spent differs significantly across different age groups.</p>
+<ul>
+<li><strong>Null Hypothesis (<span class="math inline">\(H_0\)</span>)</strong>: There is no difference in the Net Amount across age groups.</li>
+<li><strong>Alternative Hypothesis (<span class="math inline">\(H_1\)</span>)</strong>: There is a significant difference in the Net Amount across age groups.</li>
+</ul>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="statistical-analysis.html#cb541-1" tabindex="-1"></a>aov_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(Net.Amount <span class="sc">~</span> Age.Group, <span class="at">data =</span> ecommerce)</span>
+<span id="cb541-2"><a href="statistical-analysis.html#cb541-2" tabindex="-1"></a><span class="fu">summary</span>(aov_model)</span></code></pre></div>
+<pre><code>##                Df    Sum Sq Mean Sq F value Pr(&gt;F)  
+## Age.Group       4 3.705e+07 9262985   3.109 0.0144 *
+## Residuals   54995 1.638e+11 2979060                 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>There is enough evidence to reject the null hypothesis(p_value &lt;0.05) therefore there is a significant difference in the Net Amount across age groups</p>
+</div>
+<div id="chi-square-test-1" class="section level4 hasAnchor" number="7.4.4.4">
+<h4><span class="header-section-number">7.4.4.4</span> <span style="color: brown;"><strong>Chi-Square Test</strong></span><a href="statistical-analysis.html#chi-square-test-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We perform a chi-square test to determine if there is a relationship between the purchase method (Credit Card, Debit Card, etc.) and whether a discount was availed.</p>
+<ul>
+<li><strong>Null Hypothesis (<span class="math inline">\(H_0\)</span>)</strong>: There is no association between the purchase method and discount availed.</li>
+<li><strong>Alternative Hypothesis (<span class="math inline">\(H_1\)</span>)</strong>: There is an association between the purchase method and discount availed.</li>
+</ul>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="statistical-analysis.html#cb543-1" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(ecommerce<span class="sc">$</span>Purchase.Method, ecommerce<span class="sc">$</span>Discount.Availed))</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  table(ecommerce$Purchase.Method, ecommerce$Discount.Availed)
+## X-squared = 3.3007, df = 7, p-value = 0.8559</code></pre>
+<p>The p-value is 0.8559(above 0.05), indicating no statistically significant association between the purchase method and the availing of discounts.</p>
+</div>
+<div id="key-findings-1" class="section level4 hasAnchor" number="7.4.4.5">
+<h4><span class="header-section-number">7.4.4.5</span> <span style="color: brown;"><strong>Key Findings</strong></span><a href="statistical-analysis.html#key-findings-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Here are some of the key findings from the project;</p>
+<ul>
+<li>The one-sample t-test suggests that customers spend significantly less than the hypothesized gross amount.</li>
+<li>No significant difference was found in spending between male and female customers based on the two-sample t-test.</li>
+<li>ANOVA results indicate that spending patterns do vary significantly across age groups.</li>
+<li>The Chi-square test shows that the method of purchase has no significant relationship with whether a discount was used.</li>
+</ul>
+<p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="explanatory-data-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="working-with-real-world-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/balsaedi/RCourse/edit/main/07-statistical_analysis.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/balsaedi/RCourse/blob/main/07-statistical_analysis.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

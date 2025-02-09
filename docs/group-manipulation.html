@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Group Manipulation | Statistical Computing</title>
+  <meta name="description" content="Chapter 3 Group Manipulation | Statistical Computing" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Group Manipulation | Statistical Computing" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Group Manipulation | Statistical Computing" />
+  
+  
+  
+
+<meta name="author" content="Dr. Basim Alsaedi" />
+
+
+<meta name="date" content="2025-02-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="functions.html"/>
+<link rel="next" href="general-statistics.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SHORT TITLE HERE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Reviews</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#data-types-and-structures"><i class="fa fa-check"></i><b>1.1</b> Data Types and Structures</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#data-types"><i class="fa fa-check"></i><b>1.1.1</b> Data Types</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#data-structures"><i class="fa fa-check"></i><b>1.1.2</b> Data Structures</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#data-importing-and-exporting"><i class="fa fa-check"></i><b>1.2</b> Data Importing and Exporting</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#data-cleaning"><i class="fa fa-check"></i><b>1.3</b> Data Cleaning</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#data-visualization"><i class="fa fa-check"></i><b>1.4</b> Data Visualization</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#hands-on-exercises"><i class="fa fa-check"></i><b>1.5</b> <span style="color: green;"><strong>Hands-on Exercises</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>2</b> Functions</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="functions.html"><a href="functions.html#writing-functions"><i class="fa fa-check"></i><b>2.1</b> Writing Functions</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="functions.html"><a href="functions.html#user-defined-functions"><i class="fa fa-check"></i><b>2.1.1</b> User-Defined Functions</a></li>
+<li class="chapter" data-level="2.1.2" data-path="functions.html"><a href="functions.html#built-in-fuctions"><i class="fa fa-check"></i><b>2.1.2</b> Built-in Fuctions</a></li>
+<li class="chapter" data-level="2.1.3" data-path="functions.html"><a href="functions.html#package-functions"><i class="fa fa-check"></i><b>2.1.3</b> Package Functions</a></li>
+<li class="chapter" data-level="2.1.4" data-path="functions.html"><a href="functions.html#type-of-arguments-in-r-functions"><i class="fa fa-check"></i><b>2.1.4</b> Type of arguments in R functions</a></li>
+<li class="chapter" data-level="2.1.5" data-path="functions.html"><a href="functions.html#understanding-return-values-in-r-functions"><i class="fa fa-check"></i><b>2.1.5</b> Understanding Return Values in R Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="functions.html"><a href="functions.html#calling-the-functions"><i class="fa fa-check"></i><b>2.2</b> Calling the Functions</a></li>
+<li class="chapter" data-level="2.3" data-path="functions.html"><a href="functions.html#function-documentation"><i class="fa fa-check"></i><b>2.3</b> Function Documentation</a></li>
+<li class="chapter" data-level="2.4" data-path="functions.html"><a href="functions.html#hands-on-exercise"><i class="fa fa-check"></i><b>2.4</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="group-manipulation.html"><a href="group-manipulation.html"><i class="fa fa-check"></i><b>3</b> Group Manipulation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="group-manipulation.html"><a href="group-manipulation.html#apply-family"><i class="fa fa-check"></i><b>3.1</b> Apply Family</a></li>
+<li class="chapter" data-level="3.2" data-path="group-manipulation.html"><a href="group-manipulation.html#aggregate-plyr"><i class="fa fa-check"></i><b>3.2</b> Aggregate Plyr</a></li>
+<li class="chapter" data-level="3.3" data-path="group-manipulation.html"><a href="group-manipulation.html#data-reshaping"><i class="fa fa-check"></i><b>3.3</b> Data Reshaping</a></li>
+<li class="chapter" data-level="3.4" data-path="group-manipulation.html"><a href="group-manipulation.html#hands-on-exercise-1"><i class="fa fa-check"></i><b>3.4</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="general-statistics.html"><a href="general-statistics.html"><i class="fa fa-check"></i><b>4</b> General Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="general-statistics.html"><a href="general-statistics.html#tabulating-factors-and-creating-contingency-tables"><i class="fa fa-check"></i><b>4.1</b> Tabulating Factors and Creating Contingency Tables</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-factors-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Understanding Factors in R</a></li>
+<li class="chapter" data-level="4.1.2" data-path="general-statistics.html"><a href="general-statistics.html#creating-frequency-tables"><i class="fa fa-check"></i><b>4.1.2</b> Creating Frequency Tables</a></li>
+<li class="chapter" data-level="4.1.3" data-path="general-statistics.html"><a href="general-statistics.html#creating-contingency-tables"><i class="fa fa-check"></i><b>4.1.3</b> Creating Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.4" data-path="general-statistics.html"><a href="general-statistics.html#adding-margins-to-contingency-tables"><i class="fa fa-check"></i><b>4.1.4</b> Adding Margins to Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.5" data-path="general-statistics.html"><a href="general-statistics.html#computing-row-and-column-proportions"><i class="fa fa-check"></i><b>4.1.5</b> Computing Row and Column Proportions</a></li>
+<li class="chapter" data-level="4.1.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-contingency-tables"><i class="fa fa-check"></i><b>4.1.6</b> Visualizing Contingency Tables</a></li>
+<li class="chapter" data-level="4.1.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises"><i class="fa fa-check"></i><b>4.1.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="general-statistics.html"><a href="general-statistics.html#calculating-quantiles"><i class="fa fa-check"></i><b>4.2</b> Calculating Quantiles</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-quantiles"><i class="fa fa-check"></i><b>4.2.1</b> Understanding Quantiles</a></li>
+<li class="chapter" data-level="4.2.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-quantiles-in-r"><i class="fa fa-check"></i><b>4.2.2</b> Computing Quantiles in R</a></li>
+<li class="chapter" data-level="4.2.3" data-path="general-statistics.html"><a href="general-statistics.html#computing-specific-quantiles"><i class="fa fa-check"></i><b>4.2.3</b> Computing Specific Quantiles</a></li>
+<li class="chapter" data-level="4.2.4" data-path="general-statistics.html"><a href="general-statistics.html#using-summary-for-quick-insights"><i class="fa fa-check"></i><b>4.2.4</b> Using <code>summary()</code> for Quick Insights</a></li>
+<li class="chapter" data-level="4.2.5" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-quantiles"><i class="fa fa-check"></i><b>4.2.5</b> Visualizing Quantiles</a></li>
+<li class="chapter" data-level="4.2.6" data-path="general-statistics.html"><a href="general-statistics.html#finding-interquartile-range-iqr"><i class="fa fa-check"></i><b>4.2.6</b> Finding Interquartile Range (IQR)</a></li>
+<li class="chapter" data-level="4.2.7" data-path="general-statistics.html"><a href="general-statistics.html#finding-outliers-using-iqr"><i class="fa fa-check"></i><b>4.2.7</b> Finding Outliers Using IQR</a></li>
+<li class="chapter" data-level="4.2.8" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>4.2.8</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="general-statistics.html"><a href="general-statistics.html#z-scores"><i class="fa fa-check"></i><b>4.3</b> z-Scores</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-z-scores"><i class="fa fa-check"></i><b>4.3.1</b> Understanding z-Scores</a></li>
+<li class="chapter" data-level="4.3.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-z-scores-in-r"><i class="fa fa-check"></i><b>4.3.2</b> Computing z-Scores in R</a></li>
+<li class="chapter" data-level="4.3.3" data-path="general-statistics.html"><a href="general-statistics.html#computing-z-scores-using-scale"><i class="fa fa-check"></i><b>4.3.3</b> Computing z-Scores Using <code>scale()</code></a></li>
+<li class="chapter" data-level="4.3.4" data-path="general-statistics.html"><a href="general-statistics.html#interpreting-z-scores"><i class="fa fa-check"></i><b>4.3.4</b> Interpreting z-Scores</a></li>
+<li class="chapter" data-level="4.3.5" data-path="general-statistics.html"><a href="general-statistics.html#using-z-scores-to-detect-outliers"><i class="fa fa-check"></i><b>4.3.5</b> Using z-Scores to Detect Outliers</a></li>
+<li class="chapter" data-level="4.3.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-z-scores"><i class="fa fa-check"></i><b>4.3.6</b> Visualizing z-Scores</a></li>
+<li class="chapter" data-level="4.3.7" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercises-2"><i class="fa fa-check"></i><b>4.3.7</b> Hands-on Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="general-statistics.html"><a href="general-statistics.html#inferential-statistics"><i class="fa fa-check"></i><b>4.4</b> Inferential Statistics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="general-statistics.html"><a href="general-statistics.html#basic-concepts"><i class="fa fa-check"></i><b>4.4.1</b> Basic Concepts</a></li>
+<li class="chapter" data-level="4.4.2" data-path="general-statistics.html"><a href="general-statistics.html#confidence-intervals"><i class="fa fa-check"></i><b>4.4.2</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="4.4.3" data-path="general-statistics.html"><a href="general-statistics.html#hypothesis-testing"><i class="fa fa-check"></i><b>4.4.3</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="4.4.4" data-path="general-statistics.html"><a href="general-statistics.html#steps-in-hypothesis-testing"><i class="fa fa-check"></i><b>4.4.4</b> Steps in Hypothesis Testing</a></li>
+<li class="chapter" data-level="4.4.5" data-path="general-statistics.html"><a href="general-statistics.html#one-sample-t-test"><i class="fa fa-check"></i><b>4.4.5</b> One-Sample t-Test</a></li>
+<li class="chapter" data-level="4.4.6" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-means"><i class="fa fa-check"></i><b>4.4.6</b> Comparing Two Sample Means</a></li>
+<li class="chapter" data-level="4.4.7" data-path="general-statistics.html"><a href="general-statistics.html#testing-proportions"><i class="fa fa-check"></i><b>4.4.7</b> Testing Proportions</a></li>
+<li class="chapter" data-level="4.4.8" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-1"><i class="fa fa-check"></i><b>4.4.8</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="general-statistics.html"><a href="general-statistics.html#testing-the-mean-of-a-sample-t-test-and-its-confidence-interval"><i class="fa fa-check"></i><b>4.5</b> Testing the Mean of a Sample (t-Test) and its Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-the-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Understanding the t-Test</a></li>
+<li class="chapter" data-level="4.5.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-confidence-intervals-for-the-mean"><i class="fa fa-check"></i><b>4.5.2</b> Computing Confidence Intervals for the Mean</a></li>
+<li class="chapter" data-level="4.5.3" data-path="general-statistics.html"><a href="general-statistics.html#performing-a-one-sample-t-test"><i class="fa fa-check"></i><b>4.5.3</b> Performing a One-Sample t-Test</a></li>
+<li class="chapter" data-level="4.5.4" data-path="general-statistics.html"><a href="general-statistics.html#one-sided-vs.-two-sided-tests"><i class="fa fa-check"></i><b>4.5.4</b> One-Sided vs. Two-Sided Tests</a></li>
+<li class="chapter" data-level="4.5.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-means-independent-t-test"><i class="fa fa-check"></i><b>4.5.5</b> Comparing Two Sample Means (Independent t-Test)</a></li>
+<li class="chapter" data-level="4.5.6" data-path="general-statistics.html"><a href="general-statistics.html#paired-t-test-dependent-samples"><i class="fa fa-check"></i><b>4.5.6</b> Paired t-Test (Dependent Samples)</a></li>
+<li class="chapter" data-level="4.5.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-2"><i class="fa fa-check"></i><b>4.5.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="general-statistics.html"><a href="general-statistics.html#testing-a-sample-proportion-and-its-confidence-interval"><i class="fa fa-check"></i><b>4.6</b> Testing a Sample Proportion and its Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-proportion-testing"><i class="fa fa-check"></i><b>4.6.1</b> Understanding Proportion Testing</a></li>
+<li class="chapter" data-level="4.6.2" data-path="general-statistics.html"><a href="general-statistics.html#computing-confidence-intervals-for-proportions"><i class="fa fa-check"></i><b>4.6.2</b> Computing Confidence Intervals for Proportions</a></li>
+<li class="chapter" data-level="4.6.3" data-path="general-statistics.html"><a href="general-statistics.html#performing-a-one-sample-proportion-test"><i class="fa fa-check"></i><b>4.6.3</b> Performing a One-Sample Proportion Test</a></li>
+<li class="chapter" data-level="4.6.4" data-path="general-statistics.html"><a href="general-statistics.html#one-sided-proportion-tests"><i class="fa fa-check"></i><b>4.6.4</b> One-Sided Proportion Tests</a></li>
+<li class="chapter" data-level="4.6.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-two-sample-proportions"><i class="fa fa-check"></i><b>4.6.5</b> Comparing Two Sample Proportions</a></li>
+<li class="chapter" data-level="4.6.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-proportions"><i class="fa fa-check"></i><b>4.6.6</b> Visualizing Proportions</a></li>
+<li class="chapter" data-level="4.6.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-3"><i class="fa fa-check"></i><b>4.6.7</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="general-statistics.html"><a href="general-statistics.html#comparing-the-means-of-two-samples"><i class="fa fa-check"></i><b>4.7</b> Comparing the Means of Two Samples</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-two-sample-t-test"><i class="fa fa-check"></i><b>4.7.1</b> Understanding Two-Sample t-Test</a></li>
+<li class="chapter" data-level="4.7.2" data-path="general-statistics.html"><a href="general-statistics.html#independent-unpaired-t-test"><i class="fa fa-check"></i><b>4.7.2</b> Independent (Unpaired) t-Test</a></li>
+<li class="chapter" data-level="4.7.3" data-path="general-statistics.html"><a href="general-statistics.html#checking-assumptions"><i class="fa fa-check"></i><b>4.7.3</b> Checking Assumptions</a></li>
+<li class="chapter" data-level="4.7.4" data-path="general-statistics.html"><a href="general-statistics.html#performing-t-test-with-unequal-variances"><i class="fa fa-check"></i><b>4.7.4</b> Performing t-Test with Unequal Variances</a></li>
+<li class="chapter" data-level="4.7.5" data-path="general-statistics.html"><a href="general-statistics.html#paired-t-test-dependent-samples-1"><i class="fa fa-check"></i><b>4.7.5</b> Paired t-Test (Dependent Samples)</a></li>
+<li class="chapter" data-level="4.7.6" data-path="general-statistics.html"><a href="general-statistics.html#visualizing-group-differences"><i class="fa fa-check"></i><b>4.7.6</b> Visualizing Group Differences</a></li>
+<li class="chapter" data-level="4.7.7" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-4"><i class="fa fa-check"></i><b>4.7.7</b> Practical Exercises</a></li>
+<li class="chapter" data-level="4.7.8" data-path="general-statistics.html"><a href="general-statistics.html#exercise-4-visualizing-group-differences"><i class="fa fa-check"></i><b>4.7.8</b> Exercise 4: Visualizing Group Differences</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="general-statistics.html"><a href="general-statistics.html#performing-pairwise-comparisons-between-group-means"><i class="fa fa-check"></i><b>4.8</b> Performing Pairwise Comparisons Between Group Means</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="general-statistics.html"><a href="general-statistics.html#understanding-pairwise-comparisons"><i class="fa fa-check"></i><b>4.8.1</b> Understanding Pairwise Comparisons</a></li>
+<li class="chapter" data-level="4.8.2" data-path="general-statistics.html"><a href="general-statistics.html#performing-pairwise-t-tests"><i class="fa fa-check"></i><b>4.8.2</b> Performing Pairwise t-Tests</a></li>
+<li class="chapter" data-level="4.8.3" data-path="general-statistics.html"><a href="general-statistics.html#tukeys-hsd-test"><i class="fa fa-check"></i><b>4.8.3</b> Tukey’s HSD Test</a></li>
+<li class="chapter" data-level="4.8.4" data-path="general-statistics.html"><a href="general-statistics.html#bonferroni-and-holm-corrections"><i class="fa fa-check"></i><b>4.8.4</b> Bonferroni and Holm Corrections</a></li>
+<li class="chapter" data-level="4.8.5" data-path="general-statistics.html"><a href="general-statistics.html#dunnetts-test-comparing-to-a-control-group"><i class="fa fa-check"></i><b>4.8.5</b> Dunnett’s Test (Comparing to a Control Group)</a></li>
+<li class="chapter" data-level="4.8.6" data-path="general-statistics.html"><a href="general-statistics.html#practical-exercises-5"><i class="fa fa-check"></i><b>4.8.6</b> Practical Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercise-2"><i class="fa fa-check"></i><b>4.9</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="general-statistics.html"><a href="general-statistics.html#exercise-1-descriptive-statistics"><i class="fa fa-check"></i><b>4.9.1</b> Exercise 1: Descriptive Statistics</a></li>
+<li class="chapter" data-level="4.9.2" data-path="general-statistics.html"><a href="general-statistics.html#exercise-2-confidence-interval-for-mean"><i class="fa fa-check"></i><b>4.9.2</b> Exercise 2: Confidence Interval for Mean</a></li>
+<li class="chapter" data-level="4.9.3" data-path="general-statistics.html"><a href="general-statistics.html#exercise-3-one-sample-t-test"><i class="fa fa-check"></i><b>4.9.3</b> Exercise 3: One-Sample t-Test**</a></li>
+<li class="chapter" data-level="4.9.4" data-path="general-statistics.html"><a href="general-statistics.html#exercise-4-proportion-test"><i class="fa fa-check"></i><b>4.9.4</b> Exercise 4: Proportion Test</a></li>
+<li class="chapter" data-level="4.9.5" data-path="general-statistics.html"><a href="general-statistics.html#exercise-5-comparing-two-sample-means"><i class="fa fa-check"></i><b>4.9.5</b> Exercise 5: Comparing Two Sample Means</a></li>
+<li class="chapter" data-level="4.9.6" data-path="general-statistics.html"><a href="general-statistics.html#exercise-6-data-visualization"><i class="fa fa-check"></i><b>4.9.6</b> Exercise 6: Data Visualization</a></li>
+<li class="chapter" data-level="4.9.7" data-path="general-statistics.html"><a href="general-statistics.html#exercise-7-scatterplot-with-regression-line"><i class="fa fa-check"></i><b>4.9.7</b> Exercise 7: Scatterplot with Regression Line</a></li>
+<li class="chapter" data-level="4.9.8" data-path="general-statistics.html"><a href="general-statistics.html#exercise-8-pairwise-comparisons"><i class="fa fa-check"></i><b>4.9.8</b> Exercise 8: Pairwise Comparisons</a></li>
+<li class="chapter" data-level="4.9.9" data-path="general-statistics.html"><a href="general-statistics.html#exercise-9-tukeys-hsd-test"><i class="fa fa-check"></i><b>4.9.9</b> Exercise 9: Tukey’s HSD Test</a></li>
+<li class="chapter" data-level="4.9.10" data-path="general-statistics.html"><a href="general-statistics.html#exercise-10-comparing-a-treatment-to-a-control"><i class="fa fa-check"></i><b>4.9.10</b> Exercise 10: Comparing a Treatment to a Control</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#basics-of-wilkinson-rogers-notation-y-x-linear-regression"><i class="fa fa-check"></i><b>5.1</b> Basics of Wilkinson-Rogers Notation (y ~ x), Linear Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#scatterplots-with-regression-lines-reading-lm-output"><i class="fa fa-check"></i><b>5.2</b> Scatterplots with Regression Lines, Reading lm() Output</a></li>
+<li class="chapter" data-level="5.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#confidence-intervals-for-regression-coefficients-testing-coefficients"><i class="fa fa-check"></i><b>5.3</b> Confidence Intervals for Regression Coefficients, Testing Coefficients</a></li>
+<li class="chapter" data-level="5.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#identifying-points-in-a-plot"><i class="fa fa-check"></i><b>5.4</b> Identifying Points in a Plot</a></li>
+<li class="chapter" data-level="5.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#hands-on-exercise-3"><i class="fa fa-check"></i><b>5.5</b> <span style="color: green;"><strong>Hands-On Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html"><i class="fa fa-check"></i><b>6</b> Reproducibility and Report with R Markdown</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#key-tools-in-r-for-reproducibility-and-reporting"><i class="fa fa-check"></i><b>6.1</b> Key Tools in R for Reproducibility and Reporting</a></li>
+<li class="chapter" data-level="6.2" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#creating-reproducible-reports"><i class="fa fa-check"></i><b>6.2</b> Creating Reproducible Reports</a></li>
+<li class="chapter" data-level="6.3" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#going-beyond-shiny-for-interactive-reporting"><i class="fa fa-check"></i><b>6.3</b> Going Beyond: Shiny for Interactive Reporting</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-shiny.html"><a href="r-shiny.html"><i class="fa fa-check"></i><b>7</b> R Shiny</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="r-shiny.html"><a href="r-shiny.html#structure-of-a-shiny-app"><i class="fa fa-check"></i><b>7.1</b> Structure of a Shiny App</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="r-shiny.html"><a href="r-shiny.html#user-interfaceui"><i class="fa fa-check"></i><b>7.1.1</b> User Interface(ui)</a></li>
+<li class="chapter" data-level="7.1.2" data-path="r-shiny.html"><a href="r-shiny.html#server"><i class="fa fa-check"></i><b>7.1.2</b> Server</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="r-shiny.html"><a href="r-shiny.html#hands-on-exercise-4"><i class="fa fa-check"></i><b>7.2</b> <span style="color: green;"><strong>Hands-On Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="building-r-packages.html"><a href="building-r-packages.html"><i class="fa fa-check"></i><b>8</b> Building R Packages</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="building-r-packages.html"><a href="building-r-packages.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="building-r-packages.html"><a href="building-r-packages.html#prerequisites"><i class="fa fa-check"></i><b>8.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="8.3" data-path="building-r-packages.html"><a href="building-r-packages.html#building-a-simple-r-package"><i class="fa fa-check"></i><b>8.3</b> Building a simple R package</a></li>
+<li class="chapter" data-level="8.4" data-path="building-r-packages.html"><a href="building-r-packages.html#making-a-new-r-project"><i class="fa fa-check"></i><b>8.4</b> Making A New R Project</a></li>
+<li class="chapter" data-level="8.5" data-path="building-r-packages.html"><a href="building-r-packages.html#adding-documentation"><i class="fa fa-check"></i><b>8.5</b> Adding Documentation</a></li>
+<li class="chapter" data-level="8.6" data-path="building-r-packages.html"><a href="building-r-packages.html#uploading-and-installing-from-github"><i class="fa fa-check"></i><b>8.6</b> Uploading and Installing from Github</a></li>
+<li class="chapter" data-level="8.7" data-path="building-r-packages.html"><a href="building-r-packages.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>8.7</b> <span style="color: green;"><strong>Hands-on Exercises</strong></span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Computing</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="group-manipulation" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Group Manipulation<a href="group-manipulation.html#group-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Group manipulation in R refers to the process of grouping data based on certain categories and then performing operations based on each group separately. This is useful when you want to summarize, analyze or transform subsets of your data independently. In simple terms, group manipulation involves splitting the data into groups, applying a function to each group, and then combining the results. We will explore different methods designed by researchers for group manipulation. They are group manipulation using;</p>
+<ul>
+<li>The <code>apply</code> family,</li>
+<li>The <code>aggregate</code> from <code>plyr</code> package,</li>
+<li>Data reshaping</li>
+</ul>
+<div id="apply-family" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Apply Family<a href="group-manipulation.html#apply-family" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <strong>apply family</strong> in R is a collection of functions that helps you apply operations to data structures like vectors, lists, matrices and data frames in a more efficient way than using loops. Think of these functions as a way to give commands to your data in bulk, telling each piece what to do without repeating yourself.</p>
+<p>Let’s make this fun! Imagine you’re running a café, and you have tables (rows of data) with customer orders (columns of data). You want to calculate the total for each table or find out how much each customer spent on average. The <code>apply</code> family is like hiring a helper who goes to each table and collects information without you having to ask each customer individually!</p>
+<p>We will have a quick overview of the members of the <strong>apply family</strong>;</p>
+<ul>
+<li><code>apply()</code> - Works with matrices or data frames, applying a function to rows or columns.</li>
+<li><code>lapply()</code> - Loops over elements in a list, applying a function to each element and returning a list.</li>
+<li><code>sapply()</code> - Similar to <code>lapply</code>, but it returns a vector or matrix when possible.</li>
+<li><code>tapply()</code> - Applies a function over subsets of data, especially useful for factors or groups.</li>
+<li><code>mapply()</code> - Applies a function to multiple arguments simultaneously.</li>
+</ul>
+<p><span style="color: orange;"><strong>Try it: </strong></span></p>
+<p>Here is the <code>apply</code> family in action using the built-in R data set that contains information about flowers.</p>
+<ul>
+<li>Use apply to calculate the mean of each column in the iris data set at once(No need of specifying the columns)</li>
+</ul>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="group-manipulation.html#cb120-1" tabindex="-1"></a><span class="co">#  Load and view the first few rows of the iris data set</span></span>
+<span id="cb120-2"><a href="group-manipulation.html#cb120-2" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb120-3"><a href="group-manipulation.html#cb120-3" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="group-manipulation.html#cb122-1" tabindex="-1"></a><span class="co"># Calculate the mean of each numeric column</span></span>
+<span id="cb122-2"><a href="group-manipulation.html#cb122-2" tabindex="-1"></a>col_means <span class="ot">&lt;-</span> <span class="fu">apply</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="dv">2</span>, mean)</span>
+<span id="cb122-3"><a href="group-manipulation.html#cb122-3" tabindex="-1"></a><span class="fu">print</span>(col_means)</span></code></pre></div>
+<pre><code>## Sepal.Length  Sepal.Width Petal.Length  Petal.Width 
+##     5.843333     3.057333     3.758000     1.199333</code></pre>
+<ul>
+<li>The <code>2</code> in <code>apply</code> means “apply the function to columns” and the <code>mean</code> was used to find the average of each column. This is simple as asking a helper to calculate the the average for all types of flowers for each characteristic (sepal length, petal length, etc.). Let’s repeat the same for a each row, instead of argument value <code>2</code> we will put argument value <code>1</code> in the second position.</li>
+</ul>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="group-manipulation.html#cb124-1" tabindex="-1"></a>row_means <span class="ot">&lt;-</span> <span class="fu">apply</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="dv">1</span>, mean) <span class="co"># Calculate the mean for each row </span></span>
+<span id="cb124-2"><a href="group-manipulation.html#cb124-2" tabindex="-1"></a><span class="fu">head</span>(row_means, <span class="dv">15</span>) <span class="co"># Show the first fifteen averages of the row</span></span></code></pre></div>
+<pre><code>##  [1] 2.550 2.375 2.350 2.350 2.550 2.850 2.425 2.525 2.225 2.400 2.700 2.500 2.325
+## [14] 2.125 2.800</code></pre>
+<ul>
+<li>Now lets use the <code>lapply</code> function to find the range for each numeric column. This function applies to each element and returns a list. No need to specify if its a column or a row</li>
+</ul>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="group-manipulation.html#cb126-1" tabindex="-1"></a><span class="co"># Calculate the range of each numeric column in the iris dataset</span></span>
+<span id="cb126-2"><a href="group-manipulation.html#cb126-2" tabindex="-1"></a>column_ranges <span class="ot">&lt;-</span> <span class="fu">lapply</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], range)</span>
+<span id="cb126-3"><a href="group-manipulation.html#cb126-3" tabindex="-1"></a><span class="fu">print</span>(column_ranges)</span></code></pre></div>
+<pre><code>## $Sepal.Length
+## [1] 4.3 7.9
+## 
+## $Sepal.Width
+## [1] 2.0 4.4
+## 
+## $Petal.Length
+## [1] 1.0 6.9
+## 
+## $Petal.Width
+## [1] 0.1 2.5</code></pre>
+<p>Repeating the function with <code>mean</code> function instead of the <code>range</code> function.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="group-manipulation.html#cb128-1" tabindex="-1"></a><span class="co"># Calculate the mean of each numeric column in the iris dataset</span></span>
+<span id="cb128-2"><a href="group-manipulation.html#cb128-2" tabindex="-1"></a>col_means <span class="ot">&lt;-</span> <span class="fu">lapply</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], mean)</span>
+<span id="cb128-3"><a href="group-manipulation.html#cb128-3" tabindex="-1"></a><span class="fu">print</span>(col_means)</span></code></pre></div>
+<pre><code>## $Sepal.Length
+## [1] 5.843333
+## 
+## $Sepal.Width
+## [1] 3.057333
+## 
+## $Petal.Length
+## [1] 3.758
+## 
+## $Petal.Width
+## [1] 1.199333</code></pre>
+<p>You see! <code>lapply</code> function works column wise instead of row wise when working with data frames. Lets create a function that will add 10 to the input value and use the <code>lapply</code> function to work on a vector.</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="group-manipulation.html#cb130-1" tabindex="-1"></a><span class="co"># Create a vector</span></span>
+<span id="cb130-2"><a href="group-manipulation.html#cb130-2" tabindex="-1"></a>current_ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">43</span>, <span class="dv">12</span>, <span class="dv">56</span>, <span class="dv">32</span>)</span>
+<span id="cb130-3"><a href="group-manipulation.html#cb130-3" tabindex="-1"></a></span>
+<span id="cb130-4"><a href="group-manipulation.html#cb130-4" tabindex="-1"></a><span class="co"># Create a function that adds 10 to an input value </span></span>
+<span id="cb130-5"><a href="group-manipulation.html#cb130-5" tabindex="-1"></a>add_10 <span class="ot">&lt;-</span> <span class="cf">function</span>(value){</span>
+<span id="cb130-6"><a href="group-manipulation.html#cb130-6" tabindex="-1"></a>  <span class="fu">return</span>(value <span class="sc">+</span> <span class="dv">10</span>)</span>
+<span id="cb130-7"><a href="group-manipulation.html#cb130-7" tabindex="-1"></a>}</span>
+<span id="cb130-8"><a href="group-manipulation.html#cb130-8" tabindex="-1"></a></span>
+<span id="cb130-9"><a href="group-manipulation.html#cb130-9" tabindex="-1"></a><span class="co"># Test the function </span></span>
+<span id="cb130-10"><a href="group-manipulation.html#cb130-10" tabindex="-1"></a><span class="fu">add_10</span>(<span class="dv">27</span>)</span></code></pre></div>
+<pre><code>## [1] 37</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="group-manipulation.html#cb132-1" tabindex="-1"></a><span class="co"># Apply the function to vector ages </span></span>
+<span id="cb132-2"><a href="group-manipulation.html#cb132-2" tabindex="-1"></a>ages_10_years_later <span class="ot">&lt;-</span> <span class="fu">lapply</span>(current_ages, add_10)</span>
+<span id="cb132-3"><a href="group-manipulation.html#cb132-3" tabindex="-1"></a>ages_10_years_later <span class="co"># Show the result</span></span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 31
+## 
+## [[2]]
+## [1] 53
+## 
+## [[3]]
+## [1] 22
+## 
+## [[4]]
+## [1] 66
+## 
+## [[5]]
+## [1] 42</code></pre>
+<p>It returns a <code>list</code> with values in the vector <code>current_ages</code> add 10 to each value.</p>
+<ul>
+<li>The <code>sapply()</code> function works similarly to <code>lapply()</code>, but it tries to simplify the output. If possible, it will return a vector or matrix instead of a list.
+Let`s calculate the variance for each numeric column;</li>
+</ul>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="group-manipulation.html#cb134-1" tabindex="-1"></a><span class="co"># Calculate the variance for each numeric column</span></span>
+<span id="cb134-2"><a href="group-manipulation.html#cb134-2" tabindex="-1"></a>col_variance <span class="ot">&lt;-</span> <span class="fu">sapply</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], var)</span>
+<span id="cb134-3"><a href="group-manipulation.html#cb134-3" tabindex="-1"></a><span class="fu">print</span>(col_variance)</span></code></pre></div>
+<pre><code>## Sepal.Length  Sepal.Width Petal.Length  Petal.Width 
+##    0.6856935    0.1899794    3.1162779    0.5810063</code></pre>
+<p>Remember that we created a function <code>add_10</code> that adds 10 to the current ages of the clients. Lets repeat the same using the <code>sapply</code> function instead of <code>lapply</code> function.</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="group-manipulation.html#cb136-1" tabindex="-1"></a><span class="co"># Calculate the variance for each numeric column</span></span>
+<span id="cb136-2"><a href="group-manipulation.html#cb136-2" tabindex="-1"></a>ages_10_years_later <span class="ot">&lt;-</span> <span class="fu">sapply</span>(current_ages, add_10)</span>
+<span id="cb136-3"><a href="group-manipulation.html#cb136-3" tabindex="-1"></a><span class="fu">print</span>(ages_10_years_later)</span></code></pre></div>
+<pre><code>## [1] 31 53 22 66 42</code></pre>
+<p>It is now evident that <code>sapply</code> has a simpler output than the <code>lapply</code> function.</p>
+<ul>
+<li>The <code>tapply()</code> function applies a function to subsets of data grouped by a factor (e.g., species in our case). Let’s calculate the average sepal length for each species:</li>
+</ul>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="group-manipulation.html#cb138-1" tabindex="-1"></a><span class="co"># Calculate the average Sepal.Length for each Species</span></span>
+<span id="cb138-2"><a href="group-manipulation.html#cb138-2" tabindex="-1"></a>avg_sepal_by_species <span class="ot">&lt;-</span> <span class="fu">tapply</span>(iris<span class="sc">$</span>Sepal.Length, iris<span class="sc">$</span>Species, mean)</span>
+<span id="cb138-3"><a href="group-manipulation.html#cb138-3" tabindex="-1"></a><span class="fu">print</span>(avg_sepal_by_species)</span></code></pre></div>
+<pre><code>##     setosa versicolor  virginica 
+##      5.006      5.936      6.588</code></pre>
+<p>This is like sending your helper to collect the sepal lengths for each species separately, and then calculating the average for each group.</p>
+<ul>
+<li>Finally the <code>mapply()</code> function is useful when you want to apply a function to multiple sets of arguments at once. Let’s calculate the sum of <code>Sepal.Length</code> and <code>Sepal.Width</code> for each row:</li>
+</ul>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="group-manipulation.html#cb140-1" tabindex="-1"></a><span class="co"># Sum Sepal.Length and Sepal.Width for each row</span></span>
+<span id="cb140-2"><a href="group-manipulation.html#cb140-2" tabindex="-1"></a>sepal_sum <span class="ot">&lt;-</span> <span class="fu">mapply</span>(sum, iris<span class="sc">$</span>Sepal.Length, iris<span class="sc">$</span>Sepal.Width)</span>
+<span id="cb140-3"><a href="group-manipulation.html#cb140-3" tabindex="-1"></a><span class="fu">head</span>(sepal_sum)</span></code></pre></div>
+<pre><code>## [1] 8.6 7.9 7.9 7.7 8.6 9.3</code></pre>
+<p>This function adds the sepal length and width for each flower row by row.
+It’s like your helper asking every customer for two values and summing them up together.</p>
+<p><span style="color: green;"><strong>Practical Exercise</strong></span></p>
+<p>Now it’s time to test your skills!</p>
+<ol style="list-style-type: decimal">
+<li>Use <code>apply()</code> to calculate the maximum for each column in the iris data set.</li>
+<li>Use <code>lapply()</code> to find the summary statistics (use the <code>summary()</code> function) for each numeric column in the iris data set.</li>
+<li>Use <code>tapply()</code> to find the average petal width for each species in the iris data set.</li>
+</ol>
+<hr />
+<p><span style="color: brown;"><strong>Solution</strong></span></p>
+<p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
+</div>
+<div id="aggregate-plyr" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Aggregate Plyr<a href="group-manipulation.html#aggregate-plyr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <code>aggregate()</code> function from <code>plyr</code> package is a powerful tool for grouping and summarizing data in R. This is similar to the SQL <code>GROUP BY</code> command or the <code>tapply()</code> that we have discussed above. The difference is that <code>aggregate()</code> allows to summarize data based on one or more grouping factors.</p>
+<p><span style="color: orange;"><strong>Try it!</strong></span></p>
+<p>Let’s explore an example using the built-in <code>mtcars</code> data set to show how to use the <code>aggregate()</code> from the <code>plyr</code> package. The <code>plyr</code> package can be installed by:</p>
+<pre><code>install.packages(&quot;plyr&quot;)</code></pre>
+<p>Lets start</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="group-manipulation.html#cb143-1" tabindex="-1"></a><span class="fu">library</span>(plyr)</span>
+<span id="cb143-2"><a href="group-manipulation.html#cb143-2" tabindex="-1"></a></span>
+<span id="cb143-3"><a href="group-manipulation.html#cb143-3" tabindex="-1"></a><span class="co"># Load the data set</span></span>
+<span id="cb143-4"><a href="group-manipulation.html#cb143-4" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;mtcars&quot;</span>)</span>
+<span id="cb143-5"><a href="group-manipulation.html#cb143-5" tabindex="-1"></a></span>
+<span id="cb143-6"><a href="group-manipulation.html#cb143-6" tabindex="-1"></a><span class="co"># Use aggregate to find the average &#39;mpg&#39; (miles per gallon) grouped by the number of cylinders (&#39;cyl&#39;)</span></span>
+<span id="cb143-7"><a href="group-manipulation.html#cb143-7" tabindex="-1"></a>avg_mpg_by_cyl <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(mpg <span class="sc">~</span> cyl, </span>
+<span id="cb143-8"><a href="group-manipulation.html#cb143-8" tabindex="-1"></a>                            <span class="at">data =</span> mtcars, </span>
+<span id="cb143-9"><a href="group-manipulation.html#cb143-9" tabindex="-1"></a>                            <span class="at">FUN =</span> mean)</span>
+<span id="cb143-10"><a href="group-manipulation.html#cb143-10" tabindex="-1"></a>avg_mpg_by_cyl</span></code></pre></div>
+<pre><code>##   cyl      mpg
+## 1   4 26.66364
+## 2   6 19.74286
+## 3   8 15.10000</code></pre>
+<p>If we break done the code;</p>
+<ol style="list-style-type: lower-roman">
+<li><code>mpg ~ cyl</code> tells R to calculate the average <code>mpg</code>(dependent variable) for each unique value of <code>cyl</code>(grouping factor).</li>
+<li><code>data = mtcars</code> specifies the data set.</li>
+<li><code>FUN = mean</code> applies the <code>mean</code> function to compute the average <code>mpg</code> for each group of <code>cyl</code>.</li>
+</ol>
+<p>We have just calculated the average <code>mpg</code> (miles per gallon) grouped by the number of <code>cyl</code>(cylinders). Let’s make it a little bit more complex by grouping with multiple variables and summarize multiple columns as well. We will calculate the mean horsepower(<code>hp</code>) and the weight(<code>wt</code>) by the number of cylinders(<code>cyl</code>) and the number of transmission(<code>am</code>).</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="group-manipulation.html#cb145-1" tabindex="-1"></a><span class="co"># Use aggregate to find the mean hp and wt by cylinders and transmission type</span></span>
+<span id="cb145-2"><a href="group-manipulation.html#cb145-2" tabindex="-1"></a>avg_hp_wt_by_cyl_am <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(<span class="fu">cbind</span>(hp, wt) <span class="sc">~</span> cyl <span class="sc">+</span> am, </span>
+<span id="cb145-3"><a href="group-manipulation.html#cb145-3" tabindex="-1"></a>                                 <span class="at">data =</span> mtcars, </span>
+<span id="cb145-4"><a href="group-manipulation.html#cb145-4" tabindex="-1"></a>                                 <span class="at">FUN =</span> mean)</span>
+<span id="cb145-5"><a href="group-manipulation.html#cb145-5" tabindex="-1"></a></span>
+<span id="cb145-6"><a href="group-manipulation.html#cb145-6" tabindex="-1"></a>avg_hp_wt_by_cyl_am</span></code></pre></div>
+<pre><code>##   cyl am        hp       wt
+## 1   4  0  84.66667 2.935000
+## 2   6  0 115.25000 3.388750
+## 3   8  0 194.16667 4.104083
+## 4   4  1  81.87500 2.042250
+## 5   6  1 131.66667 2.755000
+## 6   8  1 299.50000 3.370000</code></pre>
+<p>If we breakdown the code;</p>
+<ol style="list-style-type: lower-roman">
+<li><code>cbind(hp, wt)</code> allows you to summarize multiple columns (<code>hp</code> and <code>wt</code>).</li>
+<li><code>cyl + am</code> groups the data by the number of cylinders and the transmission type (<code>am</code> = 0 for automatic, 1 for manual`).</li>
+<li>The argument <code>FUN</code> defines the function to be used here therefore, <code>FUN = mean</code> calculates the mean values for <code>hp</code> and <code>wt</code> for each group of <code>cyl</code> and <code>am</code>.</li>
+</ol>
+<p><span style="color: green;"><strong>Practical Exercise</strong></span></p>
+<p>Try using the <code>aggregate()</code> with the <code>iris</code> data set to find the mean sepal length (<code>Sepal.Length</code>) and petal length(<code>Petal.Length</code>) for each species.</p>
+<hr />
+<p><span style="color: brown;"><strong>Solution</strong></span></p>
+<p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
+</div>
+<div id="data-reshaping" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Data Reshaping<a href="group-manipulation.html#data-reshaping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Data reshaping is the process of transforming the layout or structure of a data set without changing the actual data. You typically reshape data to suit different analyses, visualizations, or reporting formats. Common operations for reshaping include pivoting data between <strong>wide</strong> and <strong>long</strong> formats.</p>
+<ul>
+<li><strong>Wide format: </strong> Each subject(row) has its own columns for measurements at different time points or categories.</li>
+<li><strong>Long format: </strong> The data has one measurement per row, making it easier to analyze in some cases, especially with repeated measures.</li>
+</ul>
+<p>In R, the most common function for reshaping data include;</p>
+<ul>
+<li><code>pivot_longer()</code> and <code>pivot_wider()</code> from the <code>tidyr</code> package.</li>
+<li><code>melt()</code> and <code>dcast()</code> from the <code>reshape2</code> package.</li>
+</ul>
+<p><span style="color: orange;"><strong>Try it!</strong></span></p>
+<p>Let’s have some fun by working on the <code>mtcars</code> data set where we will demonstrate reshaping between wide and long formats</p>
+<p><strong>Step 1: Inspect the Data</strong></p>
+<p>The <code>mtcars</code> data set is already in a wide format where each row represents a car, and columns represent different variables for instance <code>mpg, cyl, hp</code>.</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="group-manipulation.html#cb147-1" tabindex="-1"></a><span class="fu">data</span>(mtcars) <span class="co"># Load the data set</span></span>
+<span id="cb147-2"><a href="group-manipulation.html#cb147-2" tabindex="-1"></a></span>
+<span id="cb147-3"><a href="group-manipulation.html#cb147-3" tabindex="-1"></a><span class="co"># First few records of the data set</span></span>
+<span id="cb147-4"><a href="group-manipulation.html#cb147-4" tabindex="-1"></a><span class="fu">head</span>(mtcars)</span></code></pre></div>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p><strong>Step2: Converting from Wide to Long Format</strong></p>
+<p>We will use the <code>pivot_longer()</code> function from the <code>tidyr</code> package to convert the data set from wide to long format. In this case, we will shape the <code>mpg</code>, <code>hp</code> and <code>wt</code> columns into a longer format making it easier to work with.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="group-manipulation.html#cb149-1" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb149-2"><a href="group-manipulation.html#cb149-2" tabindex="-1"></a></span>
+<span id="cb149-3"><a href="group-manipulation.html#cb149-3" tabindex="-1"></a><span class="co"># Reshape the data from wide to long format</span></span>
+<span id="cb149-4"><a href="group-manipulation.html#cb149-4" tabindex="-1"></a>mtcars_long <span class="ot">&lt;-</span> mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb149-5"><a href="group-manipulation.html#cb149-5" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(mpg, hp, wt),</span>
+<span id="cb149-6"><a href="group-manipulation.html#cb149-6" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;variable&quot;</span>,</span>
+<span id="cb149-7"><a href="group-manipulation.html#cb149-7" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span>
+<span id="cb149-8"><a href="group-manipulation.html#cb149-8" tabindex="-1"></a></span>
+<span id="cb149-9"><a href="group-manipulation.html#cb149-9" tabindex="-1"></a><span class="co"># View the respaed data </span></span>
+<span id="cb149-10"><a href="group-manipulation.html#cb149-10" tabindex="-1"></a><span class="fu">head</span>(mtcars_long)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 10
+##     cyl  disp  drat  qsec    vs    am  gear  carb variable  value
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+## 1     6   160   3.9  16.5     0     1     4     4 mpg       21   
+## 2     6   160   3.9  16.5     0     1     4     4 hp       110   
+## 3     6   160   3.9  16.5     0     1     4     4 wt         2.62
+## 4     6   160   3.9  17.0     0     1     4     4 mpg       21   
+## 5     6   160   3.9  17.0     0     1     4     4 hp       110   
+## 6     6   160   3.9  17.0     0     1     4     4 wt         2.88</code></pre>
+<p>If we break down the code;</p>
+<ol style="list-style-type: lower-roman">
+<li><code>pivot_longer()</code> function moves the selected columns (<code>mpg</code>, <code>hp</code>, <code>wt</code>) into a new “long” format, with eah row representing a unique combination of car characteristics(<code>variable</code>) and their corresponding <code>value</code>.</li>
+<li><code>names_to = "variable"</code>: The variable names (e.g., <code>mpg</code>, <code>hp</code>, <code>wt</code>) are moved to a column named “variable”.</li>
+<li><code>values_to = "value"</code>: The data for each variable is placed in a column named <code>"value"</code>.</li>
+</ol>
+<p>Also, data in long format can be converted to a wide format. The <code>pivot_wider</code> function from <code>dplyr</code> gets the work done.</p>
+<p><span style="color: orange;"><strong>Try it!</strong></span></p>
+<p>Lets put the <code>pivot_wider</code> function into practice. We will convert the <code>ntcars_long</code> data set that we just recently generated to a wider format.</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="group-manipulation.html#cb151-1" tabindex="-1"></a><span class="co"># Reshape from long to wide format</span></span>
+<span id="cb151-2"><a href="group-manipulation.html#cb151-2" tabindex="-1"></a>mtcars_wide <span class="ot">&lt;-</span> mtcars_long <span class="sc">%&gt;%</span></span>
+<span id="cb151-3"><a href="group-manipulation.html#cb151-3" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">&quot;variable&quot;</span>, <span class="at">values_from =</span> <span class="st">&quot;value&quot;</span>)</span>
+<span id="cb151-4"><a href="group-manipulation.html#cb151-4" tabindex="-1"></a></span>
+<span id="cb151-5"><a href="group-manipulation.html#cb151-5" tabindex="-1"></a><span class="co"># View the reshaped data</span></span>
+<span id="cb151-6"><a href="group-manipulation.html#cb151-6" tabindex="-1"></a><span class="fu">head</span>(mtcars_wide)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 11
+##     cyl  disp  drat  qsec    vs    am  gear  carb   mpg    hp    wt
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     6   160  3.9   16.5     0     1     4     4  21     110  2.62
+## 2     6   160  3.9   17.0     0     1     4     4  21     110  2.88
+## 3     4   108  3.85  18.6     1     1     4     1  22.8    93  2.32
+## 4     6   258  3.08  19.4     1     0     3     1  21.4   110  3.22
+## 5     8   360  3.15  17.0     0     0     3     2  18.7   175  3.44
+## 6     6   225  2.76  20.2     1     0     3     1  18.1   105  3.46</code></pre>
+<p>If we break down the code;</p>
+<ol style="list-style-type: lower-roman">
+<li><code>pivot_wider()</code> converts the long format back into the wide format, with separate columns for each variable (<code>mpg</code>, <code>hp</code>, <code>wt</code>).</li>
+<li><code>names_from = "variable"</code>: Moves the unique values from the <code>"variable</code>” column into their own columns (e.g., <code>mpg</code>, <code>hp</code>, <code>wt</code>).</li>
+<li><code>values_from = "value"</code>: Populates the new columns with values from the “value” column.</li>
+</ol>
+<p><span style="color: green;"><strong>Practical Exercise</strong></span></p>
+<p>Use the pivot_longer() function to convert the iris dataset (which contains measurements for different flower features) into a long format. Focus on converting the numeric columns like Sepal.Length and Sepal.Width.</p>
+<p>Then, use pivot_wider() to convert it back to a wide format.</p>
+<hr />
+<p><span style="color: brown;"><strong>Solution</strong></span></p>
+</div>
+<div id="hands-on-exercise-1" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> <span style="color: green;"><strong>Hands-on Exercise</strong></span><a href="group-manipulation.html#hands-on-exercise-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this practical exercise, you will be required to download and import the Furniture sales data set from <a href="https://www.kaggle.com/datasets/rajagrawal7089/furniture-sales-data">here</a> and perform the following;</p>
+<ol style="list-style-type: decimal">
+<li>Calculate the average profit margin for each material using the <code>tapply</code> function.</li>
+<li>Find the difference between the cost and the price of each item on the <code>mapply</code> function.</li>
+<li>Calculate the maximum price, cost and sales columns using the <code>sapply</code> and <code>lapply</code> function. Note the difference between the two functions.</li>
+<li>Use aggregation to find the maximum sales for each product category.</li>
+<li>Subset the <code>brand</code>, <code>sales</code> columns and name it <code>brand_df</code>. Convert the data to a longer format and store in a variable <code>pbrand_df_long</code>.</li>
+</ol>
+<hr />
+<p><span style="color: brown;"><strong>Solution</strong></span></p>
+<p><span style="color: brown;"><strong>________________________________________________________________________________</strong></span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="general-statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/balsaedi/RCourse/edit/main/03-group_manipulation.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/balsaedi/RCourse/blob/main/03-group_manipulation.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

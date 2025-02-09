@@ -1,0 +1,5 @@
+Package: K2PMassConverter
+Type: Package
+Title: Convert mass from kilo to pounds and vice versa
+Version: 0.0.1
+RoxygenNote: 7.3.2

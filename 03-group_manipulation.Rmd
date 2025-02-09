@@ -1,0 +1,275 @@
+# Group Manipulation
+Group manipulation in R refers to the process of grouping data based on certain categories and then performing operations based on each group separately. This is useful when you want to summarize, analyze or transform subsets of your data independently. In simple terms, group manipulation involves splitting the data into groups, applying a function to each group, and then combining the results. We will explore different methods designed by researchers for group manipulation. They are group manipulation using;
+
+- The `apply` family,
+- The `aggregate` from `plyr` package, 
+- Data reshaping
+
+## Apply Family 
+The **apply family** in R is a collection of functions that helps you apply operations to data structures like vectors, lists, matrices and data frames in a more efficient way than using loops. Think of these functions as a way to give commands to your data in bulk, telling each piece what to do without repeating yourself. 
+
+Let’s make this fun! Imagine you’re running a café, and you have tables (rows of data) with customer orders (columns of data). You want to calculate the total for each table or find out how much each customer spent on average. The `apply` family is like hiring a helper who goes to each table and collects information without you having to ask each customer individually!
+
+We will have a quick overview of the members of the **apply family**;
+
+- `apply()` - Works with matrices or data frames, applying a function to rows or columns. 
+- `lapply()` - Loops over elements in a list, applying a function to each element and returning a list. 
+- `sapply()` - Similar to `lapply`, but it returns a vector or matrix when possible. 
+- `tapply()` - Applies a function over subsets of data, especially useful for factors or groups. 
+- `mapply()` - Applies a function to multiple arguments simultaneously. 
+
+<span style="color: orange;">**Try it: **</span>
+
+Here is the `apply` family in action using the built-in R data set that contains information about flowers. 
+
+- Use apply to calculate the mean of each column in the iris data set at once(No need of specifying the columns)
+```{r}
+#  Load and view the first few rows of the iris data set
+data(iris)
+head(iris)
+
+# Calculate the mean of each numeric column
+col_means <- apply(iris[, 1:4], 2, mean)
+print(col_means)
+```
+
+- The `2` in `apply` means "apply the function to columns" and the `mean` was used to find the average of each column. This is simple as asking a helper to calculate the  the average for all types of flowers for each characteristic (sepal length, petal length, etc.). Let's repeat the same for a each row, instead of argument value `2` we will put argument value `1` in the second position. 
+```{r}
+row_means <- apply(iris[, 1:4], 1, mean) # Calculate the mean for each row 
+head(row_means, 15) # Show the first fifteen averages of the row
+```
+
+- Now lets use the `lapply` function to find the range for each numeric column. This function applies to each element and returns a list. No need to specify if its a column or a row
+```{r}
+# Calculate the range of each numeric column in the iris dataset
+column_ranges <- lapply(iris[, 1:4], range)
+print(column_ranges)
+```
+
+Repeating the function with `mean` function instead of the `range` function. 
+```{r}
+# Calculate the mean of each numeric column in the iris dataset
+col_means <- lapply(iris[, 1:4], mean)
+print(col_means)
+```
+
+You see! `lapply` function works column wise instead of row wise when working with data frames. Lets create a function that will add 10 to the input value and use the `lapply` function to work on a vector. 
+```{r}
+# Create a vector
+current_ages <- c(21, 43, 12, 56, 32)
+
+# Create a function that adds 10 to an input value 
+add_10 <- function(value){
+  return(value + 10)
+}
+
+# Test the function 
+add_10(27)
+
+# Apply the function to vector ages 
+ages_10_years_later <- lapply(current_ages, add_10)
+ages_10_years_later # Show the result
+```
+
+It returns a `list` with values in the vector `current_ages` add 10 to each value. 
+
+- The `sapply()` function works similarly to `lapply()`, but it tries to simplify the output. If possible, it will return a vector or matrix instead of a list.
+Let`s calculate the variance for each numeric column;
+```{r}
+# Calculate the variance for each numeric column
+col_variance <- sapply(iris[, 1:4], var)
+print(col_variance)
+```
+
+Remember that we created a function `add_10` that adds 10 to the current ages of the clients. Lets repeat the same using the `sapply` function instead of `lapply` function. 
+```{r}
+# Calculate the variance for each numeric column
+ages_10_years_later <- sapply(current_ages, add_10)
+print(ages_10_years_later)
+```
+
+It is now evident that `sapply` has a simpler output than the `lapply` function. 
+
+- The `tapply()` function applies a function to subsets of data grouped by a factor (e.g., species in our case). Let’s calculate the average sepal length for each species:
+```{r}
+# Calculate the average Sepal.Length for each Species
+avg_sepal_by_species <- tapply(iris$Sepal.Length, iris$Species, mean)
+print(avg_sepal_by_species)
+```
+
+This is like sending your helper to collect the sepal lengths for each species separately, and then calculating the average for each group.
+
+- Finally the `mapply()` function is useful when you want to apply a function to multiple sets of arguments at once. Let’s calculate the sum of `Sepal.Length` and `Sepal.Width` for each row:
+```{r}
+# Sum Sepal.Length and Sepal.Width for each row
+sepal_sum <- mapply(sum, iris$Sepal.Length, iris$Sepal.Width)
+head(sepal_sum)
+```
+This function adds the sepal length and width for each flower row by row.
+It’s like your helper asking every customer for two values and summing them up together.
+
+
+<span style="color: green;">**Practical Exercise**</span>
+
+Now it's time to test your skills!
+
+1. Use `apply()` to calculate the maximum for each column in the iris data set.
+2. Use `lapply()` to find the summary statistics (use the `summary()` function) for each numeric column in the iris data set.
+3. Use `tapply()` to find the average petal width for each species in the iris data set.
+
+_______________________________________________________________________
+<span style="color: brown;">**Solution**</span> 
+
+
+
+<span style="color: brown;">**________________________________________________________________________________**</span>
+
+## Aggregate Plyr
+
+The `aggregate()` function from `plyr` package is a powerful tool for grouping and summarizing data in R. This is similar to the SQL `GROUP BY` command or the `tapply()` that we have discussed above. The difference is that `aggregate()` allows to summarize data based on one or more grouping factors. 
+
+<span style="color: orange;">**Try it!**</span>
+
+Let's explore an example using the built-in `mtcars` data set to show how to use the `aggregate()` from the `plyr` package. The `plyr` package can be installed by:
+```
+install.packages("plyr")
+```
+
+Lets start
+```{r}
+library(plyr)
+
+# Load the data set
+data("mtcars")
+
+# Use aggregate to find the average 'mpg' (miles per gallon) grouped by the number of cylinders ('cyl')
+avg_mpg_by_cyl <- aggregate(mpg ~ cyl, 
+                            data = mtcars, 
+                            FUN = mean)
+avg_mpg_by_cyl
+```
+If we break done the code;
+
+i. `mpg ~ cyl` tells R to calculate the average `mpg`(dependent variable) for each unique value of `cyl`(grouping factor).
+ii. `data = mtcars` specifies the data set. 
+iii. `FUN = mean` applies the `mean` function to compute the average `mpg` for each group of `cyl`. 
+
+We have just calculated the average `mpg` (miles per gallon) grouped by the number of `cyl`(cylinders). Let's make it a little bit more complex by grouping with multiple variables and summarize multiple columns as well. We will calculate the mean horsepower(`hp`) and the weight(`wt`) by the number of cylinders(`cyl`) and the number of transmission(`am`). 
+```{r}
+# Use aggregate to find the mean hp and wt by cylinders and transmission type
+avg_hp_wt_by_cyl_am <- aggregate(cbind(hp, wt) ~ cyl + am, 
+                                 data = mtcars, 
+                                 FUN = mean)
+
+avg_hp_wt_by_cyl_am
+```
+If we breakdown the code;
+
+i. `cbind(hp, wt)` allows you to summarize multiple columns (`hp` and `wt`).
+ii. `cyl + am` groups the data by the number of cylinders and the transmission type (`am` = 0 for automatic, 1 for manual`).
+iii. The argument `FUN` defines the function to be used here therefore, `FUN = mean` calculates the mean values for `hp` and `wt` for each group of `cyl` and `am`.
+
+<span style="color: green;">**Practical Exercise**</span>
+
+Try using the `aggregate()` with the `iris` data set to find the mean sepal length (`Sepal.Length`) and petal length(`Petal.Length`) for each species. 
+
+_______________________________________________________________________
+<span style="color: brown;">**Solution**</span>
+
+
+
+<span style="color: brown;">**________________________________________________________________________________**</span>
+
+## Data Reshaping 
+Data reshaping is the process of transforming the layout or structure of a data set without changing the actual data. You typically reshape data to suit different analyses, visualizations, or reporting formats. Common operations for reshaping include pivoting data between **wide** and **long** formats. 
+
+- **Wide format: ** Each subject(row) has its own columns for measurements at different time points or categories. 
+- **Long format: ** The data has one measurement per row, making it easier to analyze in some cases, especially with repeated measures. 
+
+In R, the most common function for reshaping data include; 
+
+- `pivot_longer()` and `pivot_wider()` from the `tidyr` package.
+- `melt()` and `dcast()` from the `reshape2` package. 
+
+<span style="color: orange;">**Try it!**</span>
+
+Let's have some fun by working on the `mtcars` data set where we will demonstrate reshaping between wide and long formats
+
+**Step 1: Inspect the Data**
+
+The `mtcars` data set is already in a wide format where each row represents a car, and columns represent different variables for instance `mpg, cyl, hp`. 
+```{r}
+data(mtcars) # Load the data set
+
+# First few records of the data set
+head(mtcars)
+```
+
+**Step2: Converting from Wide to Long Format**
+
+We will use the `pivot_longer()` function from the `tidyr` package to convert the data set from wide to long format. In this case, we will shape the `mpg`, `hp` and `wt` columns into a longer format making it easier to work with. 
+```{r}
+library(tidyr)
+
+# Reshape the data from wide to long format
+mtcars_long <- mtcars %>% 
+  pivot_longer(cols=c(mpg, hp, wt),
+               names_to = "variable",
+               values_to = "value")
+
+# View the respaed data 
+head(mtcars_long)
+```
+
+If we break down the code;
+
+i. `pivot_longer()` function moves the selected columns (`mpg`, `hp`, `wt`) into a new "long" format, with eah row representing a unique combination of car characteristics(`variable`) and their corresponding `value`. 
+ii. `names_to = "variable"`: The variable names (e.g., `mpg`, `hp`, `wt`) are moved to a column named "variable".
+iii. `values_to = "value"`: The data for each variable is placed in a column named `"value"`.
+
+Also, data in long format can be converted to a wide format. The `pivot_wider` function from `dplyr` gets the work done. 
+
+<span style="color: orange;">**Try it!**</span> 
+
+Lets put the `pivot_wider` function into practice. We will convert the `ntcars_long` data set that we just recently generated to a wider format. 
+```{r}
+# Reshape from long to wide format
+mtcars_wide <- mtcars_long %>%
+  pivot_wider(names_from = "variable", values_from = "value")
+
+# View the reshaped data
+head(mtcars_wide)
+```
+
+If we break down the code;
+
+i. `pivot_wider()` converts the long format back into the wide format, with separate columns for each variable (`mpg`, `hp`, `wt`).
+ii. `names_from = "variable"`: Moves the unique values from the `"variable`" column into their own columns (e.g., `mpg`, `hp`, `wt`).
+iii. `values_from = "value"`: Populates the new columns with values from the "value" column.
+
+<span style="color: green;">**Practical Exercise**</span> 
+
+Use the pivot_longer() function to convert the iris dataset (which contains measurements for different flower features) into a long format. Focus on converting the numeric columns like Sepal.Length and Sepal.Width.
+
+Then, use pivot_wider() to convert it back to a wide format.
+
+_______________________________________________________________________
+<span style="color: brown;">**Solution**</span> 
+
+
+
+## <span style="color: green;">**Hands-on Exercise**</span> 
+
+In this practical exercise, you will be required to download and import the Furniture sales data set from [here]( https://www.kaggle.com/datasets/rajagrawal7089/furniture-sales-data) and perform the following; 
+
+1. Calculate the average profit margin for each material using the `tapply` function. 
+2. Find the difference between the cost and the price of each item on the `mapply` function. 
+3. Calculate the maximum price, cost and sales columns using the `sapply` and `lapply` function. Note the difference between the two functions. 
+4. Use aggregation to find the maximum sales for each product category. 
+5. Subset the `brand`, `sales` columns and name it `brand_df`. Convert the data to a longer format and store in a variable `pbrand_df_long`. 
+
+_______________________________________________________________________
+<span style="color: brown;">**Solution**</span> 
+
+
+<span style="color: brown;">**________________________________________________________________________________**</span>
