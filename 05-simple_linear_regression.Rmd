@@ -160,6 +160,186 @@ _______________________________________________________________________
 
 <span style="color: brown;">**________________________________________________________________________________**</span>
 
+
+## Tests on the Regression Coefficients
+  
+In simple linear regression, we estimate a model of the form:
+  
+  \[
+    Y = \beta_0 + \beta_1 X + \epsilon
+    \]
+
+where:
+
+  - \( \beta_0 \) (intercept) and \( \beta_1 \) (slope) are the regression coefficients.
+  
+- \( X \) is the independent variable.
+
+- \( Y \) is the dependent variable.
+
+- \( \epsilon \) is the random error.
+
+
+### Why Test Regression Coefficients?
+
+- To determine if the **slope (\( \beta_1 \))** significantly differs from zero.
+
+- To check if the **intercept (\( \beta_0 \))** is significant.
+
+- To assess whether the independent variable **significantly predicts** the dependent variable.
+
+
+---
+  
+### Hypothesis Testing for Regression Coefficients
+  
+The **t-test** is used to test the significance of the regression coefficients.
+
+#### Null and Alternative Hypotheses
+
+For the **intercept** (\( \beta_0 \)):
+  \[
+    H_0: \beta_0 = 0 \quad \text{(No significant intercept)}
+    \]
+\[
+  H_A: \beta_0 \neq 0 \quad \text{(Intercept is significant)}
+  \]
+
+For the **slope** (\( \beta_1 \)):
+  \[
+    H_0: \beta_1 = 0 \quad \text{(No relationship between \(X\) and \(Y\))}
+    \]
+\[
+  H_A: \beta_1 \neq 0 \quad \text{(Significant relationship)}
+  \]
+
+---
+  
+
+#### Example: Predicting Sales from Advertising Budget
+  
+```{r}
+# Load necessary library
+library(ggplot2)
+
+# Sample data
+advertising <- c(10, 15, 20, 25, 30, 35, 40, 45, 50, 55)
+sales <- c(5, 7, 8, 10, 15, 16, 18, 22, 25, 28)
+
+# Fit the linear regression model
+model <- lm(sales ~ advertising)
+
+# Display summary
+summary(model)
+```
+
+
+---
+  
+ **Interpreting Regression Output**
+
+```{r}
+summary(model)$coefficients
+```
+
+
+- **Intercept (\( \beta_0 \)):** Not significant (p = 0.121), meaning the model does not strongly support an inherent baseline sales value.
+
+- **Slope (\( \beta_1 \)):** Highly significant (p = 0.00000002026551), meaning **advertising budget significantly predicts sales**.
+
+
+---
+  
+### Confidence Intervals for Regression Coefficients
+
+We can compute **confidence intervals** for regression coefficients.
+
+
+#### Example: 95% Confidence Intervals
+```{r}
+confint(model, level = 0.95)
+```
+
+
+- If the confidence interval for \( \beta_1 \) does not include **zero**, the predictor is significant.
+
+---
+  
+### Visualizing Regression Line and Confidence Intervals
+#### Example: Scatterplot with Regression Line
+```{r}
+ggplot(data = data.frame(advertising, sales), aes(x = advertising, y = sales)) +
+  geom_point(color = "blue") +
+  geom_smooth(method = "lm", se = TRUE, color = "red") +
+  labs(title = "Sales vs Advertising Budget",
+       x = "Advertising Budget",
+       y = "Sales") +
+  theme_minimal()
+```
+
+---
+  
+### Testing Individual Coefficients Using `car` Package
+  The `car` package provides robust significance tests.
+
+#### Example: `linearHypothesis()` for Testing \( \beta_1 \)
+```{r}
+library(car)
+linearHypothesis(model, "advertising = 0")
+```
+
+
+  - If **p-value < 0.05**, we reject \( H_0 \), meaning **advertising has a significant effect** on sales.
+  
+
+---
+  
+### Practical Exercises
+  
+#### Exercise 1: Running a Regression Model
+
+  1. Use the dataset:
+  
+```{r}
+experience <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+salary <- c(40000, 42000, 45000, 47000, 50000, 52000, 55000, 58000, 60000, 63000)
+```
+
+2. Fit a **linear regression model** predicting salary from experience.
+
+3. Perform hypothesis tests on **coefficients**.
+
+---
+  
+#### Exercise 2: Computing Confidence Intervals
+
+1. Use the **same dataset** as Exercise 1.
+
+2. Compute **95% confidence intervals** for regression coefficients.
+
+---
+  
+#### Exercise 3: Testing Significance of Coefficients
+
+  
+1. Use the **same dataset** as Exercise 1.
+
+2. Use the `car` package to **test if experience significantly predicts salary**.
+
+---
+  
+#### Exercise 4: Visualizing Regression Model
+
+  
+1. Use the **same dataset** as Exercise 1.
+
+2. Create a **scatterplot with a regression line**.
+
+---
+
+---
+
+
 ## Identifying Points in a Plot
 
 We made the scatter plot above static. Here, we will enable any researcher to identify specific points in the chart. I will now plot the chart using `ggplot2` library. 
